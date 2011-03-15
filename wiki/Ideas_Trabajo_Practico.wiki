@@ -1,0 +1,10 @@
+Preguntas
+
+Sólo texto?
+
+Hay que validarlo?
+
+En que idioma?
+Posibilidades
+
+Analizar frecuencias de palabras o sílabas para precargar los aŕboles 
