@@ -4,6 +4,10 @@
 
 using namespace std;
 
+/**
+ * 
+ *
+ */
 int HexDecoder::map_digit(char digit, char min, char max,int offset){
   if ( digit >= min && digit <= max) {
     return (digit - min + offset);
@@ -12,14 +16,14 @@ int HexDecoder::map_digit(char digit, char min, char max,int offset){
 }
 
 int HexDecoder::decode_digit(char digit) {
-  int res;
-  res=map_digit(digit,'0','9',0);
-  if (res != -1) {
-    return res;
+  int decoded;
+  decoded=map_digit(digit,'0','9',0);
+  if (decoded != -1) {
+    return decoded;
   }
-  res=map_digit(digit,'a','f',10);
-  if (res != -1) {
-    return res;
+  decoded=map_digit(digit,'a','f',10);
+  if (decoded != -1) {
+    return decoded;
   }
   
   // @todo raise exception instead of returning -1
@@ -41,8 +45,8 @@ throw 1;
 }
 
 std::string HexDecoder::getAsString(){
-  throw 1;
-  return "";
+  string result(output);
+  return result;
 }
 
 HexDecoder::HexDecoder() {
@@ -56,32 +60,31 @@ void HexDecoder::decode(std::string& input) {
   char * outputCursor = output;
   char * bufferEnd = &output[input.size()];
   string::iterator it=input.begin();
-  it+=2;
-  bool spaced = ((*it)== ' ');
-
-  it=input.begin();
 
   while( it != input.end() && outputCursor != bufferEnd) {
     int digit = 0;
-    int tmp = decode_digit(*it);
-    if (tmp == -1) {
+    int decoded = decode_digit(*it);
+    if (decoded == -1) {
+      // not in 0-9a-fA-F range
       throw 1;
     } 
-    digit = tmp * 16;
+    digit = decoded * 16;
 
     ++it;
     if (it == input.end()) {
+      // odd characters provided
       throw 1;
     }
 
-    tmp = decode_digit(*it);
-    if (tmp == -1) {
-      throw 1; //@todo exception
+    decoded = decode_digit(*it);
+    if (decoded == -1) {
+      // not in 0-9a-fA-F range
+      throw 1;
     }
-    digit += tmp;
+    digit += decoded;
     ++it;
 
-    if (spaced && it != input.end()) {
+    if (*it == ' ') {
       ++it;
     }
 

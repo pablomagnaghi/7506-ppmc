@@ -1,10 +1,10 @@
 # Makefile para C/C++
 # Un ejecutable en multiples carpetas
-# Regla test
+# Testing con setup, run y cleanup
 #
-# Version 9 
+# Version 12 
 # 
-# Carlos Pantelides 2009
+# Carlos Pantelides 2009, 2010, 2011
 # Basado en  
 # Copyleft 2004 - Leandro Lucarella, Bajo licencia GPL [http://www.gnu.org/]
 # 
@@ -32,6 +32,10 @@ debug = si
 # Descomentar para compilar estaticamente
 #static = si
 
+
+# Descomentar si usa cppunit
+cppunit = si
+
 # Opciones para el linker
 # LDFLAGS =
 
@@ -44,11 +48,24 @@ debug = si
 # Descomentar si usa gthreads
 #gthreads = si
 
-# Descomentar si es un programa GTK+
+# Descomentar si usa GTK+
 #gtk = si
 
-# Descomentar si es un programa gtkmm
+# Descomentar si usa gtkmm
 #gtkmm = si
+
+# Descomentar si usa OpenGL
+# gl = si
+
+# Descomentar si usa OpenGL Utility
+# glu = si
+
+# Descomentar si usa GLUT
+
+# glut = si
+
+# Descomentar si usa SDL
+# sdl = si
 
 # Descomentar si usa libid3
 #id3 = si
@@ -86,6 +103,11 @@ else
   CFLAGS += -O3 -DNDEBUG
 endif
 
+# cppunit
+ifdef cppunit
+  LDFLAGS += $(shell pkg-config --libs cppunit)
+  LDFLAGS += -ldl
+endif
 # shared memory
 ifdef shared_memory
   LDFLAGS += -lrt
@@ -116,12 +138,6 @@ ifdef extractor
 endif
 
 # flags y libs de gthreads
-ifdef png
-  CFLAGS += $(shell pkg-config --cflags libpng)
-  LDFLAGS += $(shell pkg-config --libs libpng)
-endif
-
-# flags y libs de gthreads
 ifdef gthreads
   CFLAGS += $(shell pkg-config --cflags gthread-2.0)
   LDFLAGS += $(shell pkg-config --libs gthread-2.0)
@@ -131,6 +147,41 @@ endif
 ifdef math
   LDFLAGS += -lm
 endif
+
+# libs y flags de sdl
+# @todo normalizar image, gfx
+# @todo normalizar png y ver relacion con libpng
+ifdef sdl
+CFLAGS += $(shell sdl-config --cflags)
+CXXFLAGS += $(shell sdl-config --cflags)
+LDFLAGS += $(shell sdl-config --libs)
+LDFLAGS += -lSDL_image
+#LDFLAGS += -lSDL_gfx
+LDFLAGS += -lpng
+endif
+
+#libs de OpenGL
+ifdef gl
+LDFLAGS += -lGL 
+endif
+
+#libs de OpenGL Utilities
+ifdef glu
+LDFLAGS += -lGLU
+endif
+
+#libs de GLUT
+
+ifdef glut
+LDFLAGS += -lglut
+endif
+
+# flags y libs de libng
+ifdef png
+  CFLAGS += $(shell pkg-config --cflags libpng)
+  LDFLAGS += $(shell pkg-config --libs libpng)
+endif
+
 
 # libs de id3
 ifdef id3
@@ -220,10 +271,14 @@ $(target): $(o_files)
 	$(LD) $(LDFLAGS) $(o_files) $(LOADLIBS) $(LDLIBS) -o $(target)
 
 clean:
-	$(RM) $(o_files) $(o_files:.o=.deps) $(target) out.zip
- 
+	$(RM) $(o_files) $(o_files:.o=.deps) $(target)
 
 test: all
-	@./test/test.sh && echo "Testing OK"
+	@./test/setup.sh 
+	@./test/run.sh && echo "Testing OK"
 	@./test/cleanup.sh
 
+
+setup_cppunit:
+
+check: setup_cppunit all

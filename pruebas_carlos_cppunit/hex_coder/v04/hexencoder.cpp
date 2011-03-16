@@ -15,7 +15,11 @@ HexEncoder::HexEncoder(){
 HexEncoder::~HexEncoder(){
 
 }
-
+/**
+ * Encodes as hexadecimal string representation the content of a buffer filled 
+ * with bytes
+ * 
+ */
 std::string HexEncoder::encode(const char* buffer, unsigned int size) {
   unsigned char uc;
   unsigned int ui;
@@ -30,6 +34,10 @@ std::string HexEncoder::encode(const char* buffer, unsigned int size) {
   return output;
 }
 
+/**
+ * Encodes as hexadecimal string representation a stream
+ *
+ */
 std::string HexEncoder::encode(std::istream& input){
   char c;
   unsigned char uc;
