@@ -26,7 +26,7 @@ verbose = si
 debug = si
 
 # Agregar object files
-#o_files  = 
+o_files  = ../hex_coder/v03/hexencoder.o
 #o_files += 
 
 # Descomentar para compilar estaticamente
