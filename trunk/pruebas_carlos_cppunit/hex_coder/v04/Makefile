@@ -107,7 +107,9 @@ endif
 ifdef cppunit
   LDFLAGS += $(shell pkg-config --libs cppunit)
   LDFLAGS += -ldl
+  CFLAGS += $(shell pkg-config --cflags cppunit)
 endif
+
 # shared memory
 ifdef shared_memory
   LDFLAGS += -lrt
