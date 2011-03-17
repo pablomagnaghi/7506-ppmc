@@ -10,6 +10,8 @@ CPPUNIT_TEST_SUITE_REGISTRATION( HexDecoderTest );
 
 
 void HexDecoderTest::setUp(){
+  input = "4b50040300140003000068af2e9a8b235d7d0045000000390000000800006e696f66742e7478c929225d804d4ea8e565e358a5a2967cdaba214204f4da6fff2451682af9e88fabc03d2a5b4037e06e551d910aa625f1d5d527b6562c25852d2f5eafa1dbd6ca0b48825a506a014b1402140003000000af009a68232e7d8b455d000039000000080000000000000001002000b600008100006900666e2e6f78745074054b0006000001000100360000006b0000000000000023ffaba100fa0000";
+
 }
 
 
@@ -23,8 +25,9 @@ void HexDecoderTest::testConstructor(){
   CPPUNIT_ASSERT_EQUAL(zero , he.getSize() );
 }
 
-void HexDecoderTest::testDecode(){
-  unsigned char expected[384] = {
+
+
+unsigned char HexDecoderTest::expected[]={ 
     0x4b, 0x50, 0x04, 0x03, 0x00, 0x14, 0x00, 0x03, 0x00, 0x00, 0x68, 0xaf ,0x2e, 0x9a, 0x8b, 0x23,
     0x5d, 0x7d, 0x00, 0x45, 0x00, 0x00, 0x00, 0x39, 0x00, 0x00, 0x00, 0x08 ,0x00, 0x00, 0x6e, 0x69,
     0x6f, 0x66, 0x74, 0x2e, 0x74, 0x78, 0xc9, 0x29, 0x22, 0x5d, 0x80, 0x4d, 0x4e, 0xa8, 0xe5, 0x65,
@@ -37,15 +40,18 @@ void HexDecoderTest::testDecode(){
     0x20, 0x00, 0xb6, 0x00, 0x00, 0x81, 0x00, 0x00, 0x69, 0x00, 0x66, 0x6e, 0x2e, 0x6f, 0x78, 0x74,
     0x50, 0x74, 0x05, 0x4b, 0x00, 0x06, 0x00, 0x00, 0x01, 0x00, 0x01, 0x00, 0x36, 0x00, 0x00, 0x00,
     0x6b, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x23, 0xff, 0xab, 0xa1, 0x00, 0xfa, 0x00, 0x00
-  };
+};
 
-  string input("4b50040300140003000068af2e9a8b235d7d0045000000390000000800006e696f66742e7478c929225d804d4ea8e565e358a5a2967cdaba214204f4da6fff2451682af9e88fabc03d2a5b4037e06e551d910aa625f1d5d527b6562c25852d2f5eafa1dbd6ca0b48825a506a014b1402140003000000af009a68232e7d8b455d000039000000080000000000000001002000b600008100006900666e2e6f78745074054b0006000001000100360000006b0000000000000023ffaba100fa0000");
-
-
+void HexDecoderTest::testDecode(){
     HexDecoder hd;
     hd.decode(input);
     int result = memcmp(expected, hd.getCharBufferPtr(), hd.getSize());
     CPPUNIT_ASSERT_EQUAL(0, result);
+}
+
+void HexDecoderTest::testGetAsString(){
+
+
 }
 /*
 	
