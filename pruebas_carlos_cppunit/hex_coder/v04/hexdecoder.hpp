@@ -2,6 +2,10 @@
 #define __hexdecoder_hpp__
 
 #include <string>
+
+#include "OddDigitException.hpp"
+#include "InvalidDigitException.hpp"
+
 /*
  * 
  *

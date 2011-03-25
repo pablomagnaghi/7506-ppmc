@@ -1,6 +1,7 @@
 #include "hexdecoder.hpp"
 
 #include <string>
+#include <iostream>
 
 using namespace std;
 
@@ -25,9 +26,11 @@ int HexDecoder::decode_digit(char digit) {
   if (decoded != -1) {
     return decoded;
   }
-  
-  // @todo raise exception instead of returning -1
-  return map_digit(digit,'A','F',10);
+  decoded = map_digit(digit,'A','F',10);
+  if (decoded != -1) {
+    return decoded;
+  }
+  throw new InvalidDigitException();
 }
 
 
@@ -40,7 +43,6 @@ char* HexDecoder::getCharBufferPtr() {
 }
 
 char* HexDecoder::getCharBufferCopy() {
-throw 1;
   return 0;  
 }
 
@@ -54,6 +56,7 @@ HexDecoder::HexDecoder() {
 }
 
 void HexDecoder::decode(std::string& input) {
+  try {
   size=input.size();
   output = new char[size]; 
 
@@ -64,23 +67,17 @@ void HexDecoder::decode(std::string& input) {
   while( it != input.end() && outputCursor != bufferEnd) {
     int digit = 0;
     int decoded = decode_digit(*it);
-    if (decoded == -1) {
-      // not in 0-9a-fA-F range
-      throw 1;
-    } 
+
     digit = decoded * 16;
 
     ++it;
     if (it == input.end()) {
       // odd characters provided
-      throw 1;
+      throw new OddDigitException("Malformed input");
     }
 
     decoded = decode_digit(*it);
-    if (decoded == -1) {
-      // not in 0-9a-fA-F range
-      throw 1;
-    }
+
     digit += decoded;
     ++it;
 
@@ -92,6 +89,9 @@ void HexDecoder::decode(std::string& input) {
     ++outputCursor;
   }
   size = ( outputCursor - output);
+  } catch (exception &e) {
+    cout << "#################" << e.what() << endl;
+  }
 }
 
 HexDecoder::~HexDecoder(){
