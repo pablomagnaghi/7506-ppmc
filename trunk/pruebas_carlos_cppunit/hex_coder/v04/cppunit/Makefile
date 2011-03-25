@@ -26,7 +26,7 @@ verbose = si
 debug = si
 
 # Agregar object files
-#o_files  = 
+o_files  = ../hexdecoder.o ../hexencoder.o ../OddDigitException.o
 #o_files += 
 
 # Descomentar para compilar estaticamente
@@ -34,7 +34,7 @@ debug = si
 
 
 # Descomentar si usa cppunit
-#cppunit = si
+cppunit = si
 
 # Opciones para el linker
 # LDFLAGS =

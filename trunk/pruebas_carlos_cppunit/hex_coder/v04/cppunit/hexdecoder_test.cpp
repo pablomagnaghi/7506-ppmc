@@ -1,5 +1,5 @@
 #include "hexdecoder_test.hpp"
-#include "hexdecoder.hpp"
+#include "../hexdecoder.hpp"
 
 #include <cstring>
 #include <string>
@@ -49,10 +49,20 @@ void HexDecoderTest::testDecode(){
     CPPUNIT_ASSERT_EQUAL(0, result);
 }
 
-void HexDecoderTest::testGetAsString(){
-
-
+void HexDecoderTest::testDecodeInvalidDigit(){
+  string badInput("aa00ffgg");
+  HexDecoder hd;
+  hd.decode(badInput);
+  CPPUNIT_ASSERT_EQUAL(0,0);
 }
+
+void HexDecoderTest::testDecodeOddDigit(){
+  string badInput("aa00ffga");
+  HexDecoder hd;
+  hd.decode(badInput);
+  CPPUNIT_ASSERT_EQUAL(0,0);
+}
+
 /*
 	
 
