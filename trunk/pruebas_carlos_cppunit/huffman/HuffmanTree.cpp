@@ -37,9 +37,21 @@ int Tree::getTotal() {
 }
     
 void Tree::build() {
-      
+  // use a double size freq
+  // use nodes instead of chars
+  // sort the nodes
+  //   take two and move to nodes
+  //   create a new one pointing to them 
+  //   bubble it up to its sorted position
+  //   repeat until there is only one node
+   
 }
-    
+
+void Tree::buildMap() {
+   build();
+   // copy nodes to a new array composed of position=>(bits,length)
+}
+
 void Tree::save(std::ostream& outfile) {
 
 }

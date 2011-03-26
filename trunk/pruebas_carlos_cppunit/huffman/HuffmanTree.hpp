@@ -14,6 +14,7 @@ namespace huffman {
     std::string getFreq(bool omit_zero);
     int getTotal();
     void build();
+    void buildMap();
     void save(std::ostream& outfile);
     private:
     char buffer[huffman::buffer_size];
