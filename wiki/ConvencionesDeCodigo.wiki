@@ -1,0 +1,25 @@
+Deberiamos normalizar algunas cosas
+
+ * Nombre de los headers: Charli usa .hpp
+
+ * Identación: Charli esta identando con dos espacios
+
+ * Nombres de la clases: Charli usa camel case: StaticCompressor
+
+ * Nombres de los archivos: Charli usa el nombre de la clase
+
+ * Namespaces: Charli usa namespaces y los usa en minúscula: huffman
+
+ * Llaves: Charli pone las llaves en la misma lines
+
+{{{
+if (condition) {
+  block
+} else {
+  block
+}
+
+
+}}}
+
+En todos los casos Charli está dispuesto a cambiar
