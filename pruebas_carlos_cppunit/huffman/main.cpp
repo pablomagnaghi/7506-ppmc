@@ -18,13 +18,15 @@ int main(int argc, char* argv[]) {
   }
 
   huffman::Tree tree;
+  std::string freq = tree.getFreq(true);
+  cout << freq;
   
   tree.read(infile);
 
   // some monitoring
   cout << "buffer size: " << huffman::buffer_size << endl;
   cout << "total: " << tree.getTotal() << endl;
-  std::string freq = tree.getFreq(true);
+  freq = tree.getFreq(true);
   cout << freq;
   
   tree.build();
