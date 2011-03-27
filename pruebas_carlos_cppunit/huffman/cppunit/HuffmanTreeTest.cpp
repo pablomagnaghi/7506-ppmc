@@ -9,7 +9,7 @@ using namespace std;
 using namespace huffman;
 
 void HuffmanTreeTest::setUp(){
-//  input = "4b50040300140003000068af2e9a8b235d7d0045000000390000000800006e696f66742e7478c929225d804d4ea8e565e358a5a2967cdaba214204f4da6fff2451682af9e88fabc03d2a5b4037e06e551d910aa625f1d5d527b6562c25852d2f5eafa1dbd6ca0b48825a506a014b1402140003000000af009a68232e7d8b455d000039000000080000000000000001002000b600008100006900666e2e6f78745074054b0006000001000100360000006b0000000000000023ffaba100fa0000";                                
+
 }
 
 
@@ -21,18 +21,69 @@ void HuffmanTreeTest::testConstructor(){
   int zero = 0;
   string empty;
   Tree tree;
-  CPPUNIT_ASSERT_EQUAL(zero , tree.getTotal() );
-  CPPUNIT_ASSERT_EQUAL(empty, tree.getFreq(true) );
+  CPPUNIT_ASSERT_EQUAL(zero , tree.getTotalRead() );
+  CPPUNIT_ASSERT_EQUAL(empty, tree.showFreq(true) );
   
 }
 
 void HuffmanTreeTest::testRead(){
   istringstream input("\t\tabcdefgh\nabcdefg\nabcdef\nabcde\nabcd\nabc\nab\na\n");
-  string frequencies("9:2,10:8,97:8,98:7,99:6,100:5,101:4,102:3,103:2,104:1");
+  string expected("9:2,10:8,97:8,98:7,99:6,100:5,101:4,102:3,103:2,104:1");
   Tree tree;
   tree.read(input);
-  CPPUNIT_ASSERT_EQUAL(frequencies, tree.getFreq(true) );
+  CPPUNIT_ASSERT_EQUAL(expected, tree.showFreq(true) );
+  CPPUNIT_ASSERT_EQUAL(46, tree.getTotalRead() );  
   
-  
-  
+}
+
+void HuffmanTreeTest::testSort(){
+  istringstream input("\t\tabcdefgh\nabcdefg\nabcdef\nabcde\nabcd\nabc\nab\na\n");
+  string expected("246:1,247:2,248:2,249:3,250:4,251:5,252:6,253:7,254:8,255:8");
+  Tree tree;
+  tree.read(input);
+  tree.sort();
+  CPPUNIT_ASSERT_EQUAL(expected, tree.showFreq(true) );
+}
+
+void HuffmanTreeTest::testBuild() {
+//   istringstream input("\t\tabcdefgh\nabcdefg\nabcdef\nabcde\nabcd\nabc\nab\na\n");
+//   string expected("246:1,247:2,248:2,249:3,250:4,251:5,252:6,253:7,254:8,255:8");
+//   Tree tree;
+//   tree.read(input);
+//   tree.build(); ---->>>  Segmentation fault
+//   CPPUNIT_ASSERT_EQUAL(expected, tree.showFreq(true) );
+}
+
+void HuffmanTreeTest::testSkipZero() {
+  istringstream input("\t\tabcdefgh\nabcdefg\nabcdef\nabcde\nabcd\nabc\nab\na\n");
+  unsigned int expected = 245;
+  Tree tree;
+  tree.read(input);
+  tree.sort();
+  tree.skipZero();
+  CPPUNIT_ASSERT_EQUAL(expected, tree.getFirstNotZero() );
+}
+
+void HuffmanTreeTest::testSkipZeroFull() {
+  stringstream input;
+  // weird but works
+  for (char i=-128; i < 127 ; i++) {
+    input << i;
+  }
+  unsigned int expected = 0;
+  Tree tree;
+  tree.read(input);
+  tree.sort();
+  tree.skipZero();
+  CPPUNIT_ASSERT_EQUAL(expected, tree.getFirstNotZero() );
+}
+
+void HuffmanTreeTest::testSkipZeroEmpty() {
+  istringstream input;
+  unsigned int expected = 256;
+  Tree tree;
+  tree.read(input);
+  tree.sort();
+  tree.skipZero();
+  CPPUNIT_ASSERT_EQUAL(expected, tree.getFirstNotZero() );  
 }

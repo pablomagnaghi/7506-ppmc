@@ -18,19 +18,21 @@ int main(int argc, char* argv[]) {
   }
 
   huffman::Tree tree;
-  std::string freq = tree.getFreq(true);
-  cout << freq;
+  std::string freq = tree.showFreq(true);
+  // cout << freq;
   
   tree.read(infile);
 
   // some monitoring
-  cout << "buffer size: " << huffman::buffer_size << endl;
-  cout << "total: " << tree.getTotal() << endl;
-  freq = tree.getFreq(true);
-  cout << freq;
+  // cout << "buffer size: " << huffman::buffer_size << endl;
+  // cout << "total: " << tree.getTotal() << endl;
+  // freq = tree.showFreq(true);
+  // cout << freq;
   
   tree.build();
-  tree.save(outfile);
+  freq = tree.showFreq(false);
+  //cout << freq;
+  //tree.save(outfile);
   
   
   outfile.close();
