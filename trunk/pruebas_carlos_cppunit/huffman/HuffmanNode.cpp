@@ -10,7 +10,7 @@ Node::Node() {
   count = 0;
 }
 
-Node::Node(char value):value(value) {
+Node::Node(unsigned char value):value(value) {
   parent = empty;
   zero = empty;
   one = empty;

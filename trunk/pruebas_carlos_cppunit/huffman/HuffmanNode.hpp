@@ -5,12 +5,12 @@ namespace huffman {
   class Node {
     public:
     Node();      
-    Node(char value);
+    Node(unsigned char value);
     unsigned int parent;
     unsigned int zero;
     unsigned int one;
     unsigned int count;
-    char value;
+    unsigned char value;
   };
 
 }

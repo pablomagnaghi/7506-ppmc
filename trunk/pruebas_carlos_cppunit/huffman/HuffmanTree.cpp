@@ -10,9 +10,9 @@ using namespace huffman;
 
 Tree::Tree():total_read(0),first_not_zero(0){
   
-/*  for (unsigned int i=0; i < dictionary_size; i++) {
-    freq[i]= new Node(i);
-  }*/
+  for (unsigned int i=0; i < dictionary_size; i++) {
+    freq[i].value=i;
+  }
 }
 
 Tree::~Tree() {
@@ -35,7 +35,7 @@ std::string Tree::showFreq(bool omit_zero) {
   std::stringstream result;
   for (unsigned int i=0; i< dictionary_size ; i++ ) {
     if (! omit_zero || freq[i].count != 0 ) {
-      result << i << ":" << freq[i].count << ","; 
+      result << (int) freq[i].value << ":" << freq[i].count << ","; 
     }
   }
   return result.str().substr(0,result.str().size()-1);
@@ -72,8 +72,14 @@ void Tree::sort(unsigned int start, unsigned int stop) {
 }
 
 unsigned int Tree::skipZero(unsigned int start, unsigned int stop) {
-  while ( freq[start].count == 0 && start <= stop) start++;
-  first_not_zero = start -1;
+  for (unsigned int i=start; i<=stop; i++) {
+    if (freq[i].count != 0) {
+      first_not_zero = i;
+      return first_not_zero;
+    }
+  }
+  //while ( freq[start].count == 0 && start <= stop) start++;
+  first_not_zero = empty;
   return first_not_zero;
 }
 
@@ -83,8 +89,10 @@ void Tree::build() {
   unsigned int node_count=0;
   
   while( first_not_zero < dictionary_size ) {
-    cout << " nc: " << node_count << " fnz: " << first_not_zero << endl;
-    sort(first_not_zero,dictionary_size);  
+//    cout << " nc: " << node_count << " fnz: " << first_not_zero << endl;
+//    cout << showFreq(true);
+    sort(first_not_zero,dictionary_size); 
+    
     skipZero(first_not_zero);  
     
     tree[node_count]=freq[first_not_zero];

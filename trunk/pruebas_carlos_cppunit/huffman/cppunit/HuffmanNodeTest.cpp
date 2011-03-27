@@ -17,7 +17,7 @@ void HuffmanNodeTest::tearDown(){
 
 
 void HuffmanNodeTest::testConstructor(){
-  char value = 'a';
+  unsigned char value = 'a';
   unsigned int zero = 0;
   Node node(value);
   CPPUNIT_ASSERT_EQUAL(value , node.value );
