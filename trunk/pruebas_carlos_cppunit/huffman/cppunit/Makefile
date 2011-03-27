@@ -26,7 +26,7 @@ verbose = si
 debug = si
 
 # Agregar object files
-o_files  = ../HuffmanTree.o
+o_files  = ../HuffmanTree.o ../HuffmanNode.o
 #o_files += 
 
 # Descomentar para compilar estaticamente
