@@ -11,6 +11,8 @@ namespace huffman {
     unsigned int one;
     unsigned int count;
     unsigned char value;
+    
+    friend class HuffmanNodeTest;
   };
 
 }
