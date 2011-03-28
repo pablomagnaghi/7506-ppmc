@@ -59,17 +59,23 @@ int Tree::getTotalRead() {
 }
     
 void Tree::sort(unsigned int start, unsigned int stop) {
-  Node tmp;
+  
   for (unsigned int i=start; i < stop -1 ; i++) {
-    for (unsigned int j=i; j < stop; j++) {
-      if(freq[i].count > freq[j].count) {
-         tmp = freq[i];
-         freq[i] = freq[j];
-         freq[j] = tmp;
-      }
-    }
+    semiSort(i,stop);
   }  
 }
+
+void Tree::semiSort(unsigned int start, unsigned int stop) {
+    Node tmp;
+    for (unsigned int j=start; j < stop; j++) {
+      if(freq[start].count > freq[j].count) {
+         tmp = freq[start];
+         freq[start] = freq[j];
+         freq[j] = tmp;
+      }
+    }  
+}
+
 
 unsigned int Tree::skipZero(unsigned int start, unsigned int stop) {
   for (unsigned int i=start; i<=stop; i++) {
@@ -88,11 +94,10 @@ void Tree::build() {
 //  unsigned int stop=dictionary_size;
   unsigned int node_count=0;
   
+  sort(first_not_zero,dictionary_size);
+  
   while( first_not_zero < dictionary_size ) {
-//    cout << " nc: " << node_count << " fnz: " << first_not_zero << endl;
-//    cout << showFreq(true);
-    sort(first_not_zero,dictionary_size); 
-    
+   
     skipZero(first_not_zero);  
     
     tree[node_count]=freq[first_not_zero];
@@ -107,7 +112,7 @@ void Tree::build() {
     
     freq[first_not_zero].count = 0;
 
-    //sortFirst();
+    semiSort();
   }  
   
   // buildParentage();

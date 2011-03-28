@@ -8,6 +8,8 @@ namespace huffman {
   class StaticCompressor {
     // use tree
     // compress(tree,infile,outfile);
+    
+    friend class StaticCompressorTest;
   };
 }
 
