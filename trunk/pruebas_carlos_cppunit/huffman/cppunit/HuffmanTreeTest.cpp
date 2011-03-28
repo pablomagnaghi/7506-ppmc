@@ -3,10 +3,12 @@
 #include "HuffmanTreeTest.hpp"
 #include "../HuffmanTree.hpp"
 
+using namespace huffman;
+
 CPPUNIT_TEST_SUITE_REGISTRATION( HuffmanTreeTest );
 
 using namespace std;
-using namespace huffman;
+
 
 void HuffmanTreeTest::setUp(){
 
@@ -45,13 +47,28 @@ void HuffmanTreeTest::testSort(){
   CPPUNIT_ASSERT_EQUAL(expected, tree.showFreq(true) );
 }
 
-void HuffmanTreeTest::testBuild() {
-/*  istringstream input("\t\tabcdefgh\nabcdefg\nabcdef\nabcde\nabcd\nabc\nab\na\n");
-  string expected("246:1,247:2,248:2,249:3,250:4,251:5,252:6,253:7,254:8,255:8");
+void HuffmanTreeTest::testSemiSort(){
+  stringstream input;
+  unsigned char zero  = 0;
+  unsigned char last  = 255;
+  input << last << zero << last;
+  string expected("0:1,255:2");
   Tree tree;
   tree.read(input);
-  tree.build(); //---->>>  Segmentation fault
-  CPPUNIT_ASSERT_EQUAL(expected, tree.showFreq(true) );*/
+  tree.semiSort();
+  CPPUNIT_ASSERT_EQUAL(expected, tree.showFreq(true) );
+}
+
+
+void HuffmanTreeTest::testBuild() {
+  istringstream input("\t\tabcdefgh\nabcdefg\nabcdef\nabcde\nabcd\nabc\nab\na\n");
+  string expected_freq("9:2,10:8,97:8,98:7,99:6,100:5,101:4,102:3,103:2,104:1");
+  string expected_tree;
+  Tree tree;
+  tree.read(input);
+  CPPUNIT_ASSERT_EQUAL(expected_freq, tree.showFreq(true) );
+  tree.build();
+  CPPUNIT_ASSERT_EQUAL(expected_tree, tree.showTree(true) );
 }
 
 void HuffmanTreeTest::testBinary() {
