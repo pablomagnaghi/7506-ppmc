@@ -5,7 +5,7 @@
 
 //#include "../OddDigitException.hpp"
 //#include "../InvalidDigitException.hpp"
-
+namespace huffman {
 class HuffmanNodeTest : public CppUnit::TestFixture {
   CPPUNIT_TEST_SUITE( HuffmanNodeTest );
   CPPUNIT_TEST( testConstructor );
@@ -18,5 +18,5 @@ public:
   void tearDown();
   void testConstructor();
 };
-
+}
 #endif  // _huffman_node_test_hpp

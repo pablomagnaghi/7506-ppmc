@@ -5,12 +5,13 @@
 
 //#include "../OddDigitException.hpp"
 //#include "../InvalidDigitException.hpp"
-
+namespace huffman {
 class HuffmanTreeTest : public CppUnit::TestFixture {
   CPPUNIT_TEST_SUITE( HuffmanTreeTest );
   CPPUNIT_TEST( testConstructor );
   CPPUNIT_TEST( testRead );
   CPPUNIT_TEST( testSort );
+  CPPUNIT_TEST( testSemiSort );
   CPPUNIT_TEST( testBinary );
   CPPUNIT_TEST( testUniqueCount );
   CPPUNIT_TEST( testBuild );
@@ -34,6 +35,7 @@ public:
   void testBinary();
   void testUniqueCount();
   void testSort(); 
+  void testSemiSort();
   void testBuild();
   void testSkipZero();
   void testSkipZero_255();
@@ -47,7 +49,7 @@ private:
 //  std::string input;
 //  static unsigned char expected[];
 };
-
+}
 #endif  // _huffman_tree_test_hpp
 
 

@@ -2,10 +2,10 @@
 #include "../Huffman.hpp"
 #include "../HuffmanNode.hpp"
 
+using namespace huffman;
+
 CPPUNIT_TEST_SUITE_REGISTRATION( HuffmanNodeTest );
 
-using namespace std;
-using namespace huffman;
 
 void HuffmanNodeTest::setUp(){
 
