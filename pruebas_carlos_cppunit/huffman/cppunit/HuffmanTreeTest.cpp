@@ -59,15 +59,91 @@ void HuffmanTreeTest::testSemiSort(){
   CPPUNIT_ASSERT_EQUAL(expected, tree.showFreq(true) );
 }
 
+void HuffmanTreeTest::testBuild0() {
+  istringstream input;
+  string expected;
+  Tree tree;
+  tree.read(input);
+  tree.build();
+  CPPUNIT_ASSERT_EQUAL(expected, tree.showTree(true) );
+}
 
-void HuffmanTreeTest::testBuild() {
-  istringstream input("\t\tabcdefgh\nabcdefg\nabcdef\nabcde\nabcd\nabc\nab\na\n");
-  string expected_freq("9:2,10:8,97:8,98:7,99:6,100:5,101:4,102:3,103:2,104:1");
-  string expected_tree;
+void HuffmanTreeTest::testBuild1() {
+  istringstream input("a");
+  string expected("\np:0 v: a(97) c: 1");
+  Tree tree;
+  tree.read(input);
+  tree.build();
+  CPPUNIT_ASSERT_EQUAL(expected, tree.showTree(true) );
+}
+
+void HuffmanTreeTest::testBuild2() {
+  istringstream input("ab");
+  string expected("\np:0 v: b(98) c: 1\np:1 v: a(97) c: 1\np:2 v: _(0) c: 2[0][1]");
+  Tree tree;
+  tree.read(input);
+  tree.build();
+  CPPUNIT_ASSERT_EQUAL(expected, tree.showTree(true) );
+}
+
+void HuffmanTreeTest::testBuild3() {
+  istringstream input("abc");
+  string expected("\np:0 v: a(97) c: 1\np:1 v: b(98) c: 1\np:2 v: c(99) c: 1\np:3 v: _(0) c: 2[0][1]\np:4 v: _(0) c: 3[2][3]");
+  Tree tree;
+  tree.read(input);
+  tree.build();
+  CPPUNIT_ASSERT_EQUAL(expected, tree.showTree(true) );
+}
+
+void HuffmanTreeTest::testBuild4() {
+  istringstream input("abcd");
+  string expected("\np:0 v: d(100) c: 1\np:1 v: a(97) c: 1\np:2 v: b(98) c: 1\np:3 v: c(99) c: 1\np:4 v: _(0) c: 2[2][3]\np:5 v: _(0) c: 2[0][1]\np:6 v: _(0) c: 4[4][5]");
+  Tree tree;
+  tree.read(input);
+  tree.build();
+  CPPUNIT_ASSERT_EQUAL(expected, tree.showTree(true) );
+}
+
+void HuffmanTreeTest::testBuild5() {
+  istringstream input("abcde");
+  string expected("\np:0 v: e(101) c: 1\np:1 v: a(97) c: 1\np:2 v: b(98) c: 1\np:3 v: c(99) c: 1\np:4 v: d(100) c: 1\np:5 v: _(0) c: 2[2][3]\np:6 v: _(0) c: 2[0][1]\np:7 v: _(0) c: 3[4][5]\np:8 v: _(0) c: 5[6][7]");
+  Tree tree;
+  tree.read(input);
+  tree.build();
+  CPPUNIT_ASSERT_EQUAL(expected, tree.showTree(true) );
+}
+
+void HuffmanTreeTest::testBuildRandom1() {
+  istringstream input("abcdabcaba");
+  string expected_freq("97:4,98:3,99:2,100:1");
+  string expected_sorted("100:1,99:2,98:3,97:4");
+  string expected_empty;
+  string expected_tree("\np:0 v: d(100) c: 1\np:1 v: c(99) c: 2\np:2 v: _(0) c: 3[0][1]\np:3 v: b(98) c: 3\np:4 v: a(97) c: 4\np:5 v: _(0) c: 6[2][3]\np:6 v: _(0) c: 10[4][5]");
+  
   Tree tree;
   tree.read(input);
   CPPUNIT_ASSERT_EQUAL(expected_freq, tree.showFreq(true) );
+  tree.sort();
+  CPPUNIT_ASSERT_EQUAL(expected_sorted, tree.showFreq(true) );
   tree.build();
+  CPPUNIT_ASSERT_EQUAL(expected_empty, tree.showFreq(true) );
+  CPPUNIT_ASSERT_EQUAL(expected_tree, tree.showTree(true) );
+}
+
+void HuffmanTreeTest::testBuildRandom2() {
+  istringstream input("\t\tabcdefgh\nabcdefg\nabcdef\nabcde\nabcd\nabc\nab\na\n");
+  string expected_freq("9:2,10:8,97:8,98:7,99:6,100:5,101:4,102:3,103:2,104:1");
+  string expected_sorted("104:1,9:2,103:2,102:3,101:4,100:5,99:6,98:7,10:8,97:8");
+  string expected_empty;
+  string expected_tree("\np:0 v: h(104) c: 1\np:1 v: _(9) c: 2\np:2 v: g(103) c: 2\np:3 v: _(0) c: 3[0][1]\np:4 v: f(102) c: 3\np:5 v: e(101) c: 4\np:6 v: _(0) c: 5[2][3]\np:7 v: d(100) c: 5\np:8 v: c(99) c: 6\np:9 v: _(0) c: 7[4][5]\np:10 v: b(98) c: 7\np:11 v: _(10) c: 8\np:12 v: a(97) c: 8\np:13 v: _(0) c: 10[6][7]\np:14 v: _(0) c: 13[8][9]\np:15 v: _(0) c: 15[10][11]\np:16 v: _(0) c: 18[12][13]\np:17 v: _(0) c: 28[14][15]\np:18 v: _(0) c: 46[16][17]");
+  
+  Tree tree;
+  tree.read(input);
+  CPPUNIT_ASSERT_EQUAL(expected_freq, tree.showFreq(true) );
+  tree.sort();
+  CPPUNIT_ASSERT_EQUAL(expected_sorted, tree.showFreq(true) );
+  tree.build();
+  CPPUNIT_ASSERT_EQUAL(expected_empty, tree.showFreq(true) );
   CPPUNIT_ASSERT_EQUAL(expected_tree, tree.showTree(true) );
 }
 
