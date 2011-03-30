@@ -99,14 +99,11 @@ unsigned int Tree::skipZero(unsigned int start, unsigned int stop) {
       return first_not_zero;
     }
   }
-  //while ( freq[start].count == 0 && start <= stop) start++;
   first_not_zero = empty;
   return first_not_zero;
 }
 
 void Tree::build() {
-//  unsigned int start=0;
-//  unsigned int stop=dictionary_size;
   unsigned int node_count=0;
   
   sort(first_not_zero,dictionary_size);
@@ -127,7 +124,7 @@ void Tree::build() {
     freq[first_not_zero].count = 0;
     freq[first_not_zero].value = 0;
     first_not_zero ++;
-//    semiSort(first_not_zero);
+    semiSort(first_not_zero);
     sort(first_not_zero,dictionary_size);
 
   }  
