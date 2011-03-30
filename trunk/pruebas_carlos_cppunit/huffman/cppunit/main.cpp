@@ -1,14 +1,3 @@
-#include "../Huffman.hpp"
-#include "../HuffmanTree.hpp"
-
-#include <cstring>
-
-#include <iostream>
-#include <fstream>
-
-
-
-//#include "stdafx.h"
 #include <cppunit/CompilerOutputter.h>
 #include <cppunit/extensions/TestFactoryRegistry.h>
 #include <cppunit/ui/text/TestRunner.h>

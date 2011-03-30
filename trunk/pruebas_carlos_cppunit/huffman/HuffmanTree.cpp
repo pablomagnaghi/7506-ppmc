@@ -16,9 +16,7 @@ Tree::Tree():total_read(0),first_not_zero(0){
 }
 
 Tree::~Tree() {
-//   for (unsigned int i=0; i < dictionary_size; i++) {
-//     delete freq[i];
-//   } 
+ 
 }
 
 void Tree::read(std::istream& infile) {
@@ -43,9 +41,26 @@ std::string Tree::showFreq(bool omit_zero) {
 
 std::string Tree::showTree(bool omit_zero) {
   std::stringstream result;
+  result << endl;
   for (unsigned int i=0; i< dictionary_size ; i++ ) {
     if (! omit_zero || tree[i].count != 0 ) {
-      result << i << ":" << tree[i].count << ","; 
+      result << "p:" << i << " v: " ;
+      if (tree[i].value >31) {
+        result << tree[i].value;
+      } else {
+        result << "_";
+      }
+      result <<"(" << (int) tree[i].value << ")";
+      result << " c: " << tree[i].count;
+      if (tree[i].zero != empty) {
+        //result << " [0: " << tree[tree[i].zero].value << "] ";
+	result << "[" << tree[i].zero << "]";
+      }
+      if (tree[i].one != empty) {
+	//result << " [1: " <<tree[tree[i].one].value << "] ";
+        result << "[" <<tree[i].one << "]";
+      }
+      result << endl;
     }
   }
   return result.str().substr(0,result.str().size()-1);
@@ -95,24 +110,26 @@ void Tree::build() {
   unsigned int node_count=0;
   
   sort(first_not_zero,dictionary_size);
-  
+  skipZero(first_not_zero);
   while( first_not_zero < dictionary_size ) {
-   
-    skipZero(first_not_zero);  
-    
     tree[node_count]=freq[first_not_zero];
     node_count++;
     
-    tree[node_count]=freq[first_not_zero + 1];
-    node_count++;
-    
-    freq[first_not_zero + 1].count += freq[first_not_zero].count;
-    freq[first_not_zero + 1].zero = node_count - 2;
-    freq[first_not_zero + 1].one  = node_count - 1;
-    
+    if ( first_not_zero < dictionary_size - 1 ) {
+      
+      tree[node_count]=freq[first_not_zero + 1];
+      node_count++;      
+      freq[first_not_zero + 1].count += freq[first_not_zero].count;
+      freq[first_not_zero + 1].value = 0;
+      freq[first_not_zero + 1].zero = node_count - 2;
+      freq[first_not_zero + 1].one  = node_count - 1;
+    }
     freq[first_not_zero].count = 0;
+    freq[first_not_zero].value = 0;
+    first_not_zero ++;
+//    semiSort(first_not_zero);
+    sort(first_not_zero,dictionary_size);
 
-    semiSort();
   }  
   
   // buildParentage();
