@@ -42,12 +42,20 @@ std::string Tree::showFreq(bool omit_zero) {
 
 std::string Tree::showTree(bool omit_zero) {
   std::stringstream result;
-  result << endl;
   for (unsigned int i=0; i< dictionary_size ; i++ ) {
     result << tree[i].showMax(i,omit_zero);
   }
   return result.str().substr(0,result.str().size()-1);
 }
+
+std::string Tree::showFreqMax(bool omit_zero) {
+  std::stringstream result;
+  for (unsigned int i=0; i< dictionary_size ; i++ ) {
+    result << freq[i].showMax(i,omit_zero);
+  }
+  return result.str().substr(0,result.str().size()-1);
+}
+
 unsigned int Tree::getFirstNotZero() {
   return first_not_zero;
 }
@@ -121,10 +129,9 @@ void Tree::buildParentage() {
   }
   
   for (unsigned int i=0; i < dictionary_size; i++) {
-    cout << tree[i].count << "\n";
-    if (tree[i].zero != empty && tree[i].count != 0 ) {
-      cout << "hit\n";
+    if (tree[i].zero == empty ) {
       freq[tree[i].value] = tree[i];
+      freq[tree[i].value].parent = i;
     }
   }
   
