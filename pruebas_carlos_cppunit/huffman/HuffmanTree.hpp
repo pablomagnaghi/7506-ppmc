@@ -3,6 +3,7 @@
 
 #include <fstream>
 #include <string>
+
 #include "Huffman.hpp"
 #include "HuffmanNode.hpp"
 
@@ -15,6 +16,7 @@ namespace huffman {
     void read(std::istream& infile);
     int getTotalRead();
     void build();
+    void buildParentage();
     void buildMap();
     void save(std::ostream& outfile);
     void load(std::istream& infile);
