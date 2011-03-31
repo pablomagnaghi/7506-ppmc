@@ -8,10 +8,13 @@ using namespace std;
 
 using namespace huffman;
 
-Tree::Tree():total_read(0),first_not_zero(0){
+Tree::Tree():total_read(0),first_not_zero(0) {
   
   for (unsigned int i=0; i < dictionary_size; i++) {
-    freq[i].value=i;
+    freq[i].value  = i;
+    freq[i].parent = empty;
+    freq[i].zero   = empty;
+    freq[i].one    = empty;
   }
 }
 
@@ -32,9 +35,7 @@ void Tree::read(std::istream& infile) {
 std::string Tree::showFreq(bool omit_zero) {
   std::stringstream result;
   for (unsigned int i=0; i< dictionary_size ; i++ ) {
-    if (! omit_zero || freq[i].count != 0 ) {
-      result << (int) freq[i].value << ":" << freq[i].count << ","; 
-    }
+    result << freq[i].showMin(omit_zero);
   }
   return result.str().substr(0,result.str().size()-1);
 }
@@ -43,25 +44,7 @@ std::string Tree::showTree(bool omit_zero) {
   std::stringstream result;
   result << endl;
   for (unsigned int i=0; i< dictionary_size ; i++ ) {
-    if (! omit_zero || tree[i].count != 0 ) {
-      result << "p:" << i << " v: " ;
-      if (tree[i].value >31) {
-        result << tree[i].value;
-      } else {
-        result << "_";
-      }
-      result <<"(" << (int) tree[i].value << ")";
-      result << " c: " << tree[i].count;
-      if (tree[i].zero != empty) {
-        //result << " [0: " << tree[tree[i].zero].value << "] ";
-	result << "[" << tree[i].zero << "]";
-      }
-      if (tree[i].one != empty) {
-	//result << " [1: " <<tree[tree[i].one].value << "] ";
-        result << "[" <<tree[i].one << "]";
-      }
-      result << endl;
-    }
+    result << tree[i].showMax(i,omit_zero);
   }
   return result.str().substr(0,result.str().size()-1);
 }
@@ -130,6 +113,21 @@ void Tree::build() {
   }  
   
   // buildParentage();
+}
+
+void Tree::buildParentage() {
+  for (unsigned int i=0; i < dictionary_size; i++) {
+    freq[i].clear();
+  }
+  
+  for (unsigned int i=0; i < dictionary_size; i++) {
+    cout << tree[i].count << "\n";
+    if (tree[i].zero != empty && tree[i].count != 0 ) {
+      cout << "hit\n";
+      freq[tree[i].value] = tree[i];
+    }
+  }
+  
 }
 
 void Tree::buildMap() {

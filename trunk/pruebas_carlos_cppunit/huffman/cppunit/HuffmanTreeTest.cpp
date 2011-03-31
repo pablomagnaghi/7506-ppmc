@@ -77,6 +77,21 @@ void HuffmanTreeTest::testBuild1() {
   CPPUNIT_ASSERT_EQUAL(expected, tree.showTree(true) );
 }
 
+void HuffmanTreeTest::testBuildParentage() {
+  istringstream input("a");
+  string expected("\np:0 v: a(97) c: 1");
+  Tree tree;
+  tree.read(input);
+  cout << "read: " << tree.showFreq(true) << endl;;
+  tree.build();
+  cout << "build freq: " << tree.showFreq(true) << endl;;
+  cout << "build tree: " << tree.showTree(true) << endl;;
+  tree.buildParentage();
+  cout << "parentage: " << tree.showFreq(true) << endl;;
+//  cout << showFreq(true);
+//  CPPUNIT_ASSERT_EQUAL(expected, tree.showFreq(true) );
+}
+
 void HuffmanTreeTest::testBuild2() {
   istringstream input("ab");
   string expected("\np:0 v: b(98) c: 1\np:1 v: a(97) c: 1\np:2 v: _(0) c: 2[0][1]");
@@ -146,6 +161,24 @@ void HuffmanTreeTest::testBuildRandom2() {
   CPPUNIT_ASSERT_EQUAL(expected_empty, tree.showFreq(true) );
   CPPUNIT_ASSERT_EQUAL(expected_tree, tree.showTree(true) );
 }
+
+// void HuffmanTreeTest::testBuildParentage() {
+//   istringstream input("abcdabcaba");
+//   string expected_freq("97:4,98:3,99:2,100:1");
+//   string expected_sorted("100:1,99:2,98:3,97:4");
+//   string expected_tree("\np:0 v: d(100) c: 1\np:1 v: c(99) c: 2\np:2 v: _(0) c: 3[0][1]\np:3 v: b(98) c: 3\np:4 v: a(97) c: 4\np:5 v: _(0) c: 6[2][3]\np:6 v: _(0) c: 10[4][5]");
+//   
+//   Tree tree;
+//   tree.read(input);
+//   CPPUNIT_ASSERT_EQUAL(expected_freq, tree.showFreq(true) );
+//   tree.sort();
+//   CPPUNIT_ASSERT_EQUAL(expected_sorted, tree.showFreq(true) );
+//   tree.build();
+//   CPPUNIT_ASSERT_EQUAL(expected_empty, tree.showFreq(true) );
+//   CPPUNIT_ASSERT_EQUAL(expected_tree, tree.showTree(true) );
+//   
+// }
+
 
 void HuffmanTreeTest::testBinary() {
   stringstream input;
