@@ -25,6 +25,7 @@ namespace huffman {
     // candidates to helper friend class
     std::string showFreq(bool omit_zero);
     std::string showTree(bool omit_zero);
+    std::string showFreqMax(bool omit_zero);
     
     private:
     void sort(unsigned int start=0, unsigned int stop=dictionary_size);

@@ -1,4 +1,5 @@
 #include <sstream>
+#include <iomanip>
 
 #include "HuffmanNode.hpp"
 
@@ -36,18 +37,21 @@ std::string Node::showMax(unsigned int i, bool omit_zero){
   std::stringstream result;
 
   if (! omit_zero || count != 0 ) {
-    result << "p:" << i << " v: " ;
+    result << "@:" << std::setfill('0') << std::setw(3) << i << " $:" ;
     if (value >31) {
-      result << value;
+      result << value ;
     } else {
       result << "_";
     }
-    result <<"(" << (int) value << ")" << " c: " << count;
+    result <<"(" << std::hex << std::setfill('0') << std::setw(2) << (int) value << std::dec  << ")" << " #:" << count;
     if (zero != empty) {
       result << "[" << zero << "]";
     }
     if (one != empty) {
-      result << "[" <<one << "]";
+      result << "[" << one << "]";
+    }
+    if (parent != empty) {
+      result << "<" << parent << ">";
     }
     result << std::endl;  
   }
