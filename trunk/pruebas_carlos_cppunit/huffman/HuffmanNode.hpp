@@ -13,8 +13,8 @@ namespace huffman {
     unsigned int count;
     unsigned char value;
     void clear();
-    std::string showMin(bool omit_zero);
-    std::string showMax(unsigned int i, bool omit_zero);
+//    std::string showMin(bool omit_zero);
+    std::string show(unsigned int i, bool omit_zero, bool show_children, bool show_parent);
     
     friend class HuffmanNodeTest;
   };

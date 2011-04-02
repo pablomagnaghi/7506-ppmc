@@ -32,26 +32,18 @@ void Tree::read(std::istream& infile) {
   }
 }
 
-std::string Tree::showFreq(bool omit_zero) {
+std::string Tree::showFreq(bool omit_zero, bool show_children, bool show_parent) {
   std::stringstream result;
   for (unsigned int i=0; i< dictionary_size ; i++ ) {
-    result << freq[i].showMin(omit_zero);
+    result << freq[i].show(i,omit_zero,show_children, show_parent);
   }
   return result.str().substr(0,result.str().size()-1);
 }
 
-std::string Tree::showTree(bool omit_zero) {
+std::string Tree::showTree(bool omit_zero, bool show_children, bool show_parent) {
   std::stringstream result;
   for (unsigned int i=0; i< dictionary_size ; i++ ) {
-    result << tree[i].showMax(i,omit_zero);
-  }
-  return result.str().substr(0,result.str().size()-1);
-}
-
-std::string Tree::showFreqMax(bool omit_zero) {
-  std::stringstream result;
-  for (unsigned int i=0; i< dictionary_size ; i++ ) {
-    result << freq[i].showMax(i,omit_zero);
+    result << tree[i].show(i,omit_zero,show_children, show_parent);
   }
   return result.str().substr(0,result.str().size()-1);
 }
@@ -111,11 +103,12 @@ void Tree::build() {
       freq[first_not_zero + 1].value = 0;
       freq[first_not_zero + 1].zero = node_count - 2;
       freq[first_not_zero + 1].one  = node_count - 1;
+      
     }
     freq[first_not_zero].count = 0;
     freq[first_not_zero].value = 0;
     first_not_zero ++;
-    semiSort(first_not_zero);
+    //semiSort(first_not_zero);
     sort(first_not_zero,dictionary_size);
 
   }  
