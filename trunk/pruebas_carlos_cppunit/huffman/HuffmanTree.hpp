@@ -15,7 +15,9 @@ namespace huffman {
     ~Tree();
     void read(std::istream& infile);
     int getTotalRead();
+    unsigned int getNodeCount();
     void build();
+    void buildChar2CodeMap();
     void buildParentage();
     void buildMap();
     void save(std::ostream& outfile);
@@ -30,10 +32,11 @@ namespace huffman {
     void sort(unsigned int start=0, unsigned int stop=dictionary_size);
     void semiSort(unsigned int start=0, unsigned int stop=dictionary_size);
     unsigned int getFirstNotZero();
-    
+    void setParent(unsigned int pos);
     char buffer[buffer_size];
     int total_read;
     unsigned int first_not_zero;
+    unsigned int node_count;
     Node freq[dictionary_size];
     Node tree[dictionary_size];
     

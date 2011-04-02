@@ -77,17 +77,17 @@ void HuffmanTreeTest::testBuild1() {
   CPPUNIT_ASSERT_EQUAL(expected, tree.showTree(true,true,false) );
 }
 
-void HuffmanTreeTest::testBuildParentage() {
+void HuffmanTreeTest::testBuildChar2CodeMap() {
   istringstream input("abc");
   string expected("@:000 $:a(61) #:1");
   Tree tree;
   tree.read(input);
-  cout << endl << "read: " << tree.showFreq(true,true,true) << endl;;
+  cout << endl << "read freq:\n" << tree.showFreq(true,true,true) << endl;;
   tree.build();
-  cout << "build freq: " << tree.showFreq(true,true,true) << endl;;
-  cout << "build tree: " << tree.showTree(true,true,true) << endl;;
-  tree.buildParentage();
-  cout << "parentage freq: " << tree.showFreq(true,true,true) << endl;;
+  cout << "build freq:\n" << tree.showFreq(true,true,true) << endl;;
+  cout << "build tree:\n" << tree.showTree(true,true,true) << endl;;
+  tree.buildChar2CodeMap();
+  cout << "char2codemap freq:\n" << tree.showFreq(true,false,true) << endl;;
   //cout << "parentage tree: " << tree.showTree(true) << endl;;
 //  cout << showFreq(true);
 //  CPPUNIT_ASSERT_EQUAL(expected, tree.showFreq(true) );
@@ -163,22 +163,18 @@ void HuffmanTreeTest::testBuildRandom2() {
   CPPUNIT_ASSERT_EQUAL(expected_tree, tree.showTree(true,true,true) );
 }
 
-// void HuffmanTreeTest::testBuildParentage() {
-//   istringstream input("abcdabcaba");
-//   string expected_freq("61:4,62:3,63:2,100:1");
-//   string expected_sorted("100:1,63:2,62:3,61:4");
-//   string expected_tree("\n@:0 $:d(64) #:1\n@:001 $:c(63) #:2\n@:002 $:_(00) #:3[000][001]\n@:003 $:b(62) #:3\n@:004 $:a(61) #:4\n@:005 $:_(00) #:6[002][003]\n@:006 $:_(00) #:10[004][005]");
-//   
-//   Tree tree;
-//   tree.read(input);
-//   CPPUNIT_ASSERT_EQUAL(expected_freq, tree.showFreq(true) );
-//   tree.sort();
-//   CPPUNIT_ASSERT_EQUAL(expected_sorted, tree.showFreq(true) );
-//   tree.build();
-//   CPPUNIT_ASSERT_EQUAL(expected_empty, tree.showFreq(true) );
-//   CPPUNIT_ASSERT_EQUAL(expected_tree, tree.showTree(true) );
-//   
-// }
+void HuffmanTreeTest::testBuildParentage() {
+  istringstream input("abcdabcaba");
+  string expected_tree("@:000 $:d(64) #:1\n@:001 $:c(63) #:2\n@:002 $:_(00) #:3[000][001]\n@:003 $:b(62) #:3\n@:004 $:a(61) #:4\n@:005 $:_(00) #:6[002][003]\n@:006 $:_(00) #:10[004][005]");
+  string expected_parentage("@:000 $:d(64) #:1<002>\n@:001 $:c(63) #:2<002>\n@:002 $:_(00) #:3[000][001]<005>\n@:003 $:b(62) #:3<005>\n@:004 $:a(61) #:4<006>\n@:005 $:_(00) #:6[002][003]<006>\n@:006 $:_(00) #:10[004][005]");
+  Tree tree;
+  tree.read(input);
+  tree.sort();
+  tree.build();
+  CPPUNIT_ASSERT_EQUAL(expected_tree, tree.showTree(true,true,true) );
+  tree.buildParentage();
+  CPPUNIT_ASSERT_EQUAL(expected_parentage, tree.showTree(true,true,true) );
+}
 
 
 void HuffmanTreeTest::testBinary() {

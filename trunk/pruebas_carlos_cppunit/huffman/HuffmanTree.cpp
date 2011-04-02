@@ -86,19 +86,36 @@ unsigned int Tree::skipZero(unsigned int start, unsigned int stop) {
   return first_not_zero;
 }
 
+void Tree::buildParentage() {
+  setParent(node_count);
+}
+
+void Tree::setParent(unsigned int pos){
+  if (tree[pos].zero != empty) {
+    tree[tree[pos].zero].parent=pos;
+    setParent(tree[pos].zero);
+  }
+  if (tree[pos].one != empty) {
+    tree[tree[pos].one].parent=pos;
+    setParent(tree[pos].one);
+  }
+}
+
 void Tree::build() {
-  unsigned int node_count=0;
+  // convert this counter to a class member, as a root for Code2Char
+  node_count=0;
   
   sort(first_not_zero,dictionary_size);
   skipZero(first_not_zero);
   while( first_not_zero < dictionary_size ) {
+    
     tree[node_count]=freq[first_not_zero];
     node_count++;
     
     if ( first_not_zero < dictionary_size - 1 ) {
-      
       tree[node_count]=freq[first_not_zero + 1];
       node_count++;      
+      
       freq[first_not_zero + 1].count += freq[first_not_zero].count;
       freq[first_not_zero + 1].value = 0;
       freq[first_not_zero + 1].zero = node_count - 2;
@@ -112,11 +129,9 @@ void Tree::build() {
     sort(first_not_zero,dictionary_size);
 
   }  
-  
-  // buildParentage();
 }
 
-void Tree::buildParentage() {
+void Tree::buildChar2CodeMap() {
   for (unsigned int i=0; i < dictionary_size; i++) {
     freq[i].clear();
   }

@@ -22,6 +22,7 @@ class HuffmanTreeTest : public CppUnit::TestFixture {
   CPPUNIT_TEST( testBuild5 );
   CPPUNIT_TEST( testBuildRandom1 );
   CPPUNIT_TEST( testBuildRandom2 );
+  CPPUNIT_TEST( testBuildChar2CodeMap );
   CPPUNIT_TEST( testBuildParentage );
   CPPUNIT_TEST( testSkipZero );
   CPPUNIT_TEST( testSkipZero_255 );
@@ -52,6 +53,7 @@ public:
   void testBuild5();
   void testBuildRandom1();
   void testBuildRandom2();
+  void testBuildChar2CodeMap();
   void testBuildParentage();
   void testSkipZero();
   void testSkipZero_255();
