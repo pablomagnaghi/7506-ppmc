@@ -24,7 +24,7 @@ void HuffmanTreeTest::testConstructor(){
   string empty;
   Tree tree;
   CPPUNIT_ASSERT_EQUAL(zero , tree.getTotalRead() );
-  CPPUNIT_ASSERT_EQUAL(empty, tree.showFreq(true,true,true) );
+  CPPUNIT_ASSERT_EQUAL(empty, tree.showFreq(true,true,false) );
   
 }
 
@@ -33,7 +33,7 @@ void HuffmanTreeTest::testRead(){
   string expected("@:009 $:_(09) #:2\n@:010 $:_(0a) #:8\n@:097 $:a(61) #:8\n@:098 $:b(62) #:7\n@:099 $:c(63) #:6\n@:100 $:d(64) #:5\n@:101 $:e(65) #:4\n@:102 $:f(66) #:3\n@:103 $:g(67) #:2\n@:104 $:h(68) #:1");
   Tree tree;
   tree.read(input);
-  CPPUNIT_ASSERT_EQUAL(expected, tree.showFreq(true,true,true) );
+  CPPUNIT_ASSERT_EQUAL(expected, tree.showFreq(true,true,false) );
   CPPUNIT_ASSERT_EQUAL(46, tree.getTotalRead() );  
   
 }
@@ -44,7 +44,7 @@ void HuffmanTreeTest::testSort(){
   Tree tree;
   tree.read(input);
   tree.sort();
-  CPPUNIT_ASSERT_EQUAL(expected, tree.showFreq(true,true,true) );
+  CPPUNIT_ASSERT_EQUAL(expected, tree.showFreq(true,true,false) );
 }
 
 void HuffmanTreeTest::testSemiSort(){
@@ -56,7 +56,7 @@ void HuffmanTreeTest::testSemiSort(){
   Tree tree;
   tree.read(input);
   tree.semiSort();
-  CPPUNIT_ASSERT_EQUAL(expected, tree.showFreq(true,true,true) );
+  CPPUNIT_ASSERT_EQUAL(expected, tree.showFreq(true,true,false) );
 }
 
 void HuffmanTreeTest::testBuild0() {
@@ -68,6 +68,10 @@ void HuffmanTreeTest::testBuild0() {
   CPPUNIT_ASSERT_EQUAL(expected, tree.showTree(true,true,false) );
 }
 
+void HuffmanTreeTest::testBuildAll() {
+  testBuildChar2CodeMap5();  
+}
+
 void HuffmanTreeTest::testBuild1() {
   istringstream input("a");
   string expected("@:000 $:a(61) #:1");
@@ -76,21 +80,71 @@ void HuffmanTreeTest::testBuild1() {
   tree.build();
   CPPUNIT_ASSERT_EQUAL(expected, tree.showTree(true,true,false) );
 }
-
-void HuffmanTreeTest::testBuildChar2CodeMap() {
-  istringstream input("abc");
-  string expected("@:000 $:a(61) #:1");
+void HuffmanTreeTest::testRepeatedReadBuildAll(){
+  istringstream input_1("a");
+  istringstream input_3("bc");
+  istringstream input_4("d");
+  string expected_1("@:097 $:a(61) #:1<000>");
+  string expected_3("@:097 $:a(61) #:1<000>\n@:098 $:b(62) #:1<001>\n@:099 $:c(63) #:1<002>");
+  string expected_4("@:097 $:a(61) #:1<001>\n@:098 $:b(62) #:1<002>\n@:099 $:c(63) #:1<003>\n@:100 $:d(64) #:1<000>");
+  Tree tree;
+  tree.read(input_1);
+  tree.buildAll();
+  cout << "input 1" << endl;
+  CPPUNIT_ASSERT_EQUAL(expected_1, tree.showFreq(true,true,true) );
+  cout << "input 2" << endl;
+  tree.read(input_3);
+  cout << "input 3" << endl;
+  tree.buildAll();
+  cout << "input 4" << endl;
+  CPPUNIT_ASSERT_EQUAL(expected_3, tree.showFreq(true,true,true) );
+  tree.read(input_4);
+  tree.buildAll();
+  cout << "input 3" << endl;
+  CPPUNIT_ASSERT_EQUAL(expected_4, tree.showFreq(true,true,true) );
+}
+void HuffmanTreeTest::testBuildChar2CodeMap1() {
+  istringstream input("a");
+  string expected("@:097 $:a(61) #:1<000>");
   Tree tree;
   tree.read(input);
-  cout << endl << "read freq:\n" << tree.showFreq(true,true,true) << endl;;
   tree.build();
-  cout << "build freq:\n" << tree.showFreq(true,true,true) << endl;;
-  cout << "build tree:\n" << tree.showTree(true,true,true) << endl;;
+  tree.buildParentage();
   tree.buildChar2CodeMap();
-  cout << "char2codemap freq:\n" << tree.showFreq(true,false,true) << endl;;
-  //cout << "parentage tree: " << tree.showTree(true) << endl;;
-//  cout << showFreq(true);
-//  CPPUNIT_ASSERT_EQUAL(expected, tree.showFreq(true) );
+  CPPUNIT_ASSERT_EQUAL(expected, tree.showFreq(true,true,true) );
+}
+
+void HuffmanTreeTest::testBuildChar2CodeMap3() {
+  istringstream input("abc");
+  string expected("@:097 $:a(61) #:1<000>\n@:098 $:b(62) #:1<001>\n@:099 $:c(63) #:1<002>");
+  Tree tree;
+  tree.read(input);
+  tree.build();
+  tree.buildParentage();
+  tree.buildChar2CodeMap();
+  CPPUNIT_ASSERT_EQUAL(expected, tree.showFreq(true,true,true) );
+}
+
+void HuffmanTreeTest::testBuildChar2CodeMap4() {
+  istringstream input("abcd");
+  string expected("@:097 $:a(61) #:1<001>\n@:098 $:b(62) #:1<002>\n@:099 $:c(63) #:1<003>\n@:100 $:d(64) #:1<000>");
+  Tree tree;
+  tree.read(input);
+  tree.build();
+  tree.buildParentage();
+  tree.buildChar2CodeMap();
+  CPPUNIT_ASSERT_EQUAL(expected, tree.showFreq(true,true,true) );
+}
+
+void HuffmanTreeTest::testBuildChar2CodeMap5() {
+  istringstream input("aaaabbbccd");
+  string expected("@:097 $:a(61) #:4<004>\n@:098 $:b(62) #:3<003>\n@:099 $:c(63) #:2<001>\n@:100 $:d(64) #:1<000>");
+  Tree tree;
+  tree.read(input);
+  tree.build();
+  tree.buildParentage();
+  tree.buildChar2CodeMap();
+  CPPUNIT_ASSERT_EQUAL(expected, tree.showFreq(true,true,true) );
 }
 
 void HuffmanTreeTest::testBuild2() {
@@ -99,7 +153,7 @@ void HuffmanTreeTest::testBuild2() {
   Tree tree;
   tree.read(input);
   tree.build();
-  CPPUNIT_ASSERT_EQUAL(expected, tree.showTree(true,true,true) );
+  CPPUNIT_ASSERT_EQUAL(expected, tree.showTree(true,true,false) );
 }
 
 void HuffmanTreeTest::testBuild3() {
@@ -108,7 +162,7 @@ void HuffmanTreeTest::testBuild3() {
   Tree tree;
   tree.read(input);
   tree.build();
-  CPPUNIT_ASSERT_EQUAL(expected, tree.showTree(true,true,true) );
+  CPPUNIT_ASSERT_EQUAL(expected, tree.showTree(true,true,false) );
 }
 
 void HuffmanTreeTest::testBuild4() {
@@ -117,7 +171,7 @@ void HuffmanTreeTest::testBuild4() {
   Tree tree;
   tree.read(input);
   tree.build();
-  CPPUNIT_ASSERT_EQUAL(expected, tree.showTree(true,true,true) );
+  CPPUNIT_ASSERT_EQUAL(expected, tree.showTree(true,true,false) );
 }
 
 void HuffmanTreeTest::testBuild5() {
@@ -126,7 +180,7 @@ void HuffmanTreeTest::testBuild5() {
   Tree tree;
   tree.read(input);
   tree.build();
-  CPPUNIT_ASSERT_EQUAL(expected, tree.showTree(true,true,true) );
+  CPPUNIT_ASSERT_EQUAL(expected, tree.showTree(true,true,false) );
 }
 
 void HuffmanTreeTest::testBuildRandom1() {
@@ -155,23 +209,23 @@ void HuffmanTreeTest::testBuildRandom2() {
   
   Tree tree;
   tree.read(input);
-  CPPUNIT_ASSERT_EQUAL(expected_freq, tree.showFreq(true,true,true) );
+  CPPUNIT_ASSERT_EQUAL(expected_freq, tree.showFreq(true,true,false) );
   tree.sort();
-  CPPUNIT_ASSERT_EQUAL(expected_sorted, tree.showFreq(true,true,true) );
+  CPPUNIT_ASSERT_EQUAL(expected_sorted, tree.showFreq(true,true,false) );
   tree.build();
-  CPPUNIT_ASSERT_EQUAL(expected_empty, tree.showFreq(true,true,true) );
-  CPPUNIT_ASSERT_EQUAL(expected_tree, tree.showTree(true,true,true) );
+  CPPUNIT_ASSERT_EQUAL(expected_empty, tree.showFreq(true,true,false) );
+  CPPUNIT_ASSERT_EQUAL(expected_tree, tree.showTree(true,true,false) );
 }
 
 void HuffmanTreeTest::testBuildParentage() {
   istringstream input("abcdabcaba");
   string expected_tree("@:000 $:d(64) #:1\n@:001 $:c(63) #:2\n@:002 $:_(00) #:3[000][001]\n@:003 $:b(62) #:3\n@:004 $:a(61) #:4\n@:005 $:_(00) #:6[002][003]\n@:006 $:_(00) #:10[004][005]");
-  string expected_parentage("@:000 $:d(64) #:1<002>\n@:001 $:c(63) #:2<002>\n@:002 $:_(00) #:3[000][001]<005>\n@:003 $:b(62) #:3<005>\n@:004 $:a(61) #:4<006>\n@:005 $:_(00) #:6[002][003]<006>\n@:006 $:_(00) #:10[004][005]");
+  string expected_parentage("@:000 $:d(64) #:1<002>\n@:001 $:c(63) #:2<002>\n@:002 $:_(00) #:3[000][001]<005>\n@:003 $:b(62) #:3<005>\n@:004 $:a(61) #:4<006>\n@:005 $:_(00) #:6[002][003]<006>\n@:006 $:_(00) #:10[004][005]<ROOT>");
   Tree tree;
   tree.read(input);
   tree.sort();
   tree.build();
-  CPPUNIT_ASSERT_EQUAL(expected_tree, tree.showTree(true,true,true) );
+  CPPUNIT_ASSERT_EQUAL(expected_tree, tree.showTree(true,true,false) );
   tree.buildParentage();
   CPPUNIT_ASSERT_EQUAL(expected_parentage, tree.showTree(true,true,true) );
 }
@@ -195,7 +249,7 @@ void HuffmanTreeTest::testBinary() {
   tree.read(input);
   CPPUNIT_ASSERT_EQUAL(expected_unsorted, tree.showFreq(true,false,false) );  
   tree.sort();
-  CPPUNIT_ASSERT_EQUAL(expected_sorted, tree.showFreq(true,false,true) );  
+  CPPUNIT_ASSERT_EQUAL(expected_sorted, tree.showFreq(true,false,false) );  
 }
 
 void HuffmanTreeTest::testSkipZero() {

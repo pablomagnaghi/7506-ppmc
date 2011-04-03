@@ -59,6 +59,8 @@ std::string Node::show(unsigned int i, bool omit_zero, bool show_children, bool 
   if (show_parent) {
     if (parent != empty) {
       result << "<" << std::setfill('0') << std::setw(3) << parent << ">";
+    } else {
+      result << "<"<< "ROOT" << ">";;
     }
   }
   result << std::endl;  

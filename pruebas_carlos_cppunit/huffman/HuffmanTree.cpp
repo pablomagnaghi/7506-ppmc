@@ -87,7 +87,7 @@ unsigned int Tree::skipZero(unsigned int start, unsigned int stop) {
 }
 
 void Tree::buildParentage() {
-  setParent(node_count);
+  setParent(node_count - 1);
 }
 
 void Tree::setParent(unsigned int pos){
@@ -102,7 +102,6 @@ void Tree::setParent(unsigned int pos){
 }
 
 void Tree::build() {
-  // convert this counter to a class member, as a root for Code2Char
   node_count=0;
   
   sort(first_not_zero,dictionary_size);
@@ -125,7 +124,8 @@ void Tree::build() {
     freq[first_not_zero].count = 0;
     freq[first_not_zero].value = 0;
     first_not_zero ++;
-    //semiSort(first_not_zero);
+    
+    //semiSort(first_not_zero );
     sort(first_not_zero,dictionary_size);
 
   }  
@@ -145,8 +145,11 @@ void Tree::buildChar2CodeMap() {
   
 }
 
-void Tree::buildMap() {
+void Tree::buildAll() {
    build();
+   buildParentage();
+   buildChar2CodeMap();
+
    // copy nodes to a new array composed of position=>(bits,length)
 }
 

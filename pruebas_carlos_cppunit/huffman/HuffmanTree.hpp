@@ -19,7 +19,7 @@ namespace huffman {
     void build();
     void buildChar2CodeMap();
     void buildParentage();
-    void buildMap();
+    void buildAll();
     void save(std::ostream& outfile);
     void load(std::istream& infile);
     unsigned int skipZero(unsigned int start=0, unsigned int stop=dictionary_size);
