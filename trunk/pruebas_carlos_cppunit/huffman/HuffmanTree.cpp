@@ -103,11 +103,12 @@ void Tree::setParent(unsigned int pos){
 
 void Tree::build() {
   node_count=0;
-  
-  sort(first_not_zero,dictionary_size);
+  sort(0,dictionary_size);
   skipZero(first_not_zero);
-  while( first_not_zero < dictionary_size ) {
-    
+  cout << "\n ------------------------\n";
+  cout << "nc: " << node_count << " fnz: " << first_not_zero << endl;
+  while( first_not_zero < dictionary_size && first_not_zero != empty ) {
+    cout << "nc: " << node_count << " fnz: " << first_not_zero << endl;
     tree[node_count]=freq[first_not_zero];
     node_count++;
     
@@ -126,7 +127,7 @@ void Tree::build() {
     first_not_zero ++;
     
     //semiSort(first_not_zero );
-    sort(first_not_zero,dictionary_size);
+    sort(first_not_zero,dictionary_size - 1);
 
   }  
 }
@@ -142,7 +143,6 @@ void Tree::buildChar2CodeMap() {
       freq[tree[i].value].parent = i;
     }
   }
-  
 }
 
 void Tree::buildAll() {
