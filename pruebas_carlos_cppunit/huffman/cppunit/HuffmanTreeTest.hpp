@@ -36,7 +36,11 @@ class HuffmanTreeTest : public CppUnit::TestFixture {
   CPPUNIT_TEST( testSkipZero_full );
   CPPUNIT_TEST( testSkipZero_0 );
   CPPUNIT_TEST( testSkipZero_1 );
-  CPPUNIT_TEST( testRepeatedReadBuildAll );
+  CPPUNIT_TEST( testRepeatedRead );
+ // CPPUNIT_TEST( testRepeatedReadBuildAll );
+  //CPPUNIT_TEST( testRepeatedSort );
+  CPPUNIT_TEST( testSameSort );
+  
 //  CPPUNIT_TEST(  );
 //  CPPUNIT_TEST_EXCEPTION( testDecodeOddDigit, OddDigitException);
   CPPUNIT_TEST_SUITE_END();
@@ -50,6 +54,7 @@ public:
   void testUniqueCount();
   void testSort(); 
   void testSemiSort();
+  void testSameSort();
   void testBuildAll();
   void testBuild0();
   void testBuild1();
@@ -72,7 +77,9 @@ public:
   void testSkipZero_full();
   void testSkipZero_0();
   void testSkipZero_1();
+  void testRepeatedRead();
   void testRepeatedReadBuildAll();
+  void testRepeatedSort();
 private:
 //  std::string input;
 //  static unsigned char expected[];
