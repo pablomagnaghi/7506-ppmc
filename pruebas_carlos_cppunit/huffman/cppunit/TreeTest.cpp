@@ -1,25 +1,25 @@
 #include <sstream>
 
-#include "HuffmanTreeTest.hpp"
-#include "../HuffmanTree.hpp"
+#include "TreeTest.hpp"
+#include "../Tree.hpp"
 
 using namespace huffman;
 
-CPPUNIT_TEST_SUITE_REGISTRATION( HuffmanTreeTest );
+CPPUNIT_TEST_SUITE_REGISTRATION( TreeTest );
 
 using namespace std;
 
 
-void HuffmanTreeTest::setUp(){
+void TreeTest::setUp(){
 
 }
 
 
-void HuffmanTreeTest::tearDown(){
+void TreeTest::tearDown(){
 }                               
 
 
-void HuffmanTreeTest::testConstructor(){
+void TreeTest::testConstructor(){
   int zero = 0;
   string empty;
   Tree tree;
@@ -28,7 +28,7 @@ void HuffmanTreeTest::testConstructor(){
   
 }
 
-void HuffmanTreeTest::testRead(){
+void TreeTest::testRead(){
   istringstream input("\t\tabcdefgh\nabcdefg\nabcdef\nabcde\nabcd\nabc\nab\na\n");
   string expected("@:009 $:_(09) #:2\n@:010 $:_(0a) #:8\n@:097 $:a(61) #:8\n@:098 $:b(62) #:7\n@:099 $:c(63) #:6\n@:100 $:d(64) #:5\n@:101 $:e(65) #:4\n@:102 $:f(66) #:3\n@:103 $:g(67) #:2\n@:104 $:h(68) #:1");
   Tree tree;
@@ -38,7 +38,7 @@ void HuffmanTreeTest::testRead(){
   
 }
 
-void HuffmanTreeTest::testSort(){
+void TreeTest::testSort(){
   istringstream input("\t\tabcdefgh\nabcdefg\nabcdef\nabcde\nabcd\nabc\nab\na\n");
   string expected("@:246 $:h(68) #:1\n@:247 $:_(09) #:2\n@:248 $:g(67) #:2\n@:249 $:f(66) #:3\n@:250 $:e(65) #:4\n@:251 $:d(64) #:5\n@:252 $:c(63) #:6\n@:253 $:b(62) #:7\n@:254 $:_(0a) #:8\n@:255 $:a(61) #:8");
   Tree tree;
@@ -47,7 +47,7 @@ void HuffmanTreeTest::testSort(){
   CPPUNIT_ASSERT_EQUAL(expected, tree.showFreq(true,true,false) );
 }
 
-void HuffmanTreeTest::testSemiSort(){
+void TreeTest::testSemiSort(){
   stringstream input;
   unsigned char zero  = 0;
   unsigned char last  = 255;
@@ -59,7 +59,7 @@ void HuffmanTreeTest::testSemiSort(){
   CPPUNIT_ASSERT_EQUAL(expected, tree.showFreq(true,true,false) );
 }
 
-void HuffmanTreeTest::testBuild0() {
+void TreeTest::testBuild0() {
   istringstream input;
   string expected;
   Tree tree;
@@ -68,11 +68,11 @@ void HuffmanTreeTest::testBuild0() {
   CPPUNIT_ASSERT_EQUAL(expected, tree.showTree(true,true,false) );
 }
 
-void HuffmanTreeTest::testBuildAll() {
+void TreeTest::testBuildAll() {
   testBuildChar2CodeMap5();  
 }
 
-void HuffmanTreeTest::testBuild1() {
+void TreeTest::testBuild1() {
   istringstream input("a");
   string expected("@:000 $:a(61) #:1");
   Tree tree;
@@ -80,7 +80,7 @@ void HuffmanTreeTest::testBuild1() {
   tree.build();
   CPPUNIT_ASSERT_EQUAL(expected, tree.showTree(true,true,false) );
 }
-void HuffmanTreeTest::testSameSort() {
+void TreeTest::testSameSort() {
   Tree tree;
   Node node;
   node.count = 10;
@@ -99,7 +99,7 @@ void HuffmanTreeTest::testSameSort() {
   CPPUNIT_ASSERT_EQUAL(first, second );
 }
 
-void HuffmanTreeTest::testRepeatedSort(){
+void TreeTest::testRepeatedSort(){
   istringstream input_1("a");
   istringstream input_2("b");
   istringstream input_3("c");
@@ -126,7 +126,7 @@ void HuffmanTreeTest::testRepeatedSort(){
   CPPUNIT_ASSERT_EQUAL(expected_tree_3, tree.showTree(true,false,false) );
 }
 
-void HuffmanTreeTest::testRepeatedRead(){
+void TreeTest::testRepeatedRead(){
   istringstream input_1("a");
   istringstream input_2("b");
   istringstream input_3("c");
@@ -147,7 +147,7 @@ void HuffmanTreeTest::testRepeatedRead(){
   
 }
 
-void HuffmanTreeTest::testRepeatedReadBuildAll(){
+void TreeTest::testRepeatedReadBuildAll(){
   istringstream input_1("a");
   istringstream input_3("bc");
   istringstream input_4("d");
@@ -177,7 +177,7 @@ void HuffmanTreeTest::testRepeatedReadBuildAll(){
   //CPPUNIT_ASSERT_EQUAL(expected_tree_4, tree.showTree(true,true,true) );
   CPPUNIT_ASSERT_EQUAL(expected_freq_4, tree.showFreq(true,true,true) );
 }
-void HuffmanTreeTest::testBuildChar2CodeMap1() {
+void TreeTest::testBuildChar2CodeMap1() {
   istringstream input("a");
   string expected("@:097 $:a(61) #:1<000>");
   Tree tree;
@@ -188,7 +188,7 @@ void HuffmanTreeTest::testBuildChar2CodeMap1() {
   CPPUNIT_ASSERT_EQUAL(expected, tree.showFreq(true,true,true) );
 }
 
-void HuffmanTreeTest::testBuildChar2CodeMap3() {
+void TreeTest::testBuildChar2CodeMap3() {
   istringstream input("abc");
   string expected("@:097 $:a(61) #:1<000>\n@:098 $:b(62) #:1<001>\n@:099 $:c(63) #:1<002>");
   Tree tree;
@@ -199,7 +199,7 @@ void HuffmanTreeTest::testBuildChar2CodeMap3() {
   CPPUNIT_ASSERT_EQUAL(expected, tree.showFreq(true,true,true) );
 }
 
-void HuffmanTreeTest::testBuildChar2CodeMap4() {
+void TreeTest::testBuildChar2CodeMap4() {
   istringstream input("abcd");
   string expected("@:097 $:a(61) #:1<001>\n@:098 $:b(62) #:1<002>\n@:099 $:c(63) #:1<003>\n@:100 $:d(64) #:1<000>");
   Tree tree;
@@ -210,7 +210,7 @@ void HuffmanTreeTest::testBuildChar2CodeMap4() {
   CPPUNIT_ASSERT_EQUAL(expected, tree.showFreq(true,true,true) );
 }
 
-void HuffmanTreeTest::testBuildChar2CodeMap5() {
+void TreeTest::testBuildChar2CodeMap5() {
   istringstream input("aaaabbbccd");
   string expected("@:097 $:a(61) #:4<004>\n@:098 $:b(62) #:3<003>\n@:099 $:c(63) #:2<001>\n@:100 $:d(64) #:1<000>");
   Tree tree;
@@ -221,7 +221,7 @@ void HuffmanTreeTest::testBuildChar2CodeMap5() {
   CPPUNIT_ASSERT_EQUAL(expected, tree.showFreq(true,true,true) );
 }
 
-void HuffmanTreeTest::testBuild2() {
+void TreeTest::testBuild2() {
   istringstream input("ab");
   string expected("@:000 $:b(62) #:1\n@:001 $:a(61) #:1\n@:002 $:_(00) #:2[000][001]");
   Tree tree;
@@ -230,7 +230,7 @@ void HuffmanTreeTest::testBuild2() {
   CPPUNIT_ASSERT_EQUAL(expected, tree.showTree(true,true,false) );
 }
 
-void HuffmanTreeTest::testBuild3() {
+void TreeTest::testBuild3() {
   istringstream input("abc");
   string expected("@:000 $:a(61) #:1\n@:001 $:b(62) #:1\n@:002 $:c(63) #:1\n@:003 $:_(00) #:2[000][001]\n@:004 $:_(00) #:3[002][003]");
   Tree tree;
@@ -239,7 +239,7 @@ void HuffmanTreeTest::testBuild3() {
   CPPUNIT_ASSERT_EQUAL(expected, tree.showTree(true,true,false) );
 }
 
-void HuffmanTreeTest::testBuild4() {
+void TreeTest::testBuild4() {
   istringstream input("abcd");
   string expected("@:000 $:d(64) #:1\n@:001 $:a(61) #:1\n@:002 $:b(62) #:1\n@:003 $:c(63) #:1\n@:004 $:_(00) #:2[002][003]\n@:005 $:_(00) #:2[000][001]\n@:006 $:_(00) #:4[004][005]");
   Tree tree;
@@ -248,7 +248,7 @@ void HuffmanTreeTest::testBuild4() {
   CPPUNIT_ASSERT_EQUAL(expected, tree.showTree(true,true,false) );
 }
 
-void HuffmanTreeTest::testBuild5() {
+void TreeTest::testBuild5() {
   istringstream input("abcde");
   string expected("@:000 $:e(65) #:1\n@:001 $:a(61) #:1\n@:002 $:b(62) #:1\n@:003 $:c(63) #:1\n@:004 $:d(64) #:1\n@:005 $:_(00) #:2[002][003]\n@:006 $:_(00) #:2[000][001]\n@:007 $:_(00) #:3[004][005]\n@:008 $:_(00) #:5[006][007]");
   Tree tree;
@@ -257,7 +257,7 @@ void HuffmanTreeTest::testBuild5() {
   CPPUNIT_ASSERT_EQUAL(expected, tree.showTree(true,true,false) );
 }
 
-void HuffmanTreeTest::testBuildRandom1() {
+void TreeTest::testBuildRandom1() {
   istringstream input("abcdabcaba");
   string expected_freq("@:097 $:a(61) #:4\n@:098 $:b(62) #:3\n@:099 $:c(63) #:2\n@:100 $:d(64) #:1");
   string expected_sorted("@:252 $:d(64) #:1\n@:253 $:c(63) #:2\n@:254 $:b(62) #:3\n@:255 $:a(61) #:4");
@@ -274,7 +274,7 @@ void HuffmanTreeTest::testBuildRandom1() {
   CPPUNIT_ASSERT_EQUAL(expected_tree, tree.showTree(true,true,false) );
 }
 
-void HuffmanTreeTest::testBuildRandom2() {
+void TreeTest::testBuildRandom2() {
   istringstream input("\t\tabcdefgh\nabcdefg\nabcdef\nabcde\nabcd\nabc\nab\na\n");
   string expected_freq("@:009 $:_(09) #:2\n@:010 $:_(0a) #:8\n@:097 $:a(61) #:8\n@:098 $:b(62) #:7\n@:099 $:c(63) #:6\n@:100 $:d(64) #:5\n@:101 $:e(65) #:4\n@:102 $:f(66) #:3\n@:103 $:g(67) #:2\n@:104 $:h(68) #:1");
   string expected_sorted("@:246 $:h(68) #:1\n@:247 $:_(09) #:2\n@:248 $:g(67) #:2\n@:249 $:f(66) #:3\n@:250 $:e(65) #:4\n@:251 $:d(64) #:5\n@:252 $:c(63) #:6\n@:253 $:b(62) #:7\n@:254 $:_(0a) #:8\n@:255 $:a(61) #:8");
@@ -291,7 +291,7 @@ void HuffmanTreeTest::testBuildRandom2() {
   CPPUNIT_ASSERT_EQUAL(expected_tree, tree.showTree(true,true,false) );
 }
 
-void HuffmanTreeTest::testBuildParentage() {
+void TreeTest::testBuildParentage() {
   istringstream input("abcdabcaba");
   string expected_tree("@:000 $:d(64) #:1\n@:001 $:c(63) #:2\n@:002 $:_(00) #:3[000][001]\n@:003 $:b(62) #:3\n@:004 $:a(61) #:4\n@:005 $:_(00) #:6[002][003]\n@:006 $:_(00) #:10[004][005]");
   string expected_parentage("@:000 $:d(64) #:1<002>\n@:001 $:c(63) #:2<002>\n@:002 $:_(00) #:3[000][001]<005>\n@:003 $:b(62) #:3<005>\n@:004 $:a(61) #:4<006>\n@:005 $:_(00) #:6[002][003]<006>\n@:006 $:_(00) #:10[004][005]<ROOT>");
@@ -305,7 +305,7 @@ void HuffmanTreeTest::testBuildParentage() {
 }
 
 
-void HuffmanTreeTest::testBinary() {
+void TreeTest::testBinary() {
   stringstream input;
   unsigned char zero       = 0;
   unsigned char one        = 1;
@@ -326,7 +326,7 @@ void HuffmanTreeTest::testBinary() {
   CPPUNIT_ASSERT_EQUAL(expected_sorted, tree.showFreq(true,false,false) );  
 }
 
-void HuffmanTreeTest::testSkipZero() {
+void TreeTest::testSkipZero() {
   istringstream input("\t\tabcdefgh\nabcdefg\nabcdef\nabcde\nabcd\nabc\nab\na\n");
   unsigned int expected = 246;
   Tree tree;
@@ -336,7 +336,7 @@ void HuffmanTreeTest::testSkipZero() {
   CPPUNIT_ASSERT_EQUAL(expected, tree.getFirstNotZero() );
 }
 
-void HuffmanTreeTest::testSkipZero_253() {
+void TreeTest::testSkipZero_253() {
   istringstream input("abc");
   unsigned int expected = 253;
   Tree tree;
@@ -347,7 +347,7 @@ void HuffmanTreeTest::testSkipZero_253() {
 }
 
 
-void HuffmanTreeTest::testSkipZero_255() {
+void TreeTest::testSkipZero_255() {
   stringstream input;
   unsigned char zero = 0;
   input << zero;
@@ -360,7 +360,7 @@ void HuffmanTreeTest::testSkipZero_255() {
   CPPUNIT_ASSERT_EQUAL(expected, tree.getFirstNotZero() );
 }
 
-void HuffmanTreeTest::testSkipZero_254() {
+void TreeTest::testSkipZero_254() {
   stringstream input;
   unsigned char zero = 0;
   unsigned char one = 1;
@@ -373,7 +373,7 @@ void HuffmanTreeTest::testSkipZero_254() {
   CPPUNIT_ASSERT_EQUAL(expected, tree.getFirstNotZero() );
 }
 
-void HuffmanTreeTest::testSkipZero_0() {
+void TreeTest::testSkipZero_0() {
   stringstream input;
   for (int i=0; i < (int) dictionary_size ; i++) {    
     input << (unsigned char) i;
@@ -387,7 +387,7 @@ void HuffmanTreeTest::testSkipZero_0() {
   CPPUNIT_ASSERT_EQUAL(expected, tree.getFirstNotZero() );
 }
 
-void HuffmanTreeTest::testSkipZero_full() {
+void TreeTest::testSkipZero_full() {
   
   for (int i=0; i < (int) dictionary_size ; i++) { 
     stringstream input;
@@ -407,7 +407,7 @@ void HuffmanTreeTest::testSkipZero_full() {
   }
 }
 
-void HuffmanTreeTest::testSkipZero_1() {
+void TreeTest::testSkipZero_1() {
   stringstream input;
   int count = 0;
   for (int i=0; i < (int) dictionary_size - 1 ; i++) {    
@@ -423,7 +423,7 @@ void HuffmanTreeTest::testSkipZero_1() {
   CPPUNIT_ASSERT_EQUAL(expected, tree.getFirstNotZero() );
 }
 
-void HuffmanTreeTest::testSkipZero_empty() {
+void TreeTest::testSkipZero_empty() {
   istringstream input;
   unsigned int expected = empty;
   Tree tree;
@@ -433,7 +433,7 @@ void HuffmanTreeTest::testSkipZero_empty() {
   CPPUNIT_ASSERT_EQUAL(expected, tree.getFirstNotZero() );  
 }
 
-void HuffmanTreeTest::testUniqueCount() {
+void TreeTest::testUniqueCount() {
   
   int count = 0;
   Tree tree;
