@@ -26,7 +26,7 @@ verbose = si
 debug = si
 
 # Agregar object files
-o_files  = ../XXX.o 
+o_files  = ../Encoder.o 
 #o_files += 
 
 # Descomentar para compilar estaticamente

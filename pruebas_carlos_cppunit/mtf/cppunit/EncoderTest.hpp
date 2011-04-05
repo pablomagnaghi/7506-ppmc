@@ -1,13 +1,13 @@
-#ifndef _mtf_xxx_test_hpp
-#define _mtf_xxx_test_hpp
+#ifndef _mtf_encoder_test_hpp
+#define _mtf_encoder_test_hpp
 
 #include <cppunit/extensions/HelperMacros.h>
 
 //#include "../OddDigitException.hpp"
 //#include "../InvalidDigitException.hpp"
 namespace mtf {
-class xxxTest : public CppUnit::TestFixture {
-  CPPUNIT_TEST_SUITE( XXXTest );
+class EncoderTest : public CppUnit::TestFixture {
+  CPPUNIT_TEST_SUITE( EncoderTest );
   CPPUNIT_TEST( testConstructor );
 //  CPPUNIT_TEST(  );
 //  CPPUNIT_TEST_EXCEPTION( testDecodeOddDigit, OddDigitException);
