@@ -6,8 +6,8 @@
 //#include "../OddDigitException.hpp"
 //#include "../InvalidDigitException.hpp"
 namespace huffman {
-class HuffmanNodeTest : public CppUnit::TestFixture {
-  CPPUNIT_TEST_SUITE( HuffmanNodeTest );
+class NodeTest : public CppUnit::TestFixture {
+  CPPUNIT_TEST_SUITE( NodeTest );
   CPPUNIT_TEST( testConstructor );
 //  CPPUNIT_TEST(  );
 //  CPPUNIT_TEST_EXCEPTION( testDecodeOddDigit, OddDigitException);

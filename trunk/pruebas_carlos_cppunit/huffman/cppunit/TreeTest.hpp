@@ -6,8 +6,8 @@
 //#include "../OddDigitException.hpp"
 //#include "../InvalidDigitException.hpp"
 namespace huffman {
-class HuffmanTreeTest : public CppUnit::TestFixture {
-  CPPUNIT_TEST_SUITE( HuffmanTreeTest );
+class TreeTest : public CppUnit::TestFixture {
+  CPPUNIT_TEST_SUITE( TreeTest );
   CPPUNIT_TEST( testConstructor );
   CPPUNIT_TEST( testRead );
   CPPUNIT_TEST( testSort );

@@ -1,22 +1,22 @@
-#include "HuffmanNodeTest.hpp"
+#include "NodeTest.hpp"
 #include "../Huffman.hpp"
-#include "../HuffmanNode.hpp"
+#include "../Node.hpp"
 
 using namespace huffman;
 
-CPPUNIT_TEST_SUITE_REGISTRATION( HuffmanNodeTest );
+CPPUNIT_TEST_SUITE_REGISTRATION( NodeTest );
 
 
-void HuffmanNodeTest::setUp(){
+void NodeTest::setUp(){
 
 }
 
 
-void HuffmanNodeTest::tearDown(){
+void NodeTest::tearDown(){
 }                               
 
 
-void HuffmanNodeTest::testConstructor(){
+void NodeTest::testConstructor(){
   unsigned char value = 'a';
   unsigned int zero = 0;
   Node node(value);
