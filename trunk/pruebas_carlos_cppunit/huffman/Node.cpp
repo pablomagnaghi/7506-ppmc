@@ -1,7 +1,7 @@
 #include <sstream>
 #include <iomanip>
 
-#include "HuffmanNode.hpp"
+#include "Node.hpp"
 
 using namespace huffman;
 
