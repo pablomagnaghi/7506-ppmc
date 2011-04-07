@@ -5,7 +5,7 @@
 #include <string>
 
 #include "Huffman.hpp"
-#include "HuffmanNode.hpp"
+#include "Node.hpp"
 
 namespace huffman {
   
@@ -40,7 +40,7 @@ namespace huffman {
     Node freq[dictionary_size];
     Node tree[dictionary_size];
     
-    friend class HuffmanTreeTest;
+    friend class TreeTest;
   };
 }
 #endif // _huffman_tree_hpp_

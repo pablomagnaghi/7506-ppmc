@@ -1,3 +1,6 @@
+#ifndef _huffman_node_hpp_
+#define _huffman_node_hpp_
+
 #include <string>
 #include "Huffman.hpp"
 
@@ -16,7 +19,8 @@ namespace huffman {
 //    std::string showMin(bool omit_zero);
     std::string show(unsigned int i, bool omit_zero, bool show_children, bool show_parent);
     
-    friend class HuffmanNodeTest;
+    friend class NodeTest;
   };
 
 }
+#endif // _huffman_node_hpp_

@@ -1,7 +1,7 @@
 #include <sstream>
 
 
-#include "HuffmanTree.hpp"
+#include "Tree.hpp"
 
 #include <iostream>
 using namespace std;
