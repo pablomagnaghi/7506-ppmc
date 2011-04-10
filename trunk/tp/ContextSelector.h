@@ -1,25 +1,26 @@
-#ifndef _context_selector_h_
-#define _context_selector_h_
+#ifndef _ppmc_context_selector_h_
+#define _ppmc_context_selector_h_
 
 #include <stdexcept>
 #include <string>
-#include <cstddef>
 
 #include "PPMC.h"
 
 namespace ppmc {
 	class ContextSelector {
 		public:
-			ContextSelector(size_t size);
+			ContextSelector(size_t contextSize) throw (std::length_error);
 			~ContextSelector(){};
-			void set(std::string name);
-			std::string get(size_t size);
+			void add(char c);
+			void add(std::string s);
+			void set(std::string contextName) throw (std::length_error);
+			std::string get(size_t contextSize) throw (std::length_error);
 		private:
-			std::string contextName;
+			std::string name;
 			size_t size;
-			friend class ContextSelectorTest;
+		friend class ContextSelectorTest;
 	};
 }
 
 
-#endif //_context_selector_h_
+#endif //_ppmc_context_selector_h_
