@@ -1,13 +1,13 @@
-#ifndef _ppmc_model_test_h_
-#define _ppmc_model_test_h_
+#ifndef _ppmc_purger_test_h_
+#define _ppmc_purger_test_h_
 
 #include <cppunit/extensions/HelperMacros.h>
 
-#include "../Model.h"
+#include "../Purger.h"
 
 namespace ppmc {
-	class ModelTest : public CppUnit::TestFixture {
-		CPPUNIT_TEST_SUITE( ModelTest );
+	class PurgerTest : public CppUnit::TestFixture {
+		CPPUNIT_TEST_SUITE( PurgerTest );
 		CPPUNIT_TEST( testConstructor );
 		CPPUNIT_TEST_SUITE_END();
 
@@ -18,4 +18,4 @@ namespace ppmc {
 	};
 }
 
-#endif //_ppmc_model_test_h_
+#endif //_ppmc_purger_test_h_
