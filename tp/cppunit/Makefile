@@ -27,7 +27,9 @@ debug = si
 
 # Agregar object files
 o_files  = ../ContextSelector.o 
-#o_files += 
+o_files += ../Context.o
+o_files += ../Model.o
+o_files += ../Purger.o
 
 # Descomentar para compilar estaticamente
 #static = si
