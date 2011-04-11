@@ -2,6 +2,9 @@
 #include "../MTF.hpp"
 #include "../Encoder.hpp"
 
+
+#include "../../hex_coder/v04/hexdecoder.hpp"
+
 #include <sstream>
 #include <iostream>
 
@@ -52,8 +55,14 @@ void EncoderTest::testRearrange(){
 
 void EncoderTest::testEncode(){
   Encoder e;
-  stringstream  inputString("aaaaaaa");
-  inputString >> e;
-  cout << e ;
+  stringstream  input("aaaaaaa");
+  input >> e;
+  HexDecoder hd;
+  stringstream output(e.buffer);
+  string o(output.str());
+  hd.decode(e.buffer);
+  string oo(e. );
+  cout << oo;
+
 }
 
