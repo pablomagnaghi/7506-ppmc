@@ -26,7 +26,10 @@ verbose = si
 debug = si
 
 # Agregar object files
-o_files  = ../Encoder.o 
+o_files = ../Encoder.o 
+o_files +=  ../../hex_coder/v04/hexdecoder.o 
+o_files +=   ../../hex_coder/v04/OddDigitException.o
+	
 #o_files += 
 
 # Descomentar para compilar estaticamente
