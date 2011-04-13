@@ -4,6 +4,6 @@
 using namespace ppmc;
 using namespace std;
 
-Context::Context(){
+Context::Context():esc(0){
 
 }
