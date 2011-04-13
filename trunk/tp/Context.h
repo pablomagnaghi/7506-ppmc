@@ -4,6 +4,8 @@
 #include <map>
 
 #include "PPMC.h"
+#include "Response.h"
+#include "Query.h"
 
 namespace ppmc {
 	class Context {
@@ -13,6 +15,7 @@ namespace ppmc {
 		private:
 			size_t esc;
 			std::map<char,size_t> freq;
+			Response eval(Query q);
 		friend class ContextTest;
 
 	};

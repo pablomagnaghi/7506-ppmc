@@ -9,6 +9,9 @@ namespace ppmc {
 		public:
 			Query();
 			~Query();
+			void setChar(char cc);
+			void setExclusions(std::list<char> exc);
+			std::list<char> getExclusions();
 		private:
 			std::list<char> exclusion;
 			char c;
