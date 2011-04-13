@@ -14,7 +14,7 @@
 #################
 
 # Nombre del ejecutable.
-target = run
+target = test_run
 
 # modo = c89, c99, c++98, c++0x
 modo = c++98
@@ -30,6 +30,10 @@ o_files  = ../ContextSelector.o
 o_files += ../Context.o
 o_files += ../Model.o
 o_files += ../Purger.o
+o_files += ../Query.o
+o_files += ../Response.o
+o_files += ../Probability.o
+o_files += ../Compressor.o
 
 # Descomentar para compilar estaticamente
 #static = si
