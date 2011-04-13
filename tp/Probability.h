@@ -4,14 +4,12 @@
 #include "PPMC.h"
 
 namespace ppmc {
-	class Probability {
-		public:
+	struct Probability {
 			Probability();
 			~Probability();
-		private:
-			unsigned char skip;
-			unsigned char width;
-			unsigned char total;
+			unsigned int skip;
+			unsigned int width;
+			unsigned int total;
 		friend class ProbabilityTest;
 	};
 }

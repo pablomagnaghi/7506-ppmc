@@ -10,6 +10,11 @@ namespace ppmc {
 		public:
 			Response();
 			~Response();
+			void setChar(char cc);
+			void setExclusions(std::list<char> exc);
+			std::list<char> getExclusions();
+			void setProbability(Probability p);
+			Probability getProbability();
 		private:
 			std::list<char> exclusion;
 			Probability p;

@@ -4,7 +4,7 @@
 #include <cstddef>
 
 namespace ppmc {
-	const size_t max_size = 15;
+	const size_t max_models = 15;
 }
 
 #endif  // _ppmc_h_
