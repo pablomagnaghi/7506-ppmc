@@ -17,6 +17,10 @@ void Query::setChar(char cc) {
 	c=cc;
 }
 
+char Query::getChar(){
+	return c;
+}
+
 std::list<char> Query::getExclusions() {
 	return exclusion;
 }

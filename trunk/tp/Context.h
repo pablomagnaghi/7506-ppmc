@@ -14,6 +14,7 @@ namespace ppmc {
 			~Context(){};
 		private:
 			size_t esc;
+			size_t count;
 			std::map<char,size_t> freq;
 			Response eval(Query q);
 		friend class ContextTest;

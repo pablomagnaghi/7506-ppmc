@@ -4,7 +4,7 @@
 using namespace ppmc;
 using namespace std;
 
-Response::Response(){
+Response::Response():found(false){
 
 }
 
@@ -27,4 +27,12 @@ Probability Response::getProbability(){
 
 void Response::setProbability(Probability pp){
 	p = pp;
+}
+
+void Response::setFound(bool f) {
+	found = f;
+}
+
+bool Response::isFound() {
+	return found;
 }

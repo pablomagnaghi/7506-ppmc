@@ -9,14 +9,22 @@ namespace ppmc {
 	class ContextTest : public CppUnit::TestFixture {
 		CPPUNIT_TEST_SUITE( ContextTest );
 		CPPUNIT_TEST( testConstructor );
-		CPPUNIT_TEST( testEval );
+		CPPUNIT_TEST( testEval_a );
+		CPPUNIT_TEST( testEval_a_b );
+		CPPUNIT_TEST( testEval_a_b_c );
+		CPPUNIT_TEST( testEval_a_a );
+		CPPUNIT_TEST( testEval_a_a_a );
 		CPPUNIT_TEST_SUITE_END();
 
 	public:
 		void setUp();
 		void tearDown();
 		void testConstructor();
-		void testEval();
+		void testEval_a();
+		void testEval_a_b();
+		void testEval_a_b_c();
+		void testEval_a_a();
+		void testEval_a_a_a();
 	};
 }
 

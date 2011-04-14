@@ -15,9 +15,12 @@ namespace ppmc {
 			std::list<char> getExclusions();
 			void setProbability(Probability p);
 			Probability getProbability();
+			void setFound(bool f);
+			bool isFound();
 		private:
 			std::list<char> exclusion;
 			Probability p;
+			bool found;
 		friend class ResponseTest;
 	};
 }
