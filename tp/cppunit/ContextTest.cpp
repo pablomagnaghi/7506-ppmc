@@ -117,3 +117,21 @@ void ContextTest::testEval_a_a_a(){
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Total", (unsigned int) 3,p.total);
 	
 }
+
+void ContextTest::testEval_b_a_b(){
+	Context c;
+	Query q;
+	q.setChar('b');
+	c.eval(q);
+	q.setChar('a');
+	c.eval(q);
+	q.setChar('b');
+	Response r = c.eval(q);
+	
+	Probability p = r.getProbability();
+	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Found", true, r.isFound());
+	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Skip",  (unsigned int) 1,p.skip);
+	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Width", (unsigned int) 1,p.width);
+	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Total", (unsigned int) 4,p.total);
+	
+}
