@@ -14,6 +14,7 @@ namespace ppmc {
 		CPPUNIT_TEST( testEval_a_b_c );
 		CPPUNIT_TEST( testEval_a_a );
 		CPPUNIT_TEST( testEval_a_a_a );
+		CPPUNIT_TEST( testEval_b_a_b );
 		CPPUNIT_TEST_SUITE_END();
 
 	public:
@@ -25,6 +26,7 @@ namespace ppmc {
 		void testEval_a_b_c();
 		void testEval_a_a();
 		void testEval_a_a_a();
+		void testEval_b_a_b();
 	};
 }
 

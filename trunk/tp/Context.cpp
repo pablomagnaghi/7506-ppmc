@@ -1,6 +1,5 @@
 #include "Context.h"
 
-
 using namespace ppmc;
 using namespace std;
 
@@ -11,30 +10,36 @@ Response Context::eval(Query q){
 	Probability p;
 	Response r;
 
-	map<char,size_t>::iterator iter = freq.find(q.getChar());
+	map<char,size_t>::iterator iter;
 	
-	if( iter == freq.end() ) {
-		r.setFound(false);
+	r.setFound(false);
+
+	for( iter = freq.begin(); iter != freq.end(); ++iter ) {
+		if (iter->first == q.getChar() ) {
+			r.setFound(true);
+			break;
+		}
+		p.skip+=iter->second;
+	}
+	
+	if( r.isFound() ) {
+		p.width = iter->second;
+		p.total = count + freq.size();
+		iter->second++;
+	} else {
 		if (freq.size() == 0) {
-			p.skip = 0;
 			p.width = 1;
 			p.total = 1;
 		} else {
-			p.skip = freq.size();
 			p.width = freq.size();
 			p.total = count + freq.size() ;
 		}
 		freq.insert(make_pair(q.getChar(),1));
-	} else {
-		p.skip = 0;
-		p.width = iter->second;
-		r.setFound(true);
-		p.total = count + freq.size();
-		iter->second++;
 	}
 	count++;
 	
 	r.setProbability(p);
 	
+	r.setExclusions();
 	return r;
 }
