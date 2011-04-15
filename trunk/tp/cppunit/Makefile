@@ -27,7 +27,7 @@ debug = si
 
 # Agregar object files
 o_files  = ../ContextSelector.o 
-o_files += ../Context.o
+o_files += ../ContextTable.o
 o_files += ../Model.o
 o_files += ../Purger.o
 o_files += ../Query.o

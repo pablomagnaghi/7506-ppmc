@@ -1,13 +1,13 @@
-#ifndef _ppmc_context_test_h_
-#define _ppmc_context_test_h_
+#ifndef _ppmc_context_table_test_h_
+#define _ppmc_context_table_test_h_
 
 #include <cppunit/extensions/HelperMacros.h>
 
-#include "../Context.h"
+#include "../ContextTable.h"
 
 namespace ppmc {
-	class ContextTest : public CppUnit::TestFixture {
-		CPPUNIT_TEST_SUITE( ContextTest );
+	class ContextTableTest : public CppUnit::TestFixture {
+		CPPUNIT_TEST_SUITE( ContextTableTest );
 		CPPUNIT_TEST( testConstructor );
 		CPPUNIT_TEST( testEval_a );
 		CPPUNIT_TEST( testEval_a_b );
@@ -30,4 +30,4 @@ namespace ppmc {
 	};
 }
 
-#endif //_ppmc_context_test_h_
+#endif //_ppmc_context_table_test_h_

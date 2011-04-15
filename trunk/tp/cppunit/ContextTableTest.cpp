@@ -1,31 +1,31 @@
-#include "ContextTest.h"
+#include "ContextTableTest.h"
 
 #include "../PPMC.h"
-#include "../Context.h"
+#include "../ContextTable.h"
 #include "../Query.h"
 #include "../Response.h"
 
 using namespace ppmc;
 using namespace std;
 
-CPPUNIT_TEST_SUITE_REGISTRATION( ContextTest );
+CPPUNIT_TEST_SUITE_REGISTRATION( ContextTableTest );
 
 
-void ContextTest::setUp(){
+void ContextTableTest::setUp(){
 
 }
 
 
-void ContextTest::tearDown(){
+void ContextTableTest::tearDown(){
 }                               
 
 
-void ContextTest::testConstructor(){
+void ContextTableTest::testConstructor(){
 	
 }
 
-void ContextTest::testEval_a(){
-	Context c;
+void ContextTableTest::testEval_a(){
+	ContextTable c;
 	Query q;
 	q.setChar('a');
 	Response r = c.eval(q);
@@ -36,8 +36,8 @@ void ContextTest::testEval_a(){
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Total", (unsigned int) 1,p.total);
 }
 
-void ContextTest::testEval_a_b(){
-	Context c;
+void ContextTableTest::testEval_a_b(){
+	ContextTable c;
 	Query q;
 	q.setChar('a');
 	c.eval(q);
@@ -58,8 +58,8 @@ void ContextTest::testEval_a_b(){
 	// test for 'ab' and only 'ab' in exclusion list
 }
 
-void ContextTest::testEval_a_b_c(){
-	Context c;
+void ContextTableTest::testEval_a_b_c(){
+	ContextTable c;
 	Query q;
 	q.setChar('a');
 	c.eval(q);
@@ -86,8 +86,8 @@ void ContextTest::testEval_a_b_c(){
 }
 
 
-void ContextTest::testEval_a_a(){
-	Context c;
+void ContextTableTest::testEval_a_a(){
+	ContextTable c;
 	Query q;
 	std::list<char> exclusion;
 	exclusion.push_front('a');
@@ -102,8 +102,8 @@ void ContextTest::testEval_a_a(){
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Total", (unsigned int) 2,p.total);	
 }
 
-void ContextTest::testEval_a_a_a(){
-	Context c;
+void ContextTableTest::testEval_a_a_a(){
+	ContextTable c;
 	Query q;
 	q.setChar('a');
 	c.eval(q);
@@ -118,8 +118,8 @@ void ContextTest::testEval_a_a_a(){
 	
 }
 
-void ContextTest::testEval_b_a_b(){
-	Context c;
+void ContextTableTest::testEval_b_a_b(){
+	ContextTable c;
 	Query q;
 	q.setChar('b');
 	c.eval(q);

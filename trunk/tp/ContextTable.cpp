@@ -1,12 +1,12 @@
-#include "Context.h"
+#include "ContextTable.h"
 
 using namespace ppmc;
 using namespace std;
 
-Context::Context():esc(1),count(0){
+ContextTable::ContextTable():esc(1),count(0){
 
 }
-Response Context::eval(Query q){
+Response ContextTable::eval(Query q){
 	Probability p;
 	Response r;
 
@@ -40,6 +40,6 @@ Response Context::eval(Query q){
 	
 	r.setProbability(p);
 	
-	r.setExclusions();
+	//r.setExclusions();
 	return r;
 }

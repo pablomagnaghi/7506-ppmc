@@ -1,5 +1,5 @@
-#ifndef _ppmc_context_h_
-#define _ppmc_context_h_
+#ifndef _ppmc_context_table_h_
+#define _ppmc_context_table_h_
 
 #include <map>
 
@@ -8,18 +8,18 @@
 #include "Query.h"
 
 namespace ppmc {
-	class Context {
+	class ContextTable {
 		public:
-			Context();
-			~Context(){};
+			ContextTable();
+			~ContextTable(){};
 		private:
 			size_t esc;
 			size_t count;
 			std::map<char,size_t> freq;
 			Response eval(Query q);
-		friend class ContextTest;
+		friend class ContextTableTest;
 
 	};
 }
 
-#endif  // _ppmc_context_h_
+#endif  // _ppmc_context_table_h_
