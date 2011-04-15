@@ -1,7 +1,7 @@
 #ifndef _ppmc_query_h_
 #define _ppmc_query_h_
 
-#include <list>
+#include <set>
 #include "PPMC.h"
 #include "Probability.h"
 
@@ -11,8 +11,8 @@ namespace ppmc {
 			Query();
 			~Query();
 
-			void setExclusions(std::list<char> exc);
-			std::list<char> getExclusions();
+			void addExclusion(char c);
+			bool isExcluded(char c);
 			
 			void setFound(bool f);
 			bool isFound();
@@ -24,7 +24,7 @@ namespace ppmc {
 			void setProbability(Probability pp);
 			
 		private:
-			std::list<char> exclusion;
+			std::set<char> exclusion;
 			bool found;
 			char c;
 			Probability p;
