@@ -6,23 +6,22 @@ using namespace std;
 ContextTable::ContextTable():esc(1),count(0){
 
 }
-Response ContextTable::compress(Query q){
+void ContextTable::compress(Query & q){
 	Probability p;
-	Response r;
 
 	map<char,size_t>::iterator iter;
 	
-	r.setFound(false);
+	q.setFound(false);
 
 	for( iter = freq.begin(); iter != freq.end(); ++iter ) {
 		if (iter->first == q.getChar() ) {
-			r.setFound(true);
+			q.setFound(true);
 			break;
 		}
 		p.skip+=iter->second;
 	}
 	
-	if( r.isFound() ) {
+	if( q.isFound() ) {
 		p.width = iter->second;
 		p.total = count + freq.size();
 		iter->second++;
@@ -38,8 +37,8 @@ Response ContextTable::compress(Query q){
 	}
 	count++;
 	
-	r.setProbability(p);
+	q.setProbability(p);
 	
-	//r.setExclusions();
-	return r;
+	//q.setExclusions();
+	
 }
