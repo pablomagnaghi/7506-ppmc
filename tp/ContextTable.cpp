@@ -6,7 +6,7 @@ using namespace std;
 ContextTable::ContextTable():esc(1),count(0){
 
 }
-Response ContextTable::eval(Query q){
+Response ContextTable::compress(Query q){
 	Probability p;
 	Response r;
 

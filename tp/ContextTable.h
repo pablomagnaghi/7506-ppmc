@@ -12,11 +12,11 @@ namespace ppmc {
 		public:
 			ContextTable();
 			~ContextTable(){};
+			Response compress(Query q);
 		private:
 			size_t esc;
 			size_t count;
 			std::map<char,size_t> freq;
-			Response eval(Query q);
 		friend class ContextTableTest;
 
 	};
