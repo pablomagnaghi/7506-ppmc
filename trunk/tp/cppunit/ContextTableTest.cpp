@@ -3,7 +3,6 @@
 #include "../PPMC.h"
 #include "../ContextTable.h"
 #include "../Query.h"
-#include "../Response.h"
 
 using namespace ppmc;
 using namespace std;
@@ -28,9 +27,9 @@ void ContextTableTest::testCompress_a(){
 	ContextTable c;
 	Query q;
 	q.setChar('a');
-	Response r = c.compress(q);
-	Probability p = r.getProbability();
-	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Found", false, r.isFound());
+	c.compress(q);
+	Probability p = q.getProbability();
+	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Found", false, q.isFound());
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Skip",  (unsigned int) 0,p.skip);
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Width", (unsigned int) 1,p.width);
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Total", (unsigned int) 1,p.total);
@@ -43,10 +42,10 @@ void ContextTableTest::testCompress_a_b(){
 	c.compress(q);
 	
 	q.setChar('b');
-	Response r = c.compress(q);
+	c.compress(q);
 	
-	Probability p = r.getProbability();
-	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Found", false, r.isFound());
+	Probability p = q.getProbability();
+	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Found", false, q.isFound());
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Skip", (unsigned int) 1,p.skip);
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Width",(unsigned int) 1,p.width);
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Total", (unsigned int) 2,p.total);
@@ -69,10 +68,10 @@ void ContextTableTest::testCompress_a_b_c(){
 	
 	q.setChar('c');
 	
-	Response r = c.compress(q);
+	c.compress(q);
 	
-	Probability p = r.getProbability();
-	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Found", false, r.isFound());
+	Probability p = q.getProbability();
+	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Found", false, q.isFound());
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Skip", (unsigned int) 2,p.skip);
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Width",(unsigned int) 2,p.width);
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Total", (unsigned int) 4,p.total);
@@ -93,10 +92,10 @@ void ContextTableTest::testCompress_a_a(){
 	exclusion.push_front('a');
 	q.setChar('a');
 	c.compress(q);
-	Response r = c.compress(q);
+	c.compress(q);
 	
-	Probability p = r.getProbability();
-	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Found", true, r.isFound());
+	Probability p = q.getProbability();
+	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Found", true, q.isFound());
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Skip",  (unsigned int) 0,p.skip);
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Width", (unsigned int) 1,p.width);
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Total", (unsigned int) 2,p.total);	
@@ -108,10 +107,10 @@ void ContextTableTest::testCompress_a_a_a(){
 	q.setChar('a');
 	c.compress(q);
 	c.compress(q);
-	Response r = c.compress(q);
+	c.compress(q);
 	
-	Probability p = r.getProbability();
-	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Found", true, r.isFound());
+	Probability p = q.getProbability();
+	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Found", true, q.isFound());
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Skip",  (unsigned int) 0,p.skip);
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Width", (unsigned int) 2,p.width);
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Total", (unsigned int) 3,p.total);
@@ -126,10 +125,10 @@ void ContextTableTest::testCompress_b_a_b(){
 	q.setChar('a');
 	c.compress(q);
 	q.setChar('b');
-	Response r = c.compress(q);
+	c.compress(q);
 	
-	Probability p = r.getProbability();
-	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Found", true, r.isFound());
+	Probability p = q.getProbability();
+	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Found", true, q.isFound());
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Skip",  (unsigned int) 1,p.skip);
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Width", (unsigned int) 1,p.width);
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Total", (unsigned int) 4,p.total);
