@@ -6,7 +6,7 @@
 #include <list>
 #include <string>
 #include "PPMC.h"
-#include "Context.h"
+#include "ContextTable.h"
 
 namespace ppmc {
 	class Model {
@@ -14,7 +14,7 @@ namespace ppmc {
 			Model();
 			~Model();
 		private:
-			std::map<std::string, Context*> contexts;
+			std::map<std::string, ContextTable*> contexts;
 		
 		friend class ModelTest;
 
