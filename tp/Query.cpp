@@ -13,12 +13,14 @@ Query::~Query(){
 
 }
 
-std::list<char> Query::getExclusions() {
-	return exclusion;
+void Query::addExclusion(char c){
+	exclusion.insert(c);
 }
 
-void Query::setExclusions(std::list<char> exc) {
-	exclusion = exc;
+bool Query::isExcluded(char c){
+	set<char>::iterator it;
+	it=exclusion.find(c);
+	return it!=exclusion.end();
 }
 
 Probability Query::getProbability(){

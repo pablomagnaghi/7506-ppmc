@@ -88,8 +88,6 @@ void ContextTableTest::testCompress_a_b_c(){
 void ContextTableTest::testCompress_a_a(){
 	ContextTable c;
 	Query q;
-	std::list<char> exclusion;
-	exclusion.push_front('a');
 	q.setChar('a');
 	c.compress(q);
 	c.compress(q);
