@@ -4,7 +4,6 @@
 #include <map>
 
 #include "PPMC.h"
-#include "Response.h"
 #include "Query.h"
 
 namespace ppmc {
@@ -12,7 +11,7 @@ namespace ppmc {
 		public:
 			ContextTable();
 			~ContextTable(){};
-			Response compress(Query q);
+			void compress(Query &q);
 		private:
 			size_t esc;
 			size_t count;
