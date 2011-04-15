@@ -24,11 +24,11 @@ void ContextTableTest::testConstructor(){
 	
 }
 
-void ContextTableTest::testEval_a(){
+void ContextTableTest::testCompress_a(){
 	ContextTable c;
 	Query q;
 	q.setChar('a');
-	Response r = c.eval(q);
+	Response r = c.compress(q);
 	Probability p = r.getProbability();
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Found", false, r.isFound());
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Skip",  (unsigned int) 0,p.skip);
@@ -36,14 +36,14 @@ void ContextTableTest::testEval_a(){
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Total", (unsigned int) 1,p.total);
 }
 
-void ContextTableTest::testEval_a_b(){
+void ContextTableTest::testCompress_a_b(){
 	ContextTable c;
 	Query q;
 	q.setChar('a');
-	c.eval(q);
+	c.compress(q);
 	
 	q.setChar('b');
-	Response r = c.eval(q);
+	Response r = c.compress(q);
 	
 	Probability p = r.getProbability();
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Found", false, r.isFound());
@@ -58,18 +58,18 @@ void ContextTableTest::testEval_a_b(){
 	// test for 'ab' and only 'ab' in exclusion list
 }
 
-void ContextTableTest::testEval_a_b_c(){
+void ContextTableTest::testCompress_a_b_c(){
 	ContextTable c;
 	Query q;
 	q.setChar('a');
-	c.eval(q);
+	c.compress(q);
 	
 	q.setChar('b');
-	c.eval(q);
+	c.compress(q);
 	
 	q.setChar('c');
 	
-	Response r = c.eval(q);
+	Response r = c.compress(q);
 	
 	Probability p = r.getProbability();
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Found", false, r.isFound());
@@ -86,14 +86,14 @@ void ContextTableTest::testEval_a_b_c(){
 }
 
 
-void ContextTableTest::testEval_a_a(){
+void ContextTableTest::testCompress_a_a(){
 	ContextTable c;
 	Query q;
 	std::list<char> exclusion;
 	exclusion.push_front('a');
 	q.setChar('a');
-	c.eval(q);
-	Response r = c.eval(q);
+	c.compress(q);
+	Response r = c.compress(q);
 	
 	Probability p = r.getProbability();
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Found", true, r.isFound());
@@ -102,13 +102,13 @@ void ContextTableTest::testEval_a_a(){
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Total", (unsigned int) 2,p.total);	
 }
 
-void ContextTableTest::testEval_a_a_a(){
+void ContextTableTest::testCompress_a_a_a(){
 	ContextTable c;
 	Query q;
 	q.setChar('a');
-	c.eval(q);
-	c.eval(q);
-	Response r = c.eval(q);
+	c.compress(q);
+	c.compress(q);
+	Response r = c.compress(q);
 	
 	Probability p = r.getProbability();
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Found", true, r.isFound());
@@ -118,15 +118,15 @@ void ContextTableTest::testEval_a_a_a(){
 	
 }
 
-void ContextTableTest::testEval_b_a_b(){
+void ContextTableTest::testCompress_b_a_b(){
 	ContextTable c;
 	Query q;
 	q.setChar('b');
-	c.eval(q);
+	c.compress(q);
 	q.setChar('a');
-	c.eval(q);
+	c.compress(q);
 	q.setChar('b');
-	Response r = c.eval(q);
+	Response r = c.compress(q);
 	
 	Probability p = r.getProbability();
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Found", true, r.isFound());
