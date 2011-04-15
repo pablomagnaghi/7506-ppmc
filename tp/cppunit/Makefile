@@ -31,7 +31,6 @@ o_files += ../ContextTable.o
 o_files += ../Model.o
 o_files += ../Purger.o
 o_files += ../Query.o
-o_files += ../Response.o
 o_files += ../Probability.o
 o_files += ../Compressor.o
 
