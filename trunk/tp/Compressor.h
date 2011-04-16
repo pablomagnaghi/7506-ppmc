@@ -1,18 +1,13 @@
 #ifndef _ppmc_compressor_h_
 #define _ppmc_compressor_h_
 
-#include <vector>
 #include "PPMC.h"
-#include "Model.h"
-
-
+#include "Arithmetic.h"
 namespace ppmc {
-	class Compressor {
+	class Compressor:public Arithmetic {
 		public:
 			Compressor();
 			~Compressor();
-		private:
-			std::vector<Model> models;
 		friend class CompressorTest;
 	};
 }

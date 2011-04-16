@@ -33,6 +33,8 @@ o_files += ../Purger.o
 o_files += ../Query.o
 o_files += ../Probability.o
 o_files += ../Compressor.o
+o_files += ../Decompressor.o
+o_files += ../Arithmetic.o
 
 # Descomentar para compilar estaticamente
 #static = si
