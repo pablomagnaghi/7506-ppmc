@@ -33,6 +33,9 @@ void ContextTableTest::testCompress_a(){
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Skip",  (unsigned int) 0,p.skip);
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Width", (unsigned int) 1,p.width);
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Total", (unsigned int) 1,p.total);
+	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Exclusion", true, q.isExcluded('a'));
+	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Exclusion Size", (size_t) 1, q.exclusion.size());
+	
 }
 
 void ContextTableTest::testCompress_a_b(){
@@ -49,12 +52,9 @@ void ContextTableTest::testCompress_a_b(){
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Skip", (unsigned int) 1,p.skip);
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Width",(unsigned int) 1,p.width);
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Total", (unsigned int) 2,p.total);
-
-//	std::list<char> exclusion;
-//	exclusion.push_front('a');
-//	exclusion.push_front('b');
-	
-	// test for 'ab' and only 'ab' in exclusion list
+	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Exclusion", true, q.isExcluded('a'));
+	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Exclusion", true, q.isExcluded('b'));
+	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Exclusion Size", (size_t) 2, q.exclusion.size());
 }
 
 void ContextTableTest::testCompress_a_b_c(){
@@ -75,13 +75,11 @@ void ContextTableTest::testCompress_a_b_c(){
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Skip", (unsigned int) 2,p.skip);
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Width",(unsigned int) 2,p.width);
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Total", (unsigned int) 4,p.total);
+	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Exclusion", true, q.isExcluded('a'));
+	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Exclusion", true, q.isExcluded('b'));
+	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Exclusion", true, q.isExcluded('c'));
+	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Exclusion Size", (size_t) 3, q.exclusion.size());
 
-//	std::list<char> exclusion;
-//	exclusion.push_front('a');
-//	exclusion.push_front('b');
-//	exclusion.push_front('c');
-
-	// test for 'abc' and only 'abc' in exclusion list
 }
 
 
@@ -97,6 +95,8 @@ void ContextTableTest::testCompress_a_a(){
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Skip",  (unsigned int) 0,p.skip);
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Width", (unsigned int) 1,p.width);
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Total", (unsigned int) 2,p.total);	
+	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Exclusion", true, q.isExcluded('a'));
+	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Exclusion Size", (size_t) 1, q.exclusion.size());
 }
 
 void ContextTableTest::testCompress_a_a_a(){
@@ -112,6 +112,8 @@ void ContextTableTest::testCompress_a_a_a(){
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Skip",  (unsigned int) 0,p.skip);
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Width", (unsigned int) 2,p.width);
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Total", (unsigned int) 3,p.total);
+	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Exclusion", true, q.isExcluded('a'));
+	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Exclusion Size", (size_t) 1, q.exclusion.size());
 	
 }
 
@@ -130,5 +132,8 @@ void ContextTableTest::testCompress_b_a_b(){
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Skip",  (unsigned int) 1,p.skip);
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Width", (unsigned int) 1,p.width);
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Total", (unsigned int) 4,p.total);
+	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Exclusion", true, q.isExcluded('a'));
+	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Exclusion", true, q.isExcluded('b'));
+	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Exclusion Size", (size_t) 2, q.exclusion.size());
 	
 }

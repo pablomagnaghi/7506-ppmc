@@ -39,6 +39,8 @@ void ContextTable::compress(Query & q){
 	
 	q.setProbability(p);
 	
-	//q.setExclusions();
-	
+	std::map<char,size_t>::iterator it;
+	for(it = freq.begin(); it != freq.end(); it++) {
+		q.addExclusion(it->first);
+	}
 }
