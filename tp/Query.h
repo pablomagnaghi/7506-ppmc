@@ -29,6 +29,7 @@ namespace ppmc {
 			char c;
 			Probability p;
 		friend class QueryTest;
+		friend class ContextTableTest;
 	};
 }
 #endif //_ppmc_query_h_
