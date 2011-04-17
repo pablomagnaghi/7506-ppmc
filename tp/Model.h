@@ -7,14 +7,13 @@
 #include <string>
 #include "PPMC.h"
 #include "ContextTable.h"
-#include "ContextSelector.h"
 
 namespace ppmc {
 	class Model {
 		public:
 			Model();
 			~Model();
-			ContextTable* find(ContextSelector& cs, size_t depth);
+			ContextTable* find(const std::string& contextName);
 		private:
 			std::map<std::string, ContextTable*> contextTables;
 		

@@ -3,34 +3,32 @@
 using namespace ppmc;
 using namespace std;
 
-ContextTable::ContextTable():esc(1),count(0){
+ContextTable::ContextTable(){
 
 }
 void ContextTable::compress(Query & q){
 	Probability p;
-	
-	map<char,size_t> fixedFreq;
-	
-	
-	
+	size_t count = 0;
 	q.setFound(false);
 	
-	
 	map<char,size_t>::iterator iter;
+	
 	for( iter = freq.begin(); iter != freq.end(); ++iter ) {
 		if (!q.isExcluded(iter->first) ) {
+			count+=iter->second;
 			if (iter->first == q.getTerm() ) {
 				q.setFound(true);
-				break;
+				p.width = iter->second;
+				iter->second++;
+			} else {
+				p.skip+=iter->second;
 			}
-			p.skip+=iter->second;
+			
 		}
 	}
 	
 	if( q.isFound() ) {
-		p.width = iter->second;
 		p.total = count + freq.size();
-		iter->second++;
 	} else {
 		if (freq.size() == 0) {
 			p.width = 1;
@@ -41,7 +39,6 @@ void ContextTable::compress(Query & q){
 		}
 		freq.insert(make_pair(q.getTerm(),1));
 	}
-	count++;
 	
 	q.setProbability(p);
 	

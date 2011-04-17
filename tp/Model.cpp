@@ -13,12 +13,12 @@ Model::~Model(){
 	// si no hay que limpiar aca
 }
 
-ContextTable* Model::find(ContextSelector& cs, size_t depth){
+ContextTable* Model::find(const std::string& contextName){
 	std::map<std::string, ContextTable*>::iterator it;
-	it = contextTables.find(cs.get(depth));
+	it = contextTables.find(contextName);
 	if (it == contextTables.end()) {
 		ContextTable* ct = new ContextTable();
-		contextTables.insert(make_pair(cs.get(depth), ct));
+		contextTables.insert(make_pair(contextName, ct));
 		return ct;
 		// dont forget to delete this somewhere
 	}

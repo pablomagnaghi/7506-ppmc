@@ -13,8 +13,6 @@ namespace ppmc {
 			~ContextTable(){};
 			void compress(Query &q);
 		private:
-			size_t esc;
-			size_t count;
 			std::map<char,size_t> freq;
 		friend class ContextTableTest;
 
