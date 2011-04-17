@@ -37,6 +37,7 @@ char Query::getTerm(){
 
 void Query::setTerm(char cc){
 	c = cc;
+	exclusion.clear();
 }
 
 bool Query::isFound(){

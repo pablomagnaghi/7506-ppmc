@@ -8,17 +8,23 @@ ContextTable::ContextTable():esc(1),count(0){
 }
 void ContextTable::compress(Query & q){
 	Probability p;
-
-	map<char,size_t>::iterator iter;
+	
+	map<char,size_t> fixedFreq;
+	
+	
 	
 	q.setFound(false);
-
+	
+	
+	map<char,size_t>::iterator iter;
 	for( iter = freq.begin(); iter != freq.end(); ++iter ) {
-		if (iter->first == q.getTerm() ) {
-			q.setFound(true);
-			break;
+		if (!q.isExcluded(iter->first) ) {
+			if (iter->first == q.getTerm() ) {
+				q.setFound(true);
+				break;
+			}
+			p.skip+=iter->second;
 		}
-		p.skip+=iter->second;
 	}
 	
 	if( q.isFound() ) {

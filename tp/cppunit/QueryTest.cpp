@@ -23,6 +23,7 @@ void QueryTest::testConstructor(){
 
 void QueryTest::testExclusion() {
 	Query q;
+	CPPUNIT_ASSERT_MESSAGE("Bogus exclusion", ! q.isExcluded('a'));
 	q.addExclusion('a');
 	CPPUNIT_ASSERT_MESSAGE("Exclusion not found", q.isExcluded('a'));
 	CPPUNIT_ASSERT_MESSAGE("Bogus exclusion", ! q.isExcluded('b'));
