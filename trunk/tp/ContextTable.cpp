@@ -14,7 +14,7 @@ void ContextTable::compress(Query & q){
 	q.setFound(false);
 
 	for( iter = freq.begin(); iter != freq.end(); ++iter ) {
-		if (iter->first == q.getChar() ) {
+		if (iter->first == q.getTerm() ) {
 			q.setFound(true);
 			break;
 		}
@@ -33,7 +33,7 @@ void ContextTable::compress(Query & q){
 			p.width = freq.size();
 			p.total = count + freq.size() ;
 		}
-		freq.insert(make_pair(q.getChar(),1));
+		freq.insert(make_pair(q.getTerm(),1));
 	}
 	count++;
 	

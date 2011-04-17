@@ -17,8 +17,8 @@ namespace ppmc {
 			void setFound(bool f);
 			bool isFound();
 			
-			void setChar(char cc);
-			char getChar();
+			void setTerm(char cc);
+			char getTerm();
 			
 			Probability getProbability();
 			void setProbability(Probability pp);
@@ -29,7 +29,6 @@ namespace ppmc {
 			char c;
 			Probability p;
 		friend class QueryTest;
-		friend class ContextTableTest;
 	};
 }
 #endif //_ppmc_query_h_

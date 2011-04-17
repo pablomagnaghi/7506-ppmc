@@ -9,12 +9,14 @@ namespace ppmc {
 	class ModelTest : public CppUnit::TestFixture {
 		CPPUNIT_TEST_SUITE( ModelTest );
 		CPPUNIT_TEST( testConstructor );
+		CPPUNIT_TEST( testFind );
 		CPPUNIT_TEST_SUITE_END();
 
 	public:
 		void setUp();
 		void tearDown();
 		void testConstructor();
+		void testFind();
 	};
 }
 

@@ -31,11 +31,11 @@ void Query::setProbability(Probability pp){
 	p = pp;
 }
 
-char Query::getChar(){
+char Query::getTerm(){
 	return c;
 }
 
-void Query::setChar(char cc){
+void Query::setTerm(char cc){
 	c = cc;
 }
 
