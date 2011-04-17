@@ -26,7 +26,7 @@ void ContextTableTest::testConstructor(){
 void ContextTableTest::testCompress_a(){
 	ContextTable c;
 	Query q;
-	q.setChar('a');
+	q.setTerm('a');
 	c.compress(q);
 	Probability p = q.getProbability();
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Found", false, q.isFound());
@@ -34,17 +34,15 @@ void ContextTableTest::testCompress_a(){
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Width", (unsigned int) 1,p.width);
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Total", (unsigned int) 1,p.total);
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Exclusion", true, q.isExcluded('a'));
-	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Exclusion Size", (size_t) 1, q.exclusion.size());
-	
 }
 
 void ContextTableTest::testCompress_a_b(){
 	ContextTable c;
 	Query q;
-	q.setChar('a');
+	q.setTerm('a');
 	c.compress(q);
 	
-	q.setChar('b');
+	q.setTerm('b');
 	c.compress(q);
 	
 	Probability p = q.getProbability();
@@ -54,19 +52,18 @@ void ContextTableTest::testCompress_a_b(){
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Total", (unsigned int) 2,p.total);
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Exclusion", true, q.isExcluded('a'));
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Exclusion", true, q.isExcluded('b'));
-	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Exclusion Size", (size_t) 2, q.exclusion.size());
 }
 
 void ContextTableTest::testCompress_a_b_c(){
 	ContextTable c;
 	Query q;
-	q.setChar('a');
+	q.setTerm('a');
 	c.compress(q);
 	
-	q.setChar('b');
+	q.setTerm('b');
 	c.compress(q);
 	
-	q.setChar('c');
+	q.setTerm('c');
 	
 	c.compress(q);
 	
@@ -78,15 +75,13 @@ void ContextTableTest::testCompress_a_b_c(){
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Exclusion", true, q.isExcluded('a'));
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Exclusion", true, q.isExcluded('b'));
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Exclusion", true, q.isExcluded('c'));
-	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Exclusion Size", (size_t) 3, q.exclusion.size());
-
 }
 
 
 void ContextTableTest::testCompress_a_a(){
 	ContextTable c;
 	Query q;
-	q.setChar('a');
+	q.setTerm('a');
 	c.compress(q);
 	c.compress(q);
 	
@@ -96,13 +91,12 @@ void ContextTableTest::testCompress_a_a(){
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Width", (unsigned int) 1,p.width);
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Total", (unsigned int) 2,p.total);	
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Exclusion", true, q.isExcluded('a'));
-	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Exclusion Size", (size_t) 1, q.exclusion.size());
 }
 
 void ContextTableTest::testCompress_a_a_a(){
 	ContextTable c;
 	Query q;
-	q.setChar('a');
+	q.setTerm('a');
 	c.compress(q);
 	c.compress(q);
 	c.compress(q);
@@ -113,18 +107,16 @@ void ContextTableTest::testCompress_a_a_a(){
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Width", (unsigned int) 2,p.width);
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Total", (unsigned int) 3,p.total);
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Exclusion", true, q.isExcluded('a'));
-	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Exclusion Size", (size_t) 1, q.exclusion.size());
-	
 }
 
 void ContextTableTest::testCompress_b_a_b(){
 	ContextTable c;
 	Query q;
-	q.setChar('b');
+	q.setTerm('b');
 	c.compress(q);
-	q.setChar('a');
+	q.setTerm('a');
 	c.compress(q);
-	q.setChar('b');
+	q.setTerm('b');
 	c.compress(q);
 	
 	Probability p = q.getProbability();
@@ -134,6 +126,4 @@ void ContextTableTest::testCompress_b_a_b(){
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Total", (unsigned int) 4,p.total);
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Exclusion", true, q.isExcluded('a'));
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Exclusion", true, q.isExcluded('b'));
-	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Exclusion Size", (size_t) 2, q.exclusion.size());
-	
 }

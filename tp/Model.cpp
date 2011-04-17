@@ -17,7 +17,9 @@ ContextTable* Model::find(ContextSelector& cs, size_t depth){
 	std::map<std::string, ContextTable*>::iterator it;
 	it = contextTables.find(cs.get(depth));
 	if (it == contextTables.end()) {
-		return new ContextTable();
+		ContextTable* ct = new ContextTable();
+		contextTables.insert(make_pair(cs.get(depth), ct));
+		return ct;
 		// dont forget to delete this somewhere
 	}
 	return it->second;
