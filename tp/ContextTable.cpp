@@ -15,7 +15,8 @@ void ContextTable::compress(Query & q){
 	
 	for( iter = freq.begin(); iter != freq.end(); ++iter ) {
 		if (!q.isExcluded(iter->first) ) {
-			count+=iter->second;
+			p.total+=iter->second;
+			count++;
 			if (iter->first == q.getTerm() ) {
 				q.setFound(true);
 				p.width = iter->second;
@@ -23,19 +24,17 @@ void ContextTable::compress(Query & q){
 			} else {
 				p.skip+=iter->second;
 			}
-			
 		}
 	}
 	
-	if( q.isFound() ) {
-		p.total = count + freq.size();
-	} else {
+	p.total += count;
+	
+	if( !q.isFound() ) {
 		if (freq.size() == 0) {
 			p.width = 1;
 			p.total = 1;
 		} else {
-			p.width = freq.size();
-			p.total = count + freq.size() ;
+			p.width = count;
 		}
 		freq.insert(make_pair(q.getTerm(),1));
 	}
