@@ -35,6 +35,8 @@ o_files += ../Probability.o
 o_files += ../Compressor.o
 o_files += ../Decompressor.o
 o_files += ../Arithmetic.o
+o_files += ../FileReader.o
+o_files += ../FileWriter.o
 
 # Descomentar para compilar estaticamente
 #static = si

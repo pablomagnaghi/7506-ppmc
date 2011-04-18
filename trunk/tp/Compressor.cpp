@@ -12,3 +12,12 @@ Compressor::~Compressor(){
 
 
 }
+
+void Compressor::compress(util::FileReader& reader, util::FileWriter& writer){
+// 	while (reader->getTerm()) {
+// 		for(int i=order; i>0; i--) {
+// 			
+// 		}
+// 	}
+
+}

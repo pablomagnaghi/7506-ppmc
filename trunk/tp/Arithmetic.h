@@ -12,7 +12,8 @@ namespace ppmc {
 			Arithmetic();
 			virtual ~Arithmetic();
 		protected:
-			std::vector<Model> models;
+			std::vector<Model*> models;
+			size_t order;
 		friend class CompressorTest;
 	};
 }
