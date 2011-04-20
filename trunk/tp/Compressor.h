@@ -3,8 +3,8 @@
 
 #include "PPMC.h"
 #include "Arithmetic.h"
-#include "FileWriter.h"
-#include "FileReader.h"
+#include "IFileWriter.h"
+#include "IFileReader.h"
 
 
 namespace ppmc {
@@ -12,7 +12,7 @@ namespace ppmc {
 		public:
 			Compressor();
 			~Compressor();
-			void compress(util::FileReader& reader, util::FileWriter& writer);
+			void compress(util::IFileReader* reader, util::IFileWriter* writer);
 		friend class CompressorTest;
 	};
 }

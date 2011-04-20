@@ -7,7 +7,9 @@
 namespace util {
 	class FileWriter: public IFileWriter{
 		public:
-			void writer(char c);
+			FileWriter();
+			~FileWriter();
+			void write(char c);
 		friend class FileWriterTest;
 	};
 }

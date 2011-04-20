@@ -4,7 +4,7 @@
 using namespace ppmc;
 using namespace std;
 
-Compressor::Compressor(){
+Compressor::Compressor():Arithmetic(){
 
 }
 
@@ -13,11 +13,12 @@ Compressor::~Compressor(){
 
 }
 
-void Compressor::compress(util::FileReader& reader, util::FileWriter& writer){
-// 	while (reader->getTerm()) {
+void Compressor::compress(util::IFileReader* reader, util::IFileWriter* writer){
+ 	while (!reader->eof()) {
+		char c = reader->read();
 // 		for(int i=order; i>0; i--) {
 // 			
 // 		}
-// 	}
+ 	}
 
 }

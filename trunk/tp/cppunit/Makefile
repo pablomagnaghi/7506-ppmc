@@ -36,7 +36,10 @@ o_files += ../Compressor.o
 o_files += ../Decompressor.o
 o_files += ../Arithmetic.o
 o_files += ../FileReader.o
+o_files += ../MockedFileReader.o
 o_files += ../FileWriter.o
+o_files += ../MockedFileWriter.o
+
 
 # Descomentar para compilar estaticamente
 #static = si
