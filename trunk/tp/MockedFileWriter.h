@@ -1,7 +1,7 @@
 #ifndef _util_mocked_file_writer_h_
 #define _util_mocked_file_writer_h_
 
-#include <string>
+#include <sstream>
 #include "util.h"
 #include "IFileWriter.h"
 
@@ -11,8 +11,9 @@ namespace util {
 			MockedFileWriter();
 			~MockedFileWriter();
 			virtual void write(char c);
+			std::string get();
 		private:
-			std::string data;
+			std::stringstream data;
 	};
 }
 #endif //_util_mocked_file_writer_h_
