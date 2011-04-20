@@ -8,6 +8,7 @@ namespace util {
 	class FileReader: public IFileReader {
 		public:
 			virtual char read();
+			virtual bool eof();
 		friend class FileReaderTest;
 	};
 }

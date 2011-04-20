@@ -3,6 +3,13 @@
 using namespace util;
 using namespace std;
 
-void FileWriter::writer(char c){
+FileWriter::FileWriter():IFileWriter(){
+
+}
+
+FileWriter::~FileWriter(){
+
+}
+void FileWriter::write(char c){
 
 }

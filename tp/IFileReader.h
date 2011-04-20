@@ -8,6 +8,7 @@ namespace util {
 		public:
 			virtual ~IFileReader(){};
 			virtual char read()=0;
+			virtual bool eof()=0;
 	};
 }
 #endif //_util_i_file_reader_h_
