@@ -1,16 +1,16 @@
 Deberiamos normalizar algunas cosas
 
- * Nombre de los headers: Charli usa .hpp
+ * Nombre de los headers: .h
 
- * Identación: Charli esta identando con dos espacios
+ * Identación: con tabuladores
 
- * Nombres de la clases: Charli usa camel case: StaticCompressor
+ * Nombres de la clases:  camel case: StaticCompressor
 
- * Nombres de los archivos: Charli usa el nombre de la clase
+ * Nombres de los archivos: nombre de la clase
 
- * Namespaces: Charli usa namespaces y los usa en minúscula: huffman
+ * Namespaces: en minúscula: huffman
 
- * Llaves: Charli pone las llaves en la misma lines
+ * Llaves: en la misma lines
 
 {{{
 if (condition) {
@@ -21,5 +21,3 @@ if (condition) {
 
 
 }}}
-
-En todos los casos Charli está dispuesto a cambiar
