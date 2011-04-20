@@ -13,5 +13,9 @@ MockedFileWriter::~MockedFileWriter(){
 }
 
 void MockedFileWriter::write(char c){
+	data << c;
+}
 
+std::string MockedFileWriter::get(){
+	return data.str();
 }
