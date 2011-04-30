@@ -16,6 +16,10 @@ void MockedFileWriter::write(char c){
 	data << c;
 }
 
+void MockedFileWriter::write(std::string s){
+	data << s;
+}
+
 std::string MockedFileWriter::get(){
 	return data.str();
 }

@@ -31,4 +31,8 @@ void CompressorTest::testCompress(){
 	Compressor *c = new Compressor();
 	c->compress(in, out);
 	CPPUNIT_ASSERT_EQUAL(reference, out->get());
+
+	delete in;
+	delete out;
+	delete c;
 }

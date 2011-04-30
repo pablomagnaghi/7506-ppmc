@@ -11,6 +11,7 @@ namespace util {
 			MockedFileWriter();
 			~MockedFileWriter();
 			virtual void write(char c);
+			virtual void write(std::string s);
 			std::string get();
 		private:
 			std::stringstream data;

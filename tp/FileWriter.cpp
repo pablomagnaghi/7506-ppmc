@@ -13,3 +13,6 @@ FileWriter::~FileWriter(){
 void FileWriter::write(char c){
 
 }
+void FileWriter::write(std::string s){
+
+}
