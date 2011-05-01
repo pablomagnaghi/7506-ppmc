@@ -3,6 +3,7 @@
 #include <cmath>
 
 #include <sstream>
+//#include <iostream>
 
 using namespace lz78;
 using namespace std;
@@ -18,6 +19,9 @@ Compressor::Compressor(size_t mb):bits(9){
 	cache = 0;
 }
 
+/**
+ * @todo handle empty streams
+ */
 void Compressor::compress(util::IFileReader* reader, util::IFileWriter* writer){
 	char c = reader->read();
 	string context;
@@ -37,6 +41,35 @@ void Compressor::compress(util::IFileReader* reader, util::IFileWriter* writer){
 	
 	writer->write(encode(context));
 	writer->write("'256");
+}
+
+std::string Compressor::compressedRead(util::IFileReader* reader) {
+	string result;
+	result = reader->read();
+	if ("'" == result) {
+		result += reader->read();
+		result += reader->read();
+		result += reader->read();
+	}
+	return result;
+}
+
+/**
+ * @todo handle empty streams
+ */
+void Compressor::decompress(util::IFileReader* reader, util::IFileWriter* writer){
+	string old_one;
+	old_one = compressedRead(reader);
+	writer->write(old_one);
+	while (!reader->eof()) {
+		string new_one = decode(compressedRead(reader));
+		writer->write(new_one);
+		string match = old_one + new_one.substr(0,1);
+		if (!find(match)) {
+			add(match);
+		}
+		old_one = new_one;
+	}
 }
 
 bool Compressor::find(std::string match) {
@@ -59,6 +92,25 @@ bool Compressor::find(std::string match) {
 
 void Compressor::add(std::string match) {
 	code_table->push_back(match);
+}
+
+std::string Compressor::decode(std::string match) {
+	if ("'" != match.substr(0,1)) {
+		return match;
+	}
+	if ("'256" == match) {
+		return "";
+	}
+	stringstream ss;
+	size_t pos ;
+	ss << match.substr(1,3);
+	ss >> pos;
+	if (pos >= code_table->size() + 256) {
+		string match = code_table->back();
+		match += match.substr(0,1);
+		return match;
+	}
+	return code_table->at(pos - 256);
 }
 
 std::string Compressor::encode(std::string match) {

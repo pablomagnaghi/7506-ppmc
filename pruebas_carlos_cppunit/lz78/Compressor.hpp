@@ -12,6 +12,7 @@ namespace lz78 {
 		public:
 			Compressor(size_t mb);
 			void compress(util::IFileReader* reader, util::IFileWriter* writer);
+			void decompress(util::IFileReader* reader, util::IFileWriter* writer);
 		private:
 			size_t max_bits;
 			size_t bits;
@@ -20,6 +21,8 @@ namespace lz78 {
 			bool find(std::string match);
 			void add(std::string match);
 			std::string encode(std::string match);
+			std::string decode(std::string match);
+			std::string compressedRead(util::IFileReader* reader);
 		friend class CompressorTest;
 	};
 }
