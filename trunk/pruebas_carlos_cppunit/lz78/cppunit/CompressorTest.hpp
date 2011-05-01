@@ -1,0 +1,24 @@
+#ifndef _lz78_compressor_test_hpp
+#define _lz78_compressor_test_hpp
+
+#include <cppunit/extensions/HelperMacros.h>
+
+namespace lz78 {
+class CompressorTest : public CppUnit::TestFixture {
+	CPPUNIT_TEST_SUITE( CompressorTest );
+	CPPUNIT_TEST( testConstructor );
+	CPPUNIT_TEST( testCompress_a );
+	CPPUNIT_TEST( testCompress_ab );
+	CPPUNIT_TEST( testCompress_ababab);
+	CPPUNIT_TEST_SUITE_END();
+
+public:
+	void setUp();
+	void tearDown();
+	void testConstructor();
+	void testCompress_a();
+	void testCompress_ab();
+	void testCompress_ababab();
+};
+}
+#endif  // _lz78_compressor_test_hpp
