@@ -68,8 +68,8 @@ void CompressorTest::testCompress_a(){
 	MockedFileWriter* out = new MockedFileWriter();
 	Compressor *c = new Compressor(10);
 	c->compress(in, out);
-  CPPUNIT_ASSERT_EQUAL(reference, out->get());
-	
+	CPPUNIT_ASSERT_EQUAL(reference, out->get());
+
 	delete in;
 	delete out;
 	delete c;
@@ -81,20 +81,33 @@ void CompressorTest::testCompress_ab(){
 	MockedFileWriter* out = new MockedFileWriter();
 	Compressor *c = new Compressor(10);
 	c->compress(in, out);
-  CPPUNIT_ASSERT_EQUAL(reference, out->get());
-	
+	CPPUNIT_ASSERT_EQUAL(reference, out->get());
+
 	delete in;
 	delete out;
 	delete c;
 }
-void CompressorTest::testCompress_ababab(){
+void CompressorTest::testCompress_person(){
 	string reference="PEP/'257RSON'260'258E'262'266RT'256";
 	MockedFileReader* in = new MockedFileReader("PEP/PERSON/PEPERS/PERT");
 	MockedFileWriter* out = new MockedFileWriter();
 	Compressor *c = new Compressor(10);
 	c->compress(in, out);
-  CPPUNIT_ASSERT_EQUAL(reference, out->get());
-	
+	CPPUNIT_ASSERT_EQUAL(reference, out->get());
+
+	delete in;
+	delete out;
+	delete c;
+}
+
+void CompressorTest::testCompress_abaaab(){
+	string reference="ABA'259'258C'257A'262'256";
+	MockedFileReader* in = new MockedFileReader("ABAAABACABACA");
+	MockedFileWriter* out = new MockedFileWriter();
+	Compressor *c = new Compressor(10);
+	c->compress(in, out);
+	CPPUNIT_ASSERT_EQUAL(reference, out->get());
+
 	delete in;
 	delete out;
 	delete c;
