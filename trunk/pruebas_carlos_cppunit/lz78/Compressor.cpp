@@ -2,7 +2,7 @@
 #include "Compressor.hpp"
 #include <cmath>
 
-#include <iostream>
+#include <sstream>
 
 using namespace lz78;
 using namespace std;
@@ -12,12 +12,10 @@ Compressor::Compressor(size_t mb):bits(9){
 		throw 1;
 	}
 	max_bits=mb;
-	code_table = new vector<string>(pow(2,max_bits));
-	string c; 
-	for (unsigned char pos = 0; pos < 255; pos ++) {
-		c=pos;
-		add(c); 
-	}
+	//pow(2,max_bits)
+	code_table = new vector<string>();
+	add("eof");
+	cache = 0;
 }
 
 void Compressor::compress(util::IFileReader* reader, util::IFileWriter* writer){
@@ -26,12 +24,11 @@ void Compressor::compress(util::IFileReader* reader, util::IFileWriter* writer){
 	context = c;
 	while (!reader->eof()) {
 		c = reader->read();
-		
 		if ( find (context + c)) {
 			context += c;
 		} else {
 			writer->write(encode(context));
-			if (true) {
+			if (true) { // it checks that code_table not full, use exception instead
 				add (context + c );
 				context=c;
 			}
@@ -43,30 +40,33 @@ void Compressor::compress(util::IFileReader* reader, util::IFileWriter* writer){
 }
 
 bool Compressor::find(std::string match) {
-	cout << "find" << endl;
+	if (match.size() == 1) {
+		return true;
+	}
+	
+	//if (code_table->at(cache) == match) return true;
+	
+	cache = 256;
 	vector<string>::iterator it = code_table->begin();
-	size_t pos = 0;
 	for ( ; it != code_table->end(); it++) {
 		if (match == *it) {
-			cache = pos;
 			return true;
 		}
-		pos++;
+		cache++;
 	}
 	return false;
 }
 
 void Compressor::add(std::string match) {
-	cout << "add" << endl;
 	code_table->push_back(match);
 }
 
 std::string Compressor::encode(std::string match) {
-	cout << "encode: " << match << endl;
 	if (!find(match)) throw 1;
-	cout << "encode: " << match << endl;
-	string r;
-	r = cache;
-	return r;
-	return code_table->at(cache);
+	if (match.size() == 1) {
+		return match;
+	}
+	stringstream ss;
+	ss << "'" << cache ;
+	return ss.str();
 }

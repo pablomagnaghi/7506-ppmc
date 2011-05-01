@@ -7,15 +7,20 @@ namespace lz78 {
 class CompressorTest : public CppUnit::TestFixture {
 	CPPUNIT_TEST_SUITE( CompressorTest );
 	CPPUNIT_TEST( testConstructor );
+	CPPUNIT_TEST( testFind);
+	CPPUNIT_TEST( testAdd);
 	CPPUNIT_TEST( testCompress_a );
 	CPPUNIT_TEST( testCompress_ab );
 	CPPUNIT_TEST( testCompress_ababab);
+	
 	CPPUNIT_TEST_SUITE_END();
 
 public:
 	void setUp();
 	void tearDown();
 	void testConstructor();
+	void testFind();
+	void testAdd();
 	void testCompress_a();
 	void testCompress_ab();
 	void testCompress_ababab();
