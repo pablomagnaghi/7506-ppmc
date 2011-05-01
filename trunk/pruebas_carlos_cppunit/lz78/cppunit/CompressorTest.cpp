@@ -99,8 +99,20 @@ void CompressorTest::testCompress_person(){
 	delete out;
 	delete c;
 }
+void CompressorTest::testCompress_ABAABAAC() {
+	string reference="ABA'257'259C'256";
+	MockedFileReader* in = new MockedFileReader("ABAABAAC");
+	MockedFileWriter* out = new MockedFileWriter();
+	Compressor *c = new Compressor(10);
+	c->compress(in, out);
+	CPPUNIT_ASSERT_EQUAL(reference, out->get());
 
-void CompressorTest::testCompress_abaaab(){
+	delete in;
+	delete out;
+	delete c;
+}
+
+void CompressorTest::testCompress_ABAAABACABACA(){
 	string reference="ABA'259'258C'257A'262'256";
 	MockedFileReader* in = new MockedFileReader("ABAAABACABACA");
 	MockedFileWriter* out = new MockedFileWriter();
