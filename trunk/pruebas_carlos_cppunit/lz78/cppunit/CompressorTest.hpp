@@ -18,7 +18,7 @@ class CompressorTest : public CppUnit::TestFixture {
 	CPPUNIT_TEST( testDecompress_a );
 	CPPUNIT_TEST( testDecompress_ab );
 	CPPUNIT_TEST( testDecompress_aba );
-//	CPPUNIT_TEST( testDecompress_ABAAABACABACA );
+	CPPUNIT_TEST( testDecompress_ABAAABACABACA );
 	CPPUNIT_TEST( testDecompress_ABAABAAC );
 	CPPUNIT_TEST( testDecompress_person );
 	
