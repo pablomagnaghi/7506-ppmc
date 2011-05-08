@@ -3,7 +3,7 @@
 #include <cmath>
 
 #include <sstream>
-//#include <iostream>
+#include <iostream>
 
 using namespace lz78;
 using namespace std;
@@ -96,6 +96,7 @@ void Compressor::add(std::string match) {
 
 std::string Compressor::decode(std::string match) {
 	if ("'" != match.substr(0,1)) {
+		last_match = match;
 		return match;
 	}
 	if ("'256" == match) {
@@ -106,9 +107,8 @@ std::string Compressor::decode(std::string match) {
 	ss << match.substr(1,3);
 	ss >> pos;
 	if (pos >= code_table->size() + 256) {
-		string match = code_table->back();
-		match += match.substr(0,1);
-		return match;
+		last_match += last_match.substr(0,1);
+		return last_match;
 	}
 	return code_table->at(pos - 256);
 }
