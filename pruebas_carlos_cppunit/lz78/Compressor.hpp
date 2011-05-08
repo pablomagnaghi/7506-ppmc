@@ -18,6 +18,7 @@ namespace lz78 {
 			size_t bits;
 			size_t cache;
 			std::vector<std::string>* code_table;
+			std::string last_match;
 			bool find(std::string match);
 			void add(std::string match);
 			std::string encode(std::string match);
