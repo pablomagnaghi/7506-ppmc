@@ -13,14 +13,15 @@ class CompressorTest : public CppUnit::TestFixture {
 	CPPUNIT_TEST( testCompress_aba );
 	CPPUNIT_TEST( testCompress_ABAAABACABACA );
 	CPPUNIT_TEST( testCompress_ABAABAAC );
-	CPPUNIT_TEST( testCompress_person);
-	
+	CPPUNIT_TEST( testCompress_person );
+	CPPUNIT_TEST( testCompress_special_case );
 	CPPUNIT_TEST( testDecompress_a );
 	CPPUNIT_TEST( testDecompress_ab );
 	CPPUNIT_TEST( testDecompress_aba );
 	CPPUNIT_TEST( testDecompress_ABAAABACABACA );
 	CPPUNIT_TEST( testDecompress_ABAABAAC );
 	CPPUNIT_TEST( testDecompress_person );
+	CPPUNIT_TEST( testDecompress_special_case );
 	
 	CPPUNIT_TEST_SUITE_END();
 
@@ -35,12 +36,14 @@ public:
 	void testCompress_ABAAABACABACA();
 	void testCompress_ABAABAAC();
 	void testCompress_person();
+	void testCompress_special_case();
 	void testDecompress_a();
 	void testDecompress_ab();
 	void testDecompress_aba();
 	void testDecompress_ABAAABACABACA();
 	void testDecompress_ABAABAAC();
 	void testDecompress_person();
+	void testDecompress_special_case();
 	
 };
 }

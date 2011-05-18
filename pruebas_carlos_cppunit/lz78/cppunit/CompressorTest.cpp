@@ -166,9 +166,36 @@ void CompressorTest::testCompress_ABAABAAC() {
 	delete c;
 }
 
+
 void CompressorTest::testDecompress_ABAABAAC() {
 	string reference="ABAABAAC";
 	MockedFileReader* in = new MockedFileReader("ABA'257'259C'256");
+	MockedFileWriter* out = new MockedFileWriter();
+	Compressor *c = new Compressor(10);
+	c->decompress(in, out);
+	CPPUNIT_ASSERT_EQUAL(reference, out->get());
+
+	delete in;
+	delete out;
+	delete c;
+}
+
+void CompressorTest::testCompress_special_case() {
+	string reference="ABA'257'259C'256";
+	MockedFileReader* in = new MockedFileReader("ACABCACABAABAABAAC");
+	MockedFileWriter* out = new MockedFileWriter();
+	Compressor *c = new Compressor(10);
+	c->compress(in, out);
+	CPPUNIT_ASSERT_EQUAL(reference, out->get());
+
+	delete in;
+	delete out;
+	delete c;
+}
+
+void CompressorTest::testDecompress_special_case() {
+	string reference="ACABCACABAABAABAAC";
+	MockedFileReader* in = new MockedFileReader("ACAB'258'258BA'259'264'263'257'256");
 	MockedFileWriter* out = new MockedFileWriter();
 	Compressor *c = new Compressor(10);
 	c->decompress(in, out);
