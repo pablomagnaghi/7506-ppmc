@@ -6,7 +6,7 @@
 namespace ppmc {
 	class Decompressor:public Arithmetic {
 		public:
-			Decompressor();
+			Decompressor(size_t o);
 			~Decompressor();
 		friend class DecompressorTest;
 	};
