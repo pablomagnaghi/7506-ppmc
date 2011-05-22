@@ -7,7 +7,7 @@
 using namespace ppmc;
 using namespace std;
 
-Compressor::Compressor():Arithmetic(){
+Compressor::Compressor(size_t o):Arithmetic(o){
 
 }
 
@@ -23,6 +23,7 @@ Compressor::~Compressor(){
 void Compressor::compress(util::IFileReader* reader, util::IFileWriter* writer){
 	char c;
 	size_t i=0;
+	ContextSelector cs(1);
 	while (!reader->eof() && i < order) {
 		c = reader->read();
 		ContextTable* ct = new ContextTable(); //quizas requiera subclase para M-1
@@ -32,14 +33,12 @@ void Compressor::compress(util::IFileReader* reader, util::IFileWriter* writer){
 		Probability p = q.getProbability();
 		// calculate new floor and ceiling
 		// emit something
-		// ask model -1 for c
 		delete(ct);
+		cs.add(c);
 		i++;
 	}
-
-	ContextSelector cs(1);
-	cs.add(c);
- 	while (!reader->eof()) {
+	
+	while (!reader->eof()) {
 		c = reader->read();
 		writer->write(c);
 		for(int i=order; i>0; i--) {
@@ -53,4 +52,10 @@ void Compressor::compress(util::IFileReader* reader, util::IFileWriter* writer){
 		}
 		cs.add(c);
 	}
+	if (order > 0) {
+	// ask model -1 for eof
+	// calculate new floor and ceiling
+	// emit something
+	}
+	
 }

@@ -4,7 +4,7 @@
 using namespace ppmc;
 using namespace std;
 
-Decompressor::Decompressor(){
+Decompressor::Decompressor(size_t o):Arithmetic(o){
 
 }
 

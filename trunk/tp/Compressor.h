@@ -10,7 +10,7 @@
 namespace ppmc {
 	class Compressor:public Arithmetic {
 		public:
-			Compressor();
+			Compressor(size_t o);
 			~Compressor();
 			void compress(util::IFileReader* reader, util::IFileWriter* writer);
 		friend class CompressorTest;
