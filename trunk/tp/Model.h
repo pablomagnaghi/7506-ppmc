@@ -6,16 +6,16 @@
 #include <list>
 #include <string>
 #include "PPMC.h"
-#include "ContextTable.h"
+#include "FrequencyTable.h"
 
 namespace ppmc {
 	class Model {
 		public:
 			Model();
 			~Model();
-			ContextTable* find(const std::string& contextName);
+			FrequencyTable* find(const std::string& contextName);
 		private:
-			std::map<std::string, ContextTable*> contextTables;
+			std::map<std::string, FrequencyTable*> frequencyTables;
 		
 		friend class ModelTest;
 

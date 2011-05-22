@@ -7,14 +7,14 @@
 #include "Query.h"
 
 namespace ppmc {
-	class ContextTable {
+	class FrequencyTable {
 		public:
-			ContextTable();
-			~ContextTable(){};
+			FrequencyTable();
+			~FrequencyTable(){};
 			void compress(Query &q);
 		private:
 			std::map<char,size_t> freq;
-		friend class ContextTableTest;
+		friend class FrequencyTableTest;
 
 	};
 }
