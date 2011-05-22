@@ -11,8 +11,8 @@ namespace ppmc {
 		CPPUNIT_TEST( testConstructor );
 		CPPUNIT_TEST( testCompress_zero );
 		CPPUNIT_TEST( testCompress_eof );
-		CPPUNIT_TEST( testCompress_a );
-		CPPUNIT_TEST( testCompress_b );
+		CPPUNIT_TEST( testCompress_1 );
+		CPPUNIT_TEST( testCompress_2 );
 		CPPUNIT_TEST( testCompress_c );
 		CPPUNIT_TEST( testCompress_a_with_context );
 		CPPUNIT_TEST_SUITE_END();
@@ -23,8 +23,8 @@ namespace ppmc {
 		void testConstructor();
 		void testCompress_zero();
 		void testCompress_eof();
-		void testCompress_a();
-		void testCompress_b();
+		void testCompress_1();
+		void testCompress_2();
 		void testCompress_c();
 		void testCompress_a_with_context();
 	};

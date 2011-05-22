@@ -48,30 +48,27 @@ void M_1FrequencyTableTest::testCompress_eof(){
 	
 }
 
-void M_1FrequencyTableTest::testCompress_a(){
+void M_1FrequencyTableTest::testCompress_1(){
 	M_1FrequencyTable c;
 	Query q;
-	q.setTerm('a');
+	q.setTerm('\1');
 	c.compress(q);
 	Probability p = q.getProbability();
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Found", true, q.isFound());
-	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Skip",  (unsigned int) 0,p.skip);
+	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Skip",  (unsigned int) 1,p.skip);
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Width", (unsigned int) 1,p.width);
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Total", (unsigned int) 257,p.total);
 }
 
-void M_1FrequencyTableTest::testCompress_b(){
+void M_1FrequencyTableTest::testCompress_2(){
 	M_1FrequencyTable c;
 	Query q;
-	q.setTerm('a');
-	c.compress(q);
-	
-	q.setTerm('b');
+	q.setTerm('\2');
 	c.compress(q);
 	
 	Probability p = q.getProbability();
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Found", true, q.isFound());
-	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Skip", (unsigned int) 1,p.skip);
+	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Skip", (unsigned int) 2,p.skip);
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Width",(unsigned int) 1,p.width);
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Total", (unsigned int) 257,p.total);
 }
@@ -79,19 +76,12 @@ void M_1FrequencyTableTest::testCompress_b(){
 void M_1FrequencyTableTest::testCompress_c(){
 	M_1FrequencyTable c;
 	Query q;
-	q.setTerm('a');
-	c.compress(q);
-	
-	q.setTerm('b');
-	c.compress(q);
-	
 	q.setTerm('c');
-	
 	c.compress(q);
 	
 	Probability p = q.getProbability();
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Found", true, q.isFound());
-	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Skip", (unsigned int) 2,p.skip);
+	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Skip", (unsigned int) 99,p.skip);
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Width",(unsigned int) 1,p.width);
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Total", (unsigned int) 257,p.total);
 }
@@ -107,7 +97,7 @@ void M_1FrequencyTableTest::testCompress_a_with_context() {
 	
 	Probability p = q.getProbability();
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Found", true, q.isFound());
-	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Skip",  (unsigned int) 0,p.skip);
+	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Skip",  (unsigned int) 97,p.skip);
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Width", (unsigned int) 1,p.width);
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Total", (unsigned int) 257,p.total);
 }
