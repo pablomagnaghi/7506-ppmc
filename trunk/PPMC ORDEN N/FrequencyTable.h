@@ -16,7 +16,6 @@ namespace ppmc {
 			std::size_t getFrecuenciaEsc();
 			bool find(char);
 			void addCharacter(char);
-			//void addFrequencyEsc();
 			void getStringExc(std::string&);
 			void show();
 			void update(FrequencyTable*);

@@ -25,7 +25,7 @@ void Compressor::compress(char c){
 	while (!encontrado) {
 		// cargo la tabla con el modelo actual
 		frequencyTable.update (models[pos]->find(context));
-
+		// todo falta agregar mecanismo de exclusion
 		if (frequencyTable.find(c)) {
 			encontrado = true;
 		}
@@ -42,6 +42,11 @@ void Compressor::compress(char c){
 			pos--;
 			context = context.substr(1);
 		}
+
+		// todo aca hay que tomar la tabla de frecuencias para actualizar
+		// piso y techo
+
+		frequencyTable.clear();
 	}
 
 	for (int i = ORDEN; i > -1; i--) {
@@ -53,7 +58,4 @@ void Compressor::compress(char c){
 
 	// actualizo el contexto
 	contextSelector.add(c);
-	// actualizar modelos
-	frequencyTable.clear();
-
 }
