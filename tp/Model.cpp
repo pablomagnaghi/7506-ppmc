@@ -13,13 +13,13 @@ Model::~Model(){
 	// si no hay que limpiar aca
 }
 
-ContextTable* Model::find(const std::string& contextName){
-	std::map<std::string, ContextTable*>::iterator it;
-	it = contextTables.find(contextName);
-	if (it == contextTables.end()) {
-		ContextTable* ct = new ContextTable();
-		contextTables.insert(make_pair(contextName, ct));
-		return ct;
+FrequencyTable* Model::find(const std::string& contextName){
+	std::map<std::string, FrequencyTable*>::iterator it;
+	it = frequencyTables.find(contextName);
+	if (it == frequencyTables.end()) {
+		FrequencyTable* ft = new FrequencyTable();
+		frequencyTables.insert(make_pair(contextName, ft));
+		return ft;
 		// dont forget to delete this somewhere
 	}
 	return it->second;

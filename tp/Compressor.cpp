@@ -1,6 +1,6 @@
 #include "Compressor.h"
 #include "ContextSelector.h"
-#include "ContextTable.h"
+#include "FrequencyTable.h"
 #include "Query.h"
 #include "Probability.h"
 
@@ -26,14 +26,14 @@ void Compressor::compress(util::IFileReader* reader, util::IFileWriter* writer){
 	ContextSelector cs(1);
 	while (!reader->eof() && i < order) {
 		c = reader->read();
-		ContextTable* ct = new ContextTable(); //quizas requiera subclase para M-1
+		FrequencyTable* ft = new FrequencyTable(); //quizas requiera subclase para M-1
 		Query q;
 		q.setTerm(c);
-		ct->compress(q);
+		ft->compress(q);
 		Probability p = q.getProbability();
 		// calculate new floor and ceiling
 		// emit something
-		delete(ct);
+		delete(ft);
 		cs.add(c);
 		i++;
 	}
@@ -42,13 +42,17 @@ void Compressor::compress(util::IFileReader* reader, util::IFileWriter* writer){
 		c = reader->read();
 		writer->write(c);
 		for(int i=order; i>0; i--) {
-			ContextTable* ct = models[i]->find(cs.get(i));
+			FrequencyTable* ft = models[i]->find(cs.get(i));
 			Query q;
 			q.setTerm(c);
-			ct->compress(q);
+			ft->compress(q);
 			Probability p = q.getProbability();
-			// calculate new floor and ceiling
-			// emit something
+			if ( q.isFound()) {
+				// calculate new floor and ceiling
+				// emit something
+				cs.add(c);
+				break;
+			}
 		}
 		cs.add(c);
 	}

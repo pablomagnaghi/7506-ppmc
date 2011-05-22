@@ -1,12 +1,12 @@
-#include "ContextTable.h"
+#include "FrequencyTable.h"
 
 using namespace ppmc;
 using namespace std;
 
-ContextTable::ContextTable(){
+FrequencyTable::FrequencyTable(){
 
 }
-void ContextTable::compress(Query & q){
+void FrequencyTable::compress(Query & q){
 	Probability p;
 	size_t count = 0;
 	q.setFound(false);

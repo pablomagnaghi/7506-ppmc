@@ -3,11 +3,11 @@
 
 #include <cppunit/extensions/HelperMacros.h>
 
-#include "../ContextTable.h"
+#include "../FrequencyTable.h"
 
 namespace ppmc {
-	class ContextTableTest : public CppUnit::TestFixture {
-		CPPUNIT_TEST_SUITE( ContextTableTest );
+	class FrequencyTableTest : public CppUnit::TestFixture {
+		CPPUNIT_TEST_SUITE( FrequencyTableTest );
 		CPPUNIT_TEST( testConstructor );
 		CPPUNIT_TEST( testCompress_a );
 		CPPUNIT_TEST( testCompress_a_b );

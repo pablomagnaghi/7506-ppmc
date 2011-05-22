@@ -1,30 +1,30 @@
-#include "ContextTableTest.h"
+#include "FrequencyTableTest.h"
 
 #include "../PPMC.h"
-#include "../ContextTable.h"
+#include "../FrequencyTable.h"
 #include "../Query.h"
 
 using namespace ppmc;
 using namespace std;
 
-CPPUNIT_TEST_SUITE_REGISTRATION( ContextTableTest );
+CPPUNIT_TEST_SUITE_REGISTRATION( FrequencyTableTest );
 
 
-void ContextTableTest::setUp(){
+void FrequencyTableTest::setUp(){
 
 }
 
 
-void ContextTableTest::tearDown(){
+void FrequencyTableTest::tearDown(){
 }                               
 
 
-void ContextTableTest::testConstructor(){
+void FrequencyTableTest::testConstructor(){
 	
 }
 
-void ContextTableTest::testCompress_a(){
-	ContextTable c;
+void FrequencyTableTest::testCompress_a(){
+	FrequencyTable c;
 	Query q;
 	q.setTerm('a');
 	c.compress(q);
@@ -36,8 +36,8 @@ void ContextTableTest::testCompress_a(){
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Exclusion", true, q.isExcluded('a'));
 }
 
-void ContextTableTest::testCompress_a_b(){
-	ContextTable c;
+void FrequencyTableTest::testCompress_a_b(){
+	FrequencyTable c;
 	Query q;
 	q.setTerm('a');
 	c.compress(q);
@@ -54,8 +54,8 @@ void ContextTableTest::testCompress_a_b(){
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Exclusion", true, q.isExcluded('b'));
 }
 
-void ContextTableTest::testCompress_a_b_c(){
-	ContextTable c;
+void FrequencyTableTest::testCompress_a_b_c(){
+	FrequencyTable c;
 	Query q;
 	q.setTerm('a');
 	c.compress(q);
@@ -78,8 +78,8 @@ void ContextTableTest::testCompress_a_b_c(){
 }
 
 
-void ContextTableTest::testCompress_a_a(){
-	ContextTable c;
+void FrequencyTableTest::testCompress_a_a(){
+	FrequencyTable c;
 	Query q;
 	q.setTerm('a');
 	c.compress(q);
@@ -94,8 +94,8 @@ void ContextTableTest::testCompress_a_a(){
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Exclusion", true, q.isExcluded('a'));
 }
 
-void ContextTableTest::testCompress_a_a_a(){
-	ContextTable c;
+void FrequencyTableTest::testCompress_a_a_a(){
+	FrequencyTable c;
 	Query q;
 	q.setTerm('a');
 	c.compress(q);
@@ -112,8 +112,8 @@ void ContextTableTest::testCompress_a_a_a(){
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Exclusion", true, q.isExcluded('a'));
 }
 
-void ContextTableTest::testCompress_b_a_b(){
-	ContextTable c;
+void FrequencyTableTest::testCompress_b_a_b(){
+	FrequencyTable c;
 	Query q;
 	q.setTerm('b');
 	c.compress(q);
@@ -131,8 +131,8 @@ void ContextTableTest::testCompress_b_a_b(){
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Exclusion", true, q.isExcluded('b'));
 }
 
-void ContextTableTest::testCompress_b_a_b_with_context() {
-	ContextTable c;
+void FrequencyTableTest::testCompress_b_a_b_with_context() {
+	FrequencyTable c;
 	Query q;
 	
 	q.setTerm('a');
