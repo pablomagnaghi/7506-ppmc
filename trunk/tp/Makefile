@@ -14,7 +14,7 @@
 #################
 
 # Nombre del ejecutable.
-target = ppmc
+target = ppmc.exe
 
 # modo = c89, c99, c++98, c++0x
 modo = c++98
