@@ -28,6 +28,7 @@ debug = si
 # Agregar object files
 o_files  = ../ContextSelector.o 
 o_files += ../FrequencyTable.o
+o_files += ../M_1FrequencyTable.o
 o_files += ../Model.o
 o_files += ../Purger.o
 o_files += ../Query.o
