@@ -1,5 +1,5 @@
-#ifndef _ppmc_context_table_h_
-#define _ppmc_context_table_h_
+#ifndef _ppmc_frequency_table_h_
+#define _ppmc_frequency_table_h_
 
 #include <map>
 
@@ -19,4 +19,4 @@ namespace ppmc {
 	};
 }
 
-#endif  // _ppmc_context_table_h_
+#endif  // _ppmc_frequency_table_h_

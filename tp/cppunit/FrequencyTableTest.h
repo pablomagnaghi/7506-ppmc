@@ -1,5 +1,5 @@
-#ifndef _ppmc_context_table_test_h_
-#define _ppmc_context_table_test_h_
+#ifndef _ppmc_frequency_table_test_h_
+#define _ppmc_frequency_table_test_h_
 
 #include <cppunit/extensions/HelperMacros.h>
 
@@ -32,4 +32,4 @@ namespace ppmc {
 	};
 }
 
-#endif //_ppmc_context_table_test_h_
+#endif //_ppmc_frequency_table_test_h_
