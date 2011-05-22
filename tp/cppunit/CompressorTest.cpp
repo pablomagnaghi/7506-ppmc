@@ -26,9 +26,9 @@ void CompressorTest::testConstructor(){
 
 void CompressorTest::testCompress(){
 	string reference="sfasdsss";
-	MockedFileReader* in = new MockedFileReader("sfasdsss");
+	MockedFileReader* in = new MockedFileReader("A");
 	MockedFileWriter* out = new MockedFileWriter();
-	Compressor *c = new Compressor();
+	Compressor *c = new Compressor(0);
 	c->compress(in, out);
 	CPPUNIT_ASSERT_EQUAL(reference, out->get());
 
