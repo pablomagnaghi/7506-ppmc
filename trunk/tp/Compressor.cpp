@@ -1,6 +1,7 @@
 #include "Compressor.h"
 #include "ContextSelector.h"
 #include "FrequencyTable.h"
+#include "M_1FrequencyTable.h"
 #include "Query.h"
 #include "Probability.h"
 
@@ -26,7 +27,7 @@ void Compressor::compress(util::IFileReader* reader, util::IFileWriter* writer){
 	ContextSelector cs(1);
 	while (!reader->eof() && i < order) {
 		c = reader->read();
-		FrequencyTable* ft = new FrequencyTable(); //quizas requiera subclase para M-1
+		FrequencyTable* ft = new M_1FrequencyTable();
 		Query q;
 		q.setTerm(c);
 		ft->compress(q);

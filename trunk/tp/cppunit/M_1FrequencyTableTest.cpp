@@ -22,6 +22,7 @@ void M_1FrequencyTableTest::tearDown(){
 void M_1FrequencyTableTest::testConstructor(){
 	
 }
+
 void M_1FrequencyTableTest::testCompress_zero(){
 	M_1FrequencyTable c;
 	Query q;
@@ -30,6 +31,18 @@ void M_1FrequencyTableTest::testCompress_zero(){
 	Probability p = q.getProbability();
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Found", true, q.isFound());
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Skip",  (unsigned int) 0,p.skip);
+	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Width", (unsigned int) 1,p.width);
+	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Total", (unsigned int) 257,p.total);	
+	
+}
+
+void M_1FrequencyTableTest::testCompress_eof(){
+	M_1FrequencyTable c;
+	Query q;
+	c.compressEof(q);
+	Probability p = q.getProbability();
+	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Found", true, q.isFound());
+	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Skip",  (unsigned int) 256,p.skip);
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Width", (unsigned int) 1,p.width);
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Total", (unsigned int) 257,p.total);	
 	
