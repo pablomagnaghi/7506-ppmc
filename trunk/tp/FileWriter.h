@@ -8,7 +8,7 @@
 namespace util {
 	class FileWriter: public IFileWriter{
 		public:
-			FileWriter();
+			FileWriter(const char* name);
 			~FileWriter();
 			void write(char c);
 			void write(std::string s);

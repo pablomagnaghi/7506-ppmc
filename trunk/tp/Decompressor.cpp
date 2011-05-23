@@ -12,3 +12,7 @@ Decompressor::~Decompressor(){
 
 
 }
+
+void Decompressor::decompress(util::IFileReader* reader, util::IFileWriter* writer){
+	
+}
