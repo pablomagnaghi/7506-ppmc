@@ -15,6 +15,7 @@ Arithmetic::Arithmetic(size_t o):order(o){
 }
 
 Arithmetic::~Arithmetic(){
-	//No need to delete models content as it is calling the destructors by itself
-
+	for (size_t i=0; i<order;i++) {
+		delete models[i];
+	}
 }
