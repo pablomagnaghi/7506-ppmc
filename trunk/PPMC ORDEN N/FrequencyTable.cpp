@@ -7,6 +7,8 @@ FrequencyTable::FrequencyTable() {
 	esc = 1;
 	primerPasada = true;
 	this->total = 1;
+	this->top = 0;
+	this->bottom = 0;
 }
 
 FrequencyTable::~FrequencyTable() {
@@ -108,15 +110,26 @@ void FrequencyTable::setUpLimits(u_int64_t bottom, u_int64_t top, char character
 	std::map<char, std::size_t>::iterator it = table.begin();
 	int localBottom = 0;
 	int localTop = 0;
-	while (it != table.end() && it->first!=character) {
-		localBottom+= it->second;
-		it++;
+	bool found = false;
+	while (it != table.end()) {
+		if (it->first!=character){
+			localBottom+= it->second;
+			it++;
+		}
+		else {
+			found = true;
+		}
 	}
-	localTop = localBottom + it->second;
-	float pBottom = localBottom/this->total;
-	float pTop = localTop/this->total;
+	if (found){
+		localTop = localBottom + it->second;
+	}
+	else {
+		localTop = localBottom + this->esc;
+	}
+	double pBottom = localBottom/this->total;
+	double pTop = localTop/this->total;
 	this->bottom = (top-bottom)*pBottom + bottom;
-	this->top = (top-bottom)*pTop + bottom;
+	this->top = (top-bottom)*pTop + bottom-1;
 }
 
 

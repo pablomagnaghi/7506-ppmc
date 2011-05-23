@@ -26,12 +26,13 @@ void Compressor::compress(char c){
 		// cargo la tabla con el modelo actual
 		frequencyTable.update (models[pos]->find(context));
 		// todo falta agregar mecanismo de exclusion
+		frequencyTable.setUpLimits(this->getBottom(), this->getTop(), c);
 		if (frequencyTable.find(c)) {
 			encontrado = true;
 		}
-		frequencyTable.setUpLimits(this->getBottom(), this->getTop(), c);
 		u_int64_t bottom = frequencyTable.getNewBottom();
 		u_int64_t top = frequencyTable.getNewTop();
+
 		this->setNewLimits(bottom, top);
 		models[pos]->update(context, c);
 
