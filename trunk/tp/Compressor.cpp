@@ -23,7 +23,6 @@ Compressor::~Compressor(){
  */
 void Compressor::compress(util::IFileReader* reader, util::IFileWriter* writer){
 	char c;
-	M_1FrequencyTable* leak = new M_1FrequencyTable(); // solo para probar hudson + valgrind
 	size_t i=0;
 	ContextSelector cs(1);
 	while (!reader->eof() && i < order) {
