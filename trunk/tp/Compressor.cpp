@@ -27,14 +27,13 @@ void Compressor::compress(util::IFileReader* reader, util::IFileWriter* writer){
 	ContextSelector cs(1);
 	while (!reader->eof() && i < order) {
 		c = reader->read();
-		FrequencyTable* ft = new M_1FrequencyTable();
+		M_1FrequencyTable ft;
 		Query q;
 		q.setTerm(c);
-		ft->compress(q);
+		ft.compress(q);
 		Probability p = q.getProbability();
 		// calculate new floor and ceiling
 		// emit something
-		delete(ft);
 		cs.add(c);
 		i++;
 	}
@@ -58,9 +57,11 @@ void Compressor::compress(util::IFileReader* reader, util::IFileWriter* writer){
 		cs.add(c);
 	}
 	if (order > 0) {
-	// ask model -1 for eof
-	// calculate new floor and ceiling
-	// emit something
+		M_1FrequencyTable ft;
+		Query q;
+		ft.compressEof(q);
+		Probability p = q.getProbability();
+		// calculate new floor and ceiling
+		// emit something
 	}
-	
 }
