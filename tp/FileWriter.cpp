@@ -3,8 +3,8 @@
 using namespace util;
 using namespace std;
 
-FileWriter::FileWriter():IFileWriter(){
-
+FileWriter::FileWriter(const char* name):IFileWriter(){
+	// open name for output or fail
 }
 
 FileWriter::~FileWriter(){

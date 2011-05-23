@@ -7,6 +7,7 @@
 namespace util {
 	class FileReader: public IFileReader {
 		public:
+			FileReader(const char* name);
 			virtual char read();
 			virtual bool eof();
 		friend class FileReaderTest;
