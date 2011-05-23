@@ -6,6 +6,7 @@ using namespace std;
 FrequencyTable::FrequencyTable() {
 	esc = 1;
 	primerPasada = true;
+	this->total = 1;
 }
 
 FrequencyTable::~FrequencyTable() {
@@ -55,12 +56,14 @@ void FrequencyTable::addCharacter(char c) {
 	// Si encontro el caracter
 	if (it != table.end()) {
 		it->second++;
+		total++;
 	} else {
 		table.insert(make_pair(c, 1));
 		if (primerPasada)
 			primerPasada = false;
 		else
 			esc++;
+		total++;
 	}
 }
 
@@ -99,6 +102,30 @@ void FrequencyTable::update(FrequencyTable *tableAux) {
 		table.insert(make_pair(it->first, it->second));
 		it++;
 	}
+}
+
+void FrequencyTable::setUpLimits(u_int64_t bottom, u_int64_t top, char character){
+	std::map<char, std::size_t>::iterator it = table.begin();
+	int localBottom = 0;
+	int localTop = 0;
+	while (it != table.end() && it->first!=character) {
+		localBottom+= it->second;
+		it++;
+	}
+	localTop = localBottom + it->second;
+	float pBottom = localBottom/this->total;
+	float pTop = localTop/this->total;
+	this->bottom = (top-bottom)*pBottom + bottom;
+	this->top = (top-bottom)*pTop + bottom;
+}
+
+
+u_int64_t FrequencyTable::getNewBottom(){
+	return this->bottom;
+}
+
+u_int64_t FrequencyTable::getNewTop(){
+	return this->top;
 }
 
 void FrequencyTable::clear() {

@@ -29,7 +29,10 @@ void Compressor::compress(char c){
 		if (frequencyTable.find(c)) {
 			encontrado = true;
 		}
-
+		frequencyTable.setUpLimits(this->getBottom(), this->getTop(), c);
+		u_int64_t bottom = frequencyTable.getNewBottom();
+		u_int64_t top = frequencyTable.getNewTop();
+		this->setNewLimits(bottom, top);
 		models[pos]->update(context, c);
 
 		if (pos == 0) {
