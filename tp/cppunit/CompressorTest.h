@@ -9,7 +9,7 @@ namespace ppmc {
 	class CompressorTest : public CppUnit::TestFixture {
 		CPPUNIT_TEST_SUITE( CompressorTest );
 		CPPUNIT_TEST( testConstructor );
-//		CPPUNIT_TEST( testCompress );
+		CPPUNIT_TEST( testCompress );
 		CPPUNIT_TEST_SUITE_END();
   
 	public:
