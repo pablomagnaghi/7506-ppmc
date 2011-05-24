@@ -17,9 +17,9 @@ Arithmetic::Arithmetic(){
 }
 
 
-void print_in_bin(u_int64_t x){
+void print_in_bin(u_int32_t x){
 	int i;
-	for (i=63; i>=0; i--){
+	for (i=MAX_BIT; i>=0; i--){
 		if (((x>>i) & 1)==1)
 			std::cout<<"1";
 		else std::cout<<"0";
@@ -27,16 +27,16 @@ void print_in_bin(u_int64_t x){
 	std::cout<<std::endl;
 }
 
-u_int64_t Arithmetic::getBottom(){
+u_int32_t Arithmetic::getBottom(){
 	return this->bottom;
 }
 
 
-u_int64_t Arithmetic::getTop(){
+u_int32_t Arithmetic::getTop(){
 	return this->top;
 }
 
-void Arithmetic::setNewLimits(u_int64_t bottom, u_int64_t top){
+void Arithmetic::setNewLimits(u_int32_t bottom, u_int32_t top){
 
 	this->bottom = bottom;
 	this->top = top;
@@ -49,7 +49,7 @@ void Arithmetic::addBitToBuffer(u_int8_t bit){
 	this->buffer <<= 1;
 	this->buffer |= bit;
 	this->bits_in_buffer++;
-	if (this->bits_in_buffer==64){
+	if (this->bits_in_buffer==MAX_BIT + 1){
 		putBufferInFileWriter();
 	}
 }
@@ -61,12 +61,12 @@ void Arithmetic::putBufferInFileWriter(){
 }
 
 void Arithmetic::solve_underflow(){
-	int i = 61;
+	int i = MAX_BIT - 2;
 	int local_counter = 0;
-	int first_bit_top = (this->top>>63) & 1;
-	int first_bit_bottom = (this->bottom>>63) & 1;
-	int bit_bottom = (this->bottom>>62) & 1;
-	int bit_top = (this->top>>62) & 1;
+	int first_bit_top = (this->top>>MAX_BIT) & 1;
+	int first_bit_bottom = (this->bottom>>MAX_BIT) & 1;
+	int bit_bottom = (this->bottom>>MAX_BIT-1) & 1;
+	int bit_top = (this->top>>MAX_BIT-1) & 1;
 	if (first_bit_bottom != first_bit_top){
 		while ((first_bit_bottom != bit_bottom)&&(first_bit_top != bit_top)&&(bit_bottom != bit_top)){
 			local_counter++;
@@ -76,11 +76,11 @@ void Arithmetic::solve_underflow(){
 		}
 	}
 	if (local_counter>0){
-		u_int64_t new_bottom = ((BYTE_128 & this->bottom)|((this->bottom<<local_counter) & BYTE_127));
+		u_int32_t new_bottom = ((BYTE_128 & this->bottom)|((this->bottom<<local_counter) & BYTE_127));
 		this->bottom = new_bottom;
-		u_int64_t new_techo = ((BYTE_128 & this->top)|((this->top<<local_counter) & BYTE_127));
+		u_int32_t new_techo = ((BYTE_128 & this->top)|((this->top<<local_counter) & BYTE_127));
 		this->top = new_techo;
-		u_int64_t shift = pow (2,local_counter)-1;
+		u_int32_t shift = pow (2,local_counter)-1;
 		this->top = (this->top | shift);
 		this->top = (this->top & TOP);
 		this->bottom = (this->bottom & TOP);
@@ -89,7 +89,7 @@ void Arithmetic::solve_underflow(){
 }
 
 void Arithmetic::solve_overflow(){
-	int i=63;
+	int i=MAX_BIT;
 	int bitsOfOverflow=0;
 	while (((this->bottom>>i) & 1)==((this->top>>i) & 1)){
 		addBitToBuffer((this->top>>i)&1);
@@ -105,7 +105,7 @@ void Arithmetic::solve_overflow(){
 	}
 	if (bitsOfOverflow>0){
 		this->bottom<<=bitsOfOverflow;
-		u_int64_t shift = pow (2,bitsOfOverflow)-1;
+		u_int32_t shift = pow (2,bitsOfOverflow)-1;
 		this->top<<=bitsOfOverflow;
 		this->top = (this->top | shift);
 		this->top = (this->top & TOP);
@@ -115,7 +115,7 @@ void Arithmetic::solve_overflow(){
 
 void Arithmetic::clean_buffer(){
 	int i;
-	for (i=63; i>=0; i--){
+	for (i=MAX_BIT; i>=0; i--){
 		addBitToBuffer((this->bottom>>i) & 1);
 	}
 	if (this->bits_in_buffer != 0){

@@ -106,7 +106,7 @@ void FrequencyTable::update(FrequencyTable *tableAux) {
 	}
 }
 
-void FrequencyTable::setUpLimits(u_int64_t bottom, u_int64_t top, char character){
+void FrequencyTable::setUpLimits(u_int32_t bottom, u_int32_t top, char character){
 	std::map<char, std::size_t>::iterator it = table.begin();
 	int localBottom = 0;
 	int localTop = 0;
@@ -133,11 +133,11 @@ void FrequencyTable::setUpLimits(u_int64_t bottom, u_int64_t top, char character
 }
 
 
-u_int64_t FrequencyTable::getNewBottom(){
+u_int32_t FrequencyTable::getNewBottom(){
 	return this->bottom;
 }
 
-u_int64_t FrequencyTable::getNewTop(){
+u_int32_t FrequencyTable::getNewTop(){
 	return this->top;
 }
 
