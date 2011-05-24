@@ -16,6 +16,17 @@ Arithmetic::Arithmetic(){
 	this->underflow_counter = 0;
 }
 
+
+void print_in_bin(u_int64_t x){
+	int i;
+	for (i=63; i>=0; i--){
+		if (((x>>i) & 1)==1)
+			std::cout<<"1";
+		else std::cout<<"0";
+	}
+	std::cout<<std::endl;
+}
+
 u_int64_t Arithmetic::getBottom(){
 	return this->bottom;
 }
@@ -44,7 +55,8 @@ void Arithmetic::addBitToBuffer(u_int8_t bit){
 }
 
 void Arithmetic::putBufferInFileWriter(){
-	std::cout << this->buffer << std::endl;
+	print_in_bin(this->buffer);
+
 	this->bits_in_buffer = 0;
 }
 
@@ -114,6 +126,7 @@ void Arithmetic::clean_buffer(){
 	}
 	//todo cerrar el fileWriter
 }
+
 
 Arithmetic::~Arithmetic(){
 	for (size_t i=0; i<(ORDEN + 1);i++) {
