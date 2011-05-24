@@ -14,6 +14,7 @@ namespace ppmc {
 			u_int64_t getTop();
 			u_int64_t getBottom();
 			void setNewLimits(u_int64_t, u_int64_t);
+			void clean_buffer();
 			virtual ~Arithmetic();
 		protected:
 			std::vector<Model*> models;
@@ -39,10 +40,6 @@ namespace ppmc {
 			void solve_underflow();
 			void solve_overflow();
 
-			/*
-			 * Funcion que se llama al final del aritmetico para flushear los ultimos bits
-			 */
-			void clean_buffer();
 	};
 }
 #endif //_ppmc_arithmetic_h_
