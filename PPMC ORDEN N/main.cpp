@@ -18,8 +18,7 @@ int main(int argc, char* argv[]) {
 	for (std::size_t i = 0; i < cadena.size(); i++) {
 		compresor.compress(cadena[i]);
 	}
-
-
+	compresor.clean_buffer();
 
 	return 0;
 

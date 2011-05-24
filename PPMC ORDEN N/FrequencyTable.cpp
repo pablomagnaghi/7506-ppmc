@@ -99,7 +99,7 @@ void FrequencyTable::show() {
 // Cre una tabla de frecuencias a partir de otra
 void FrequencyTable::update(FrequencyTable *tableAux) {
 	std::map<char, std::size_t>::iterator it = tableAux->tableBegin();
-
+	total = tableAux->getTotal();
 	while (it != tableAux->tableEnd()) {
 		table.insert(make_pair(it->first, it->second));
 		it++;
@@ -111,7 +111,7 @@ void FrequencyTable::setUpLimits(u_int64_t bottom, u_int64_t top, char character
 	int localBottom = 0;
 	int localTop = 0;
 	bool found = false;
-	while (it != table.end()) {
+	while (it != table.end() && !found) {
 		if (it->first!=character){
 			localBottom+= it->second;
 			it++;
@@ -126,8 +126,8 @@ void FrequencyTable::setUpLimits(u_int64_t bottom, u_int64_t top, char character
 	else {
 		localTop = localBottom + this->esc;
 	}
-	double pBottom = localBottom/this->total;
-	double pTop = localTop/this->total;
+	double pBottom = (double)localBottom/(double)this->total;
+	double pTop = (double)localTop/(double)this->total;
 	this->bottom = (top-bottom)*pBottom + bottom;
 	this->top = (top-bottom)*pTop + bottom-1;
 }

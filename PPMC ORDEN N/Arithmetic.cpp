@@ -13,6 +13,7 @@ Arithmetic::Arithmetic(){
 	this->top = TOP;
 	this->buffer = EMPTY_BUFFER;
 	this->bits_in_buffer = 0;
+	this->underflow_counter = 0;
 }
 
 u_int64_t Arithmetic::getBottom(){
@@ -26,8 +27,6 @@ u_int64_t Arithmetic::getTop(){
 
 void Arithmetic::setNewLimits(u_int64_t bottom, u_int64_t top){
 
-	u_int64_t actual_bottom = this->getBottom();
-	u_int64_t actual_top = this->getTop();
 	this->bottom = bottom;
 	this->top = top;
 	this->solve_overflow();

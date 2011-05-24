@@ -17,6 +17,9 @@ namespace ppmc {
 			std::size_t getFrecuenciaEsc();
 			u_int64_t getNewBottom();
 			u_int64_t getNewTop();
+			u_int32_t getTotal(){
+				return total;
+			}
 			void setUpLimits(u_int64_t, u_int64_t, char);
 			bool find(char);
 			void addCharacter(char);
