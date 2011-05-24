@@ -11,9 +11,9 @@ namespace ppmc {
 	class Arithmetic {
 		public:
 			Arithmetic();
-			u_int64_t getTop();
-			u_int64_t getBottom();
-			void setNewLimits(u_int64_t, u_int64_t);
+			u_int32_t getTop();
+			u_int32_t getBottom();
+			void setNewLimits(u_int32_t, u_int32_t);
 			void clean_buffer();
 			virtual ~Arithmetic();
 		protected:
@@ -23,9 +23,10 @@ namespace ppmc {
 			//std::map<char, std::size_t> table;
 			// necesito mapa de probabilidades, <frecuencia, total>
 		private:
-			u_int64_t top;
-			u_int64_t bottom;
-			u_int64_t buffer;
+			u_int32_t top;
+			u_int32_t bottom;
+			u_int32_t buffer;
+
 			u_int8_t bits_in_buffer;
 			u_int8_t underflow_counter;
 			/*
