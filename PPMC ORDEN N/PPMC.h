@@ -5,7 +5,8 @@
 #include <iostream>
 
 namespace ppmc {
-	#define ORDEN 2
+	#define ORDEN 1
+	#define MAX 257
 }
 
 #endif  // _ppmc_h_

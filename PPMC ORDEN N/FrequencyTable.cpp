@@ -5,7 +5,7 @@ using namespace std;
 
 FrequencyTable::FrequencyTable() {
 	esc = 1;
-	primerPasada = true;
+	firstPass = true;
 	this->total = 1;
 	this->top = 0;
 	this->bottom = 0;
@@ -23,12 +23,16 @@ std::map<char, std::size_t>::iterator FrequencyTable::tableEnd() {
   return table.end();
 }
 
-std::size_t FrequencyTable::getFrecuenciaChar() {
-	return frecuencia;
+std::size_t FrequencyTable::getFrequencyChar() {
+	return frequency;
 }
 
-std::size_t FrequencyTable::getFrecuenciaEsc() {
+std::size_t FrequencyTable::getFrequencyEsc() {
 	return esc;
+}
+
+u_int32_t FrequencyTable::getTotal() {
+	return total;
 }
 
 // Si encuentra la frecuencia la guarda y devuelve true
@@ -44,29 +48,34 @@ bool FrequencyTable::find(char c) {
 		return false;
 	}
 
-	frecuencia = it->second;
+	frequency = it->second;
 
 	return true;
 }
 
-// Incrementa la frecuencia del caracter
+// Incrementa la frecuencia del caracter o del ESC
+// y actualiza el total.
 void FrequencyTable::addCharacter(char c) {
 	std::map<char, std::size_t>::iterator it;
 	// Busco el caracter en la tabla
 	it = table.find(c);
 
-	// Si encontro el caracter
+
 	if (it != table.end()) {
 		it->second++;
-		total++;
 	} else {
 		table.insert(make_pair(c, 1));
-		if (primerPasada)
-			primerPasada = false;
-		else
+		if (firstPass)
+			firstPass = false;
+		else {
 			esc++;
-		total++;
+			total++;
+		}
 	}
+
+	// Se agrego una frecuencia al caracter o
+	// se le asigno frecuencia 1 si no existia
+	total++;
 }
 
 // Agrega a la cadena los caracteres de la tabla que no
@@ -83,6 +92,27 @@ void FrequencyTable::getStringExc(std::string& characters) {
 	}
 }
 
+// Aplico el mecanismo de exclusión a la tabla
+void FrequencyTable::exc(const std::string& characters) {
+
+	std::map<char, std::size_t>::iterator it;
+
+	for (std::size_t i = 0; i < characters.size(); i++) {
+		it = table.find(characters[i]);
+
+		// Si el caracter se encuentra en la tabla lo borro
+		if (it != table.end()) {
+			total -= it->second;
+			table.erase(it);
+		}
+	}
+}
+
+// Devuelvo la cantidad de caracteres que hay en el mapa
+std::size_t FrequencyTable::getNumberOfChars() {
+	return table.size();
+}
+
 void FrequencyTable::show() {
 	std::map<char, std::size_t>::iterator it = table.begin();
 
@@ -96,9 +126,10 @@ void FrequencyTable::show() {
 	std::cout << "caracter esc " << " |  frecuencia " << esc << std::endl;
 }
 
-// Cre una tabla de frecuencias a partir de otra
+// Crea una tabla de frecuencias a partir de otra
 void FrequencyTable::update(FrequencyTable *tableAux) {
 	std::map<char, std::size_t>::iterator it = tableAux->tableBegin();
+	esc = tableAux->getFrequencyEsc();
 	total = tableAux->getTotal();
 	while (it != tableAux->tableEnd()) {
 		table.insert(make_pair(it->first, it->second));
