@@ -10,6 +10,7 @@ namespace ppmc {
 			Compressor();
 			~Compressor();
 			void compress(char);
+			void compressEof();
 	};
 }
 #endif //_ppmc_compressor_h_

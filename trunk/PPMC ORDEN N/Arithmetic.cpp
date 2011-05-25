@@ -65,8 +65,8 @@ void Arithmetic::solve_underflow(){
 	int local_counter = 0;
 	int first_bit_top = (this->top>>MAX_BIT) & 1;
 	int first_bit_bottom = (this->bottom>>MAX_BIT) & 1;
-	int bit_bottom = (this->bottom>>MAX_BIT-1) & 1;
-	int bit_top = (this->top>>MAX_BIT-1) & 1;
+	int bit_bottom = (this->bottom>>(MAX_BIT-1)) & 1;
+	int bit_top = (this->top>>(MAX_BIT-1)) & 1;
 	if (first_bit_bottom != first_bit_top){
 		while ((first_bit_bottom != bit_bottom)&&(first_bit_top != bit_top)&&(bit_bottom != bit_top)){
 			local_counter++;
@@ -127,6 +127,14 @@ void Arithmetic::clean_buffer(){
 	//todo cerrar el fileWriter
 }
 
+void Arithmetic::show(){
+	for (int i = ORDEN; i > -1; i--) {
+		if (models[i]->getSize()) {
+			std::cout << "Modelo " << i << ": " << std::endl;
+			models[i]->show();
+		}
+	}
+}
 
 Arithmetic::~Arithmetic(){
 	for (size_t i=0; i<(ORDEN + 1);i++) {

@@ -15,13 +15,13 @@ namespace ppmc {
 			u_int32_t getBottom();
 			void setNewLimits(u_int32_t, u_int32_t);
 			void clean_buffer();
+			// metodo solo para ver progreso debe eliminarse
+			void show();
 			virtual ~Arithmetic();
 		protected:
 			std::vector<Model*> models;
 			ContextSelector contextSelector;
 			FrequencyTable frequencyTable;
-			//std::map<char, std::size_t> table;
-			// necesito mapa de probabilidades, <frecuencia, total>
 		private:
 			u_int32_t top;
 			u_int32_t bottom;
@@ -29,14 +29,12 @@ namespace ppmc {
 
 			u_int8_t bits_in_buffer;
 			u_int8_t underflow_counter;
-			/*
-			 * Agrego el bit al buffer
-			 */
+			// Agrego el bit al buffer
+
 			void addBitToBuffer(u_int8_t);
 
-			/*
-			 * Funcion que se usa para mandar el buffer de bits al fileWriter
-			 */
+			// Funcion que se usa para mandar el buffer de bits al fileWriter
+
 			void putBufferInFileWriter();
 			void solve_underflow();
 			void solve_overflow();
