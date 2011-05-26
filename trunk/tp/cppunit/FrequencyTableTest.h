@@ -16,6 +16,8 @@ namespace ppmc {
 		CPPUNIT_TEST( testCompress_a_a_a );
 		CPPUNIT_TEST( testCompress_b_a_b );
 		CPPUNIT_TEST( testCompress_b_a_b_with_context );
+		CPPUNIT_TEST( testCompress_eof );
+		CPPUNIT_TEST( testCompress_a_b_eof );
 		CPPUNIT_TEST_SUITE_END();
 
 	public:
@@ -29,6 +31,8 @@ namespace ppmc {
 		void testCompress_a_a_a();
 		void testCompress_b_a_b();
 		void testCompress_b_a_b_with_context();
+		void testCompress_eof();
+		void testCompress_a_b_eof();
 	};
 }
 

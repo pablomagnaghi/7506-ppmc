@@ -9,11 +9,27 @@ FrequencyTable::FrequencyTable(){
 
 void FrequencyTable::compressEof(Query &q){
 	Probability p;
-	p.total = 257;
-	p.skip  = 256;
-	p.width = 1;
-	q.setProbability(p);
-	q.setFound(true);
+	size_t count = 0;
+	map<char,size_t>::iterator iter;
+	
+	if (freq.size() == 0) {
+		p.width = 1;
+		p.total = 1;
+		p.skip = 0;
+	} else {
+		for( iter = freq.begin(); iter != freq.end(); ++iter ) {
+			if (!q.isExcluded(iter->first) ) {
+				p.total+=iter->second;
+				count++;
+			}
+		}
+		p.skip = p.total;
+		p.width = freq.size() -1;
+		p.total++;
+	}
+	
+	q.setProbability(p);	
+	q.setFound(false);
 }
 
 void FrequencyTable::compress(Query & q){
