@@ -7,9 +7,9 @@ namespace ppmc {
 	struct Probability {
 			Probability();
 			~Probability();
-			unsigned int skip;
-			unsigned int width;
-			unsigned int total;
+			probabilityType skip;
+			probabilityType width;
+			probabilityType total;
 		friend class ProbabilityTest;
 	};
 }

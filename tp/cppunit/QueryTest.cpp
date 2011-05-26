@@ -48,6 +48,17 @@ void QueryTest::testFound(){
 	
 }
 
+void QueryTest::testClear() {
+	Query q;
+	q.setFound(true);
+	q.addExclusion('a');
+	
+	q.clear();
+	CPPUNIT_ASSERT_MESSAGE("Bad found", ! q.isFound());
+	CPPUNIT_ASSERT_MESSAGE("Bogus exclusion", ! q.isExcluded('a'));
+	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Exclusion Size", (size_t) 0, q.exclusion.size());
+}
+
 void QueryTest::testTerm() {
 	Query q;
 	q.setTerm('a');

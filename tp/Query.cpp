@@ -5,12 +5,16 @@ using namespace ppmc;
 using namespace std;
 
 Query::Query(){
-
+	clear();
 }
 
 Query::~Query(){
 
+}
 
+void Query::clear(){
+	setFound(false);
+	exclusion.clear();
 }
 
 void Query::addExclusion(char c){

@@ -6,11 +6,6 @@
 #include "PPMC.h"
 #include "Model.h"
 
-/**
- * unsigned long int depende de la arquitectura, asi que no lo podemos usar.
- * Usamos unsigned int en lugar de unsigned long long int pues sino 
- * necesitariamos dos implementaciones
- */
 namespace ppmc {
 	class Arithmetic {
 		public:
@@ -19,8 +14,18 @@ namespace ppmc {
 		protected:
 			std::vector<Model*> models;
 			size_t order;
-			unsigned int ceiling;
-			unsigned int floor;
+			baseType ceiling;
+			baseType floor;
+			
+			baseType buffer;
+			u_int8_t bits_in_buffer;
+			u_int8_t underflow_counter;
+			void addBitToBuffer(u_int8_t);
+			void putBufferInFileWriter();
+			void solve_underflow();
+			void solve_overflow();
+			void clean_buffer();
+			void print_in_bin(baseType x);
 		friend class CompressorTest;
 	};
 }
