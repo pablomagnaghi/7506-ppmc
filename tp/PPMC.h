@@ -1,7 +1,6 @@
 #ifndef _ppmc_h_
 #define _ppmc_h_
 
-#include <cstddef>
 #include <iostream>
 #include <cstdlib>
 

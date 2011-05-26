@@ -248,6 +248,10 @@ void CompressorTest::testCompressEof_M1(){
 	
 }
 
+void CompressorTest::testCompressEof(){
+	
+}
+
 void CompressorTest::testCompress(){
 	string reference="sfasdsss";
 	MockedFileReader* in = new MockedFileReader("A");
