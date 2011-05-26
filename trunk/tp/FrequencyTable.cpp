@@ -6,6 +6,16 @@ using namespace std;
 FrequencyTable::FrequencyTable(){
 
 }
+
+void FrequencyTable::compressEof(Query &q){
+	Probability p;
+	p.total = 257;
+	p.skip  = 256;
+	p.width = 1;
+	q.setProbability(p);
+	q.setFound(true);
+}
+
 void FrequencyTable::compress(Query & q){
 	Probability p;
 	size_t count = 0;

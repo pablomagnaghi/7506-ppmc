@@ -11,7 +11,8 @@ namespace ppmc {
 		public:
 			FrequencyTable();
 			~FrequencyTable(){};
-			void compress(Query &q);
+			virtual void compress(Query &q);
+			virtual void compressEof(Query &q);
 		private:
 			std::map<char,size_t> freq;
 		friend class FrequencyTableTest;

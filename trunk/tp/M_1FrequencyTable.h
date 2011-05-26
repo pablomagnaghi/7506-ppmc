@@ -13,7 +13,7 @@ namespace ppmc {
 			M_1FrequencyTable();
 			virtual ~M_1FrequencyTable(){};
 			virtual void compress(Query &q);
-			void compressEof(Query &q);
+			virtual void compressEof(Query &q);
 		friend class M_1FrequencyTableTest;
 
 	};

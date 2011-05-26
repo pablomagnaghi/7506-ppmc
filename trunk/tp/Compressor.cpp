@@ -1,9 +1,8 @@
 #include "Compressor.h"
-#include "ContextSelector.h"
 #include "FrequencyTable.h"
 #include "M_1FrequencyTable.h"
-#include "Query.h"
-#include "Probability.h"
+
+
 
 using namespace ppmc;
 using namespace std;
@@ -17,51 +16,86 @@ Compressor::~Compressor(){
 
 }
 
-/**
- * Hemos decidido que los primeros "order" caracteres se comprimen
- * directamente en M-1 para facilitar la implementacion.
- */
-void Compressor::compress(util::IFileReader* reader, util::IFileWriter* writer){
-	char c;
-	size_t i=0;
-	ContextSelector cs(1);
-	while (!reader->eof() && i < order) {
-		c = reader->read();
+void Compressor::calculate(Probability& p){
+	baseType delta        = ceiling - floor;
+	baseType steps        = delta / p.total;
+	baseType deltaCeiling = p.skip * steps;
+	baseType deltaFloor   = p.total - p.skip - p.width;
+	deltaFloor            = deltaFloor * steps;
+	ceiling              -= deltaCeiling;
+	floor                += deltaFloor;
+}
+
+void Compressor::compressWithM_1(ContextSelector& cs, char c) {
 		M_1FrequencyTable ft;
-		Query q;
+		q.clear();
 		q.setTerm(c);
 		ft.compress(q);
 		Probability p = q.getProbability();
-		// calculate new floor and ceiling
+		calculate(p);
 		// emit something
 		cs.add(c);
-		i++;
-	}
-	
-	while (!reader->eof()) {
-		c = reader->read();
-		writer->write(c);
+}
+
+void Compressor::compressWithModels(ContextSelector& cs, char c){
+		q.clear();
 		for(int i=order; i>0; i--) {
 			FrequencyTable* ft = models[i]->find(cs.get(i));
-			Query q;
 			q.setTerm(c);
 			ft->compress(q);
 			Probability p = q.getProbability();
 			if ( q.isFound()) {
-				// calculate new floor and ceiling
+				calculate(p);
 				// emit something
 				cs.add(c);
 				break;
 			}
 		}
-		cs.add(c);
-	}
-	if (order > 0) {
-		M_1FrequencyTable ft;
-		Query q;
-		ft.compressEof(q);
-		Probability p = q.getProbability();
-		// calculate new floor and ceiling
+}
+
+void Compressor::compressEof(ContextSelector& cs){
+	// not tested
+	// deal with eof in models
+	for(int i=order; i>0; i--) {
+			FrequencyTable* ft = models[i]->find(cs.get(i));
+			q.clear();
+			ft->compressEof(q);
+			Probability p = q.getProbability();
+			calculate(p);
 		// emit something
 	}
+
+	// deal with eof in model -1
+	// not tested
+	M_1FrequencyTable ft;
+	q.clear();
+	ft.compressEof(q);
+	Probability p = q.getProbability();
+	calculate(p);
+	//emit something
+
+}
+
+/**
+ * Los primeros "order" caracteres se comprimen
+ * directamente en M-1 para facilitar la implementacion.
+ */
+void Compressor::compress(util::IFileReader* reader, util::IFileWriter* writer){
+	char c;
+	size_t i=0;
+	ContextSelector cs(order);
+
+	while (!reader->eof() && i < order) {
+		c = reader->read();
+		compressWithM_1(cs, c);
+		i++;
+	}
+	
+	while (!reader->eof()) {
+		c = reader->read();
+		compressWithModels(cs,c);
+		cs.add(c);
+	}
+	
+	compressEof(cs);
 }

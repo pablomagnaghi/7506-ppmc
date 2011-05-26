@@ -23,32 +23,32 @@ void ContextSelectorTest::tearDown(){
 void ContextSelectorTest::testConstructor(){
 	string expectedName("");
 	size_t expectedSize = 3;
-	ContextSelector e(expectedSize);
+	ContextSelector cs(expectedSize);
 	
-  CPPUNIT_ASSERT_EQUAL(expectedSize , e.size );
-	CPPUNIT_ASSERT_EQUAL(expectedName , e.name );
+  CPPUNIT_ASSERT_EQUAL(expectedSize , cs.size );
+	CPPUNIT_ASSERT_EQUAL(expectedName , cs.name );
 }
 
 void ContextSelectorTest::testBadConstructor(){
 	//ContextSelector e(16);
-//	CPPUNIT_ASSERT_THROW( ContextSelector e(15), std::length_error* );
+//	CPPUNIT_ASSERT_THROW( ContextSelector cs(15), std::length_error* );
 }
 
 void ContextSelectorTest::testAdd(){
-	ContextSelector e(3);
+	ContextSelector cs(3);
 	
-	e.add('a');
-	CPPUNIT_ASSERT_EQUAL(string("a"),e.get(1));
-	e.add('b');
-	CPPUNIT_ASSERT_EQUAL(string("b"),e.get(1));
-	CPPUNIT_ASSERT_EQUAL(string("ab"),e.get(2));
-	e.add('c');
-	CPPUNIT_ASSERT_EQUAL(string("c"),e.get(1));
-	CPPUNIT_ASSERT_EQUAL(string("bc"),e.get(2));
-	CPPUNIT_ASSERT_EQUAL(string("abc"),e.get(3));
-	e.add('d');
-	CPPUNIT_ASSERT_EQUAL(string("d"),e.get(1));
-	CPPUNIT_ASSERT_EQUAL(string("cd"),e.get(2));
-	CPPUNIT_ASSERT_EQUAL(string("bcd"),e.get(3));
+	cs.add('a');
+	CPPUNIT_ASSERT_EQUAL(string("a"),cs.get(1));
+	cs.add('b');
+	CPPUNIT_ASSERT_EQUAL(string("b"),cs.get(1));
+	CPPUNIT_ASSERT_EQUAL(string("ab"),cs.get(2));
+	cs.add('c');
+	CPPUNIT_ASSERT_EQUAL(string("c"),cs.get(1));
+	CPPUNIT_ASSERT_EQUAL(string("bc"),cs.get(2));
+	CPPUNIT_ASSERT_EQUAL(string("abc"),cs.get(3));
+	cs.add('d');
+	CPPUNIT_ASSERT_EQUAL(string("d"),cs.get(1));
+	CPPUNIT_ASSERT_EQUAL(string("cd"),cs.get(2));
+	CPPUNIT_ASSERT_EQUAL(string("bcd"),cs.get(3));
 
 }

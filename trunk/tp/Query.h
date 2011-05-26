@@ -11,6 +11,8 @@ namespace ppmc {
 			Query();
 			~Query();
 
+			void clear();
+			
 			void addExclusion(char c);
 			bool isExcluded(char c);
 			
