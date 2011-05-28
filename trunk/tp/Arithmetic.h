@@ -5,6 +5,8 @@
 
 #include "PPMC.h"
 #include "Model.h"
+#include "IFileWriter.h"
+#include "IFileReader.h"
 
 namespace ppmc {
 	class Arithmetic {
@@ -17,6 +19,9 @@ namespace ppmc {
 			baseType ceiling;
 			baseType floor;
 			
+			util::IFileReader* reader;
+			util::IFileWriter* writer;
+			
 			baseType buffer;
 			u_int8_t bits_in_buffer;
 			u_int8_t underflow_counter;
@@ -26,6 +31,7 @@ namespace ppmc {
 			void solve_overflow();
 			void clean_buffer();
 			void print_in_bin(baseType x);
+			void setNewLimits();
 		friend class CompressorTest;
 	};
 }

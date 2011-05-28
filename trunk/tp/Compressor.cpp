@@ -26,18 +26,44 @@ void Compressor::calculate(Probability& p){
 	floor                += deltaFloor;
 }
 
-void Compressor::compressWithM_1(ContextSelector& cs, char c) {
-		M_1FrequencyTable ft;
+void Compressor::compressFirstChars(ContextSelector& cs) {
+	char c;
+	unsigned int j=0;
+	while (!reader->eof() && j < order) {
+		c = reader->read();
 		q.clear();
-		q.setTerm(c);
-		ft.compress(q);
-		Probability p = q.getProbability();
-		calculate(p);
-		// emit something
-		cs.add(c);
+		for(int i=j; i>0; i--) {
+			FrequencyTable* ft = models[i]->find(cs.get(i));
+			q.setTerm(c);
+			ft->compress(q);
+			Probability p = q.getProbability();
+			if ( q.isFound()) {
+				calculate(p);
+				setNewLimits();
+				cs.add(c);
+				break;
+			}
+		}
+		j++;
+	}
+	
 }
 
-void Compressor::compressWithModels(ContextSelector& cs, char c){
+void Compressor::compressWithM_1(ContextSelector& cs, char c) {
+	M_1FrequencyTable ft;
+	q.clear();
+	q.setTerm(c);
+	ft.compress(q);
+	Probability p = q.getProbability();
+	calculate(p);
+	setNewLimits();
+	cs.add(c);
+}
+
+void Compressor::compressWithModels(ContextSelector& cs){
+	char c;
+	while (!reader->eof()) {
+		c = reader->read();
 		q.clear();
 		for(int i=order; i>0; i--) {
 			FrequencyTable* ft = models[i]->find(cs.get(i));
@@ -46,23 +72,25 @@ void Compressor::compressWithModels(ContextSelector& cs, char c){
 			Probability p = q.getProbability();
 			if ( q.isFound()) {
 				calculate(p);
-				// emit something
+				setNewLimits();
 				cs.add(c);
 				break;
 			}
 		}
+		cs.add(c);
+	}
 }
 
 void Compressor::compressEof(ContextSelector& cs){
 	// not tested
 	// deal with eof in models
 	for(int i=order; i>0; i--) {
-			FrequencyTable* ft = models[i]->find(cs.get(i));
-			q.clear();
-			ft->compressEof(q);
-			Probability p = q.getProbability();
-			calculate(p);
-		// emit something
+		FrequencyTable* ft = models[i]->find(cs.get(i));
+		q.clear();
+		ft->compressEof(q);
+		Probability p = q.getProbability();
+		calculate(p);
+		setNewLimits();
 	}
 
 	// deal with eof in model -1
@@ -72,30 +100,16 @@ void Compressor::compressEof(ContextSelector& cs){
 	ft.compressEof(q);
 	Probability p = q.getProbability();
 	calculate(p);
-	//emit something
+	setNewLimits();
 
 }
 
-/**
- * Los primeros "order" caracteres se comprimen
- * directamente en M-1 para facilitar la implementacion.
- */
-void Compressor::compress(util::IFileReader* reader, util::IFileWriter* writer){
-	char c;
-	size_t i=0;
+void Compressor::compress(util::IFileReader* r, util::IFileWriter* w){
+	reader = r;
+	writer = w;
 	ContextSelector cs(order);
-
-	while (!reader->eof() && i < order) {
-		c = reader->read();
-		compressWithM_1(cs, c);
-		i++;
-	}
-	
-	while (!reader->eof()) {
-		c = reader->read();
-		compressWithModels(cs,c);
-		cs.add(c);
-	}
-	
+	compressFirstChars(cs);
+	compressWithModels(cs);
 	compressEof(cs);
+	clean_buffer();
 }

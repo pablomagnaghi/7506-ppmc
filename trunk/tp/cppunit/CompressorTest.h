@@ -18,7 +18,10 @@ namespace ppmc {
 		CPPUNIT_TEST( testCalculateFloor_1_1_2 );
 		//CPPUNIT_TEST( testCalculateFloor );
 		CPPUNIT_TEST( testCalculate_c );
-		CPPUNIT_TEST( testCompressWithM_1);
+		CPPUNIT_TEST( testCompressFirstChars );
+//		CPPUNIT_TEST( testCompressWithM_1);
+		
+
 //		CPPUNIT_TEST( testCompressWithModels_0);
 //		CPPUNIT_TEST( testCompressWithModels_1);
 //		CPPUNIT_TEST( testCompressWithModels_2);
@@ -26,7 +29,7 @@ namespace ppmc {
 //		CPPUNIT_TEST( testCompressEof_M0() );
 //		CPPUNIT_TEST( testCompressEof_M1() );
 //		CPPUNIT_TEST( testCompressEof() );
-//		CPPUNIT_TEST( testCompress );
+		CPPUNIT_TEST( testCompress );
 		CPPUNIT_TEST_SUITE_END();
 		
 	public:
@@ -43,7 +46,8 @@ namespace ppmc {
 		void testCalculateFloor_1_1_2();
 		void testCalculateFloor();
 		void testCalculate_c();
-		void testCompressWithM_1();
+		void testCompressFirstChars();
+//		void testCompressWithM_1();
 		void testCompressWithModels_0();
 		void testCompressWithModels_1();
 		void testCompressWithModels_2();
@@ -52,6 +56,8 @@ namespace ppmc {
 		void testCompressEof_M1();
 		void testCompressEof();
 		static baseType delta;
+	private:
+		
 	};
 }
 

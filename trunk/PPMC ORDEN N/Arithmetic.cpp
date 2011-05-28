@@ -5,7 +5,7 @@
 using namespace ppmc;
 using namespace std;
 
-Arithmetic::Arithmetic(){
+Arithmetic::Arithmetic(util::FileReader* r, util::FileWriter* w){
 	for (size_t i=0; i<(ORDEN + 1);i++) {
 		models.push_back(new Model());
 	}
@@ -14,6 +14,8 @@ Arithmetic::Arithmetic(){
 	this->buffer = EMPTY_BUFFER;
 	this->bits_in_buffer = 0;
 	this->underflow_counter = 0;
+	this->reader = r;
+	this->writer = w;
 }
 
 
@@ -56,7 +58,7 @@ void Arithmetic::addBitToBuffer(u_int8_t bit){
 
 void Arithmetic::putBufferInFileWriter(){
 	print_in_bin(this->buffer);
-
+	writer->write(this->buffer);
 	this->bits_in_buffer = 0;
 }
 
@@ -82,8 +84,6 @@ void Arithmetic::solve_underflow(){
 		this->top = new_techo;
 		u_int32_t shift = pow (2,local_counter)-1;
 		this->top = (this->top | shift);
-		this->top = (this->top & TOP);
-		this->bottom = (this->bottom & TOP);
 		this->underflow_counter += local_counter;
 	}
 }
@@ -108,8 +108,6 @@ void Arithmetic::solve_overflow(){
 		u_int32_t shift = pow (2,bitsOfOverflow)-1;
 		this->top<<=bitsOfOverflow;
 		this->top = (this->top | shift);
-		this->top = (this->top & TOP);
-		this->bottom = (this->bottom & TOP);
 	}
 }
 

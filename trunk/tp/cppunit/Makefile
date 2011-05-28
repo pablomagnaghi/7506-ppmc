@@ -40,7 +40,8 @@ o_files += ../FileReader.o
 o_files += ../MockedFileReader.o
 o_files += ../FileWriter.o
 o_files += ../MockedFileWriter.o
-
+o_files += ../../pruebas_carlos_cppunit/hex_coder/v04/hexdecoder.o
+o_files += ../../pruebas_carlos_cppunit/hex_coder/v04/OddDigitException.o
 
 # Descomentar para compilar estaticamente
 #static = si
@@ -250,6 +251,7 @@ occ := $(CC)
 ocxx := $(CXX)
 orm := $(RM)
 old := $(LD)
+
 ifdef verbose
   RM := $(RM) -v
 else

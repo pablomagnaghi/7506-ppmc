@@ -5,13 +5,17 @@ using namespace util;
 using namespace std;
 
 FileReader::FileReader(const char* name){
-	// open name for input or fail
+	file.open(name);
+	if (! file.good()) throw 1;
 }
 
 char FileReader::read(){
-	return 'a';
+	char c;
+	file >> c;
+	if (! file.good()) throw 1;
+	return c;
 }
 
 bool FileReader::eof(){
-	return true;
+	return file.eof();
 }
