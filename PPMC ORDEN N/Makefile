@@ -27,7 +27,8 @@ debug = si
 
 # Agregar object files
 #o_files  = 
-#o_files += 
+o_files += ../tp/FileReader.o
+o_files += ../tp/FileWriter.o
 
 # Descomentar para compilar estaticamente
 #static = si

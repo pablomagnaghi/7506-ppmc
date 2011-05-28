@@ -1,12 +1,17 @@
 #include <iostream>
 #include "PPMC.h"
 #include "Compressor.h"
+#include "../tp/FileWriter.h"
+#include "../tp/FileReader.h"
+
 using namespace ppmc;
+using namespace util;
 
 int main(int argc, char* argv[]) {
-
+	FileReader r("in.txt");
+	FileWriter w("out.z");
 	//ruta donde se guarda el archivo comprimido
-	Compressor compresor;
+	Compressor compresor(&r,&w);
 
 	//cadena a comprimir
 	std::string cadena = "ABDABABABD";

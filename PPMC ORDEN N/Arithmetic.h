@@ -6,11 +6,13 @@
 #include "Model.h"
 #include "ContextSelector.h"
 #include "algorithm"
+#include "../tp/FileWriter.h"
+#include "../tp/FileReader.h"
 
 namespace ppmc {
 	class Arithmetic {
 		public:
-			Arithmetic();
+			Arithmetic(util::FileReader* r, util::FileWriter* w);
 			u_int32_t getTop();
 			u_int32_t getBottom();
 			void setNewLimits(u_int32_t, u_int32_t);
@@ -23,6 +25,8 @@ namespace ppmc {
 			ContextSelector contextSelector;
 			FrequencyTable frequencyTable;
 		private:
+			util::FileReader * reader;
+			util::FileWriter * writer;
 			u_int32_t top;
 			u_int32_t bottom;
 			u_int32_t buffer;

@@ -23,7 +23,10 @@ Arithmetic::~Arithmetic(){
 }
 
 
-
+void Arithmetic::setNewLimits(){
+	solve_overflow();
+	solve_underflow();
+}
 
 void Arithmetic::print_in_bin(baseType x){
 	int i;
@@ -47,7 +50,8 @@ void Arithmetic::addBitToBuffer(u_int8_t bit){
 
 void Arithmetic::putBufferInFileWriter(){
 	print_in_bin(this->buffer);
-
+	writer->write(buffer);
+	cout << "===== Arithmetic::putBufferInFileWriter" << endl;
 	this->bits_in_buffer = 0;
 }
 
@@ -66,6 +70,7 @@ void Arithmetic::solve_underflow(){
 			i--;
 		}
 	}
+	// get rid of new_floor and new_techo
 	if (local_counter>0){
 		baseType new_floor = ((BYTE_128 & this->floor)|((this->floor<<local_counter) & BYTE_127));
 		this->floor = new_floor;
@@ -73,8 +78,6 @@ void Arithmetic::solve_underflow(){
 		this->ceiling = new_techo;
 		baseType shift = pow (2,local_counter)-1;
 		this->ceiling = (this->ceiling | shift);
-		this->ceiling = (this->ceiling & TOP);
-		this->floor = (this->floor & TOP);
 		this->underflow_counter += local_counter;
 	}
 }
@@ -99,8 +102,6 @@ void Arithmetic::solve_overflow(){
 		baseType shift = pow (2,bitsOfOverflow)-1;
 		this->ceiling<<=bitsOfOverflow;
 		this->ceiling = (this->ceiling | shift);
-		this->ceiling = (this->ceiling & TOP);
-		this->floor = (this->floor & TOP);
 	}
 }
 

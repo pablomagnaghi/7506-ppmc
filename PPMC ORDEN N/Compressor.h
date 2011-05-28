@@ -7,7 +7,7 @@
 namespace ppmc {
 	class Compressor:public Arithmetic {
 		public:
-			Compressor();
+			Compressor(util::FileReader* r, util::FileWriter* w);
 			~Compressor();
 			void compress(char);
 			void compressEof();

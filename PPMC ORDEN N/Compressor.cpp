@@ -4,7 +4,7 @@
 using namespace ppmc;
 using namespace std;
 
-Compressor::Compressor():Arithmetic(){
+Compressor::Compressor(util::FileReader* r, util::FileWriter* w):Arithmetic(r,w){
 
 }
 
