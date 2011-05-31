@@ -1,0 +1,211 @@
+Comprimiendo...
+LEO A CONTEXTO  EMITO:
+ESC  = 1/1
+A = 1/257
+Modelo 0: 
+contexto 
+TABLA
+caracter A |  frecuencia 1
+caracter esc  |  frecuencia 1
+LEO B CONTEXTO A EMITO:
+ESC  = 1/1
+ESC  = 1/2
+B = 1/256
+Modelo 1: 
+contexto A
+TABLA
+caracter B |  frecuencia 1
+caracter esc  |  frecuencia 1
+Modelo 0: 
+contexto 
+TABLA
+caracter A |  frecuencia 1
+caracter B |  frecuencia 1
+caracter esc  |  frecuencia 2
+LEO D CONTEXTO B EMITO:
+ESC  = 1/1
+ESC  = 2/4
+D = 1/255
+Modelo 1: 
+contexto A
+TABLA
+caracter B |  frecuencia 1
+caracter esc  |  frecuencia 1
+contexto B
+TABLA
+caracter D |  frecuencia 1
+caracter esc  |  frecuencia 1
+Modelo 0: 
+contexto 
+TABLA
+caracter A |  frecuencia 1
+caracter B |  frecuencia 1
+caracter D |  frecuencia 1
+caracter esc  |  frecuencia 3
+LEO A CONTEXTO D EMITO:
+ESC  = 1/1
+A = 1/6
+Modelo 1: 
+contexto A
+TABLA
+caracter B |  frecuencia 1
+caracter esc  |  frecuencia 1
+contexto B
+TABLA
+caracter D |  frecuencia 1
+caracter esc  |  frecuencia 1
+contexto D
+TABLA
+caracter A |  frecuencia 1
+caracter esc  |  frecuencia 1
+Modelo 0: 
+contexto 
+TABLA
+caracter A |  frecuencia 2
+caracter B |  frecuencia 1
+caracter D |  frecuencia 1
+caracter esc  |  frecuencia 3
+LEO B CONTEXTO A EMITO:
+B = 1/2
+Modelo 1: 
+contexto A
+TABLA
+caracter B |  frecuencia 2
+caracter esc  |  frecuencia 1
+contexto B
+TABLA
+caracter D |  frecuencia 1
+caracter esc  |  frecuencia 1
+contexto D
+TABLA
+caracter A |  frecuencia 1
+caracter esc  |  frecuencia 1
+Modelo 0: 
+contexto 
+TABLA
+caracter A |  frecuencia 2
+caracter B |  frecuencia 1
+caracter D |  frecuencia 1
+caracter esc  |  frecuencia 3
+LEO A CONTEXTO B EMITO:
+ESC  = 1/2
+A = 2/6
+Modelo 1: 
+contexto A
+TABLA
+caracter B |  frecuencia 2
+caracter esc  |  frecuencia 1
+contexto B
+TABLA
+caracter A |  frecuencia 1
+caracter D |  frecuencia 1
+caracter esc  |  frecuencia 2
+contexto D
+TABLA
+caracter A |  frecuencia 1
+caracter esc  |  frecuencia 1
+Modelo 0: 
+contexto 
+TABLA
+caracter A |  frecuencia 3
+caracter B |  frecuencia 1
+caracter D |  frecuencia 1
+caracter esc  |  frecuencia 3
+LEO B CONTEXTO A EMITO:
+B = 2/3
+Modelo 1: 
+contexto A
+TABLA
+caracter B |  frecuencia 3
+caracter esc  |  frecuencia 1
+contexto B
+TABLA
+caracter A |  frecuencia 1
+caracter D |  frecuencia 1
+caracter esc  |  frecuencia 2
+contexto D
+TABLA
+caracter A |  frecuencia 1
+caracter esc  |  frecuencia 1
+Modelo 0: 
+contexto 
+TABLA
+caracter A |  frecuencia 3
+caracter B |  frecuencia 1
+caracter D |  frecuencia 1
+caracter esc  |  frecuencia 3
+LEO A CONTEXTO B EMITO:
+A = 1/4
+Modelo 1: 
+contexto A
+TABLA
+caracter B |  frecuencia 3
+caracter esc  |  frecuencia 1
+contexto B
+TABLA
+caracter A |  frecuencia 2
+caracter D |  frecuencia 1
+caracter esc  |  frecuencia 2
+contexto D
+TABLA
+caracter A |  frecuencia 1
+caracter esc  |  frecuencia 1
+Modelo 0: 
+contexto 
+TABLA
+caracter A |  frecuencia 3
+caracter B |  frecuencia 1
+caracter D |  frecuencia 1
+caracter esc  |  frecuencia 3
+LEO B CONTEXTO A EMITO:
+B = 3/4
+Modelo 1: 
+contexto A
+TABLA
+caracter B |  frecuencia 4
+caracter esc  |  frecuencia 1
+contexto B
+TABLA
+caracter A |  frecuencia 2
+caracter D |  frecuencia 1
+caracter esc  |  frecuencia 2
+contexto D
+TABLA
+caracter A |  frecuencia 1
+caracter esc  |  frecuencia 1
+Modelo 0: 
+contexto 
+TABLA
+caracter A |  frecuencia 3
+caracter B |  frecuencia 1
+caracter D |  frecuencia 1
+caracter esc  |  frecuencia 3
+LEO D CONTEXTO B EMITO:
+D = 1/5
+Modelo 1: 
+contexto A
+TABLA
+caracter B |  frecuencia 4
+caracter esc  |  frecuencia 1
+contexto B
+TABLA
+caracter A |  frecuencia 2
+caracter D |  frecuencia 2
+caracter esc  |  frecuencia 2
+contexto D
+TABLA
+caracter A |  frecuencia 1
+caracter esc  |  frecuencia 1
+Modelo 0: 
+contexto 
+TABLA
+caracter A |  frecuencia 3
+caracter B |  frecuencia 1
+caracter D |  frecuencia 1
+caracter esc  |  frecuencia 3
+LEO EOF CONTEXTO D EMITO:
+ESC  = 1/2
+ESC  = 3/5
+EOF = 1/254
+11000010101101000001011010111000
+11010011000000000000000000000000

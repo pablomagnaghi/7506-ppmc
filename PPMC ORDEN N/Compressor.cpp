@@ -4,14 +4,10 @@
 using namespace ppmc;
 using namespace std;
 
-Compressor::Compressor(util::FileReader* r, util::FileWriter* w):Arithmetic(r,w){
+Compressor::Compressor(util::FileReader* r, util::FileWriter* w)
+	:Arithmetic(r,w){}
 
-}
-
-Compressor::~Compressor(){
-
-
-}
+Compressor::~Compressor(){ }
 
 void Compressor::compress(char c){
 	bool found = false;
@@ -30,9 +26,11 @@ void Compressor::compress(char c){
 
 		if (frequencyTable.find(c)) {
 			found = true;
-			std::cout << c << " = " << frequencyTable.getFrequencyChar() << "/" << frequencyTable.getTotal() << std::endl;
+			std::cout << c << " = " << frequencyTable.getFrequencyChar() << "/";
+			std::cout << frequencyTable.getTotal() << std::endl;
 		} else {
-			std::cout << "ESC  = " << frequencyTable.getFrequencyEsc() << "/" << frequencyTable.getTotal()<< std::endl;
+			std::cout << "ESC  = " << frequencyTable.getFrequencyEsc() << "/";
+			std::cout << frequencyTable.getTotal()<< std::endl;
 		}
 
 		// todo ver si hay que cambiar algo en este metodo, ya tenes los
@@ -50,12 +48,14 @@ void Compressor::compress(char c){
 				// Esta en el Modelo -1 porque no se encontro en el Modelo 0
 				// Obtengo los caracteres a excluir del modelo 0
 				frequencyTable.getStringExc(exclusionCharacters);
-				// Aplico mecanismo de exclusion restando a MAX el size del string de exclusion
-				std::cout << c << " = 1/" << MAX - exclusionCharacters.size() << std::endl;
+				// Aplico mecanismo de exclusion restando a MAX el size del string de 
+				// exclusion
+				std::cout << c <<" = 1/" << MAX -exclusionCharacters.size()<< std::endl;
 				found = true;
 				// todo ACA TENES QUE ACTULIZAR PISO Y TECHO
 				// todo UTILIZA EL STRING DE EXCLUSION
-				// todo tenes el caracter, los caracteres a quitar y con esos datos el total
+				// todo tenes el caracter, los caracteres a quitar y con esos datos el 
+				// todo total
 				// todo y la frecuencia que en ese modelo es siempre 1
 				// no actualiza modelo -1 porque es fijo
 			}
@@ -91,7 +91,8 @@ void Compressor::compressEof(){
 		// Aplico mecanismo de exclusion
 		frequencyTable.exc(exclusionCharacters);
 
-		std::cout << "ESC  = " << frequencyTable.getFrequencyEsc() << "/" << frequencyTable.getTotal()<< std::endl;
+		std::cout << "ESC  = " << frequencyTable.getFrequencyEsc() << "/" ;
+		std::cout << frequencyTable.getTotal()<< std::endl;
 
 		// todo ver si hay que cambiar este metodo, ya tenes los
 		// datos total, y la frecuencia ES del esc
@@ -107,8 +108,10 @@ void Compressor::compressEof(){
 			// Esta en el Modelo -1 porque no se encontro en el Modelo 0
 			// Obtengo los caracteres a excluir del modelo 0
 			frequencyTable.getStringExc(exclusionCharacters);
-			// Aplico mecanismo de exclusion restando a MAX el size del string de exclusion
-			std::cout << "EOF" << " = 1/" << MAX - exclusionCharacters.size() << std::endl;
+			// Aplico mecanismo de exclusion restando a MAX el size del string de
+			// exclusion
+			std::cout << "EOF" << " = 1/" << MAX - exclusionCharacters.size() ;
+			std::cout << std::endl;
 			found = true;
 			// todo ACA TENES QUE ACTULIZAR PISO Y TECHO
 			// todo UTILIZA EL STRING DE EXCLUSION
