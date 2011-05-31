@@ -24,18 +24,20 @@ void QueryTest::testConstructor(){
 void QueryTest::testExclusion() {
 	Query q;
 	CPPUNIT_ASSERT_MESSAGE("Bogus exclusion", ! q.isExcluded('a'));
+	q.setTerm('a');
+	CPPUNIT_ASSERT_MESSAGE("Bogus exclusion after setTerm", ! q.isExcluded('a'));
 	q.addExclusion('a');
 	CPPUNIT_ASSERT_MESSAGE("Exclusion not found", q.isExcluded('a'));
 	CPPUNIT_ASSERT_MESSAGE("Bogus exclusion", ! q.isExcluded('b'));
-	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Exclusion Size", (size_t) 1, q.exclusion.size());
+	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Exclusion Size", (probabilityType) 1, q.getExclusionSize());
 	q.addExclusion('a');
 	CPPUNIT_ASSERT_MESSAGE("Exclusion not found", q.isExcluded('a'));
 	CPPUNIT_ASSERT_MESSAGE("Bogus exclusion", ! q.isExcluded('b'));
-	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Exclusion Size", (size_t) 1, q.exclusion.size());
+	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Exclusion Size", (probabilityType) 1, q.getExclusionSize()); 
 	q.addExclusion('b');
 	CPPUNIT_ASSERT_MESSAGE("Exclusion not found", q.isExcluded('a'));
 	CPPUNIT_ASSERT_MESSAGE("Exclusion not found", q.isExcluded('b'));
-	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Exclusion Size", (size_t) 2, q.exclusion.size());
+	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Exclusion Size", (probabilityType) 2, q.getExclusionSize());
 	
 }
 
@@ -55,8 +57,9 @@ void QueryTest::testClear() {
 	
 	q.clear();
 	CPPUNIT_ASSERT_MESSAGE("Bad found", ! q.isFound());
-	CPPUNIT_ASSERT_MESSAGE("Bogus exclusion", ! q.isExcluded('a'));
-	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Exclusion Size", (size_t) 0, q.exclusion.size());
+	CPPUNIT_ASSERT_MESSAGE("Bad exclusion", ! q.isExcluded('a'));
+	CPPUNIT_ASSERT_MESSAGE("Bogus exclusion", ! q.isExcluded('b'));
+	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Exclusion Size", (probabilityType) 0, q.getExclusionSize());
 }
 
 void QueryTest::testTerm() {
@@ -67,7 +70,17 @@ void QueryTest::testTerm() {
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad term", 'b', q.getTerm());
 }
 
-void QueryTest::testProbability() {
-
+void QueryTest::testGetExclusionSize() {
+	Query q;
+	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad size", (probabilityType) 0, q.getExclusionSize());
+	q.addExclusion('a');
+	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad size", (probabilityType) 1, q.getExclusionSize());
 }
 
+void QueryTest::testTermAndExclusion() {
+	Query q;
+	q.addExclusion('a');
+	q.setTerm('b');
+	CPPUNIT_ASSERT_MESSAGE("Bad exclusion", q.isExcluded('a'));
+	CPPUNIT_ASSERT_MESSAGE("Bogus exclusion", ! q.isExcluded('b'));
+}

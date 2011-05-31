@@ -2,7 +2,7 @@
 #include "FrequencyTable.h"
 #include "M_1FrequencyTable.h"
 
-
+using namespace std;
 
 using namespace ppmc;
 using namespace std;
@@ -28,75 +28,86 @@ void Compressor::calculate(Probability& p){
 
 void Compressor::compressFirstChars(ContextSelector& cs) {
 	char c;
-	unsigned int j=0;
-	while (!reader->eof() && j < order) {
+	Probability p;
+	unsigned int startingOrder=0;  // sent to class and use it from compressEOF
+	while (!reader->eof() && startingOrder < order) {
 		c = reader->read();
 		q.clear();
-		for(int i=j; i>0; i--) {
+		cout << "LEO " << c << " CONTEXTO " << cs.get(startingOrder) << " EMITO: " << endl;
+		for(int i=startingOrder; i>=0; i--) {
 			FrequencyTable* ft = models[i]->find(cs.get(i));
 			q.setTerm(c);
 			ft->compress(q);
-			Probability p = q.getProbability();
+			p = q.getProbability();
+			cs.add(c);
 			if ( q.isFound()) {
 				calculate(p);
 				setNewLimits();
-				cs.add(c);
+				cout << c << " = " << p.width << "/" << p.total << " en modelo "<< i << endl;
 				break;
+			} else {
+				cout << "ESC = " << p.width << "/" << p.total << " en modelo "<< i << endl;
 			}
 		}
-		j++;
+		startingOrder++;
 	}
-	
+	if (!q.isFound()) {
+		compressWithM_1(cs, c);
+	}
 }
 
 void Compressor::compressWithM_1(ContextSelector& cs, char c) {
 	M_1FrequencyTable ft;
-	q.clear();
 	q.setTerm(c);
 	ft.compress(q);
 	Probability p = q.getProbability();
 	calculate(p);
 	setNewLimits();
-	cs.add(c);
+	cs.add(c); // useless, drop it
 }
 
 void Compressor::compressWithModels(ContextSelector& cs){
-	char c;
+	Probability p;
+	char c = reader->read();
 	while (!reader->eof()) {
-		c = reader->read();
 		q.clear();
-		for(int i=order; i>0; i--) {
+		cout << "LEO " << c << " CONTEXTO " << cs.get(order) << " EMITO: " << endl;
+		for(int i=order; i>=0; i--) {
 			FrequencyTable* ft = models[i]->find(cs.get(i));
 			q.setTerm(c);
 			ft->compress(q);
-			Probability p = q.getProbability();
+			p = q.getProbability();
 			if ( q.isFound()) {
 				calculate(p);
 				setNewLimits();
 				cs.add(c);
+				cout << c << " = " << p.width << "/" << p.total << " en modelo "<< i << endl;
 				break;
+			} else {
+				cout << "ESC = " << p.width << "/" << p.total << " en modelo "<< i << endl;
 			}
 		}
+		if (!q.isFound()) {
+			compressWithM_1(cs, c);
+		}
 		cs.add(c);
+		c = reader->read();
 	}
+
 }
 
 void Compressor::compressEof(ContextSelector& cs){
-	// not tested
-	// deal with eof in models
-	for(int i=order; i>0; i--) {
+	cout << "LEO EOF CONTEXTO " << cs.get(order) << " EMITO: " << endl;
+	for(int i=order; i>=0; i--) {
 		FrequencyTable* ft = models[i]->find(cs.get(i));
-		q.clear();
 		ft->compressEof(q);
 		Probability p = q.getProbability();
 		calculate(p);
+		cout << "ESC = " << p.width << "/" << p.total << " en modelo "<< i << endl;
 		setNewLimits();
 	}
 
-	// deal with eof in model -1
-	// not tested
 	M_1FrequencyTable ft;
-	q.clear();
 	ft.compressEof(q);
 	Probability p = q.getProbability();
 	calculate(p);

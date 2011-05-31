@@ -22,5 +22,8 @@ std::string ContextSelector::get(size_t contextSize) throw (std::length_error) {
 	if (contextSize > size ) {
 		throw new length_error("Invalid size");
 	}
+	if (contextSize == 0 || name.size() == 0) {
+		return "";
+	}
 	return name.substr(name.size() - contextSize );
 }

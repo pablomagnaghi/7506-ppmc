@@ -8,7 +8,6 @@
 namespace ppmc {
 	class CompressorTest : public CppUnit::TestFixture {
 		CPPUNIT_TEST_SUITE( CompressorTest );
-		CPPUNIT_TEST( testConstructor );
 		CPPUNIT_TEST( testCalculateCeiling_0_1_1 );
 		CPPUNIT_TEST( testCalculateCeiling_0_1_2 );
 		CPPUNIT_TEST( testCalculateCeiling_1_1_2 );
@@ -18,7 +17,7 @@ namespace ppmc {
 		CPPUNIT_TEST( testCalculateFloor_1_1_2 );
 		//CPPUNIT_TEST( testCalculateFloor );
 		CPPUNIT_TEST( testCalculate_c );
-		CPPUNIT_TEST( testCompressFirstChars );
+		//CPPUNIT_TEST( testCompressFirstChars );
 //		CPPUNIT_TEST( testCompressWithM_1);
 		
 
@@ -29,13 +28,16 @@ namespace ppmc {
 //		CPPUNIT_TEST( testCompressEof_M0() );
 //		CPPUNIT_TEST( testCompressEof_M1() );
 //		CPPUNIT_TEST( testCompressEof() );
-		CPPUNIT_TEST( testCompress );
+//		CPPUNIT_TEST( testCompress );
+			CPPUNIT_TEST( testCompress_a );
+			CPPUNIT_TEST( testCompress_a_b );
+			CPPUNIT_TEST( testCompress_a_b_d );
+			CPPUNIT_TEST( testCompress_a_b_d_a );
 		CPPUNIT_TEST_SUITE_END();
 		
 	public:
 		void setUp();
 		void tearDown();
-		void testConstructor();
 		void testCompress();
 		void testCalculateCeiling_0_1_1();
 		void testCalculateCeiling_0_1_2();
@@ -46,7 +48,7 @@ namespace ppmc {
 		void testCalculateFloor_1_1_2();
 		void testCalculateFloor();
 		void testCalculate_c();
-		void testCompressFirstChars();
+		//void testCompressFirstChars();
 //		void testCompressWithM_1();
 		void testCompressWithModels_0();
 		void testCompressWithModels_1();
@@ -55,7 +57,10 @@ namespace ppmc {
 		void testCompressEof_M0();
 		void testCompressEof_M1();
 		void testCompressEof();
-		static baseType delta;
+		void testCompress_a();
+		void testCompress_a_b();
+		void testCompress_a_b_d();
+		void testCompress_a_b_d_a();
 	private:
 		
 	};

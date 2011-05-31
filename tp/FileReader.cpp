@@ -11,8 +11,8 @@ FileReader::FileReader(const char* name){
 
 char FileReader::read(){
 	char c;
-	file >> c;
 	if (! file.good()) throw 1;
+	file >> c;
 	return c;
 }
 

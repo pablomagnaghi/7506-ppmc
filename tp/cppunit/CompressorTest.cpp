@@ -5,8 +5,10 @@
 #include "../MockedFileWriter.h"
 #include "../Probability.h"
 #include "../ContextSelector.h"
-#include "../../pruebas_carlos_cppunit/hex_coder/v04/hexdecoder.hpp"
-#include "../../pruebas_carlos_cppunit/hex_coder/v04/OddDigitException.hpp"
+// #include "../../pruebas_carlos_cppunit/hex_coder/v04/hexdecoder.hpp"
+// #include "../../pruebas_carlos_cppunit/hex_coder/v04/hexencoder.hpp"
+// #include "../../pruebas_carlos_cppunit/hex_coder/v04/OddDigitException.hpp"
+#include <iomanip>
 
 
 using namespace ppmc;
@@ -14,8 +16,6 @@ using namespace std;
 using namespace util;
 
 CPPUNIT_TEST_SUITE_REGISTRATION( CompressorTest );
-
-baseType CompressorTest::delta =0.0000000000001;
 
 void CompressorTest::setUp(){
 	
@@ -25,10 +25,6 @@ void CompressorTest::setUp(){
 void CompressorTest::tearDown(){
 }                               
 
-
-void CompressorTest::testConstructor(){
-
-}
 
 /**
  * empty frequency table
@@ -53,7 +49,7 @@ void CompressorTest::testCalculateFloor_0_1_1(){
 	p.skip = 0;
 	p.width = 1;
 	p.total = 1;
-	Compressor *c = new Compressor(0);
+	Compressor *c = new Compressor(1);
 	baseType floor = c->floor;
 	c->calculate(p);
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("bad floor", floor, c->floor);
@@ -179,11 +175,7 @@ void CompressorTest::testCalculate_c() {
 
 	delete(c);
 }
-void CompressorTest::testCompressFirstChars(){
-	
-	
-	
-}
+
 
 // void CompressorTest::testCompressWithM_1(){
 // 	Probability p1,p2;
@@ -264,25 +256,96 @@ void CompressorTest::testCompressEof_M1(){
 void CompressorTest::testCompressEof(){
 	
 }
-// c2b416b8d3000000
+
+// 11000010
+// 10110100
+// 00010110
+// 10111000
+// 11010011
+// 00000000
+// 00000000
+// 00000000
+// c2 b4 16 b8 d3 00 00 00
 
 void CompressorTest::testCompress(){
-	string reference="c2b416b8d3000000";
+	unsigned char buffer[] = {0xc2,0xb4,0x16,0xb8,0xd3,0x00,0x00,0x00};
+	
 	MockedFileReader* in = new MockedFileReader("ABDABABABD");
 	MockedFileWriter* out = new MockedFileWriter();
-	MockedFileWriter* out2 = new MockedFileWriter();
-	out2->write("hola");
+
 	Compressor *c = new Compressor(0);
 	c->compress(in, out);
-	
-	HexDecoder hd;
-	string buffer = out->get();
-	hd.decode(buffer);
-	cout << "contents: " << out2->get()  << endl;
-	cout << "hd size: " << hd.getSize() << endl;
-	CPPUNIT_ASSERT_EQUAL(reference, hd.getAsString());
 
+	string result = out->get();
+	for(size_t i=0; i< 8; i++) {
+		CPPUNIT_ASSERT_EQUAL((int)buffer[i],(int) result[i]);
+	}
+	
 	delete in;
 	delete out;
 	delete c;
+}
+
+void CompressorTest::testCompress_a() {
+	
+	MockedFileReader* in = new MockedFileReader("A");
+	MockedFileWriter* out = new MockedFileWriter();
+
+	Compressor *c = new Compressor(0);
+	c->compress(in, out);
+
+	Probability p = c->q.getProbability();
+	
+	CPPUNIT_ASSERT_MESSAGE("Bad Found", c->q.isFound());
+	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Skip",  (probabilityType) 256,p.skip);
+	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Width", (probabilityType) 1,p.width);
+	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Total", (probabilityType) 257,p.total);
+}
+
+void CompressorTest::testCompress_a_b() {
+	
+	MockedFileReader* in = new MockedFileReader("AB");
+	MockedFileWriter* out = new MockedFileWriter();
+
+	Compressor *c = new Compressor(0);
+	c->compress(in, out);
+
+	Probability p = c->q.getProbability();
+	
+	CPPUNIT_ASSERT_MESSAGE("Bad Found", c->q.isFound());
+	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Skip",  (probabilityType) 255,p.skip);
+	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Width", (probabilityType) 1,p.width);
+	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Total", (probabilityType) 256,p.total);
+}
+
+void CompressorTest::testCompress_a_b_d() {
+	
+	MockedFileReader* in = new MockedFileReader("ABD");
+	MockedFileWriter* out = new MockedFileWriter();
+
+	Compressor *c = new Compressor(0);
+	c->compress(in, out);
+
+	Probability p = c->q.getProbability();
+	
+	CPPUNIT_ASSERT_MESSAGE("Bad Found", c->q.isFound());
+	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Skip",  (probabilityType) 254,p.skip);
+	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Width", (probabilityType) 1,p.width);
+	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Total", (probabilityType) 255,p.total);
+}
+
+void CompressorTest::testCompress_a_b_d_a() {
+	
+	MockedFileReader* in = new MockedFileReader("ABDA");
+	MockedFileWriter* out = new MockedFileWriter();
+
+	Compressor *c = new Compressor(0);
+	c->compress(in, out);
+
+	Probability p = c->q.getProbability();
+	
+	CPPUNIT_ASSERT_MESSAGE("Bad Found", c->q.isFound());
+	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Skip",  (probabilityType) 253,p.skip);
+	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Width", (probabilityType) 1,p.width);
+	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Total", (probabilityType) 254,p.total);
 }

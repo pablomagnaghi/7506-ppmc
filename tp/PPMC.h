@@ -7,7 +7,7 @@
 namespace ppmc {
 	const size_t max_models = 15;
 	typedef u_int32_t baseType;
-	typedef double probabilityType;
+	typedef size_t probabilityType;
 	//const baseType TOP = 0xFFFFFFFF;
 	//const baseType BOTTOM = 0x00000000;
 	//const baseType EMPTY_BUFFER = 0x00000000;

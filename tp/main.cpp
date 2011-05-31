@@ -1,13 +1,14 @@
 #include <iostream>
+#include <stdexcept>
+#include <iostream>
+#include <string>
+
 #include "PPMC.h"
 #include "Compressor.h"
 #include "Decompressor.h"
 #include "FileReader.h"
 #include "FileWriter.h"
 
-#include <stdexcept>
-#include <iostream>
-#include <string>
 
 using namespace ppmc;
 using namespace std;
@@ -19,27 +20,26 @@ class bad_arguments:public exception {};
  *
  */ 
 int main(int argc, char* argv[]) {
-	FileReader* in = 0;
-	FileWriter* out = 0;
-	size_t order = 2;
+	
 	try {
-		if (argc!=4) {
+		if (argc!=5) {
 			throw bad_arguments();
 		}
 		
 		std::string mode(argv[1]);
-		in = new FileReader(argv[2]);
-		out = new FileWriter(argv[3]);
+		size_t order = atoi(argv[2]);
+		FileReader in(argv[3]);
+		FileWriter out(argv[4]);
 		
 		if (mode=="c") {
 			Compressor c(order);
 			cerr << "Inicio compresión..." << endl;
-			c.compress(in,out);
+			c.compress(&in,&out);
 			cerr << "...fin compresión!" << endl;
 		} else if(mode=="d") {
 			Decompressor d(order);
 			cerr << "Inicio descompresión..." << endl;
-			d.decompress(in,out);
+			d.decompress(&in,&out);
 			cerr << "...fin descompresión!" << endl;
 		} else {
 			throw invalid_argument(mode);
@@ -54,7 +54,5 @@ int main(int argc, char* argv[]) {
 		cout << "checkpoint 5.1" << endl;
 		cerr << "Error interno: " << e.what() << endl;
 	}
-	if (in) delete in;
-	if (out) delete out;
 
 }

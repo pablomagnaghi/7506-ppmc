@@ -9,7 +9,7 @@ using namespace ppmc;
 using namespace std;
 
 Arithmetic::Arithmetic(size_t o):order(o){
-	for (size_t i=0; i<order;i++) {
+	for (size_t i=0; i<=order;i++) {
 		models.push_back(new Model);
 	}
 	floor = 0;
@@ -17,11 +17,10 @@ Arithmetic::Arithmetic(size_t o):order(o){
 }
 
 Arithmetic::~Arithmetic(){
-	for (size_t i=0; i<order;i++) {
+	for (size_t i=0; i<=order;i++) {
 		delete models[i];
 	}
 }
-
 
 void Arithmetic::setNewLimits(){
 	solve_overflow();
@@ -50,8 +49,7 @@ void Arithmetic::addBitToBuffer(u_int8_t bit){
 
 void Arithmetic::putBufferInFileWriter(){
 	print_in_bin(this->buffer);
-	writer->write(buffer);
-	cout << "===== Arithmetic::putBufferInFileWriter" << endl;
+	writer->write(this->buffer);
 	this->bits_in_buffer = 0;
 }
 

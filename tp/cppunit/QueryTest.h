@@ -12,8 +12,9 @@ namespace ppmc {
 		CPPUNIT_TEST( testExclusion );
 		CPPUNIT_TEST( testFound );
 		CPPUNIT_TEST( testTerm );
+		CPPUNIT_TEST( testTermAndExclusion );
 		CPPUNIT_TEST( testClear );
-		CPPUNIT_TEST( testProbability );
+		CPPUNIT_TEST( testGetExclusionSize );
 		CPPUNIT_TEST_SUITE_END();
   
 	public:
@@ -23,8 +24,9 @@ namespace ppmc {
 		void testExclusion();
 		void testFound();
 		void testTerm();
+		void testTermAndExclusion();
 		void testClear();
-		void testProbability();
+		void testGetExclusionSize();
 	};
 }
 

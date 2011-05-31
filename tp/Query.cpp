@@ -17,14 +17,19 @@ void Query::clear(){
 	exclusion.clear();
 }
 
+
+probabilityType Query::getExclusionSize(){
+	return (probabilityType) exclusion.size();
+}
+
 void Query::addExclusion(char c){
-	exclusion.insert(c);
+	if (! isExcluded(c)) {
+		exclusion.insert(c);
+	}
 }
 
 bool Query::isExcluded(char c){
-	set<char>::iterator it;
-	it=exclusion.find(c);
-	return it!=exclusion.end();
+	return ( exclusion.end() != exclusion.find(c));
 }
 
 Probability Query::getProbability(){
@@ -41,7 +46,6 @@ char Query::getTerm(){
 
 void Query::setTerm(char cc){
 	c = cc;
-	exclusion.clear();
 }
 
 bool Query::isFound(){
