@@ -10,7 +10,9 @@ namespace ppmc {
 		CPPUNIT_TEST_SUITE( M_1FrequencyTableTest );
 		CPPUNIT_TEST( testConstructor );
 		CPPUNIT_TEST( testCompress_zero );
-		CPPUNIT_TEST( testCompress_eof );
+		CPPUNIT_TEST( testCompressEof );
+		CPPUNIT_TEST( testCompressEof_a_excluded );
+		CPPUNIT_TEST( testCompressEof_all_excluded );
 		CPPUNIT_TEST( testCompress_1 );
 		CPPUNIT_TEST( testCompress_2 );
 		CPPUNIT_TEST( testCompress_c );
@@ -22,7 +24,9 @@ namespace ppmc {
 		void tearDown();
 		void testConstructor();
 		void testCompress_zero();
-		void testCompress_eof();
+		void testCompressEof();
+		void testCompressEof_a_excluded();
+		void testCompressEof_all_excluded();
 		void testCompress_1();
 		void testCompress_2();
 		void testCompress_c();

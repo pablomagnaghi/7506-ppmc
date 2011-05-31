@@ -50,5 +50,13 @@ void ContextSelectorTest::testAdd(){
 	CPPUNIT_ASSERT_EQUAL(string("d"),cs.get(1));
 	CPPUNIT_ASSERT_EQUAL(string("cd"),cs.get(2));
 	CPPUNIT_ASSERT_EQUAL(string("bcd"),cs.get(3));
+}
+
+void ContextSelectorTest::testGet() {
+	ContextSelector cs(3);
+	CPPUNIT_ASSERT_EQUAL(string(""),cs.get(0));
+	CPPUNIT_ASSERT_EQUAL(string(""),cs.get(1));
+	CPPUNIT_ASSERT_EQUAL(string(""),cs.get(2));
+	CPPUNIT_ASSERT_EQUAL(string(""),cs.get(3));
 
 }

@@ -13,10 +13,17 @@ namespace ppmc {
 			~FrequencyTable(){};
 			virtual void compress(Query &q);
 			virtual void compressEof(Query &q);
+		protected:
+			probabilityType calculateWidth(char c);
+			probabilityType calculateSkip(Query& q);
+			probabilityType calculateEscWidth(Query& q);
+			probabilityType calculateSkipEof(Query& q);
+			probabilityType calculateTotal(Query& q);
 		private:
 			std::map<char,size_t> freq;
+			void insert(char c);
+			void updateExclusion(Query& q);
 		friend class FrequencyTableTest;
-
 	};
 }
 

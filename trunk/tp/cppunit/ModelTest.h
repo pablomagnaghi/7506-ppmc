@@ -10,6 +10,7 @@ namespace ppmc {
 		CPPUNIT_TEST_SUITE( ModelTest );
 		CPPUNIT_TEST( testConstructor );
 		CPPUNIT_TEST( testFind );
+		CPPUNIT_TEST( testEmptyFind );
 		CPPUNIT_TEST_SUITE_END();
 
 	public:
@@ -17,6 +18,7 @@ namespace ppmc {
 		void tearDown();
 		void testConstructor();
 		void testFind();
+		void testEmptyFind();
 	};
 }
 

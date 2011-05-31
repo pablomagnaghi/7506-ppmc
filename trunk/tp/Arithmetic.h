@@ -32,7 +32,7 @@ namespace ppmc {
 			void clean_buffer();
 			void print_in_bin(baseType x);
 			void setNewLimits();
-		friend class CompressorTest;
+		friend class ArithmeticTest;
 	};
 }
 #endif //_ppmc_arithmetic_h_

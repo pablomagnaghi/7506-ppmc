@@ -9,8 +9,10 @@ Model::Model(){
 }
 
 Model::~Model(){
-	// ver si el destructor de std::map llama a los destructores de lo que tiene, 
-	// si no hay que limpiar aca
+	std::map<std::string, FrequencyTable*>::iterator iter;
+	for( iter = frequencyTables.begin(); iter != frequencyTables.end(); ++iter ) {
+		delete iter->second;
+	}
 }
 
 FrequencyTable* Model::find(const std::string& contextName){
@@ -20,7 +22,6 @@ FrequencyTable* Model::find(const std::string& contextName){
 		FrequencyTable* ft = new FrequencyTable();
 		frequencyTables.insert(make_pair(contextName, ft));
 		return ft;
-		// dont forget to delete this somewhere
 	}
 	return it->second;
 }

@@ -36,3 +36,9 @@ void ModelTest::testFind() {
 	delete(ft3);
 }
 
+void ModelTest::testEmptyFind() {
+// 	Model m;
+// 	ContextSelector cs(2);
+// 	FrequencyTable* ft1 = m.find(cs.get(1));
+// 	delete(ft1);
+}
