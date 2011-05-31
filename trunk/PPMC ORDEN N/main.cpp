@@ -6,26 +6,24 @@
 
 using namespace ppmc;
 using namespace util;
+using namespace std;
 
 int main(int argc, char* argv[]) {
-	FileReader r("in.txt");
-	FileWriter w("out.z");
-	//ruta donde se guarda el archivo comprimido
+	FileReader r("ABDABABABD.txt");
+	FileWriter w("ABDABABABD.z");
+
 	Compressor compresor(&r,&w);
 
-	//cadena a comprimir
-	std::string cadena = "ABDABABABD";
+	cout<<"Comprimiendo..."<<std::endl;
 
-	std::cout<<"Comprimiendo..."<<std::endl;
-
-	for (std::size_t i = 0; i < cadena.size(); i++) {
-		compresor.compress(cadena[i]);
+	char c = r.read();
+	while (!r.eof() ) {
+		compresor.compress(c);
+		c = r.read();
 	}
-
+	
 	compresor.compressEof();
-
 	compresor.clean_buffer();
-
 	return 0;
 
 }

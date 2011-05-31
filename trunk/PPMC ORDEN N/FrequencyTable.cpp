@@ -11,9 +11,7 @@ FrequencyTable::FrequencyTable() {
 	this->bottom = 0;
 }
 
-FrequencyTable::~FrequencyTable() {
-
-}
+FrequencyTable::~FrequencyTable() {}
 
 std::map<char, std::size_t>::iterator FrequencyTable::tableBegin() {
   return table.begin();
@@ -47,9 +45,7 @@ bool FrequencyTable::find(char c) {
 	if (it == table.end()) {
 		return false;
 	}
-
 	frequency = it->second;
-
 	return true;
 }
 
@@ -59,7 +55,6 @@ void FrequencyTable::addCharacter(char c) {
 	std::map<char, std::size_t>::iterator it;
 	// Busco el caracter en la tabla
 	it = table.find(c);
-
 
 	if (it != table.end()) {
 		it->second++;
@@ -119,7 +114,8 @@ void FrequencyTable::show() {
 	std::cout << "TABLA" << std::endl;
 
 	while (it != table.end()) {
-		std::cout << "caracter "<< it->first << " |  frecuencia " << it->second << std::endl;
+		std::cout << "caracter "<< it->first << " |  frecuencia " << it->second;
+		std::cout << std::endl;
 		it++;
 	}
 
@@ -137,17 +133,17 @@ void FrequencyTable::update(FrequencyTable *tableAux) {
 	}
 }
 
-void FrequencyTable::setUpLimits(u_int32_t bottom, u_int32_t top, char character){
+void FrequencyTable::setUpLimits(u_int32_t bottom, u_int32_t top
+		, char character){
 	std::map<char, std::size_t>::iterator it = table.begin();
-	int localBottom = 0;
-	int localTop = 0;
+	u_int32_t localBottom = 0;
+	u_int32_t localTop = 0;
 	bool found = false;
 	while (it != table.end() && !found) {
 		if (it->first!=character){
 			localBottom+= it->second;
 			it++;
-		}
-		else {
+		} else {
 			found = true;
 		}
 	}
@@ -157,12 +153,22 @@ void FrequencyTable::setUpLimits(u_int32_t bottom, u_int32_t top, char character
 	else {
 		localTop = localBottom + this->esc;
 	}
+
+// Probablemente haya que usar algo como esto
+// 	u_int32_t delta   = top - bottom;
+// 	u_int32_t pBottom = localBottom/this->total;
+// 	u_int32_t pTop    = localTop/this->total;
+// 	this->bottom      = delta *pBottom;
+// 	this->bottom     += bottom;
+// 	this->top         = delta * pTop;
+// 	this->top        += bottom-1;
+
 	double pBottom = (double)localBottom/(double)this->total;
 	double pTop = (double)localTop/(double)this->total;
 	this->bottom = (top-bottom)*pBottom + bottom;
 	this->top = (top-bottom)*pTop + bottom-1;
+	
 }
-
 
 u_int32_t FrequencyTable::getNewBottom(){
 	return this->bottom;

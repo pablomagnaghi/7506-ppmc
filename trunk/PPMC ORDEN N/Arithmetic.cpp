@@ -70,7 +70,8 @@ void Arithmetic::solve_underflow(){
 	int bit_bottom = (this->bottom>>(MAX_BIT-1)) & 1;
 	int bit_top = (this->top>>(MAX_BIT-1)) & 1;
 	if (first_bit_bottom != first_bit_top){
-		while ((first_bit_bottom != bit_bottom)&&(first_bit_top != bit_top)&&(bit_bottom != bit_top)){
+		while ((first_bit_bottom != bit_bottom)&&(first_bit_top != bit_top)
+				&&(bit_bottom != bit_top)){
 			local_counter++;
 			bit_bottom = (this->bottom>>i) & 1;
 			bit_top = (this->top>>i) & 1;
@@ -78,9 +79,11 @@ void Arithmetic::solve_underflow(){
 		}
 	}
 	if (local_counter>0){
-		u_int32_t new_bottom = ((BYTE_128 & this->bottom)|((this->bottom<<local_counter) & BYTE_127));
+		u_int32_t new_bottom = ((BYTE_128 & this->bottom)
+			|((this->bottom<<local_counter) & BYTE_127));
 		this->bottom = new_bottom;
-		u_int32_t new_techo = ((BYTE_128 & this->top)|((this->top<<local_counter) & BYTE_127));
+		u_int32_t new_techo = ((BYTE_128 & this->top)
+			|((this->top<<local_counter) & BYTE_127));
 		this->top = new_techo;
 		u_int32_t shift = pow (2,local_counter)-1;
 		this->top = (this->top | shift);
