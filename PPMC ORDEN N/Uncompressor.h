@@ -9,6 +9,7 @@
 #define UNCOMPRESSOR_H_
 
 #include "FileReader.h"
+#include "FileWriter.h"
 #include "algorithm"
 #include <queue>
 
@@ -17,6 +18,7 @@ using namespace util;
 class Uncompressor {
 private:
 	FileReader inputfile;
+	FileWriter outputFile;
 	u_int32_t bottom;
 	u_int32_t top;
 	u_int32_t number;
@@ -26,7 +28,8 @@ private:
 	std::queue<char> cola;
 public:
 	Uncompressor();
-	Uncompressor(char * file);
+	Uncompressor(char * fileInput, char * fileOutput);
+	void uncompress();
 	void solve_overflow();
 	void solve_underflow();
 	virtual bool process (char a) = 0;

@@ -9,12 +9,25 @@
 #include "Constants.h"
 #include <math.h>
 
-Uncompressor::Uncompressor(char * entrada):inputfile(entrada),cola(){
+Uncompressor::Uncompressor(char * fileInput, char * fileOutput):inputfile(fileInput),outputFile(fileOutput),cola(){
 	this->bottom = BOTTOM;
 	this->top = TOP;
 	this->number = 0;
 	this->bits_in_number = 0;
 	this->bits_in_buffer = 0;
+}
+
+void Uncompressor::uncompress(){
+	bool end = false;
+	while ( !end){
+		char value = this->extract();
+		if (value == EOF){
+			end = true;
+		}
+		else {
+			this->outputFile.write(value);
+		}
+	}
 }
 
 void Uncompressor::solve_overflow(){
