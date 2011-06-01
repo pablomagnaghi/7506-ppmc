@@ -1,8 +1,8 @@
 #include <iostream>
 #include "PPMC.h"
 #include "Compressor.h"
-#include "../tp/FileWriter.h"
-#include "../tp/FileReader.h"
+#include "FileWriter.h"
+#include "FileReader.h"
 
 using namespace ppmc;
 using namespace util;
