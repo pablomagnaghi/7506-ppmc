@@ -9,7 +9,7 @@ using namespace util;
 using namespace std;
 
 int main(int argc, char* argv[]) {
-	FileReader r("ABDABABABD.txt");
+	FileReader r("/home/luispaniagua/Desktop/ABDABABABD.txt");
 	FileWriter w("ABDABABABD.z");
 
 	Compressor compresor(&r,&w);
