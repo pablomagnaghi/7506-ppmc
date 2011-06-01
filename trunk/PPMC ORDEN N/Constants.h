@@ -14,5 +14,6 @@
 #define BYTE_128 0x80000000
 #define BYTE_127 0x7FFFFFFF
 #define MAX_BIT	31
+#define END_OF_FILE 257
 
 #endif /* CONSTANTS_H_ */
