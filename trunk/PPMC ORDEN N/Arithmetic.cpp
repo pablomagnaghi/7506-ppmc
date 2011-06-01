@@ -19,7 +19,7 @@ Arithmetic::Arithmetic(util::FileReader* r, util::FileWriter* w){
 }
 
 
-void print_in_bin(u_int32_t x){
+void Arithmetic::print_in_bin(u_int32_t x){
 	int i;
 	for (i=MAX_BIT; i>=0; i--){
 		if (((x>>i) & 1)==1)
@@ -42,8 +42,40 @@ void Arithmetic::setNewLimits(u_int32_t bottom, u_int32_t top){
 
 	this->bottom = bottom;
 	this->top = top;
+
+	std::cout <<"antes de overflow"<<std::endl;
+	std::cout << "top " << this->top << std::endl;
+	printf("hexa: %x\n", this->top);
+	std::cout << "Bin: ";
+	print_in_bin(this->top);
+	std::cout << "bottom " << this->bottom<< std::endl;
+	printf("hexa: %x\n", this->bottom);
+	std::cout << "Bin: ";
+	print_in_bin(this->bottom);
+
 	this->solve_overflow();
+
+	std::cout <<"antes de underflow"<<std::endl;
+	std::cout << "top " << this->top << std::endl;
+	printf("hexa: %x\n", this->top);
+	std::cout << "Bin: ";
+	print_in_bin(this->top);
+	std::cout << "bottom " << this->bottom<< std::endl;
+	printf("hexa: %x\n", this->bottom);
+	std::cout << "Bin: ";
+	print_in_bin(this->bottom);
+
 	this->solve_underflow();
+	std::cout <<"despues de underflow"<<std::endl;
+	std::cout << "top " << this->top << std::endl;
+	printf("hexa: %x\n", this->top);
+	std::cout << "Bin: ";
+	print_in_bin(this->top);
+	std::cout << "bottom " << this->bottom<< std::endl;
+	printf("hexa: %x\n", this->bottom);
+	std::cout << "Bin: ";
+	print_in_bin(this->bottom);
+
 }
 
 void Arithmetic::addBitToBuffer(u_int8_t bit){
@@ -80,10 +112,10 @@ void Arithmetic::solve_underflow(){
 	}
 	if (local_counter>0){
 		u_int32_t new_bottom = ((BYTE_128 & this->bottom)
-			|((this->bottom<<local_counter) & BYTE_127));
+				|((this->bottom<<local_counter) & BYTE_127));
 		this->bottom = new_bottom;
 		u_int32_t new_techo = ((BYTE_128 & this->top)
-			|((this->top<<local_counter) & BYTE_127));
+				|((this->top<<local_counter) & BYTE_127));
 		this->top = new_techo;
 		u_int32_t shift = pow (2,local_counter)-1;
 		this->top = (this->top | shift);

@@ -18,7 +18,10 @@ namespace ppmc {
 			u_int32_t getNewBottom();
 			u_int32_t getNewTop();
 			u_int32_t getTotal();
-			void setUpLimits(u_int32_t, u_int32_t, char);
+			void setUpLimitsWithEscape(u_int32_t, u_int32_t);
+			void setUpLimitsWithCharacter(u_int32_t, u_int32_t, u_int8_t);
+			void setUpLimitsOnLastModel(u_int32_t, u_int32_t, u_int8_t, const std::string&);
+			void setUpLimitsWithEOF(u_int32_t, u_int32_t, const std::string&);
 			bool find(char);
 			void addCharacter(char);
 			void getStringExc(std::string&);
@@ -35,6 +38,9 @@ namespace ppmc {
 			u_int32_t top;
 			u_int32_t total;
 			bool firstPass;
+			u_int32_t getPreviousFrequences(u_int8_t);
+			u_int32_t getPreviousFrequencesForEscape();
+			void calculateValues(u_int32_t, u_int32_t, u_int32_t);
 	};
 }
 

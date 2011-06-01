@@ -6,8 +6,8 @@
 #include "Model.h"
 #include "ContextSelector.h"
 #include "algorithm"
-#include "../tp/FileWriter.h"
-#include "../tp/FileReader.h"
+#include "FileWriter.h"
+#include "FileReader.h"
 
 namespace ppmc {
 	class Arithmetic {
@@ -16,6 +16,7 @@ namespace ppmc {
 			u_int32_t getTop();
 			u_int32_t getBottom();
 			void setNewLimits(u_int32_t, u_int32_t);
+			void print_in_bin(u_int32_t);
 			void clean_buffer();
 			// metodo solo para ver progreso debe eliminarse
 			void show();

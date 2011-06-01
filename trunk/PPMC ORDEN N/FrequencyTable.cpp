@@ -6,6 +6,7 @@ using namespace std;
 FrequencyTable::FrequencyTable() {
 	esc = 1;
 	firstPass = true;
+	frequency = 1;
 	this->total = 1;
 	this->top = 0;
 	this->bottom = 0;
@@ -133,42 +134,84 @@ void FrequencyTable::update(FrequencyTable *tableAux) {
 	}
 }
 
-void FrequencyTable::setUpLimits(u_int32_t bottom, u_int32_t top
-		, char character){
+void FrequencyTable::setUpLimitsOnLastModel(u_int32_t bottom, u_int32_t top, u_int8_t c, const std::string& exclusionString){
+	u_int32_t value = 0;
+	std::cout << "char: " << (int)c << std::endl;
+	for (std::size_t i = 0; i <exclusionString.size(); i++) {
+		if (exclusionString[i] < c){
+			value++;
+		}
+	}
+	u_int32_t total = 257 - exclusionString.size();
+	u_int32_t localBottom = c - value;
+	u_int32_t localTop = localBottom + 1;
+	u_int32_t delta   = top - bottom;
+
+	double pBottom = (double)localBottom / (double)total;
+	double pTop = (double)localTop / (double)total;
+	this->bottom = delta * pBottom;
+	this->bottom += bottom;
+	this->top = delta * pTop;
+	this->top += bottom-1;
+}
+
+void FrequencyTable::setUpLimitsWithEOF(u_int32_t bottom, u_int32_t top, const std::string& exclusionString){
+	u_int32_t total = 257 - exclusionString.size();
+	u_int32_t localTop = total;
+	u_int32_t localBottom = total - 1;
+	u_int32_t delta   = top - bottom;
+
+	double pBottom = (double)localBottom / (double)total;
+	double pTop = (double)localTop / (double)total;
+	this->bottom = delta * pBottom;
+	this->bottom += bottom;
+	this->top = delta * pTop;
+	this->top += bottom-1;
+}
+
+
+void FrequencyTable::setUpLimitsWithCharacter(u_int32_t bottom, u_int32_t top
+		, u_int8_t character){
+	u_int32_t value = this->getPreviousFrequences(character);
+	std::cout << "char: " << (int)character << std::endl;
+	calculateValues(bottom, top, value);
+}
+
+void FrequencyTable::setUpLimitsWithEscape(u_int32_t bottom, u_int32_t top){
+	u_int32_t value = this->getPreviousFrequencesForEscape();
+	calculateValues(bottom, top, value);
+}
+
+void FrequencyTable::calculateValues(u_int32_t bottom, u_int32_t top, u_int32_t lowerFrequency){
+	u_int32_t delta   = top - bottom;
+
+	double pBottom = (double)lowerFrequency / (double)this->total;
+	double pTop = (double)(lowerFrequency + frequency) / (double)this->total;
+	this->bottom = delta * pBottom;
+	this->bottom += bottom;
+	this->top = delta * pTop;
+	this->top += bottom;
+}
+
+u_int32_t FrequencyTable::getPreviousFrequences(u_int8_t c){
 	std::map<char, std::size_t>::iterator it = table.begin();
-	u_int32_t localBottom = 0;
-	u_int32_t localTop = 0;
+	u_int32_t value = 0;
 	bool found = false;
 	while (it != table.end() && !found) {
-		if (it->first!=character){
-			localBottom+= it->second;
+		if (it->first!=c){
+			value+= it->second;
 			it++;
 		} else {
 			found = true;
 		}
 	}
-	if (found){
-		localTop = localBottom + it->second;
-	}
-	else {
-		localTop = localBottom + this->esc;
-	}
-
-// Probablemente haya que usar algo como esto
-// 	u_int32_t delta   = top - bottom;
-// 	u_int32_t pBottom = localBottom/this->total;
-// 	u_int32_t pTop    = localTop/this->total;
-// 	this->bottom      = delta *pBottom;
-// 	this->bottom     += bottom;
-// 	this->top         = delta * pTop;
-// 	this->top        += bottom-1;
-
-	double pBottom = (double)localBottom/(double)this->total;
-	double pTop = (double)localTop/(double)this->total;
-	this->bottom = (top-bottom)*pBottom + bottom;
-	this->top = (top-bottom)*pTop + bottom-1;
-	
+	return value;
 }
+
+u_int32_t FrequencyTable::getPreviousFrequencesForEscape(){
+	return this->total-this->esc;
+}
+
 
 u_int32_t FrequencyTable::getNewBottom(){
 	return this->bottom;
