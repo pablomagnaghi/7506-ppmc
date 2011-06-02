@@ -14,6 +14,7 @@ namespace ppmc {
 			Model();
 			~Model();
 			FrequencyTable* find(const std::string& contextName);
+			std::string show();
 		private:
 			std::map<std::string, FrequencyTable*> frequencyTables;
 		

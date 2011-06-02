@@ -13,6 +13,7 @@ namespace ppmc {
 			~FrequencyTable(){};
 			virtual void compress(Query &q);
 			virtual void compressEof(Query &q);
+			std::string show();
 		protected:
 			probabilityType calculateWidth(char c);
 			probabilityType calculateSkip(Query& q);

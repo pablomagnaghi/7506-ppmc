@@ -51,7 +51,6 @@ int main(int argc, char* argv[]) {
 		cerr << "Cantidad de argumentos incorrecta" << endl;
 		cerr << "Modo de uso: " << argv[0] << "  [c|d] entrada salida" << endl;
 	} catch (exception& e) {
-		cout << "checkpoint 5.1" << endl;
 		cerr << "Error interno: " << e.what() << endl;
 	}
 

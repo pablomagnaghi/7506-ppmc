@@ -24,11 +24,26 @@ probabilityType Query::getExclusionSize(){
 
 void Query::addExclusion(char c){
 	if (! isExcluded(c)) {
+		cout << "+++ excluding " << c << " from ";
+		std::set<char>::iterator it;
+		for (it=exclusion.begin(); it!= exclusion.end(); ++it) {
+			cout << *it <<", " ;
+		}
+		cout << endl;
 		exclusion.insert(c);
 	}
 }
 
 bool Query::isExcluded(char c){
+// 	if (exclusion.end() != exclusion.find(c)) {
+// 		std::set<char>::iterator it;
+// 		cout << "+++ " << c << " excluded from ";
+// 		for (it=exclusion.begin(); it!= exclusion.end(); ++it) {
+// 			cout << *it <<", " ;
+// 		}
+// 		cout <<endl;
+// 	}
+	
 	return ( exclusion.end() != exclusion.find(c));
 }
 

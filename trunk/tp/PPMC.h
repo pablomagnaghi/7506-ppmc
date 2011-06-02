@@ -4,6 +4,10 @@
 #include <iostream>
 #include <cstdlib>
 
+
+#include <sstream> // for debugging
+
+
 namespace ppmc {
 	const size_t max_models = 15;
 	typedef u_int32_t baseType;
