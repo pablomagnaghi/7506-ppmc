@@ -16,15 +16,6 @@ void Compressor::compress(u_int8_t c){
 	std::size_t pos = context.size();
 	std::string exclusionCharacters;
 
-	std::cout << "top " << this->getTop() << std::endl;
-	printf("hexa: %x\n", this->getTop());
-	std::cout << "Bin: ";
-	print_in_bin(this->getTop());
-	std::cout << "bottom " << this->getBottom() << std::endl;
-	printf("hexa: %x\n", this->getBottom());
-	std::cout << "Bin: ";
-	print_in_bin(this->getBottom());
-
 	std::cout << "LEO " << c << " CONTEXTO " << context << " EMITO:" << std::endl;
 
 	while (!found) {
@@ -46,14 +37,6 @@ void Compressor::compress(u_int8_t c){
 		}
 		this->setNewLimits(frequencyTable.getNewBottom(), frequencyTable.getNewTop());
 
-		std::cout << "top " << this->getTop() << std::endl;
-		printf("hexa: %x\n", this->getTop());
-		std::cout << "Bin: ";
-		print_in_bin(this->getTop());
-		std::cout << "bottom " << this->getBottom() << std::endl;
-		printf("hexa: %x\n", this->getBottom());
-		std::cout << "Bin: ";
-		print_in_bin(this->getBottom());
 		models[pos]->update(context, c);
 
 		if (pos == 0) {

@@ -157,7 +157,6 @@ void Arithmetic::clean_buffer(){
 		for (k = 63; this->bits_in_buffer!=0; k--)
 			addBitToBuffer(bit_to_put);
 	}
-	//todo cerrar el fileWriter
 }
 
 void Arithmetic::show(){
@@ -173,4 +172,5 @@ Arithmetic::~Arithmetic(){
 	for (size_t i=0; i<(ORDEN + 1);i++) {
 		delete models[i];
 	}
+	delete this->writer;
 }

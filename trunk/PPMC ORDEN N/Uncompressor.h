@@ -11,16 +11,14 @@
 #include "FileReader.h"
 #include "FileWriter.h"
 #include "algorithm"
+#include "Arithmetic.h"
 #include <queue>
 
 using namespace util;
+using namespace ppmc;
 
-class Uncompressor {
+class Uncompressor: public Arithmetic {
 private:
-	FileReader inputfile;
-	FileWriter outputFile;
-	u_int32_t bottom;
-	u_int32_t top;
 	u_int32_t number;
 	int bits_in_number;
 	char buffer;
@@ -28,11 +26,10 @@ private:
 	std::queue<char> cola;
 public:
 	Uncompressor();
-	Uncompressor(char * fileInput, char * fileOutput);
+	Uncompressor(util::FileReader* r, util::FileWriter* w);
 	void uncompress();
 	void solve_overflow();
 	void solve_underflow();
-	virtual bool process (char a) = 0;
 
 	char extract();
 
@@ -40,39 +37,20 @@ public:
 		cola.push(c);
 	}
 
-	u_int64_t get_bottom(){
-		return this->bottom;
-	}
-
-	u_int64_t get_top(){
-		return this->top;
-	}
-
-	void set_bottom(u_int64_t bottom){
-		this->bottom = bottom;
-	}
-
-	void set_top(u_int64_t top){
-		this->top = top;
-	}
-
-	void set_buffer(char a){
-		this->buffer = a;
-		this->bits_in_buffer = 8;
-	}
-
 	u_int32_t get_number(){
 		return this->number;
-	}
-
-	int get_bits_in_number(){
-		return this->bits_in_number;
 	}
 
 	int get_bits_in_buffer(){
 		return this->bits_in_buffer;
 	}
 
+	int get_bits_in_number(){
+		return this->bits_in_number;
+	}
+	bool process (u_int8_t a);
+	bool calculateChar(int *,std::string);
+	bool calculateCharInLastModel(int *, std::string);
 	void drop_buffer_in_number();
 	void remove_bits (int cant);
 	virtual ~Uncompressor();

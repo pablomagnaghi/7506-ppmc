@@ -15,5 +15,7 @@
 #define BYTE_127 0x7FFFFFFF
 #define MAX_BIT	31
 #define END_OF_FILE 257
+#define NUMBER_OF_CHARACTERS 257
+#define ESC	258
 
 #endif /* CONSTANTS_H_ */
