@@ -14,6 +14,15 @@ Model::~Model(){
 		delete iter->second;
 	}
 }
+std::string Model::show() {
+	stringstream result;
+	std::map<std::string, FrequencyTable*>::iterator it;
+	for (it=frequencyTables.begin(); it != frequencyTables.end(); ++it) {
+		result << "contexto " << it->first << endl << "TABLA" << endl;
+		result << it->second->show();
+	}
+	return result.str();
+}
 
 FrequencyTable* Model::find(const std::string& contextName){
 	std::map<std::string, FrequencyTable*>::iterator it;

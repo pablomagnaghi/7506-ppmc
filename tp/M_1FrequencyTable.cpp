@@ -14,7 +14,8 @@ void M_1FrequencyTable::compressEof(Query &q){
 	p.width = 1;
 	q.setFound(true);
 	q.setProbability(p);
-	cout << "EOF = " << p.width << "/" << p.total << " en modelo -1" << endl;
+	cout << "EOF = " << p.width << "/" << p.total << endl;
+	//cout << "EOF = " << p.width << "/" << p.total << " en modelo -1" << endl;
 }
 
 void M_1FrequencyTable::compress(Query & q){
@@ -32,6 +33,6 @@ void M_1FrequencyTable::compress(Query & q){
 	p.width = 1;
 	q.setFound(true);
 	q.setProbability(p);
-
-	cout << q.getTerm() << " = " << p.width << "/" << p.total << " en modelo -1" << endl;
+	cout << q.getTerm() << " = " << p.width << "/" << p.total << endl;
+	//cout << q.getTerm() << " = " << p.width << "/" << p.total << " en modelo -1" << endl;
 }

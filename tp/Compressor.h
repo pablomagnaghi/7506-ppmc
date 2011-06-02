@@ -16,8 +16,7 @@ namespace ppmc {
 			void calculate(Probability& p);
 		private:
 			Query q;
-
-			void compressFirstChars(ContextSelector& cs);
+			static size_t increasingOrder;
 			void compressWithM_1(ContextSelector& cs, char c);
 			void compressWithModels(ContextSelector& cs);
 			void compressEof(ContextSelector& cs);

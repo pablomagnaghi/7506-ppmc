@@ -48,6 +48,7 @@ void FrequencyTable::compress(Query & q){
 			p.total += escWidth;
 		}
 	}
+	
 	q.setProbability(p);
 
 	updateExclusion(q);
@@ -60,13 +61,12 @@ probabilityType FrequencyTable::calculateSkip(Query& q) {
 	map<char,size_t>::iterator iter;
 	probabilityType skip=0;
 	for( iter = freq.begin(); iter != freq.end(); ++iter ) {
-		if (!q.isExcluded(iter->first) ) {
-			if ( iter->first != q.getTerm() ) {
-				skip+=iter->second;
-			} else {
-				break;
-			}
+		if ( iter->first == q.getTerm() ) {
+			break;
 		}
+		if (!q.isExcluded(iter->first) ) {
+			skip+=iter->second;
+		} 
 	}
 	return skip;
 }
@@ -107,16 +107,14 @@ probabilityType FrequencyTable::calculateTotal(Query& q){
 }
 
 void FrequencyTable::updateExclusion(Query& q) {
+	cout << "just this..." << endl;
 	std::map<char,size_t>::iterator it;
 	for(it = freq.begin(); it != freq.end(); it++) {
-		if (it->first == q.getTerm() ) {
-			if( ! q.isFound() ) {
-				q.addExclusion(it->first);
-			}
-		} else {
+		if (it->first != q.getTerm() ) {
 			q.addExclusion(it->first);
 		}
 	}
+	cout << "just that..." << endl;
 }
 
 void FrequencyTable::insert(char c) {
@@ -139,3 +137,18 @@ probabilityType FrequencyTable::calculateWidth(char c){
 	return width;
 }
 
+
+std::string FrequencyTable::show() {
+	stringstream result;
+	
+	std::map<char,size_t>::iterator it;
+	for(it = freq.begin(); it != freq.end(); it++) {
+		result << "caracter ";
+		result << it->first;
+		result << " |  frecuencia ";
+		result << it->second;
+		result << endl;
+	}
+	result << "caracter esc  | " << " frecuencia " << freq.size() << endl;
+	return result.str();
+}
