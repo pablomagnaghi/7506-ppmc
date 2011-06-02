@@ -22,6 +22,8 @@ namespace ppmc {
 			void setUpLimitsWithCharacter(u_int32_t, u_int32_t, u_int8_t);
 			void setUpLimitsOnLastModel(u_int32_t, u_int32_t, u_int8_t, const std::string&);
 			void setUpLimitsWithEOF(u_int32_t, u_int32_t, const std::string&);
+			int findChar(u_int32_t number, u_int8_t size, u_int32_t bottom, u_int32_t top, const std::string&);
+			int findCharInLastModel(u_int32_t number, u_int8_t size, u_int32_t bottom, u_int32_t top, const std::string&);
 			bool find(char);
 			void addCharacter(char);
 			void getStringExc(std::string&);

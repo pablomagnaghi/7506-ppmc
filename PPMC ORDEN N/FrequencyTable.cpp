@@ -1,4 +1,5 @@
 #include "FrequencyTable.h"
+#include "Constants.h"
 
 using namespace ppmc;
 using namespace std;
@@ -34,8 +35,84 @@ u_int32_t FrequencyTable::getTotal() {
 	return total;
 }
 
-// Si encuentra la frecuencia la guarda y devuelve true
-// en caso contrario devuelve true
+bool isInString(u_int8_t c, std::string exclusionString){
+	std::size_t j;
+	bool isInString = false;
+	for (j=0; j<exclusionString.size() && !isInString; j++){
+		if (exclusionString[j]==c){
+			isInString = true;
+		}
+	}
+	return isInString;
+}
+
+int FrequencyTable::findChar(u_int32_t number, u_int8_t size, u_int32_t bottom, u_int32_t top, const std::string& exclusionString){
+	int result = -1;
+	int i = 0;
+	u_int32_t total = 257 - exclusionString.size();
+	u_int32_t localBottom = bottom;
+	u_int32_t localTop = bottom;
+	u_int32_t delta   = top - bottom;
+	u_int32_t frequence = 0;
+
+	bool founded = false;
+	if (size==32){
+		while ((i<=NUMBER_OF_CHARACTERS)&&(!founded)){
+			if (!isInString(i, exclusionString)){
+				frequence += 1;
+			}
+			double pBottom = (double)localBottom / (double)total;
+			double pTop = (double)frequence / (double)total;
+			localBottom = delta * pBottom;
+			localBottom += bottom;
+
+			localTop = delta*pTop;
+			localTop += bottom-1;
+			if ((localBottom<=number)&&(localTop>=number)){
+				result = i;
+				founded = true;
+			}
+			localBottom = localTop;
+			i++;
+		}
+	}
+	return result;
+}
+
+int FrequencyTable::findCharInLastModel(u_int32_t number, u_int8_t size, u_int32_t bottom, u_int32_t top, const std::string& exclusionString){
+
+	int result = -1;
+	int i = 0;
+	u_int32_t total = 257 - exclusionString.size();
+	u_int32_t localBottom = bottom;
+	u_int32_t localTop = bottom;
+	u_int32_t delta   = top - bottom;
+	u_int32_t frequence = 0;
+
+	bool founded = false;
+	if (size==32){
+		while ((i<=NUMBER_OF_CHARACTERS)&&(!founded)){
+			if (!isInString(i, exclusionString)){
+				frequence += 1;
+			}
+			double pBottom = (double)localBottom / (double)total;
+			double pTop = (double)frequence / (double)total;
+			localBottom = delta * pBottom;
+			localBottom += bottom;
+
+			localTop = delta*pTop;
+			localTop += bottom-1;
+			if ((localBottom<=number)&&(localTop>=number)){
+				result = i;
+				founded = true;
+			}
+			localBottom = localTop;
+			i++;
+		}
+	}
+	return result;
+}
+
 bool FrequencyTable::find(char c) {
 	std::map<char, std::size_t>::iterator it;
 

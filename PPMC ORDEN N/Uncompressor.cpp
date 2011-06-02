@@ -9,12 +9,9 @@
 #include "Constants.h"
 #include <math.h>
 
-Uncompressor::Uncompressor(char * fileInput, char * fileOutput):inputfile(fileInput),outputFile(fileOutput),cola(){
-	this->bottom = BOTTOM;
-	this->top = TOP;
+Uncompressor::Uncompressor(util::FileReader* r, util::FileWriter* w):Arithmetic(r, w),cola(){
 	this->number = 0;
 	this->bits_in_number = 0;
-	this->bits_in_buffer = 0;
 }
 
 void Uncompressor::uncompress(){
@@ -25,7 +22,7 @@ void Uncompressor::uncompress(){
 			end = true;
 		}
 		else {
-			this->outputFile.write(value);
+			this->writer->write(value);
 		}
 	}
 }
@@ -81,7 +78,7 @@ char Uncompressor::extract(){
 	char c;
 	bool end = false;
 	while (cola.empty() && !end){
-		c = this->inputfile.read();
+		c = this->reader->read();
 		end = this->process(c);
 	}
 
@@ -120,6 +117,119 @@ void Uncompressor::remove_bits(int cant){
 	this->number<<=cant;
 	this->bits_in_number -= cant;
 }
+
+
+bool Uncompressor::calculateChar(int * value, std::string exclusion){
+	u_int32_t actual_bottom = getBottom();
+	u_int32_t actual_top = getTop();
+	int result = this->frequencyTable.findChar(number, this->get_bits_in_number(), actual_bottom, actual_top, exclusion);
+	if (result >= 0){
+		*value = result;
+		add_to_queue(*value);
+	}
+	else{
+		if (get_bits_in_buffer() >0){
+			drop_buffer_in_number();
+		}
+		else{
+			return true;
+		}
+	}
+	return false;
+}
+
+bool Uncompressor::calculateCharInLastModel(int * value, std::string exclusion){
+	u_int32_t actual_bottom = getBottom();
+	u_int32_t actual_top = getTop();
+	int result = this->frequencyTable.findCharInLastModel(number, this->get_bits_in_number(), actual_bottom, actual_top, exclusion);
+	if (result >= 0){
+		*value = result;
+		add_to_queue(*value);
+	}
+	else{
+		if (get_bits_in_buffer() >0){
+			drop_buffer_in_number();
+		}
+		else{
+			return true;
+		}
+	}
+	return false;
+}
+
+bool Uncompressor::process(u_int8_t a){
+	bool found = false;
+	std::string context = contextSelector.getContext();
+	std::size_t pos = context.size();
+	std::size_t firstPos = pos;
+	std::string exclusionCharacters;
+
+	while (!found) {
+		// cargo la tabla con el modelo actual
+		frequencyTable.update (models[pos]->find(context));
+
+		// Aplico mecanismo de exclusion
+		frequencyTable.exc(exclusionCharacters);
+
+		bool endHigherModel = false;
+		int result;
+		while (!endHigherModel){
+			endHigherModel = this->calculateChar(&result, exclusionCharacters);
+		}
+		if (result != ESC){
+			found = true;
+			frequencyTable.setUpLimitsWithCharacter(this->getBottom(), this->getTop(), result);
+			models[pos]->update(context, result);
+		}
+		else {
+			std::cout << frequencyTable.getTotal()<< std::endl;
+			frequencyTable.setUpLimitsWithEscape(this->getBottom(), this->getTop());
+		}
+		this->setNewLimits(frequencyTable.getNewBottom(), frequencyTable.getNewTop());
+
+		//		models[pos]->update(context, c);
+
+		if (pos == 0) {
+			if (!found) {
+				// Esta en el Modelo -1 porque no se encontro en el Modelo 0
+				// Obtengo los caracteres a excluir del modelo 0
+				frequencyTable.getStringExc(exclusionCharacters);
+				// Aplico mecanismo de exclusion restando a MAX el size del string de
+				// exclusion
+				found = true;
+				u_int32_t lastModelBottom = this->getBottom();
+				u_int32_t lastModelTop = this->getTop();
+				bool endLowestModel = false;
+				int c;
+				while (!endLowestModel){
+					endLowestModel = this->calculateCharInLastModel(&c, exclusionCharacters);
+				}
+				if (c == END_OF_FILE){
+					return true;
+				}
+				else {
+					frequencyTable.setUpLimitsOnLastModel(lastModelBottom, lastModelTop, c, exclusionCharacters);
+				}
+				this->setNewLimits(frequencyTable.getNewBottom(), frequencyTable.getNewTop());
+				std::size_t i;
+				//updateo todos los contextos que haya pasado
+				for (i=1; i<=firstPos; i++){
+					models[i]->update(context, c);
+				}
+			}
+		} else {
+			pos--;
+			context = context.substr(1);
+		}
+
+		// Agrego los posibles caracteres a excluir a la cadena de
+		// caracteres de exclusion
+		frequencyTable.getStringExc(exclusionCharacters);
+		frequencyTable.clear();
+	}
+	return false;
+}
+
 
 
 Uncompressor::~Uncompressor() {
