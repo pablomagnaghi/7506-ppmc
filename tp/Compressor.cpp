@@ -44,7 +44,7 @@ void Compressor::compressWithModels(ContextSelector& cs){
 	char c = reader->read();
 	while (!reader->eof()) {
 		q.clear();
-		cout << "LEO " << c << " CONTEXTO " << cs.get(order) << " EMITO: " << endl;
+		cerr << "LEO " << c << " CONTEXTO " << cs.get(order) << " EMITO: " << endl;
 		
 		for(int i=increasingOrder; i>=0; i--) {
 			FrequencyTable* ft = models[i]->find(cs.get(i));
@@ -55,12 +55,12 @@ void Compressor::compressWithModels(ContextSelector& cs){
 				calculate(p);
 				cs.add(c);
 				setNewLimits();
-				cout << c << " = " << p.width << "/" << p.total << endl;
-				//cout << c << " = " << p.width << "/" << p.total << " en modelo "<< i << endl;
+				cerr << c << " = " << p.width << "/" << p.total << endl;
+				//cerr << c << " = " << p.width << "/" << p.total << " en modelo "<< i << endl;
 				break;
 			} else {
-				cout << "ESC = " << p.width << "/" << p.total  << endl;
-				//cout << "ESC = " << p.width << "/" << p.total << " en modelo "<< i << endl;
+				cerr << "ESC = " << p.width << "/" << p.total  << endl;
+				//cerr << "ESC = " << p.width << "/" << p.total << " en modelo "<< i << endl;
 			}
 		}
 		if (!q.isFound()) {
@@ -69,8 +69,8 @@ void Compressor::compressWithModels(ContextSelector& cs){
 		c = reader->read();
 		
 		for (int i= increasingOrder; i>=0; --i) {
-			cout << "Modelo " << i  << ":" << endl;
-			cout << models[i]->show();
+			cerr << "Modelo " << i  << ":" << endl;
+			cerr << models[i]->show();
 		}
 		if (increasingOrder < order) {
 			++increasingOrder;
@@ -80,14 +80,14 @@ void Compressor::compressWithModels(ContextSelector& cs){
 }
 
 void Compressor::compressEof(ContextSelector& cs){
-	cout << "LEO EOF CONTEXTO " << cs.get(order) << " EMITO: " << endl;
+	cerr << "LEO EOF CONTEXTO " << cs.get(order) << " EMITO: " << endl;
 	for(int i=order; i>=0; i--) {
 		FrequencyTable* ft = models[i]->find(cs.get(i));
 		ft->compressEof(q);
 		Probability p = q.getProbability();
 		calculate(p);
-		//cout << "ESC = " << p.width << "/" << p.total << " en modelo "<< i << endl;
-		cout << "ESC  = " << p.width << "/" << p.total << endl;
+		//cerr << "ESC = " << p.width << "/" << p.total << " en modelo "<< i << endl;
+		cerr << "ESC  = " << p.width << "/" << p.total << endl;
 		setNewLimits();
 	}
 

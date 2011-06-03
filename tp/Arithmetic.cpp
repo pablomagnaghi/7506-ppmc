@@ -31,10 +31,10 @@ void Arithmetic::print_in_bin(baseType x){
 	int i;
 	for (i=MAX_BIT; i>=0; i--){
 		if (((x>>i) & 1)==1)
-			std::cout<<"1";
-		else std::cout<<"0";
+			std::cerr<<"1";
+		else std::cerr<<"0";
 	}
-	std::cout<<std::endl;
+	std::cerr<<std::endl;
 }
 
 void Arithmetic::addBitToBuffer(u_int8_t bit){
