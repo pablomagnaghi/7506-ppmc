@@ -29,7 +29,7 @@ void FrequencyTable::compress(Query & q){
 	escWidth = calculateEscWidth(q);
 	p.skip   = calculateSkip(q);
 	p.total  = calculateTotal(q);
-	p.width  = calculateWidth(q.getTerm());
+	p.width  = calculateAndUpdateWidth(q.getTerm());
 	q.setFound(p.width != 0);
 	
 	if( !q.isFound() ) {
@@ -107,14 +107,12 @@ probabilityType FrequencyTable::calculateTotal(Query& q){
 }
 
 void FrequencyTable::updateExclusion(Query& q) {
-	cerr << "just this..." << endl;
 	std::map<char,size_t>::iterator it;
 	for(it = freq.begin(); it != freq.end(); ++it) {
 		if (it->first != q.getTerm() ) {
 			q.addExclusion(it->first);
 		}
 	}
-	cerr << "just that..." << endl;
 }
 
 void FrequencyTable::insert(char c) {
@@ -127,7 +125,7 @@ void FrequencyTable::insert(char c) {
 /**
  * Calculates the width of the searched term
  */
-probabilityType FrequencyTable::calculateWidth(char c){
+probabilityType FrequencyTable::calculateAndUpdateWidth(char c){
 	map<char,size_t>::iterator iter = freq.find(c);
 	probabilityType width = 0;
 	if (iter != freq.end()) {

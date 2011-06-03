@@ -14,9 +14,10 @@ namespace ppmc {
 			~Compressor();
 			void compress(util::IFileReader* r, util::IFileWriter* w);
 			void calculate(Probability& p);
+			std::string show(size_t increasingOrder);
 		private:
 			Query q;
-			static size_t increasingOrder;
+			//static size_t increasingOrder;
 			void compressWithM_1(ContextSelector& cs, char c);
 			void compressWithModels(ContextSelector& cs);
 			void compressEof(ContextSelector& cs);

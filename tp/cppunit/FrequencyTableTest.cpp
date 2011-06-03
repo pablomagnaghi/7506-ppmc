@@ -319,8 +319,8 @@ void FrequencyTableTest::testExclusionAfterCompress(){
 void FrequencyTableTest::testInsert() {
 	FrequencyTable ft;
 	ft.insert('a');
-	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad insertion", (probabilityType) 1, ft.calculateWidth('a'));
-	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bogus insertion", (probabilityType) 0, ft.calculateWidth('b'));
+	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad insertion", (probabilityType) 1, ft.calculateAndUpdateWidth('a'));
+	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bogus insertion", (probabilityType) 0, ft.calculateAndUpdateWidth('b'));
 }
 
 void FrequencyTableTest::testCalculateSkip() {
