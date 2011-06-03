@@ -36,7 +36,7 @@ void FrequencyTableTest::testCompress_a(){
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Skip",  (probabilityType) 0,p.skip);
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Width", (probabilityType) 1,p.width);
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Total", (probabilityType) 1,p.total);
-	CPPUNIT_ASSERT_MESSAGE("Bad Exclusion", q.isExcluded('a'));
+	CPPUNIT_ASSERT_MESSAGE("Bogus Exclusion", ! q.isExcluded('a'));
 }
 
 /**
@@ -57,7 +57,7 @@ void FrequencyTableTest::testCompress_a_b(){
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Width", (probabilityType) 1,p.width);
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Total", (probabilityType) 2,p.total);
 	CPPUNIT_ASSERT_MESSAGE("Bad Exclusion", q.isExcluded('a'));
-	CPPUNIT_ASSERT_MESSAGE("Bad Exclusion", q.isExcluded('b'));
+	CPPUNIT_ASSERT_MESSAGE("Bogus Exclusion", ! q.isExcluded('b'));
 }
 
 /**
@@ -82,7 +82,7 @@ void FrequencyTableTest::testCompress_a_b_c(){
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Total", (probabilityType) 4,p.total);
 	CPPUNIT_ASSERT_MESSAGE("Bad Exclusion", q.isExcluded('a'));
 	CPPUNIT_ASSERT_MESSAGE("Bad Exclusion", q.isExcluded('b'));
-	CPPUNIT_ASSERT_MESSAGE("Bad Exclusion", q.isExcluded('c'));
+	CPPUNIT_ASSERT_MESSAGE("Bogus Exclusion", ! q.isExcluded('c'));
 }
 
 /**
@@ -102,7 +102,7 @@ void FrequencyTableTest::testCompress_a_a(){
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Skip",  (probabilityType) 0,p.skip);
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Width", (probabilityType) 1,p.width);
 	CPPUNIT_ASSERT_EQUAL_MESSAGE("Bad Total", (probabilityType) 2,p.total);	
-	CPPUNIT_ASSERT_MESSAGE("Bad Exclusion", ! q.isExcluded('a'));
+	CPPUNIT_ASSERT_MESSAGE("Bogus Exclusion", ! q.isExcluded('a'));
 }
 
 /**
@@ -185,7 +185,7 @@ void FrequencyTableTest::testCompress_b_a_b_c_WithExclusion() {
 	
 	CPPUNIT_ASSERT_MESSAGE("Bad Exclusion", q.isExcluded('a'));
 	CPPUNIT_ASSERT_MESSAGE("Bad Exclusion", q.isExcluded('b'));
-	CPPUNIT_ASSERT_MESSAGE("Bad Exclusion", q.isExcluded('c'));
+	CPPUNIT_ASSERT_MESSAGE("Bogus Exclusion", !q.isExcluded('c'));
 
 }
 
@@ -312,8 +312,7 @@ void FrequencyTableTest::testExclusionAfterCompress(){
 	Query q;
 	q.setTerm('a');
 	ft.compress(q);
-	CPPUNIT_ASSERT_MESSAGE("Bogus exclusion", ! q.isExcluded('b'));
-	CPPUNIT_ASSERT_MESSAGE("Bad exclusion", q.isExcluded('a'));
+	CPPUNIT_ASSERT_MESSAGE("Bogus exclusion", ! q.isExcluded('a'));
 }
 
 void FrequencyTableTest::testInsert() {
