@@ -15,7 +15,7 @@ namespace ppmc {
 			virtual void compressEof(Query &q);
 			std::string show();
 		protected:
-			probabilityType calculateWidth(char c);
+			probabilityType calculateAndUpdateWidth(char c);
 			probabilityType calculateSkip(Query& q);
 			probabilityType calculateEscWidth(Query& q);
 			probabilityType calculateSkipEof(Query& q);

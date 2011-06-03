@@ -7,7 +7,7 @@ using namespace std;
 using namespace ppmc;
 using namespace std;
 
-size_t Compressor::increasingOrder = 0;
+//size_t Compressor::increasingOrder = 0;
 
 Compressor::Compressor(size_t o):Arithmetic(o){
 
@@ -55,12 +55,10 @@ void Compressor::compressWithModels(ContextSelector& cs){
 				calculate(p);
 				cs.add(c);
 				setNewLimits();
-				cerr << c << " = " << p.width << "/" << p.total << endl;
-				//cerr << c << " = " << p.width << "/" << p.total << " en modelo "<< i << endl;
+				cerr << c << " = " << p.width << "/" << p.total  /* en modelo "<< */<< endl;
 				break;
 			} else {
-				cerr << "ESC = " << p.width << "/" << p.total  << endl;
-				//cerr << "ESC = " << p.width << "/" << p.total << " en modelo "<< i << endl;
+				cerr << "ESC = " << p.width << "/" << p.total  /* en modelo "<< */ << endl;
 			}
 		}
 		if (!q.isFound()) {
@@ -68,10 +66,8 @@ void Compressor::compressWithModels(ContextSelector& cs){
 		}
 		c = reader->read();
 		
-		for (int i= increasingOrder; i>=0; --i) {
-			cerr << "Modelo " << i  << ":" << endl;
-			cerr << models[i]->show();
-		}
+		cerr << show(increasingOrder);
+		
 		if (increasingOrder < order) {
 			++increasingOrder;
 		}
@@ -86,8 +82,7 @@ void Compressor::compressEof(ContextSelector& cs){
 		ft->compressEof(q);
 		Probability p = q.getProbability();
 		calculate(p);
-		//cerr << "ESC = " << p.width << "/" << p.total << " en modelo "<< i << endl;
-		cerr << "ESC  = " << p.width << "/" << p.total << endl;
+		cerr << "ESC  = " << p.width << "/" << p.total /* en modelo "<< */ << endl;
 		setNewLimits();
 	}
 
@@ -103,8 +98,16 @@ void Compressor::compress(util::IFileReader* r, util::IFileWriter* w){
 	reader = r;
 	writer = w;
 	ContextSelector cs(order);
-	//compressFirstChars(cs);
 	compressWithModels(cs);
 	compressEof(cs);
 	clean_buffer();
+}
+
+std::string Compressor::show(size_t increasingOrder) {
+	stringstream result;
+	for (int i= increasingOrder; i>=0; --i) {
+		result << "Modelo " << i  << ":" << endl;
+		result << models[i]->show();
+	}
+	return result.str();
 }
