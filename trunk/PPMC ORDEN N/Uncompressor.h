@@ -31,7 +31,7 @@ public:
 	void solve_overflow();
 	void solve_underflow();
 
-	char extract();
+	int extract();
 
 	void add_to_queue(char c){
 		cola.push(c);
@@ -48,9 +48,13 @@ public:
 	int get_bits_in_number(){
 		return this->bits_in_number;
 	}
+
+	/*
+	 * Devuelve True, si es el end of file
+	 */
 	bool process (u_int8_t a);
-	bool calculateChar(int *,std::string);
-	bool calculateCharInLastModel(int *, std::string);
+	int getChar(std::string);
+	int getCharInLastModel(std::string);
 	void drop_buffer_in_number();
 	void remove_bits (int cant);
 	virtual ~Uncompressor();
