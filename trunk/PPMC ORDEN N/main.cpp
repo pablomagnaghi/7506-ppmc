@@ -10,10 +10,10 @@ using namespace util;
 using namespace std;
 
 int main(int argc, char* argv[]) {
-	FileReader r("/home/luis/Escritorio/ABDABABABD.z");
-	FileWriter w("/home/luis/Escritorio/ABDABABABD.ttt");
+	FileReader r("/home/luis/Escritorio/ABDABABABD.luis");
+	FileWriter w("/home/luis/Escritorio/ABDABABABD.pablo");
 
-//	Compressor compresor(&r,&w);
+//Compressor compresor(&r,&w);
 	Uncompressor uncompressor(&r, &w);
 
 

@@ -211,46 +211,126 @@ void Uncompressor::uncompressorSetUpLimits(u_int32_t bottom, u_int32_t top){
 
 }
 
+bool Uncompressor::solveNonLastModel(std::string exclusionChar, std::string firstCtx, std::string currentContext){
+	bool found = false;
+	std::string context = currentContext;
+	std::string fistContext = firstCtx;
+	std::cout << "context " << context << std::endl;
+	std::size_t pos = context.size();
+	std::size_t firstPos = firstContext.size();
+	std::string exclusionCharacters = exclusionChar;
+	while (!found) {
+		// cargo la tabla con el modelo actual
+		frequencyTable.update (models[pos]->find(context));
+
+		// Aplico mecanismo de exclusion
+		frequencyTable.exc(exclusionCharacters);
+
+		int result;
+		result = this->getChar(exclusionCharacters);
+		if (result < 0){
+			//Si entra aqui es po que no llego a definir con los bits que estan y tiene q seguir metiendo bits
+			this->state = STATE_NON_LAST_MODEL;
+			this->currentContext = context;
+			this->exclusionChars = exclusionCharacters;
+			this->firstContext = firstCtx;
+			return false;
+		}
+		if (result != ESC){
+			found = true;
+			frequencyTable.setUpLimitsWithCharacter(this->getBottom(), this->getTop(), result);
+			int i;
+			for (i=firstPos; i>=pos; i--){
+				if (i<0){
+					break;
+				}
+				std::cout << "context " << firstCtx << std::endl;
+				models[i]->update(firstCtx, result);
+				if (firstCtx.size()>0){
+					firstCtx.erase(firstCtx.size()-1, 1);
+				}
+			}
+			contextSelector.add(result);
+		}
+		else {
+			std::cout << frequencyTable.getTotal()<< std::endl;
+			frequencyTable.setUpLimitsWithEscape(this->getBottom(), this->getTop());
+		}
+		this->uncompressorSetUpLimits(frequencyTable.getNewBottom(), frequencyTable.getNewTop());
+
+		//		models[pos]->update(context, c);
+
+		if (pos == 0) {
+			if (!found) {
+				// Esta en el Modelo -1 porque no se encontro en el Modelo 0
+				// Obtengo los caracteres a excluir del modelo 0
+				frequencyTable.getStringExc(exclusionCharacters);
+				// Aplico mecanismo de exclusion restando a MAX el size del string de
+				// exclusion
+				found = true;
+
+				return solveLastModel(exclusionCharacters, firstCtx);
+			}
+		} else {
+			pos--;
+			context = context.substr(1);
+		}
+
+		// Agrego los posibles caracteres a excluir a la cadena de
+		// caracteres de exclusion
+		frequencyTable.getStringExc(exclusionCharacters);
+		frequencyTable.clear();
+	}
+	show();
+
+}
+
+bool Uncompressor::solveLastModel(std::string exclusionChars, std::string firstContext){
+	u_int32_t lastModelBottom = this->getBottom();
+	u_int32_t lastModelTop = this->getTop();
+	int result = this->getCharInLastModel(exclusionChars);
+	if (result < 0){
+		//Si entra aqui es po que no llego a definir con los bits que estan y tiene q seguir metiendo bits
+		this->state = STATE_LAST_MODEL;
+		this->firstContext = firstContext;
+		this->exclusionChars = exclusionChars;
+		return false;
+	}
+	this->state = STATE_OK;
+	if (result == END_OF_FILE){
+		return true;
+	}
+	else {
+		frequencyTable.setUpLimitsOnLastModel(lastModelBottom, lastModelTop, result, exclusionChars);
+		contextSelector.add(result);
+	}
+	this->uncompressorSetUpLimits(frequencyTable.getNewBottom(), frequencyTable.getNewTop());
+	int i;
+	//updateo todos los contextos que haya pasado
+	for (i=firstContext.size(); i>=0; i--){
+		if (i<0){
+			break;
+		}
+		std::cout << "context " << firstContext << std::endl;
+		models[i]->update(firstContext, result);
+		if (firstContext.size()>0){
+			firstContext.erase(firstContext.size()-1, 1);
+		}
+	}
+	frequencyTable.getStringExc(exclusionChars);
+	frequencyTable.clear();
+	return false;
+}
+
 bool Uncompressor::process(u_int8_t a){
 	this->buffer = a;
 	this->bits_in_buffer = 8;
 	if (this->state == STATE_LAST_MODEL){
-		u_int32_t lastModelBottom = this->getBottom();
-		u_int32_t lastModelTop = this->getTop();
-		int result = this->getCharInLastModel(this->exclusionChars);
-		if (result < 0){
-			//Si entra aqui es po que no llego a definir con los bits que estan y tiene q seguir metiendo bits
-			this->state = STATE_LAST_MODEL;
-			this->firstContext = firstContext;
-			return false;
-		}
-		this->state = STATE_OK;
-		if (result == END_OF_FILE){
-			return true;
-		}
-		else {
-			frequencyTable.setUpLimitsOnLastModel(lastModelBottom, lastModelTop, result, this->exclusionChars);
-			contextSelector.add(result);
-		}
-		this->uncompressorSetUpLimits(frequencyTable.getNewBottom(), frequencyTable.getNewTop());
-		int i;
-		//updateo todos los contextos que haya pasado
-		for (i=firstContext.size(); i>=0; i--){
-			if (i<0){
-				break;
-			}
-			std::cout << "context " << firstContext << std::endl;
-			models[i]->update(firstContext, result);
-			if (firstContext.size()>0){
-				firstContext.erase(firstContext.size()-1, 1);
-			}
-		}
+		return solveLastModel(this->exclusionChars, this->firstContext);
 	}
-
-
+	if (this->state == STATE_NON_LAST_MODEL){
+	}
 	bool found = false;
-
-
 	std::string context = contextSelector.getContext();
 	std::string firstContext = context;
 	std::cout << "context " << context << std::endl;
@@ -306,37 +386,8 @@ bool Uncompressor::process(u_int8_t a){
 				// Aplico mecanismo de exclusion restando a MAX el size del string de
 				// exclusion
 				found = true;
-				u_int32_t lastModelBottom = this->getBottom();
-				u_int32_t lastModelTop = this->getTop();
-				result = this->getCharInLastModel(exclusionCharacters);
-				if (result < 0){
-					//Si entra aqui es po que no llego a definir con los bits que estan y tiene q seguir metiendo bits
-					this->exclusionChars = exclusionCharacters;
-					this->state = STATE_LAST_MODEL;
-					this->currentContext = context;
-					this->firstContext = firstContext;
-					return false;
-				}
-				if (result == END_OF_FILE){
-					return true;
-				}
-				else {
-					frequencyTable.setUpLimitsOnLastModel(lastModelBottom, lastModelTop, result, exclusionCharacters);
-					contextSelector.add(result);
-				}
-				this->uncompressorSetUpLimits(frequencyTable.getNewBottom(), frequencyTable.getNewTop());
-				int i;
-				//updateo todos los contextos que haya pasado
-				for (i=firstPos; i>=pos; i--){
-					if (i<0){
-						break;
-					}
-					std::cout << "context " << firstContext << std::endl;
-					models[i]->update(firstContext, result);
-					if (firstContext.size()>0){
-						firstContext.erase(firstContext.size()-1, 1);
-					}
-				}
+
+				return solveLastModel(exclusionCharacters, firstContext);
 			}
 		} else {
 			pos--;
@@ -354,6 +405,7 @@ bool Uncompressor::process(u_int8_t a){
 
 	return true;
 }
+
 
 
 
