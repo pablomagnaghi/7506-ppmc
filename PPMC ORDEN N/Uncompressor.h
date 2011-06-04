@@ -35,7 +35,8 @@ public:
 	void uncompressorSolveOverflow();
 	void uncompressorSolveUnderflow();
 	void uncompressorSetUpLimits(u_int32_t, u_int32_t);
-
+	bool solveNonLastModel(std::string, std::string, std::string);
+	bool solveLastModel(std::string, std::string);
 	int extract();
 
 	void add_to_queue(char c){
