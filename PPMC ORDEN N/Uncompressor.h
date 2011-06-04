@@ -28,8 +28,9 @@ public:
 	Uncompressor();
 	Uncompressor(util::FileReader* r, util::FileWriter* w);
 	void uncompress();
-	void solve_overflow();
-	void solve_underflow();
+	void uncompressorSolveOverflow();
+	void uncompressorSolveUnderflow();
+	void uncompressorSetUpLimits(u_int32_t, u_int32_t);
 
 	int extract();
 
