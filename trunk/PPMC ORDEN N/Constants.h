@@ -17,5 +17,9 @@
 #define END_OF_FILE 257
 #define NUMBER_OF_CHARACTERS 257
 #define ESC	258
+#define STATE_LAST_MODEL 1
+#define STATE_NON_LAST_MODEL 2
+#define STATE_OK 0
+
 
 #endif /* CONSTANTS_H_ */

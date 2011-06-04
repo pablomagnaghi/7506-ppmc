@@ -12,6 +12,7 @@
 Uncompressor::Uncompressor(util::FileReader* r, util::FileWriter* w):Arithmetic(r, w),cola(){
 	this->number = 0;
 	this->bits_in_number = 0;
+	this->state = STATE_OK;
 }
 
 void Uncompressor::uncompress(){
@@ -213,12 +214,49 @@ void Uncompressor::uncompressorSetUpLimits(u_int32_t bottom, u_int32_t top){
 bool Uncompressor::process(u_int8_t a){
 	this->buffer = a;
 	this->bits_in_buffer = 8;
+	if (this->state == STATE_LAST_MODEL){
+		u_int32_t lastModelBottom = this->getBottom();
+		u_int32_t lastModelTop = this->getTop();
+		int result = this->getCharInLastModel(this->exclusionChars);
+		if (result < 0){
+			//Si entra aqui es po que no llego a definir con los bits que estan y tiene q seguir metiendo bits
+			this->state = STATE_LAST_MODEL;
+			this->firstContext = firstContext;
+			return false;
+		}
+		this->state = STATE_OK;
+		if (result == END_OF_FILE){
+			return true;
+		}
+		else {
+			frequencyTable.setUpLimitsOnLastModel(lastModelBottom, lastModelTop, result, this->exclusionChars);
+			contextSelector.add(result);
+		}
+		this->uncompressorSetUpLimits(frequencyTable.getNewBottom(), frequencyTable.getNewTop());
+		int i;
+		//updateo todos los contextos que haya pasado
+		for (i=firstContext.size(); i>=0; i--){
+			if (i<0){
+				break;
+			}
+			std::cout << "context " << firstContext << std::endl;
+			models[i]->update(firstContext, result);
+			if (firstContext.size()>0){
+				firstContext.erase(firstContext.size()-1, 1);
+			}
+		}
+	}
+
+
 	bool found = false;
+
+
 	std::string context = contextSelector.getContext();
+	std::string firstContext = context;
+	std::cout << "context " << context << std::endl;
 	std::size_t pos = context.size();
 	std::size_t firstPos = pos;
 	std::string exclusionCharacters;
-
 	while (!found) {
 		// cargo la tabla con el modelo actual
 		frequencyTable.update (models[pos]->find(context));
@@ -229,15 +267,26 @@ bool Uncompressor::process(u_int8_t a){
 		int result;
 		result = this->getChar(exclusionCharacters);
 		if (result < 0){
+			//Si entra aqui es po que no llego a definir con los bits que estan y tiene q seguir metiendo bits
+			this->state = STATE_NON_LAST_MODEL;
+			this->currentContext = context;
+			this->exclusionChars = exclusionCharacters;
+			this->firstContext = firstContext;
 			return false;
 		}
 		if (result != ESC){
 			found = true;
 			frequencyTable.setUpLimitsWithCharacter(this->getBottom(), this->getTop(), result);
-			u_int32_t i;
-			std::cout << "tamanio " << models.size() << std::endl;
-			for (i=pos; i<=firstPos; i++){
-				models[i]->update(context, result);
+			int i;
+			for (i=firstPos; i>=pos; i--){
+				if (i<0){
+					break;
+				}
+				std::cout << "context " << firstContext << std::endl;
+				models[i]->update(firstContext, result);
+				if (firstContext.size()>0){
+					firstContext.erase(firstContext.size()-1, 1);
+				}
 			}
 			contextSelector.add(result);
 		}
@@ -261,6 +310,11 @@ bool Uncompressor::process(u_int8_t a){
 				u_int32_t lastModelTop = this->getTop();
 				result = this->getCharInLastModel(exclusionCharacters);
 				if (result < 0){
+					//Si entra aqui es po que no llego a definir con los bits que estan y tiene q seguir metiendo bits
+					this->exclusionChars = exclusionCharacters;
+					this->state = STATE_LAST_MODEL;
+					this->currentContext = context;
+					this->firstContext = firstContext;
 					return false;
 				}
 				if (result == END_OF_FILE){
@@ -271,10 +325,17 @@ bool Uncompressor::process(u_int8_t a){
 					contextSelector.add(result);
 				}
 				this->uncompressorSetUpLimits(frequencyTable.getNewBottom(), frequencyTable.getNewTop());
-				std::size_t i;
+				int i;
 				//updateo todos los contextos que haya pasado
-				for (i=0; i<=firstPos; i++){
-					models[i]->update(context, result);
+				for (i=firstPos; i>=pos; i--){
+					if (i<0){
+						break;
+					}
+					std::cout << "context " << firstContext << std::endl;
+					models[i]->update(firstContext, result);
+					if (firstContext.size()>0){
+						firstContext.erase(firstContext.size()-1, 1);
+					}
 				}
 			}
 		} else {

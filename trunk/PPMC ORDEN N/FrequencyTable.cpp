@@ -78,7 +78,7 @@ int FrequencyTable::findChar(u_int32_t number, u_int8_t size, u_int32_t bottom, 
 				founded = true;
 			}
 			temporal_bottom_freq = frequence;
-			i++;
+			i += frequence;
 			it++;
 		}
 		if (!founded){

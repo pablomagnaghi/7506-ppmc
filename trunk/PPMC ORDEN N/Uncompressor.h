@@ -24,6 +24,10 @@ private:
 	char buffer;
 	int bits_in_buffer;
 	std::queue<char> cola;
+	int state;
+	std::string currentContext;
+	std::string exclusionChars;
+	std::string firstContext;
 public:
 	Uncompressor();
 	Uncompressor(util::FileReader* r, util::FileWriter* w);
