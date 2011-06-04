@@ -27,7 +27,7 @@ void Uncompressor::uncompress(){
 	}
 }
 
-void Uncompressor::solve_overflow(){
+void Uncompressor::uncompressorSolveOverflow(){
 	int i=31;
 	int bitsOfOverflow=0;
 	while (((bottom>>i) & 1)==((top>>i) & 1)){
@@ -45,7 +45,7 @@ void Uncompressor::solve_overflow(){
 	}
 }
 
-void Uncompressor::solve_underflow(){
+void Uncompressor::uncompressorSolveUnderflow(){
 	int i = 29;
 	int local_counter = 0;
 	int first_bit_top = (top>>31) & 1;
@@ -168,6 +168,48 @@ int Uncompressor::getCharInLastModel(std::string exclusion){
 	}
 }
 
+void Uncompressor::uncompressorSetUpLimits(u_int32_t bottom, u_int32_t top){
+	this->bottom = bottom;
+	this->top = top;
+
+	std::cout <<"antes de overflow"<<std::endl;
+	std::cout << "top " << this->top << std::endl;
+	printf("hexa: %x\n", this->top);
+	std::cout << "Bin: ";
+	print_in_bin(this->top);
+	std::cout << "bottom " << this->bottom<< std::endl;
+	printf("hexa: %x\n", this->bottom);
+	std::cout << "Bin: ";
+	print_in_bin(this->bottom);
+
+
+	this->uncompressorSolveOverflow();
+
+	std::cout <<"antes de underflow"<<std::endl;
+	std::cout << "top " << this->top << std::endl;
+	printf("hexa: %x\n", this->top);
+	std::cout << "Bin: ";
+	print_in_bin(this->top);
+	std::cout << "bottom " << this->bottom<< std::endl;
+	printf("hexa: %x\n", this->bottom);
+	std::cout << "Bin: ";
+	print_in_bin(this->bottom);
+
+
+	this->uncompressorSolveUnderflow();
+
+	std::cout <<"despues de underflow"<<std::endl;
+	std::cout << "top " << this->top << std::endl;
+	printf("hexa: %x\n", this->top);
+	std::cout << "Bin: ";
+	print_in_bin(this->top);
+	std::cout << "bottom " << this->bottom<< std::endl;
+	printf("hexa: %x\n", this->bottom);
+	std::cout << "Bin: ";
+	print_in_bin(this->bottom);
+
+}
+
 bool Uncompressor::process(u_int8_t a){
 	this->buffer = a;
 	this->bits_in_buffer = 8;
@@ -192,13 +234,18 @@ bool Uncompressor::process(u_int8_t a){
 		if (result != ESC){
 			found = true;
 			frequencyTable.setUpLimitsWithCharacter(this->getBottom(), this->getTop(), result);
-			models[pos]->update(context, result);
+			u_int32_t i;
+			std::cout << "tamanio " << models.size() << std::endl;
+			for (i=pos; i<=firstPos; i++){
+				models[i]->update(context, result);
+			}
+			contextSelector.add(result);
 		}
 		else {
 			std::cout << frequencyTable.getTotal()<< std::endl;
 			frequencyTable.setUpLimitsWithEscape(this->getBottom(), this->getTop());
 		}
-		this->setNewLimits(frequencyTable.getNewBottom(), frequencyTable.getNewTop());
+		this->uncompressorSetUpLimits(frequencyTable.getNewBottom(), frequencyTable.getNewTop());
 
 		//		models[pos]->update(context, c);
 
@@ -221,11 +268,12 @@ bool Uncompressor::process(u_int8_t a){
 				}
 				else {
 					frequencyTable.setUpLimitsOnLastModel(lastModelBottom, lastModelTop, result, exclusionCharacters);
+					contextSelector.add(result);
 				}
-				this->setNewLimits(frequencyTable.getNewBottom(), frequencyTable.getNewTop());
+				this->uncompressorSetUpLimits(frequencyTable.getNewBottom(), frequencyTable.getNewTop());
 				std::size_t i;
 				//updateo todos los contextos que haya pasado
-				for (i=1; i<=firstPos; i++){
+				for (i=0; i<=firstPos; i++){
 					models[i]->update(context, result);
 				}
 			}
@@ -239,6 +287,10 @@ bool Uncompressor::process(u_int8_t a){
 		frequencyTable.getStringExc(exclusionCharacters);
 		frequencyTable.clear();
 	}
+	show();
+
+	// actualizo el contexto
+
 	return true;
 }
 

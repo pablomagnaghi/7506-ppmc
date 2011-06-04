@@ -51,6 +51,15 @@ void Model::update(const std::string& context, char c) {
 	// Busco el contexto en el modelo
 	it = model.find(context);
 
+	//codigo insertado de prueba
+	if (it == model.end()){
+		size++;
+		FrequencyTable* ct = new FrequencyTable();
+		model.insert(make_pair(context, ct));
+	}
+	it = model.find(context);
+
+
 	// Es seguro que existe porque sino se encontro
 	// en el find(), se creo la tabla para ese contexto
 	it->second->addCharacter(c);

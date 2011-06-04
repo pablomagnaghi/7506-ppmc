@@ -52,28 +52,34 @@ int FrequencyTable::findChar(u_int32_t number, u_int8_t size, u_int32_t bottom, 
 	u_int32_t localBottom = bottom;
 	u_int32_t localTop = bottom;
 	u_int32_t delta   = top - bottom;
+	u_int32_t temporal_bottom_freq = 0;
 	u_int32_t frequence = 0;
-	u_int32_t total_char = this->total - this->esc;
-
+	u_int32_t total_char = this->total-esc;
+	std::map<char, std::size_t>::iterator it = table.begin();
 	bool founded = false;
 	if (size==32){
+		if (total_char==0){
+			return ESC;
+		}
 		while ((i<total_char)&&(!founded)){
-			if (!isInString(i, exclusionString)){
-				frequence += 1;
+			if (isInString(it->first, exclusionString)){
+				continue;
 			}
-			double pBottom = (double)localBottom / (double)frequency;
-			double pTop = (double)frequence / (double)frequency;
+			frequence += it->second;
+			double pBottom = (double)temporal_bottom_freq / (double)total;
+			double pTop = (double)frequence / (double)total;
 			localBottom = delta * pBottom;
 			localBottom += bottom;
 
 			localTop = delta*pTop;
 			localTop += bottom-1;
 			if ((localBottom<=number)&&(localTop>=number)){
-				result = i;
+				result = it->first;
 				founded = true;
 			}
-			localBottom = localTop;
+			temporal_bottom_freq = frequence;
 			i++;
+			it++;
 		}
 		if (!founded){
 			return ESC;
@@ -96,9 +102,11 @@ int FrequencyTable::findCharInLastModel(u_int32_t number, u_int8_t size, u_int32
 	bool founded = false;
 	if (size==32){
 		while ((i<=NUMBER_OF_CHARACTERS)&&(!founded)){
-			if (!isInString(i, exclusionString)){
-				frequence += 1;
+			if (isInString(i, exclusionString)){
+				i++;
+				continue;
 			}
+			frequence += 1;
 			double pBottom = (double)temporal_bottom_freq/ (double)total;
 			double pTop = (double)frequence / (double)total;
 			localBottom = delta * pBottom;
@@ -247,7 +255,7 @@ void FrequencyTable::setUpLimitsWithEOF(u_int32_t bottom, u_int32_t top, const s
 	this->bottom = delta * pBottom;
 	this->bottom += bottom;
 	this->top = delta * pTop;
-	this->top += bottom-1;
+	this->top += bottom;
 }
 
 
