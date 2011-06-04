@@ -13,7 +13,7 @@ int main(int argc, char* argv[]) {
 	FileReader r("/home/luis/Escritorio/ABDABABABD.txt");
 	FileWriter w("/home/luis/Escritorio/ABDABABABD.z");
 
-	Compressor compresor(&r,&w);
+//	Compressor compresor(&r,&w);
 	Uncompressor uncompressor(&r, &w);
 
 

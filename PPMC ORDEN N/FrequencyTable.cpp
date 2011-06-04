@@ -49,20 +49,20 @@ bool isInString(u_int8_t c, std::string exclusionString){
 int FrequencyTable::findChar(u_int32_t number, u_int8_t size, u_int32_t bottom, u_int32_t top, const std::string& exclusionString){
 	int result = -1;
 	int i = 0;
-	u_int32_t total = 257 - exclusionString.size();
 	u_int32_t localBottom = bottom;
 	u_int32_t localTop = bottom;
 	u_int32_t delta   = top - bottom;
 	u_int32_t frequence = 0;
+	u_int32_t total_char = this->total - this->esc;
 
 	bool founded = false;
 	if (size==32){
-		while ((i<=NUMBER_OF_CHARACTERS)&&(!founded)){
+		while ((i<=total_char)&&(!founded)){
 			if (!isInString(i, exclusionString)){
 				frequence += 1;
 			}
-			double pBottom = (double)localBottom / (double)total;
-			double pTop = (double)frequence / (double)total;
+			double pBottom = (double)localBottom / (double)frequency;
+			double pTop = (double)frequence / (double)frequency;
 			localBottom = delta * pBottom;
 			localBottom += bottom;
 

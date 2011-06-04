@@ -17,12 +17,12 @@ Uncompressor::Uncompressor(util::FileReader* r, util::FileWriter* w):Arithmetic(
 void Uncompressor::uncompress(){
 	bool end = false;
 	while ( !end){
-		char value = this->extract();
+		int value = this->extract();
 		if (value == EOF){
 			end = true;
 		}
 		else {
-			this->writer->write(value);
+			this->writer->write((char)value);
 		}
 	}
 }
@@ -74,14 +74,16 @@ void Uncompressor::solve_underflow(){
 	}
 }
 
-char Uncompressor::extract(){
+int Uncompressor::extract(){
 	char c;
 	bool end = false;
+	//Cola vacia indica que no pudo resolver un character para los bits del numero dado, necesita mas
 	while (cola.empty() && !end){
 		c = this->reader->read();
+		//end sera true, si el process da EOF
 		end = this->process(c);
 	}
-
+	//si la cola no esta vacia, devuelve el caracter
 	char result = cola.front();
 	cola.pop();
 	return result;
@@ -119,45 +121,56 @@ void Uncompressor::remove_bits(int cant){
 }
 
 
-bool Uncompressor::calculateChar(int * value, std::string exclusion){
-	u_int32_t actual_bottom = getBottom();
-	u_int32_t actual_top = getTop();
-	int result = this->frequencyTable.findChar(number, this->get_bits_in_number(), actual_bottom, actual_top, exclusion);
+int Uncompressor::getChar(std::string exclusion){
+	int result = this->frequencyTable.findChar(number, this->get_bits_in_number(), this->getBottom(), this->getTop(), exclusion);
+	// si el resultado es >= 0 pudo resolver la consulta, sino probar si hay mas bits en el buffer
 	if (result >= 0){
-		*value = result;
-		add_to_queue(*value);
+		if (result != ESC){
+			add_to_queue(result);
+		}
+		return result;
 	}
 	else{
-		if (get_bits_in_buffer() >0){
+		while (get_bits_in_buffer() >0 && result < 0){
 			drop_buffer_in_number();
+			result = this->frequencyTable.findChar(number, this->get_bits_in_number(), this->getBottom(), this->getTop(), exclusion);
+			if (result >= 0){
+				if (result != ESC){
+					add_to_queue(result);
+				}
+			}
 		}
-		else{
-			return true;
-		}
+		return result;
 	}
-	return false;
 }
 
-bool Uncompressor::calculateCharInLastModel(int * value, std::string exclusion){
-	u_int32_t actual_bottom = getBottom();
-	u_int32_t actual_top = getTop();
-	int result = this->frequencyTable.findCharInLastModel(number, this->get_bits_in_number(), actual_bottom, actual_top, exclusion);
+int Uncompressor::getCharInLastModel(std::string exclusion){
+
+	int result = this->frequencyTable.findCharInLastModel(number, this->get_bits_in_number(), this->getBottom(), this->getTop(), exclusion);
+	// si el resultado es >= 0 pudo resolver la consulta, sino probar si hay mas bits en el buffer
 	if (result >= 0){
-		*value = result;
-		add_to_queue(*value);
+		if (result != ESC){
+			add_to_queue(result);
+		}
+		return result;
 	}
 	else{
-		if (get_bits_in_buffer() >0){
+		while (get_bits_in_buffer() >0 && result < 0){
 			drop_buffer_in_number();
+			result = this->frequencyTable.findCharInLastModel(number, this->get_bits_in_number(), this->getBottom(), this->getTop(), exclusion);
+			if (result >= 0){
+				if (result != ESC){
+					add_to_queue(result);
+				}
+			}
 		}
-		else{
-			return true;
-		}
+		return result;
 	}
-	return false;
 }
 
 bool Uncompressor::process(u_int8_t a){
+	this->buffer = a;
+	this->bits_in_buffer = 8;
 	bool found = false;
 	std::string context = contextSelector.getContext();
 	std::size_t pos = context.size();
@@ -171,10 +184,10 @@ bool Uncompressor::process(u_int8_t a){
 		// Aplico mecanismo de exclusion
 		frequencyTable.exc(exclusionCharacters);
 
-		bool endHigherModel = false;
 		int result;
-		while (!endHigherModel){
-			endHigherModel = this->calculateChar(&result, exclusionCharacters);
+		result = this->getChar(exclusionCharacters);
+		if (result < 0){
+			return false;
 		}
 		if (result != ESC){
 			found = true;
@@ -199,22 +212,21 @@ bool Uncompressor::process(u_int8_t a){
 				found = true;
 				u_int32_t lastModelBottom = this->getBottom();
 				u_int32_t lastModelTop = this->getTop();
-				bool endLowestModel = false;
-				int c;
-				while (!endLowestModel){
-					endLowestModel = this->calculateCharInLastModel(&c, exclusionCharacters);
+				result = this->getCharInLastModel(exclusionCharacters);
+				if (result < 0){
+					return false;
 				}
-				if (c == END_OF_FILE){
+				if (result == END_OF_FILE){
 					return true;
 				}
 				else {
-					frequencyTable.setUpLimitsOnLastModel(lastModelBottom, lastModelTop, c, exclusionCharacters);
+					frequencyTable.setUpLimitsOnLastModel(lastModelBottom, lastModelTop, result, exclusionCharacters);
 				}
 				this->setNewLimits(frequencyTable.getNewBottom(), frequencyTable.getNewTop());
 				std::size_t i;
 				//updateo todos los contextos que haya pasado
 				for (i=1; i<=firstPos; i++){
-					models[i]->update(context, c);
+					models[i]->update(context, result);
 				}
 			}
 		} else {
@@ -227,7 +239,7 @@ bool Uncompressor::process(u_int8_t a){
 		frequencyTable.getStringExc(exclusionCharacters);
 		frequencyTable.clear();
 	}
-	return false;
+	return true;
 }
 
 
