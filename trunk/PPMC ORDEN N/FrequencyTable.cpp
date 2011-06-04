@@ -48,7 +48,7 @@ bool isInString(u_int8_t c, std::string exclusionString){
 
 int FrequencyTable::findChar(u_int32_t number, u_int8_t size, u_int32_t bottom, u_int32_t top, const std::string& exclusionString){
 	int result = -1;
-	int i = 0;
+	u_int8_t i = 0;
 	u_int32_t localBottom = bottom;
 	u_int32_t localTop = bottom;
 	u_int32_t delta   = top - bottom;
@@ -57,7 +57,7 @@ int FrequencyTable::findChar(u_int32_t number, u_int8_t size, u_int32_t bottom, 
 
 	bool founded = false;
 	if (size==32){
-		while ((i<=total_char)&&(!founded)){
+		while ((i<total_char)&&(!founded)){
 			if (!isInString(i, exclusionString)){
 				frequence += 1;
 			}
@@ -75,6 +75,9 @@ int FrequencyTable::findChar(u_int32_t number, u_int8_t size, u_int32_t bottom, 
 			localBottom = localTop;
 			i++;
 		}
+		if (!founded){
+			return ESC;
+		}
 	}
 	return result;
 }
@@ -85,7 +88,8 @@ int FrequencyTable::findCharInLastModel(u_int32_t number, u_int8_t size, u_int32
 	int i = 0;
 	u_int32_t total = 257 - exclusionString.size();
 	u_int32_t localBottom = bottom;
-	u_int32_t localTop = bottom;
+	u_int32_t localTop = 0;
+	u_int32_t temporal_bottom_freq = 0;
 	u_int32_t delta   = top - bottom;
 	u_int32_t frequence = 0;
 
@@ -95,7 +99,7 @@ int FrequencyTable::findCharInLastModel(u_int32_t number, u_int8_t size, u_int32
 			if (!isInString(i, exclusionString)){
 				frequence += 1;
 			}
-			double pBottom = (double)localBottom / (double)total;
+			double pBottom = (double)temporal_bottom_freq/ (double)total;
 			double pTop = (double)frequence / (double)total;
 			localBottom = delta * pBottom;
 			localBottom += bottom;
@@ -106,7 +110,7 @@ int FrequencyTable::findCharInLastModel(u_int32_t number, u_int8_t size, u_int32
 				result = i;
 				founded = true;
 			}
-			localBottom = localTop;
+			temporal_bottom_freq = frequence;
 			i++;
 		}
 	}
