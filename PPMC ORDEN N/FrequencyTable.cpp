@@ -58,6 +58,7 @@ int FrequencyTable::findChar(u_int32_t number, u_int8_t size, u_int32_t bottom, 
 	std::map<char, std::size_t>::iterator it = table.begin();
 	bool founded = false;
 	if (size==32){
+		std::cout << "Exclusion " << exclusionString << std::endl;
 		if (total_char==0){
 			return ESC;
 		}
@@ -66,8 +67,8 @@ int FrequencyTable::findChar(u_int32_t number, u_int8_t size, u_int32_t bottom, 
 				continue;
 			}
 			frequence += it->second;
-			double pBottom = (double)temporal_bottom_freq / (double)total;
-			double pTop = (double)frequence / (double)total;
+			double pBottom = (double)temporal_bottom_freq / (double)(this->total);
+			double pTop = (double)frequence / (double)(this->total);
 			localBottom = delta * pBottom;
 			localBottom += bottom;
 

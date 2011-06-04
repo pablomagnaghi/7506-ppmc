@@ -43,38 +43,14 @@ void Arithmetic::setNewLimits(u_int32_t bottom, u_int32_t top){
 	this->bottom = bottom;
 	this->top = top;
 
-	std::cout <<"antes de overflow"<<std::endl;
-	std::cout << "top " << this->top << std::endl;
-	printf("hexa: %x\n", this->top);
-	std::cout << "Bin: ";
-	print_in_bin(this->top);
-	std::cout << "bottom " << this->bottom<< std::endl;
-	printf("hexa: %x\n", this->bottom);
-	std::cout << "Bin: ";
-	print_in_bin(this->bottom);
+	printf("hexa top: %x\n", this->top);
+	printf("hexa bottom: %x\n", this->bottom);
 
 	this->solve_overflow();
-
-	std::cout <<"antes de underflow"<<std::endl;
-	std::cout << "top " << this->top << std::endl;
-	printf("hexa: %x\n", this->top);
-	std::cout << "Bin: ";
-	print_in_bin(this->top);
-	std::cout << "bottom " << this->bottom<< std::endl;
-	printf("hexa: %x\n", this->bottom);
-	std::cout << "Bin: ";
-	print_in_bin(this->bottom);
-
 	this->solve_underflow();
-	std::cout <<"despues de underflow"<<std::endl;
-	std::cout << "top " << this->top << std::endl;
-	printf("hexa: %x\n", this->top);
-	std::cout << "Bin: ";
-	print_in_bin(this->top);
-	std::cout << "bottom " << this->bottom<< std::endl;
-	printf("hexa: %x\n", this->bottom);
-	std::cout << "Bin: ";
-	print_in_bin(this->bottom);
+	std::cout <<"despues de Modificaciones"<<std::endl;
+	printf("hexa top: %x\n", this->top);
+	printf("hexa bottom: %x\n", this->bottom);
 
 }
 

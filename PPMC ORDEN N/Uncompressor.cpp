@@ -173,41 +173,17 @@ void Uncompressor::uncompressorSetUpLimits(u_int32_t bottom, u_int32_t top){
 	this->bottom = bottom;
 	this->top = top;
 
-	std::cout <<"antes de overflow"<<std::endl;
-	std::cout << "top " << this->top << std::endl;
-	printf("hexa: %x\n", this->top);
-	std::cout << "Bin: ";
-	print_in_bin(this->top);
-	std::cout << "bottom " << this->bottom<< std::endl;
-	printf("hexa: %x\n", this->bottom);
-	std::cout << "Bin: ";
-	print_in_bin(this->bottom);
-
+	std::cout <<"antes de operar"<<std::endl;
+	printf("hexa top: %x\n", this->top);
+	printf("hexa bottom: %x\n", this->bottom);
 
 	this->uncompressorSolveOverflow();
 
-	std::cout <<"antes de underflow"<<std::endl;
-	std::cout << "top " << this->top << std::endl;
-	printf("hexa: %x\n", this->top);
-	std::cout << "Bin: ";
-	print_in_bin(this->top);
-	std::cout << "bottom " << this->bottom<< std::endl;
-	printf("hexa: %x\n", this->bottom);
-	std::cout << "Bin: ";
-	print_in_bin(this->bottom);
-
-
 	this->uncompressorSolveUnderflow();
 
-	std::cout <<"despues de underflow"<<std::endl;
-	std::cout << "top " << this->top << std::endl;
-	printf("hexa: %x\n", this->top);
-	std::cout << "Bin: ";
-	print_in_bin(this->top);
-	std::cout << "bottom " << this->bottom<< std::endl;
-	printf("hexa: %x\n", this->bottom);
-	std::cout << "Bin: ";
-	print_in_bin(this->bottom);
+	std::cout <<"despues de operar"<<std::endl;
+	printf("hexa top: %x\n", this->top);
+	printf("hexa bottom: %x\n", this->bottom);
 
 }
 
@@ -301,6 +277,7 @@ bool Uncompressor::solveLastModel(std::string exclusionChars, std::string firstC
 		return true;
 	}
 	else {
+		std::cout << (char)result <<" = 1/" << MAX - exclusionChars.size()<< std::endl;
 		frequencyTable.setUpLimitsOnLastModel(lastModelBottom, lastModelTop, result, exclusionChars);
 		contextSelector.add(result);
 	}
@@ -319,6 +296,7 @@ bool Uncompressor::solveLastModel(std::string exclusionChars, std::string firstC
 	}
 	frequencyTable.getStringExc(exclusionChars);
 	frequencyTable.clear();
+	show();
 	return false;
 }
 
@@ -333,7 +311,7 @@ bool Uncompressor::process(u_int8_t a){
 	bool found = false;
 	std::string context = contextSelector.getContext();
 	std::string firstContext = context;
-	std::cout << "context " << context << std::endl;
+	std::cout << "context \"" << context << "\""<<std::endl;
 	std::size_t pos = context.size();
 	std::size_t firstPos = pos;
 	std::string exclusionCharacters;
@@ -356,6 +334,9 @@ bool Uncompressor::process(u_int8_t a){
 		}
 		if (result != ESC){
 			found = true;
+			frequencyTable.find(result);
+			std::cout << (char)result << " = " << frequencyTable.getFrequencyChar() << "/";
+			std::cout << frequencyTable.getTotal() << std::endl;
 			frequencyTable.setUpLimitsWithCharacter(this->getBottom(), this->getTop(), result);
 			int i;
 			for (i=firstPos; i>=pos; i--){
@@ -371,6 +352,7 @@ bool Uncompressor::process(u_int8_t a){
 			contextSelector.add(result);
 		}
 		else {
+			std::cout << "ESC  = " << frequencyTable.getFrequencyEsc() << "/";
 			std::cout << frequencyTable.getTotal()<< std::endl;
 			frequencyTable.setUpLimitsWithEscape(this->getBottom(), this->getTop());
 		}

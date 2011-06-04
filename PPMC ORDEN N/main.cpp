@@ -10,13 +10,10 @@ using namespace util;
 using namespace std;
 
 int main(int argc, char* argv[]) {
-	FileReader r("/home/luis/Escritorio/ABDABABABD.luis");
-	FileWriter w("/home/luis/Escritorio/ABDABABABD.pablo");
-
-//Compressor compresor(&r,&w);
-	Uncompressor uncompressor(&r, &w);
-
-
+//	FileReader r("/home/luis/Escritorio/ABDABABABD.txt");
+//	FileWriter w("/home/luis/Escritorio/ABDABABABD.ttt");
+//	Compressor compresor(&r,&w);
+//
 //	cout<<"Comprimiendo..."<<std::endl;
 //
 //	char c = r.read();
@@ -28,6 +25,10 @@ int main(int argc, char* argv[]) {
 //	compresor.compressEof();
 //	compresor.clean_buffer();
 
+
+	FileReader r("/home/luis/Escritorio/ABDABABABD.ttt");
+	FileWriter w("/home/luis/Escritorio/ABDABABABD.luis");
+	Uncompressor uncompressor(&r, &w);
 	uncompressor.uncompress();
 	
 	return 0;
