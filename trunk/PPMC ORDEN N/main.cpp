@@ -26,15 +26,7 @@ int main(int argc, char* argv[]) {
 		if (mode=="c") {
 			Compressor compresor(&in,&out);
 			cerr << "Inicio compresión..." << endl;
-			
-			// mover este loop a compress o quitar el reader del constructor
-			char c = in.read();
-			while (!in.eof() ) {
-				compresor.compress(c);
-				c = in.read();
-			}
-			compresor.compressEof();
-			compresor.clean_buffer();
+			compresor.compress();
 			cerr << "...fin compresión!" << endl;
 		} else if(mode=="d") {
 			Uncompressor uncompressor(&in, &out);
@@ -50,6 +42,8 @@ int main(int argc, char* argv[]) {
 	} catch (bad_arguments& e) {
 		cerr << "Cantidad de argumentos incorrecta" << endl;
 		cerr << "Modo de uso: " << argv[0] << "  [c|d] entrada salida" << endl;
+	} catch (FileError& e) {
+		cerr << "Error de archivos: " << e.what() << endl;
 	} catch (exception& e) {
 		cerr << "Error interno: " << e.what() << endl;
 	}

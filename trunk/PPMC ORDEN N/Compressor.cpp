@@ -10,7 +10,17 @@ Compressor::Compressor(util::FileReader* r, util::FileWriter* w)
 
 Compressor::~Compressor(){ }
 
-void Compressor::compress(u_int8_t c){
+void Compressor::compress() {
+	char c = reader->read();
+	while (!reader->eof() ) {
+		compressChar(c);
+		c = reader->read();
+	}
+	compressEof();
+	clean_buffer();
+}
+
+void Compressor::compressChar(u_int8_t c){
 	bool found = false;
 	std::string context = contextSelector.getContext();
 	std::size_t pos = context.size();

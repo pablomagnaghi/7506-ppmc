@@ -20,11 +20,12 @@ public:
 	u_int32_t getBottom();
 	void setNewLimits(u_int32_t, u_int32_t);
 	void print_in_bin(u_int32_t);
-	void clean_buffer();
+
 	// metodo solo para ver progreso debe eliminarse
 	void show();
 	virtual ~Arithmetic();
 protected:
+	void clean_buffer();
 	std::vector<Model*> models;
 	ContextSelector contextSelector;
 	FrequencyTable frequencyTable;

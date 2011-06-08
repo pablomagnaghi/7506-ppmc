@@ -9,7 +9,9 @@ namespace ppmc {
 		public:
 			Compressor(util::FileReader* r, util::FileWriter* w);
 			~Compressor();
-			void compress(u_int8_t);
+			void compress();
+		private:
+			void compressChar(u_int8_t);
 			void compressEof();
 	};
 }
