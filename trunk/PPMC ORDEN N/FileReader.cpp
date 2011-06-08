@@ -6,12 +6,12 @@ using namespace std;
 
 FileReader::FileReader(const char* name){
 	file.open(name);
-	if (! file.good()) throw 1;
+	if (! file.good()) throw FileErrorOpenForReading();
 }
 
 char FileReader::read(){
 	char c;
-	if (! file.good()) throw 1;
+	if (! file.good()) throw FileErrorRead();
 	file >> c;
 	return c;
 }

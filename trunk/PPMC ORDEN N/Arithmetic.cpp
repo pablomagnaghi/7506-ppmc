@@ -148,5 +148,4 @@ Arithmetic::~Arithmetic(){
 	for (size_t i=0; i<(ORDEN + 1);i++) {
 		delete models[i];
 	}
-	delete this->writer;
 }

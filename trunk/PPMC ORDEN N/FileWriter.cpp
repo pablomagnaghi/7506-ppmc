@@ -1,12 +1,13 @@
 #include "FileWriter.h"
 #include <netinet/in.h>
 
+
 using namespace util;
 using namespace std;
 
 FileWriter::FileWriter(const char* name):IFileWriter(){
 	file.open (name);
-	if (! file.good()) throw 1;
+	if (! file.good()) throw FileErrorOpenForWriting();
 }
 
 FileWriter::~FileWriter(){
@@ -14,11 +15,11 @@ FileWriter::~FileWriter(){
 }
 void FileWriter::write(char c){
 	file << c;
-	if (! file.good()) throw 1;
+	if (! file.good()) throw FileErrorCharWrite();
 }
 void FileWriter::write(std::string s){
 	file << s;
-	if (! file.good()) throw 1;
+	if (! file.good()) throw FileErrorStringWrite();
 }
 
 void FileWriter::write(u_int32_t buffer) {
@@ -29,7 +30,7 @@ void FileWriter::write(u_int32_t buffer) {
 	adapter.byteOrdered = htonl (buffer);
 	for (int i = 0; i < 4; i++) {
 		file << adapter.buffer[i];
-		if (! file.good()) throw 1;
+		if (! file.good()) throw FileErrorBufferWrite();
 	}
 }
 
