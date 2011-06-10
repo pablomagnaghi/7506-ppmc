@@ -19,7 +19,6 @@ namespace util {
 			void write(u_int64_t buffer);
 		private:
 			std::ofstream file;
-		friend class FileWriterTest;
 	};
 }
 #endif //_util_file_writer_h_

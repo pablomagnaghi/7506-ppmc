@@ -1,50 +1,55 @@
 #include <iostream>
-#include <stdexcept>
 #include "PPMC.h"
-#include "Compressor.h"
 #include "FileWriter.h"
 #include "FileReader.h"
-#include "Uncompressor.h"
+#include "PPMCCompressor.h"
+#include "PPMCUncompressor.h"
 
 using namespace ppmc;
 using namespace util;
-using namespace std;
 
-class bad_arguments:public exception {};
+// TPGrupoXX -c pepe.txt
+// Comprime el achivo pepe.txt generando el archivo pepe.txt.XX
+// TPGrupoXX -x pepe.txt.XX
+// Descomprime el archivo pepe.XX re-creando el archivo original (pepe.txt)
+
+void help() {
+	std::cerr << "Modo de uso: " << std::endl;
+	std::cerr << "Para comprimir: -c archivo" << std::endl;
+	std::cerr << "Para descomprimir: -x archivo" << std::endl;
+}
 
 int main(int argc, char* argv[]) {
-	try {
-		if (argc!=4) {
-			throw bad_arguments();
-		}
-		
+
+	if (argc==3) {
 		std::string mode(argv[1]);
-		//size_t order = atoi(argv[2]);
-		FileReader in(argv[2]);
-		FileWriter out(argv[3]);
-		
-		if (mode=="c") {
-			Compressor compresor(&in,&out);
-			cerr << "Inicio compresión..." << endl;
+		std::string name(argv[2]);
+		if (mode == "-c") {
+			FileReader in(name.c_str());
+			std::cerr << "ARCHIVO A LEER: " << name << std::endl;
+			name += ".XX";
+			FileWriter out(name.c_str());
+			std::cerr << "ARCHIVO COMPRIMIDO: " << name << std::endl;
+			PPMCCompressor compresor(&in,&out);
+			std::cerr << "Inicio compresión..." << std::endl;
 			compresor.compress();
-			cerr << "...fin compresión!" << endl;
-		} else if(mode=="d") {
-			Uncompressor uncompressor(&in, &out);
-			cerr << "Inicio descompresión..." << endl;
+			std::cerr << "...fin compresión!" << std::endl;
+		} else if(mode == "-x") {
+			FileReader in(name.c_str());
+			std::cerr << "ARCHIVO A LEER: " << name << std::endl;
+			name = name.substr(0, name.size() - 3);
+			FileWriter out(name.c_str());
+			std::cerr << "ARCHIVO DESCOMPRIMIDO: " << name << std::endl;
+			PPMCUncompressor uncompressor(&in, &out);
+			std::cerr << "Inicio descompresión..." << std::endl;
 			uncompressor.uncompress();
-			cerr << "...fin descompresión!" << endl;
-		} else {
-			throw invalid_argument(mode);
-		}
-	} catch (invalid_argument& e) {
-		cerr << "Modo " << e.what() << " no reconocido" << endl;
-		cerr << "Debe elegir (c)omprimir o (d)escomprimir" << endl;
-	} catch (bad_arguments& e) {
-		cerr << "Cantidad de argumentos incorrecta" << endl;
-		cerr << "Modo de uso: " << argv[0] << "  [c|d] entrada salida" << endl;
-	} catch (FileError& e) {
-		cerr << "Error de archivos: " << e.what() << endl;
-	} catch (exception& e) {
-		cerr << "Error interno: " << e.what() << endl;
+			std::cerr << "...fin descompresión!" << std::endl;
+			} else {
+				help();
+			}
+	} else {
+		help();
 	}
+
+	return 0;
 }

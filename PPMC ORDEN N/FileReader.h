@@ -13,7 +13,6 @@ namespace util {
 			virtual bool eof();
 		private:
 			std::ifstream file;
-		friend class FileReaderTest;
 	};
 }
 #endif //_util_file_reader_h_
