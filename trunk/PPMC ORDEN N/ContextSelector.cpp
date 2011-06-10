@@ -9,13 +9,12 @@ ContextSelector::ContextSelector(){
 
 void ContextSelector::add(char c) {
 	context += c;
-
 	if (context.size() > ORDEN) {
 		context = context.substr(1);
 	}
 }
 
-std::string ContextSelector::getContext() {
+const std::string& ContextSelector::getContext() {
 	return context;
 }
 
