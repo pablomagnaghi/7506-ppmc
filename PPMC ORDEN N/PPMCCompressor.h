@@ -1,12 +1,13 @@
 #ifndef PPMCCOMPRESSOR_H_
 #define PPMCCOMPRESSOR_H_
 
-#include "ArithmeticCompressor.h"
 #include <vector>
-#include "PPMC.h"
+#include <algorithm>
+
+#include "ArithmeticCompressor.h"
 #include "Model.h"
 #include "ContextSelector.h"
-#include "algorithm"
+
 
 namespace ppmc {
 class PPMCCompressor: public ArithmeticCompressor {

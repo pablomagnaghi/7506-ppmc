@@ -1,3 +1,4 @@
+#include <sstream>
 #include "Model.h"
 
 
@@ -9,7 +10,7 @@ Model::Model(){
 }
 
 Model::~Model(){
-	std::map<std::string, FrequencyTable*>::iterator it = model.begin();
+	map<string, FrequencyTable*>::iterator it = model.begin();
 	while (it != model.end() ) {
 		delete it->second;
 		it++;
@@ -17,7 +18,7 @@ Model::~Model(){
 }
 
 FrequencyTable* Model::find(const std::string& context){
-	std::map<std::string, FrequencyTable*>::iterator it;
+	map<string, FrequencyTable*>::iterator it;
 	// Busco el contexto en el modelo
 	it = model.find(context);
 
@@ -26,27 +27,29 @@ FrequencyTable* Model::find(const std::string& context){
 		return it->second;
 	}
 
-	//std::cout << "creando tabla para contexto " << context << std::endl;
+	//std::cout << "creando tabla para contexto " << context << endl;
 	size++;
 	FrequencyTable* ct = new FrequencyTable();
 	model.insert(make_pair(context, ct));
 	return ct;
 }
 
-void Model::show(){
-	std::map<std::string, FrequencyTable*>::iterator it = model.begin();
+std::string Model::show(){
+	stringstream result;
+	map<string, FrequencyTable*>::iterator it = model.begin();
 
 	while (it != model.end() ) {
-		std::cout << "contexto " << it->first << std::endl;
-		it->second->show();
+		result << "contexto " << it->first << endl;
+		result << it->second->show();
 		it++;
 	}
+	return result.str();
 }
 
 // El contexto se creo en el metodo find(), ahora hay que
 // actualizar su tabla de frecuencias
 void Model::update(const std::string& context, char c) {
-	std::map<std::string, FrequencyTable*>::iterator it;
+	map<string, FrequencyTable*>::iterator it;
 
 	// Busco el contexto en el modelo
 	it = model.find(context);
@@ -64,7 +67,7 @@ void Model::update(const std::string& context, char c) {
 	it->second->addCharacter(c);
 }
 
-std::size_t Model::getSize() {
+size_t Model::getSize() {
 	return size;
 }
 

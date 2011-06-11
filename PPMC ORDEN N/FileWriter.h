@@ -1,7 +1,6 @@
 #ifndef _util_file_writer_h_
 #define _util_file_writer_h_
 
-#include <string>
 #include <fstream>
 #include <cstdlib>
 

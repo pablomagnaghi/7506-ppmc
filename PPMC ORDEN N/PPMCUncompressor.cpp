@@ -2,6 +2,7 @@
 #include "PPMCCompressor.h"
 #include "Constants.h"
 #include "TableCalculator.h"
+
 using namespace ppmc;
 using namespace std;
 
