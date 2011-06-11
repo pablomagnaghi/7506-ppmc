@@ -12,10 +12,11 @@ PPMCCompressor::PPMCCompressor(util::FileReader *r, util::FileWriter *w):Arithme
 }
 
 void PPMCCompressor::compress() {
-	char c = reader->read();
+	
 	while (!reader->eof() ) {
+		char c = reader->read();
+		cout << "c" << endl;
 		process(c);
-		c = reader->read();
 	}
 }
 

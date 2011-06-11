@@ -2,7 +2,7 @@
 #define _ppmc_h_
 
 #include <cstddef>
-#include <iostream>
+#include <iostream> // for debugging
 
 namespace ppmc {
 	#define ORDEN 1
