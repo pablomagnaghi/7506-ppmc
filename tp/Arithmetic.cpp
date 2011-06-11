@@ -48,7 +48,9 @@ void Arithmetic::addBitToBuffer(u_int8_t bit){
 }
 
 void Arithmetic::putBufferInFileWriter(){
+#ifdef VERBOSE
 	print_in_bin(this->buffer);
+#endif
 	writer->write(this->buffer);
 	this->bits_in_buffer = 0;
 }

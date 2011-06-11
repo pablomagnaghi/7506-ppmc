@@ -24,12 +24,14 @@ probabilityType Query::getExclusionSize(){
 
 void Query::addExclusion(char c){
 	if (! isExcluded(c)) {
+#ifdef VERBOSE
 		cerr << "+++ excluding " << c << " from ";
 		std::set<char>::iterator it;
 		for (it=exclusion.begin(); it!= exclusion.end(); ++it) {
 			cerr << *it <<", " ;
 		}
 		cerr << endl;
+#endif
 		exclusion.insert(c);
 	}
 }
