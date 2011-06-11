@@ -1,5 +1,6 @@
-#include "TableCalculator.h"
 #include <math.h>
+
+#include "TableCalculator.h"
 #include "Constants.h"
 using namespace ppmc;
 

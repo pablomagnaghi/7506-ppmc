@@ -1,10 +1,11 @@
 #ifndef _ppmc_frequency_table_h_
 #define _ppmc_frequency_table_h_
 
-#include "PPMC.h"
 #include <map>
 #include <string>
-#include "algorithm"
+#include <algorithm>
+
+#include "PPMC.h"
 
 namespace ppmc {
 	class FrequencyTable {
@@ -23,7 +24,7 @@ namespace ppmc {
 			void getStringExc(std::string&);
 			void exc(const std::string&);
 			std::size_t getNumberOfChars();
-			void show();
+			std::string show();
 			void update(FrequencyTable*);
 			void clear();
 			std::map<char, std::size_t> getTable(){

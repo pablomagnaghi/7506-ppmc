@@ -1,3 +1,4 @@
+#include <sstream>
 #include "FrequencyTable.h"
 #include "Constants.h"
 
@@ -119,18 +120,20 @@ std::size_t FrequencyTable::getNumberOfChars() {
 	return table.size();
 }
 
-void FrequencyTable::show() {
+std::string FrequencyTable::show() {
+	stringstream result;
 	std::map<char, std::size_t>::iterator it = table.begin();
 
-	std::cout << "TABLA: " << this->total << std::endl;
+	result << "TABLA: " << this->total << std::endl;
 
 	while (it != table.end()) {
-		std::cout << "caracter "<< it->first << " |  frecuencia " << it->second;
-		std::cout << std::endl;
+		result << "caracter "<< it->first << " |  frecuencia " << it->second;
+		result << std::endl;
 		it++;
 	}
 
-	std::cout << "caracter esc " << " |  frecuencia " << esc << std::endl;
+	result << "caracter esc " << " |  frecuencia " << esc << std::endl;
+	return result.str();
 }
 
 // Crea una tabla de frecuencias a partir de otra

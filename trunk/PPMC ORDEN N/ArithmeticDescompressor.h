@@ -1,12 +1,11 @@
 #ifndef ARITHMETICDESCOMPRESSOR_H_
 #define ARITHMETICDESCOMPRESSOR_H_
 
-#include <iostream>
-#include <stdio.h>
 #include <iomanip>
-#include "Constants.h"
-#include "algorithm"
 #include <queue>
+#include <algorithm>
+
+#include "Constants.h"
 #include "FileWriter.h"
 #include "FileReader.h"
 

@@ -1,4 +1,3 @@
-#include <iostream>
 #include "ContextSelector.h"
 
 using namespace ppmc;

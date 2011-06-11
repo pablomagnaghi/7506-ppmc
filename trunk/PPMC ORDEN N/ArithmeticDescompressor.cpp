@@ -1,7 +1,9 @@
-#include "ArithmeticDescompressor.h"
-
-#include "Constants.h"
 #include <math.h>
+
+#include "PPMC.h"
+#include "ArithmeticDescompressor.h"
+#include "Constants.h"
+
 
 using namespace ppmc;
 using namespace std;
@@ -94,7 +96,7 @@ void ArithmeticDescompressor::uncompress(){
 char ArithmeticDescompressor::extract(){
 	char c;
 	bool end = false;
-	while (cola.empty() && !end){
+	while (cola.empty() && !end && !reader->eof()){
 		c = this->reader->read();
 		end = this->process(c);
 	}

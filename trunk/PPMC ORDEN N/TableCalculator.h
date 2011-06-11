@@ -1,8 +1,10 @@
 #ifndef TABLECALCULATOR_H_
 #define TABLECALCULATOR_H_
 
+#include <algorithm>
+
 #include "FrequencyTable.h"
-#include "algorithm"
+
 
 namespace ppmc{
 class TableCalculator {

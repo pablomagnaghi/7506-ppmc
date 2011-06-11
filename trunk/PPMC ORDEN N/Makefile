@@ -96,7 +96,7 @@ ifdef debug
   CFLAGS += -ggdb -DDEBUG -fno-inline
 else
   # Para que explote lo mas posible
-  CFLAGS += -O3 -DNDEBUG
+  CFLAGS += -O3 -DNDEBUG -march=native
 endif
 
 # shared memory
