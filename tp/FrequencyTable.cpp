@@ -9,18 +9,21 @@ FrequencyTable::FrequencyTable(){
 
 void FrequencyTable::compressEof(Query &q){
 	Probability p;
-	p.skip  = calculateSkipEof(q);
-	p.total = calculateTotal(q) + 1;
-	
-	if (freq.size() == 0) {
+	probabilityType escWidth;
+	escWidth = calculateEscWidth(q);
+	p.skip   = calculateSkipEof(q);
+	p.total  = calculateTotal(q);
+
+	if (escWidth == 0) {
 		p.width = 1;
 		p.total = 1;
 	} else {
-		p.width = freq.size();
+		p.width = escWidth;
+		p.total += escWidth;
 	}
-	
+
+	updateExclusion(q);
 	q.setProbability(p);
-	q.setFound(false);
 }
 
 void FrequencyTable::compress(Query & q){
@@ -55,7 +58,8 @@ void FrequencyTable::compress(Query & q){
 }
 
 /**
- * Calculate the values of the included elements before the term
+ * Calculate the value to skip as the sum of the 
+ * frequencies of the included elements before the term
  */
 probabilityType FrequencyTable::calculateSkip(Query& q) {
 	map<char,size_t>::iterator iter;
@@ -72,17 +76,19 @@ probabilityType FrequencyTable::calculateSkip(Query& q) {
 }
 
 /**
- * Calculate the count of all the excluded elements
+ * Calculate the width of ESC as the count of the known terms 
+ * minus the count of the excluded elements
  */
 probabilityType FrequencyTable::calculateEscWidth(Query& q) {
-	map<char,size_t>::iterator iter;
-	probabilityType skipped=0;
-	for( iter = freq.begin(); iter != freq.end(); ++iter ) {
-		if (q.isExcluded(iter->first) ) {
-			++skipped;
-		}
-	}
-	return freq.size() - skipped;
+	return freq.size();
+// 	map<char,size_t>::iterator iter;
+// 	probabilityType skipped=0;
+// 	for( iter = freq.begin(); iter != freq.end(); ++iter ) {
+// 		if (q.isExcluded(iter->first) ) {
+// 			++skipped;
+// 		}
+// 	}
+// 	return freq.size() - skipped;
 }
 
 /**
@@ -93,7 +99,8 @@ probabilityType FrequencyTable::calculateSkipEof(Query& q) {
 }
 
 /**
- * Calculate the values of all the included elements
+ * Calculate the total as the sum of the frequencies 
+ * of all the included elements
  */
 probabilityType FrequencyTable::calculateTotal(Query& q){
 	probabilityType total = 0;

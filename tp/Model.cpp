@@ -18,7 +18,7 @@ std::string Model::show() {
 	stringstream result;
 	std::map<std::string, FrequencyTable*>::iterator it;
 	for (it=frequencyTables.begin(); it != frequencyTables.end(); ++it) {
-		result << "contexto " << it->first << endl << "TABLA" << endl;
+		result << "contexto " << it->first << endl << "TABLA: " << frequencyTables.size() << endl;
 		result << it->second->show();
 	}
 	return result.str();

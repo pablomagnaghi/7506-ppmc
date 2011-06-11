@@ -6,7 +6,9 @@ using namespace ppmc;
 using namespace std;
 
 ContextSelector::ContextSelector(size_t contextSize) throw (std::length_error):size(contextSize){
+#ifdef VERBOSE
 	cerr << "---ContextSelector: new" << endl;
+#endif
 	if (size > max_models) {
 		throw new length_error("Invalid size");
 	}

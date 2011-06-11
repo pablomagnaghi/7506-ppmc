@@ -28,8 +28,8 @@ int main(int argc, char* argv[]) {
 		
 		std::string mode(argv[1]);
 		size_t order = atoi(argv[2]);
-		FileReader in(argv[3]);
-		FileWriter out(argv[4]);
+		FileReader in(argv[3], 2048);
+		FileWriter out(argv[4], 2048);
 		
 		if (mode=="c") {
 			Compressor c(order);
