@@ -1,6 +1,8 @@
 #ifndef _ppmc_h_
 #define _ppmc_h_
 
+#define VERBOSE
+
 #include <cstddef>
 #include <iostream> // for debugging
 
