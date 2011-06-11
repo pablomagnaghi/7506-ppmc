@@ -99,7 +99,9 @@ void ArithmeticCompressor::putBitInBuffer(char bit){
 
 void ArithmeticCompressor::putBufferInOutput(){
 	this->writer->write(buffer);
-	//printf ("Buffer to write: %x\n", buffer);
+#ifdef VERBOSE_ARITHMETIC
+	printf ("Buffer to write: %x\n", buffer);
+#endif
 	this->bitsInBuffer=0;
 }
 

@@ -34,7 +34,7 @@ void PPMCCompressor::process(u_int8_t a){
 	string context = contextSelector.getContext();
 	size_t pos = context.size();
 	string exclusionCharacters;
-#ifdef VERBOSE
+#ifdef VERBOSE_MODELS
 	cout << "LEO " << (char)a << " CONTEXTO \"" << context << "\" EMITO:" << endl;
 #endif
 	TableCalculator table;
@@ -53,24 +53,30 @@ void PPMCCompressor::process(u_int8_t a){
 		// puede haber un eof
 
 		table.getEnds(a, actualBottom, actualTop, &temporalBottom, &temporalTop, this->frequencyTable);
-		//printf ("top antes de operar: %x\n", temporalTop);
-		//printf ("bottom antes de operar: %x\n", temporalBottom);
+#ifdef VERBOSE_ARITHMETIC
+		printf ("top antes de operar: %x\n", temporalTop);
+		printf ("bottom antes de operar: %x\n", temporalBottom);
+#endif
 		setBottom(temporalBottom);
 		setTop(temporalTop);
 		solveOverflow();
-		//printf ("top dsp de over: %x\n", getTop());
-		//printf ("bottom dsp de over: %x\n", getBottom());
+#ifdef VERBOSE_ARITHMETIC
+		printf ("top dsp de over: %x\n", getTop());
+		printf ("bottom dsp de over: %x\n", getBottom());
+#endif
 		solveUnderflow();
-		//printf ("top dsp de under: %x\n", getTop());
-		//printf ("bottom dsp de under: %x\n", getBottom());
+#ifdef VERBOSE_ARITHMETIC
+		printf ("top dsp de under: %x\n", getTop());
+		printf ("bottom dsp de under: %x\n", getBottom());
+#endif
 		if (frequencyTable.find(a)) {
 			found = true;
-#ifdef VERBOSE
+#ifdef VERBOSE_MODELS
 			cout << a << " = " << frequencyTable.getFrequencyChar() << "/";
 			cout << frequencyTable.getTotal() << endl;
 #endif
 		} else {
-#ifdef VERBOSE
+#ifdef VERBOSE_MODELS
 			cout << "ESC  = " << frequencyTable.getFrequencyEsc() << "/";
 			cout << frequencyTable.getTotal()<< endl;
 #endif
@@ -85,7 +91,7 @@ void PPMCCompressor::process(u_int8_t a){
 				frequencyTable.getStringExc(exclusionCharacters);
 				// Aplico mecanismo de exclusion restando a MAX el size del string de
 				// exclusion
-#ifdef VERBOSE
+#ifdef VERBOSE_MODELS
 				cout << a <<" = 1/" << MAX - exclusionCharacters.size()<< endl;
 #endif
 				found = true;
@@ -99,18 +105,21 @@ void PPMCCompressor::process(u_int8_t a){
 				table.getEndsLastModel(a, actualBottom, actualTop, &temporalLastBottom, &temporalLastTop, exclusionCharacters);
 				setBottom(temporalLastBottom);
 				setTop(temporalLastTop);
-				//printf ("top antes de operar: %x\n", temporalLastTop);
-				//printf ("bottom antes de operar: %x\n", temporalLastBottom);
-
+#ifdef VERBOSE_ARITHMETIC
+				printf ("top antes de operar: %x\n", temporalLastTop);
+				printf ("bottom antes de operar: %x\n", temporalLastBottom);
+#endif
 				solveOverflow();
-				//printf ("top dsp de over: %x\n", getTop());
-				//printf ("bottom dsp de over: %x\n", getBottom());
-
+#ifdef VERBOSE_ARITHMETIC
+				printf ("top dsp de over: %x\n", getTop());
+				printf ("bottom dsp de over: %x\n", getBottom());
+#endif
 				// no es EOF
 				solveUnderflow();
-				//printf ("top dsp de under: %x\n", getTop());
-				//printf ("bottom dsp de under: %x\n", getBottom());
-
+#ifdef VERBOSE_ARITHMETIC
+				printf ("top dsp de under: %x\n", getTop());
+				printf ("bottom dsp de under: %x\n", getBottom());
+#endif
 			}
 		} else {
 			pos--;
@@ -122,7 +131,7 @@ void PPMCCompressor::process(u_int8_t a){
 		frequencyTable.getStringExc(exclusionCharacters);
 		frequencyTable.clear();
 	}
-#ifdef VERBOSE
+#ifdef VERBOSE_MODELS
 	show();
 #endif
 	// actualizo el contexto
@@ -135,7 +144,7 @@ void PPMCCompressor::processEof(u_int16_t a){
 	size_t pos = context.size();
 	string exclusionCharacters;
 
-#ifdef VERBOSE
+#ifdef VERBOSE_MODELS
 	cout << "LEO " << (char)a << " CONTEXTO \"" << context << "\" EMITO:" << endl;
 #endif
 	TableCalculator table;
@@ -154,24 +163,30 @@ void PPMCCompressor::processEof(u_int16_t a){
 		// puede haber un eof
 
 		table.getEnds(a, actualBottom, actualTop, &temporalBottom, &temporalTop, this->frequencyTable);
-		//printf ("top antes de operar: %x\n", temporalTop);
-		//printf ("bottom antes de operar: %x\n", temporalBottom);
+#ifdef VERBOSE_ARITHMETIC
+		printf ("top antes de operar: %x\n", temporalTop);
+		printf ("bottom antes de operar: %x\n", temporalBottom);
+#endif
 		setBottom(temporalBottom);
 		setTop(temporalTop);
 		solveOverflow();
-		//printf ("top dsp de over: %x\n", getTop());
-		//printf ("bottom dsp de over: %x\n", getBottom());
+#ifdef VERBOSE_ARITHMETIC
+		printf ("top dsp de over: %x\n", getTop());
+		printf ("bottom dsp de over: %x\n", getBottom());
+#endif
 		solveUnderflow();
-		//printf ("top dsp de under: %x\n", getTop());
-		//printf ("bottom dsp de under: %x\n", getBottom());
+#ifdef VERBOSE_ARITHMETIC
+		printf ("top dsp de under: %x\n", getTop());
+		printf ("bottom dsp de under: %x\n", getBottom());
+#endif
 		if (frequencyTable.find(a)) {
 			found = true;
-#ifdef VERBOSE
+#ifdef VERBOSE_MODELS
 			cout << a << " = " << frequencyTable.getFrequencyChar() << "/";
 			cout << frequencyTable.getTotal() << endl;
 #endif
 		} else {
-#ifdef VERBOSE
+#ifdef VERBOSE_MODELS
 			cout << "ESC  = " << frequencyTable.getFrequencyEsc() << "/";
 			cout << frequencyTable.getTotal()<< endl;
 #endif
@@ -184,7 +199,7 @@ void PPMCCompressor::processEof(u_int16_t a){
 				frequencyTable.getStringExc(exclusionCharacters);
 				// Aplico mecanismo de exclusion restando a MAX el size del string de
 				// exclusion
-#ifdef VERBOSE
+#ifdef VERBOSE_MODELS
 				cout << a <<" = 1/" << MAX - exclusionCharacters.size()<< endl;
 #endif
 				found = true;
@@ -198,9 +213,10 @@ void PPMCCompressor::processEof(u_int16_t a){
 				table.getEndsLastModel(a, actualBottom, actualTop, &temporalLastBottom, &temporalLastTop, exclusionCharacters);
 				setBottom(temporalLastBottom);
 				setTop(temporalLastTop);
-				//printf ("top antes de operar: %x\n", temporalLastTop);
-				//printf ("bottom antes de operar: %x\n", temporalLastBottom);
-
+#ifdef VERBOSE_ARITHMETIC
+				printf ("top antes de operar: %x\n", temporalLastTop);
+				printf ("bottom antes de operar: %x\n", temporalLastBottom);
+#endif
 			}
 		} else {
 			pos--;
