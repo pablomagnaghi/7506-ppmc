@@ -14,8 +14,10 @@ void M_1FrequencyTable::compressEof(Query &q){
 	p.width = 1;
 	q.setFound(true);
 	q.setProbability(p);
+#ifdef VERBOSE
 	cerr << "EOF = " << p.width << "/" << p.total << endl;
 	//cerr << "EOF = " << p.width << "/" << p.total << " en modelo -1" << endl;
+#endif
 }
 
 void M_1FrequencyTable::compress(Query & q){
@@ -33,6 +35,8 @@ void M_1FrequencyTable::compress(Query & q){
 	p.width = 1;
 	q.setFound(true);
 	q.setProbability(p);
+#ifdef VERBOSE
 	cerr << q.getTerm() << " = " << p.width << "/" << p.total << endl;
-	//cerr << q.getTerm() << " = " << p.width << "/" << p.total << " en modelo -1" << endl;
+//cerr << q.getTerm() << " = " << p.width << "/" << p.total << " en modelo -1" << endl;
+#endif
 }
