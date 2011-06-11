@@ -9,9 +9,13 @@ namespace util {
 	class FileReader: public IFileReader {
 		public:
 			FileReader(const char* name);
+			~FileReader();
 			virtual char read();
 			virtual bool eof();
 		private:
+			char* buffer;
+			size_t cursor;
+			size_t maxCursor;
 			std::ifstream file;
 	};
 }
