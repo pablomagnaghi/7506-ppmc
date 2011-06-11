@@ -1,10 +1,10 @@
 #include <iostream>
 #include <stdexcept>
 #include "PPMC.h"
+#include "Compressor.h"
 #include "FileWriter.h"
 #include "FileReader.h"
-#include "PPMCCompressor.h"
-#include "PPMCUncompressor.h"
+#include "Uncompressor.h"
 
 using namespace ppmc;
 using namespace util;
@@ -13,41 +13,38 @@ using namespace std;
 class bad_arguments:public exception {};
 
 int main(int argc, char* argv[]) {
-
 	try {
 		if (argc!=4) {
 			throw bad_arguments();
 		}
 		
 		std::string mode(argv[1]);
-		FileReader in(argv[2], 2048);
-		FileWriter out(argv[3], 2048);
+		//size_t order = atoi(argv[2]);
+		FileReader in(argv[2]);
+		FileWriter out(argv[3]);
 		
 		if (mode=="c") {
-			PPMCCompressor c(&in,&out);
+			Compressor compresor(&in,&out);
 			cerr << "Inicio compresión..." << endl;
-			c.compress();
+			compresor.compress();
 			cerr << "...fin compresión!" << endl;
-		} else if(mode=="x") {
-			PPMCUncompressor d(&in,&out);
+		} else if(mode=="d") {
+			Uncompressor uncompressor(&in, &out);
 			cerr << "Inicio descompresión..." << endl;
-			d.uncompress();
+			uncompressor.uncompress();
 			cerr << "...fin descompresión!" << endl;
 		} else {
 			throw invalid_argument(mode);
 		}
 	} catch (invalid_argument& e) {
 		cerr << "Modo " << e.what() << " no reconocido" << endl;
-		cerr << "Debe elegir \"c\" para comprimir o \"x\" para descomprimir" << endl;
-		return 1;
+		cerr << "Debe elegir (c)omprimir o (d)escomprimir" << endl;
 	} catch (bad_arguments& e) {
 		cerr << "Cantidad de argumentos incorrecta" << endl;
-		cerr << "Modo de uso: " << argv[0] << "  [c|x] entrada salida" << endl;
-		return 2;
+		cerr << "Modo de uso: " << argv[0] << "  [c|d] entrada salida" << endl;
+	} catch (FileError& e) {
+		cerr << "Error de archivos: " << e.what() << endl;
 	} catch (exception& e) {
 		cerr << "Error interno: " << e.what() << endl;
-		return 3;
 	}
-
-	return 0;
 }

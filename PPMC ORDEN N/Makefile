@@ -14,7 +14,7 @@
 #################
 
 # Nombre del ejecutable.
-target = ppmc 
+target = run
 
 # modo = c89, c99, c++98, c++0x
 modo = c++98
@@ -96,7 +96,7 @@ ifdef debug
   CFLAGS += -ggdb -DDEBUG -fno-inline
 else
   # Para que explote lo mas posible
-  CFLAGS += -O3 -DNDEBUG -march=native
+  CFLAGS += -O3 -DNDEBUG
 endif
 
 # shared memory

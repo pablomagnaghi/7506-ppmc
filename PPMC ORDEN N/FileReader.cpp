@@ -4,33 +4,18 @@
 using namespace util;
 using namespace std;
 
-FileReader::FileReader(const char* name, size_t bs){
+FileReader::FileReader(const char* name){
 	file.open(name);
-	if (! file.good()) throw 1;
-	bufferSize = bs;
-	buffer     = new char[bufferSize];
-	cursor     = 0;
-	maxCursor  = 0;
-	
+	if (! file.good()) throw FileErrorOpenForReading();
 }
 
-FileReader::~FileReader() {
-	delete[] buffer;
-}
-
-/**
- * @precondition: eof()
- *
- */
 char FileReader::read(){
-	return buffer[cursor++];
+	char c;
+	if (! file.good()) throw FileErrorRead();
+	file >> c;
+	return c;
 }
 
 bool FileReader::eof(){
-	if (cursor == maxCursor) {
-		file.read(buffer, bufferSize);
-		maxCursor = file.gcount();
-		cursor = 0;
-	}
-	return (maxCursor == 0);
+	return file.eof();
 }

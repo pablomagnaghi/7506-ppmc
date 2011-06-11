@@ -14,12 +14,12 @@ namespace ppmc {
 			Model();
 			~Model();
 			FrequencyTable* find(const std::string&);
-			std::string show();
+			void show();
 			void update(const std::string&, char);
 			std::size_t getSize();
 		private:
 			std::map<std::string, FrequencyTable*> model;
-			size_t size;
+			std::size_t size;
 	};
 }
 

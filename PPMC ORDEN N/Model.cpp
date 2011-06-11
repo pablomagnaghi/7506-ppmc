@@ -1,4 +1,3 @@
-#include <sstream>
 #include "Model.h"
 
 
@@ -10,7 +9,7 @@ Model::Model(){
 }
 
 Model::~Model(){
-	map<string, FrequencyTable*>::iterator it = model.begin();
+	std::map<std::string, FrequencyTable*>::iterator it = model.begin();
 	while (it != model.end() ) {
 		delete it->second;
 		it++;
@@ -18,7 +17,7 @@ Model::~Model(){
 }
 
 FrequencyTable* Model::find(const std::string& context){
-	map<string, FrequencyTable*>::iterator it;
+	std::map<std::string, FrequencyTable*>::iterator it;
 	// Busco el contexto en el modelo
 	it = model.find(context);
 
@@ -27,47 +26,46 @@ FrequencyTable* Model::find(const std::string& context){
 		return it->second;
 	}
 
-	//std::cout << "creando tabla para contexto " << context << endl;
+	//std::cout << "creando tabla para contexto " << context << std::endl;
 	size++;
 	FrequencyTable* ct = new FrequencyTable();
 	model.insert(make_pair(context, ct));
 	return ct;
 }
 
-std::string Model::show(){
-	stringstream result;
-	map<string, FrequencyTable*>::iterator it = model.begin();
+void Model::show(){
+	std::map<std::string, FrequencyTable*>::iterator it = model.begin();
 
 	while (it != model.end() ) {
-		result << "contexto " << it->first << endl;
-		result << it->second->show();
+		std::cout << "contexto " << it->first << std::endl;
+		it->second->show();
 		it++;
 	}
-	return result.str();
 }
 
 // El contexto se creo en el metodo find(), ahora hay que
 // actualizar su tabla de frecuencias
 void Model::update(const std::string& context, char c) {
-	map<string, FrequencyTable*>::iterator it;
+	std::map<std::string, FrequencyTable*>::iterator it;
 
 	// Busco el contexto en el modelo
 	it = model.find(context);
 
 	//codigo insertado de prueba
-	// todo VERRRRRRRRRRR
 	if (it == model.end()){
 		size++;
 		FrequencyTable* ct = new FrequencyTable();
 		model.insert(make_pair(context, ct));
 	}
+	it = model.find(context);
+
 
 	// Es seguro que existe porque sino se encontro
 	// en el find(), se creo la tabla para ese contexto
 	it->second->addCharacter(c);
 }
 
-size_t Model::getSize() {
+std::size_t Model::getSize() {
 	return size;
 }
 
