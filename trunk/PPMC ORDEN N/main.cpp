@@ -20,8 +20,8 @@ int main(int argc, char* argv[]) {
 		}
 		
 		std::string mode(argv[1]);
-		FileReader in(argv[2]);
-		FileWriter out(argv[3]);
+		FileReader in(argv[2], 2048);
+		FileWriter out(argv[3], 2048);
 		
 		if (mode=="c") {
 			PPMCCompressor c(&in,&out);
