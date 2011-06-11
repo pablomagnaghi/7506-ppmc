@@ -20,8 +20,10 @@ void PPMCCompressor::compress() {
 }
 
 void PPMCCompressor::show(){
+	
 	for (int i = ORDEN; i > -1; i--) {
 		if (models[i]->getSize()) {
+			cout << "Modelo " << i  << ": " << endl;
 			cout << models[i]->show();
 		}
 	}
@@ -32,9 +34,9 @@ void PPMCCompressor::process(u_int8_t a){
 	string context = contextSelector.getContext();
 	size_t pos = context.size();
 	string exclusionCharacters;
-
-	//cout << "LEO " << (char)a << " CONTEXTO \"" << context << "\" EMITO:" << endl;
-
+#ifdef VERBOSE
+	cout << "LEO " << (char)a << " CONTEXTO \"" << context << "\" EMITO:" << endl;
+#endif
 	TableCalculator table;
 	while (!found) {
 		// cargo la tabla con el modelo actual
@@ -63,11 +65,15 @@ void PPMCCompressor::process(u_int8_t a){
 		//printf ("bottom dsp de under: %x\n", getBottom());
 		if (frequencyTable.find(a)) {
 			found = true;
-			//cout << a << " = " << frequencyTable.getFrequencyChar() << "/";
-			//cout << frequencyTable.getTotal() << endl;
+#ifdef VERBOSE
+			cout << a << " = " << frequencyTable.getFrequencyChar() << "/";
+			cout << frequencyTable.getTotal() << endl;
+#endif
 		} else {
-			//cout << "ESC  = " << frequencyTable.getFrequencyEsc() << "/";
-			//cout << frequencyTable.getTotal()<< endl;
+#ifdef VERBOSE
+			cout << "ESC  = " << frequencyTable.getFrequencyEsc() << "/";
+			cout << frequencyTable.getTotal()<< endl;
+#endif
 		}
 
 		models[pos]->update(context, a);
@@ -79,7 +85,9 @@ void PPMCCompressor::process(u_int8_t a){
 				frequencyTable.getStringExc(exclusionCharacters);
 				// Aplico mecanismo de exclusion restando a MAX el size del string de
 				// exclusion
-				//cout << a <<" = 1/" << MAX - exclusionCharacters.size()<< endl;
+#ifdef VERBOSE
+				cout << a <<" = 1/" << MAX - exclusionCharacters.size()<< endl;
+#endif
 				found = true;
 				u_int64_t actualBottom = getBottom();
 				u_int64_t actualTop = getTop();
@@ -114,7 +122,9 @@ void PPMCCompressor::process(u_int8_t a){
 		frequencyTable.getStringExc(exclusionCharacters);
 		frequencyTable.clear();
 	}
-	//show();
+#ifdef VERBOSE
+	show();
+#endif
 	// actualizo el contexto
 	contextSelector.add(a);
 }
@@ -125,8 +135,9 @@ void PPMCCompressor::processEof(u_int16_t a){
 	size_t pos = context.size();
 	string exclusionCharacters;
 
-	//cout << "LEO " << (char)a << " CONTEXTO \"" << context << "\" EMITO:" << endl;
-
+#ifdef VERBOSE
+	cout << "LEO " << (char)a << " CONTEXTO \"" << context << "\" EMITO:" << endl;
+#endif
 	TableCalculator table;
 	while (!found) {
 		// cargo la tabla con el modelo actual
@@ -155,11 +166,15 @@ void PPMCCompressor::processEof(u_int16_t a){
 		//printf ("bottom dsp de under: %x\n", getBottom());
 		if (frequencyTable.find(a)) {
 			found = true;
-			//cout << a << " = " << frequencyTable.getFrequencyChar() << "/";
-			//cout << frequencyTable.getTotal() << endl;
+#ifdef VERBOSE
+			cout << a << " = " << frequencyTable.getFrequencyChar() << "/";
+			cout << frequencyTable.getTotal() << endl;
+#endif
 		} else {
-			//cout << "ESC  = " << frequencyTable.getFrequencyEsc() << "/";
-			//cout << frequencyTable.getTotal()<< endl;
+#ifdef VERBOSE
+			cout << "ESC  = " << frequencyTable.getFrequencyEsc() << "/";
+			cout << frequencyTable.getTotal()<< endl;
+#endif
 		}
 
 		if (pos == 0) {
@@ -169,7 +184,9 @@ void PPMCCompressor::processEof(u_int16_t a){
 				frequencyTable.getStringExc(exclusionCharacters);
 				// Aplico mecanismo de exclusion restando a MAX el size del string de
 				// exclusion
-				//cout << a <<" = 1/" << MAX - exclusionCharacters.size()<< endl;
+#ifdef VERBOSE
+				cout << a <<" = 1/" << MAX - exclusionCharacters.size()<< endl;
+#endif
 				found = true;
 				u_int64_t actualBottom = getBottom();
 				u_int64_t actualTop = getTop();
