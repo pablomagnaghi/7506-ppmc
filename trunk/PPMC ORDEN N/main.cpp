@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdexcept>
 #include "PPMC.h"
 #include "FileWriter.h"
 #include "FileReader.h"
@@ -7,48 +8,45 @@
 
 using namespace ppmc;
 using namespace util;
+using namespace std;
 
-// TPGrupoXX -c pepe.txt
-// Comprime el achivo pepe.txt generando el archivo pepe.txt.XX
-// TPGrupoXX -x pepe.txt.XX
-// Descomprime el archivo pepe.XX re-creando el archivo original (pepe.txt)
-
-void help() {
-	std::cerr << "Modo de uso: " << std::endl;
-	std::cerr << "Para comprimir: -c archivo" << std::endl;
-	std::cerr << "Para descomprimir: -x archivo" << std::endl;
-}
+class bad_arguments:public exception {};
 
 int main(int argc, char* argv[]) {
 
-	if (argc==3) {
+	try {
+		if (argc!=4) {
+			throw bad_arguments();
+		}
+		
 		std::string mode(argv[1]);
-		std::string name(argv[2]);
-		if (mode == "-c") {
-			FileReader in(name.c_str());
-			std::cerr << "ARCHIVO A LEER: " << name << std::endl;
-			name += ".XX";
-			FileWriter out(name.c_str());
-			std::cerr << "ARCHIVO COMPRIMIDO: " << name << std::endl;
-			PPMCCompressor compresor(&in,&out);
-			std::cerr << "Inicio compresión..." << std::endl;
-			compresor.compress();
-			std::cerr << "...fin compresión!" << std::endl;
-		} else if(mode == "-x") {
-			FileReader in(name.c_str());
-			std::cerr << "ARCHIVO A LEER: " << name << std::endl;
-			name = name.substr(0, name.size() - 3);
-			FileWriter out(name.c_str());
-			std::cerr << "ARCHIVO DESCOMPRIMIDO: " << name << std::endl;
-			PPMCUncompressor uncompressor(&in, &out);
-			std::cerr << "Inicio descompresión..." << std::endl;
-			uncompressor.uncompress();
-			std::cerr << "...fin descompresión!" << std::endl;
-			} else {
-				help();
-			}
-	} else {
-		help();
+		FileReader in(argv[2]);
+		FileWriter out(argv[3]);
+		
+		if (mode=="c") {
+			PPMCCompressor c(&in,&out);
+			cerr << "Inicio compresión..." << endl;
+			c.compress();
+			cerr << "...fin compresión!" << endl;
+		} else if(mode=="x") {
+			PPMCUncompressor d(&in,&out);
+			cerr << "Inicio descompresión..." << endl;
+			d.uncompress();
+			cerr << "...fin descompresión!" << endl;
+		} else {
+			throw invalid_argument(mode);
+		}
+	} catch (invalid_argument& e) {
+		cerr << "Modo " << e.what() << " no reconocido" << endl;
+		cerr << "Debe elegir \"c\" para comprimir o \"x\" para descomprimir" << endl;
+		return 1;
+	} catch (bad_arguments& e) {
+		cerr << "Cantidad de argumentos incorrecta" << endl;
+		cerr << "Modo de uso: " << argv[0] << "  [c|x] entrada salida" << endl;
+		return 2;
+	} catch (exception& e) {
+		cerr << "Error interno: " << e.what() << endl;
+		return 3;
 	}
 
 	return 0;
