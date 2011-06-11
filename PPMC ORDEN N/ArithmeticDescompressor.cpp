@@ -48,7 +48,9 @@ void ArithmeticDescompressor::solveOverflow(){
 }
 
 void ArithmeticDescompressor::solveUnderflow(){
+#ifdef VERBOSE_ARITHMETIC
 	printInBin(this->number);
+#endif
 	int i = 29;
 	int localCounter = 0;
 	int firstBitTop = (top>>31) & 1;

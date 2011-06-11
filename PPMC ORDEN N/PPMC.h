@@ -1,13 +1,14 @@
 #ifndef _ppmc_h_
 #define _ppmc_h_
 
-#define VERBOSE
+#define VERBOSE_MODELS
+#define VERBOSE_ARITHMETIC
 
 #include <cstddef>
 #include <iostream> // for debugging
 
 namespace ppmc {
-	#define ORDEN 1
+	#define ORDEN 0
 	#define MAX 257
 }
 
