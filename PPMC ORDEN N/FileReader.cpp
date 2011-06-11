@@ -4,12 +4,14 @@
 using namespace util;
 using namespace std;
 
-FileReader::FileReader(const char* name){
+FileReader::FileReader(const char* name, size_t bs){
 	file.open(name);
 	if (! file.good()) throw 1;
-	buffer = new char[2048];
-	cursor = 0;
-	maxCursor = 0;
+	bufferSize = bs;
+	buffer     = new char[bufferSize];
+	cursor     = 0;
+	maxCursor  = 0;
+	
 }
 
 FileReader::~FileReader() {
@@ -26,7 +28,7 @@ char FileReader::read(){
 
 bool FileReader::eof(){
 	if (cursor == maxCursor) {
-		file.read(buffer, 2048);
+		file.read(buffer, bufferSize);
 		maxCursor = file.gcount();
 		cursor = 0;
 	}
