@@ -65,7 +65,7 @@ bool PPMCUncompressor::solveLastModel(std::string ex, std::string firstCtx, int 
 			}
 			int i;
 			//updateo todos los contextos que haya pasado
-			for (i=firstCtx.size(); i>=0; i--){
+			for (i=(int)firstCtx.size(); i>=0; i--){
 				if (i<0){
 					break;
 				}
@@ -162,7 +162,7 @@ bool PPMCUncompressor::process(char a){
 				addToQueue(characterTable);
 				this->state = STATE_OK;
 				int i;
-				for (i=firstPos; i>=pos; i--){
+				for (i=(int)firstPos; i>=(int)pos; i--){
 					if (i<0){
 						break;
 					}
