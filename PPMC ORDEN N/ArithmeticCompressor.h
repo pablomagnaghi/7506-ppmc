@@ -22,7 +22,7 @@ protected:
 	util::FileWriter *writer;
 public:
 	ArithmeticCompressor(util::FileReader* r, util::FileWriter* w);
-	virtual void process(u_int8_t a)=0;
+	virtual void process(u_int16_t a)=0;
 	u_int64_t getBottom();
 	u_int64_t getTop();
 	void setBottom(u_int64_t bottom);
