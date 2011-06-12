@@ -20,7 +20,7 @@ bool TableCalculator::isInString(u_int8_t c, std::string exclusionString){
 	return isInString;
 }
 
-void TableCalculator::getEnds(u_int8_t a, u_int64_t bottom, u_int64_t top, u_int64_t *newBottom, u_int64_t *newTop, FrequencyTable table){
+void TableCalculator::getEnds(u_int16_t a, u_int64_t bottom, u_int64_t top, u_int64_t *newBottom, u_int64_t *newTop, FrequencyTable table){
 	u_int64_t range = top - bottom + 1;
 	double characterTop = 0;
 	double temporalTop = 0;
@@ -55,37 +55,8 @@ void TableCalculator::getEnds(u_int8_t a, u_int64_t bottom, u_int64_t top, u_int
 	}
 }
 
-// Calculo la probabilidad del esc sabiendo que recibo un eof
-void TableCalculator::getEndsEof(u_int16_t a, u_int64_t bottom, u_int64_t top, u_int64_t *newBottom, u_int64_t *newTop, FrequencyTable table){
-	u_int64_t range = top - bottom + 1;
-	double characterTop = 0;
-	double temporalTop = 0;
-	double pi = 0;
-	double pb=0;
-	*newBottom = bottom;
-	int i = 0;
-	//total va a ser el total de las frecuancias menos el tamanio del string
-	int totalFrequences = table.getTotal();
-	std::map<char, std::size_t>::iterator it = table.tableBegin();
-	while (it != table.tableEnd()) {
-		characterTop += it->second;
-		pi = characterTop / totalFrequences;
-		*newTop = floor(bottom + range*pi - 1);
-		if ((i-1)>=0){
-			temporalTop = characterTop - it->second;
-			pb = temporalTop/totalFrequences;
-			*newBottom = ceil(bottom + range*pb);
-		}
-		i++;
-		it++;
-	}
-	//hay un escape
-	pb = characterTop/totalFrequences;
-	*newTop = floor(bottom + range*1 - 1);
-	*newBottom = ceil(bottom + range*pb);
-}
-
-void TableCalculator::getEndsLastModel (u_int8_t a, u_int64_t bottom, u_int64_t top, u_int64_t * newBottom, u_int64_t* newTop, std::string ex){
+bool TableCalculator::getEndsLastModel (u_int16_t a, u_int64_t bottom, u_int64_t top, u_int64_t * newBottom, u_int64_t* newTop, std::string ex){
+	bool result = false;
 	u_int64_t range = top - bottom + 1;
 	double characterTop = 0;
 	double temporalTop = 0;
@@ -107,30 +78,10 @@ void TableCalculator::getEndsLastModel (u_int8_t a, u_int64_t bottom, u_int64_t 
 			*newBottom = ceil(bottom + range*pb);
 		}
 	}
-}
 
-void TableCalculator::getEndsLastModelEof (u_int16_t a, u_int64_t bottom, u_int64_t top, u_int64_t * newBottom, u_int64_t* newTop, std::string ex){
-	u_int64_t range = top - bottom + 1;
-	double characterTop = 0;
-	double temporalTop = 0;
-	double pi = 0;
-	double pb=0;
-	*newBottom = bottom;
-	int i;
-	int totalFrequences = 257 - ex.size();
-	for (i=0; i<=a; i++){
-		if (isInString((char)i, ex)){
-			continue;
-		}
-		characterTop+= 1;
-		pi = characterTop / totalFrequences;
-		*newTop = floor(bottom + range*pi - 1);
-		if ((i-1)>=0){
-			temporalTop = characterTop - 1;
-			pb = temporalTop/totalFrequences;
-			*newBottom = ceil(bottom + range*pb);
-		}
-	}
+	if (i==NUMBER_OF_CHARACTERS)
+		result = true;
+	return result;
 }
 
 int TableCalculator::foundedCharLastModel(u_int64_t number, int size, u_int64_t bottom, u_int64_t top, u_int64_t *temporalBottom, u_int64_t *temporalTop, std::string ex){
