@@ -53,7 +53,6 @@ bool PPMCUncompressor::solveLastModel(std::string ex, std::string firstCtx, int 
 		}
 		else {
 			this->state = STATE_OK;
-			//std::cout << (char)result <<" = 1/" << MAX - exclusionChars.size()<< std::endl;
 			setBottom(temporalBottom);
 			setTop(temporalTop);
 			// todo VERRRR
@@ -61,19 +60,15 @@ bool PPMCUncompressor::solveLastModel(std::string ex, std::string firstCtx, int 
 			addToQueue(characterTable);
 			solveOverflow();
 			solveUnderflow();
-//			std::cout << "Tamanio exclusion " << ex.size() << std::endl;
 			if ((unsigned)result == END_OF_FILE-ex.size()){
 				return true;
 			}
 			int i;
 			//updateo todos los contextos que haya pasado
-//			std::cout << "Primer contexto: " << firstCtx << std::endl;
 			for (i=firstCtx.size(); i>=0; i--){
 				if (i<0){
 					break;
 				}
-				//std::cout << "context " << firstContext << std::endl;
-//				std::cout << "Updateo modelo : " << i << "contexto: " << firstCtx << std::endl;
 				models[i]->update(firstCtx, characterTable);
 				if (firstCtx.size()>0){
 					firstCtx = firstCtx.substr(1);
@@ -81,7 +76,9 @@ bool PPMCUncompressor::solveLastModel(std::string ex, std::string firstCtx, int 
 			}
 			frequencyTable.getStringExc(exclusionChars);
 			frequencyTable.clear();
-//			show();
+#ifdef VERBOSE_MODELS
+			show();
+#endif
 			contextSelector.add(characterTable);
 			*moreIterations = 1;
 			end = true;
@@ -111,7 +108,6 @@ bool PPMCUncompressor::process(char a){
 		std::string context = contextSelector.getContext();
 
 		std::string firstContext = context;
-		//std::cout << "context \"" << context << "\""<<std::endl;
 		std::string exclusionCharacters;
 
 		if (state == STATE_NON_LAST_MODEL){
@@ -125,8 +121,6 @@ bool PPMCUncompressor::process(char a){
 		TableCalculator calculator;
 		u_int64_t temporalBottom;
 		u_int64_t temporalTop;
-//		std::cout << "Contexto actual "<< context << std::endl;
-//		std::cout << "Primer contexto " << firstContext << std::endl;
 		while (!found) {
 			// cargo la tabla con el modelo actual
 			frequencyTable.update (models[pos]->find(context));
@@ -137,7 +131,6 @@ bool PPMCUncompressor::process(char a){
 			bool end = false;
 			//Mientras no pueda resolver la consulta, pide numeros
 			while (!end){
-				//std::cout << "Tabla cargada: " << context << std::endl;
 				result = calculator.foundedCharModel(getNumber(), getBitsInNumber(), getBottom(), getTop(), &temporalBottom, &temporalTop, frequencyTable);
 				if (result < 0){
 					//Si entra aqui es po que no llego a definir con los bits que estan y tiene q seguir metiendo bits
@@ -164,8 +157,6 @@ bool PPMCUncompressor::process(char a){
 			if (result != ESC){
 				found = true;
 				frequencyTable.find(result);
-//				std::cout << (char)result << " = " << frequencyTable.getFrequencyChar() << "/";
-//				std::cout << frequencyTable.getTotal() << std::endl;
 				// todo VERRRRR
 				u_int8_t characterTable = (char) result;
 				addToQueue(characterTable);
@@ -175,7 +166,6 @@ bool PPMCUncompressor::process(char a){
 					if (i<0){
 						break;
 					}
-					//std::cout << "context " << firstContext << std::endl;
 					// todo VERRRR
 					models[i]->update(firstContext, characterTable);
 					if (firstContext.size()>0){
@@ -217,7 +207,9 @@ bool PPMCUncompressor::process(char a){
 			frequencyTable.getStringExc(exclusionCharacters);
 			frequencyTable.clear();
 		}
-//		show();
+#ifdef VERBOSE_MODELS
+			show();
+#endif
 	}
 	return false;
 }

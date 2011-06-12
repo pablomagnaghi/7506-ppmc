@@ -84,7 +84,6 @@ void ArithmeticDescompressor::uncompress(){
 	bool end = false;
 	while (!end){
 		char value = this->extract();
-		std::cout << value << std::endl;
 		s++;
 		if (value == '\0'){
 			end = true;
