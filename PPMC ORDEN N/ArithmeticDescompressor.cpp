@@ -1,14 +1,8 @@
-#include <math.h>
-
-#include "PPMC.h"
 #include "ArithmeticDescompressor.h"
-#include "Constants.h"
-
 
 using namespace ppmc;
-using namespace std;
 
-ArithmeticDescompressor::ArithmeticDescompressor(util::FileReader* r, util::FileWriter* w):cola() {
+ArithmeticDescompressor::ArithmeticDescompressor(FileReader* r, FileWriter* w):cola() {
 	this->reader = r;
 	this->writer = w;
 	this->bottom = BYTE_BOTTOM;
@@ -49,7 +43,7 @@ void ArithmeticDescompressor::solveOverflow(){
 
 void ArithmeticDescompressor::solveUnderflow(){
 #ifdef VERBOSE_ARITHMETIC
-	printInBin(this->number);
+	//printInBin(this->number);
 #endif
 	int i = 29;
 	int localCounter = 0;
@@ -83,9 +77,14 @@ void ArithmeticDescompressor::uncompress(){
 	int s = 0;
 	bool end = false;
 	while (!end){
-		char value = this->extract();
+		u_int16_t value = this->extract();
 		s++;
-		if (value == '\0'){
+		// todo prueba
+		std::cout << s << std::endl;
+		if (s == 22595){
+			std::cout << "sdas" << std::endl;
+		}
+		if (value == END_OF_FILE){
 			end = true;
 		}
 		else {
@@ -94,7 +93,7 @@ void ArithmeticDescompressor::uncompress(){
 	}
 }
 
-char ArithmeticDescompressor::extract(){
+u_int16_t ArithmeticDescompressor::extract(){
 	char c;
 	bool end = false;
 	while (cola.empty() && !end && !reader->eof()){
@@ -102,12 +101,12 @@ char ArithmeticDescompressor::extract(){
 		end = this->process(c);
 	}
 
-	char result = cola.front();
+	u_int16_t result = cola.front();
 	cola.pop();
 	return result;
 }
 
-void ArithmeticDescompressor::addToQueue(char c){
+void ArithmeticDescompressor::addToQueue(u_int16_t c){
 	cola.push(c);
 }
 

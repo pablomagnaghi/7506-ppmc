@@ -7,16 +7,20 @@
 #include "ArithmeticCompressor.h"
 #include "Model.h"
 #include "ContextSelector.h"
+#include "Constants.h"
+#include "TableCalculator.h"
 
+using namespace std;
+using namespace util;
 
 namespace ppmc {
 	class PPMCCompressor: public ArithmeticCompressor {
 		private:
-			std::vector<Model*> models;
+			vector<Model*> models;
 			ContextSelector contextSelector;
 			FrequencyTable frequencyTable;
 		public:
-			PPMCCompressor(util::FileReader *r, util::FileWriter *w);
+			PPMCCompressor(FileReader *r, FileWriter *w);
 			void compress();
 			void process(u_int16_t a);
 			void show();

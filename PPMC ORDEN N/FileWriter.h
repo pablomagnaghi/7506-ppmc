@@ -3,8 +3,11 @@
 
 #include <fstream>
 #include <cstdlib>
+#include <netinet/in.h>
 
 #include "util.h"
+
+using namespace std;
 
 namespace util {
 	class FileWriter{
@@ -16,7 +19,7 @@ namespace util {
 			char* buffer;
 			size_t cursor;
 			size_t bufferSize;
-			std::ofstream file;
+			ofstream file;
 	};
 }
 #endif //_util_file_writer_h_

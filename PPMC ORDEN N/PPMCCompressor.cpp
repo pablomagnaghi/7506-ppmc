@@ -1,11 +1,8 @@
 #include "PPMCCompressor.h"
-#include "Constants.h"
-#include "TableCalculator.h"
+
 using namespace ppmc;
-using namespace std;
 
-
-PPMCCompressor::PPMCCompressor(util::FileReader* r, util::FileWriter* w):ArithmeticCompressor(r,w) {
+PPMCCompressor::PPMCCompressor(FileReader* r, FileWriter* w):ArithmeticCompressor(r,w) {
 	for (size_t i=0; i<(ORDEN + 1);i++) {
 		models.push_back(new Model());
 	}
@@ -15,8 +12,8 @@ void PPMCCompressor::compress() {
 	static int i = 0;
 	while (!reader->eof() ) {
 		i++;
-		// PARA VER AVANCE DE LAS PASADAS
-		std::cout << i << std::endl;
+		// todo para ver velocidad de bytes
+		cout << i << endl;
 		char c = reader->read();
 		process(c);
 	}
@@ -27,8 +24,8 @@ void PPMCCompressor::compress() {
 void PPMCCompressor::show(){
 	for (int i = ORDEN; i > -1; i--) {
 		if (models[i]->getSize()) {
-			std::cout << "Modelo " << i << ": " << std::endl;
-			std::cout << models[i]->show() << std::endl;
+			cout << "Modelo " << i << ": " << endl;
+			cout << models[i]->show() << endl;
 		}
 	}
 }
@@ -43,7 +40,7 @@ void PPMCCompressor::process(u_int16_t a){
 			a &= 0x00FF;
 
 #ifdef VERBOSE_MODELS
-	cout << "LEO " << (char)a << " CONTEXTO \"" << context << "\" EMITO:" << endl;
+	cout << "LEO " << a << " CONTEXTO \"" << context << "\" EMITO:" << endl;
 #endif
 	TableCalculator table;
 	while (!found) {
@@ -61,6 +58,19 @@ void PPMCCompressor::process(u_int16_t a){
 		// puede haber un eof
 
 		table.getEnds(a, actualBottom, actualTop, &temporalBottom, &temporalTop, this->frequencyTable);
+
+		if (frequencyTable.find(a)) {
+			found = true;
+#ifdef VERBOSE_MODELS
+			cout << a << " = " << frequencyTable.getFrequencyChar() << "/";
+			cout << frequencyTable.getTotal() << endl;
+#endif
+		} else {
+#ifdef VERBOSE_MODELS
+			cout << "ESC  = " << frequencyTable.getFrequencyEsc() << "/";
+			cout << frequencyTable.getTotal()<< endl;
+#endif
+		}
 #ifdef VERBOSE_ARITHMETIC
 		printf ("top antes de operar: %x\n", temporalTop);
 		printf ("bottom antes de operar: %x\n", temporalBottom);
@@ -77,18 +87,6 @@ void PPMCCompressor::process(u_int16_t a){
 		printf ("top dsp de under: %x\n", getTop());
 		printf ("bottom dsp de under: %x\n", getBottom());
 #endif
-		if (frequencyTable.find(a)) {
-			found = true;
-#ifdef VERBOSE_MODELS
-			cout << a << " = " << frequencyTable.getFrequencyChar() << "/";
-			cout << frequencyTable.getTotal() << endl;
-#endif
-		} else {
-#ifdef VERBOSE_MODELS
-			cout << "ESC  = " << frequencyTable.getFrequencyEsc() << "/";
-			cout << frequencyTable.getTotal()<< endl;
-#endif
-		}
 
 		models[pos]->update(context, a);
 
@@ -158,4 +156,3 @@ PPMCCompressor::~PPMCCompressor() {
 		delete models[i];
 	}
 }
-

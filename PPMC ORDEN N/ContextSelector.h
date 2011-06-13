@@ -5,16 +5,18 @@
 
 #include "PPMC.h"
 
+using namespace std;
+
 namespace ppmc {
 	class ContextSelector {
 		public:
 			ContextSelector();
 			~ContextSelector(){};
 			void add(char c);
-			const std::string& getContext();
+			const string& getContext();
 			void show();
 		private:
-			std::string context;
+			string context;
 	};
 }
 

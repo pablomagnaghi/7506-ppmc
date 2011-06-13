@@ -1,8 +1,6 @@
 #include "FileReader.h"
 
-
 using namespace util;
-using namespace std;
 
 FileReader::FileReader(const char* name, size_t bs){
 	file.open(name);
@@ -18,10 +16,8 @@ FileReader::~FileReader() {
 	delete[] buffer;
 }
 
-/**
- * @precondition: eof()
- *
- */
+// precondition: eof()
+
 char FileReader::read(){
 	return buffer[cursor++];
 }

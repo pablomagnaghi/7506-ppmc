@@ -1,7 +1,5 @@
-#include <math.h>
-
 #include "TableCalculator.h"
-#include "Constants.h"
+
 using namespace ppmc;
 
 TableCalculator::TableCalculator() {
@@ -9,11 +7,12 @@ TableCalculator::TableCalculator() {
 
 }
 
-bool TableCalculator::isInString(u_int8_t c, std::string exclusionString){
-	std::size_t j;
+bool TableCalculator::isInString(u_int8_t c, string exclusionString){
+	size_t j;
 	bool isInString = false;
 	for (j=0; j<exclusionString.size() && !isInString; j++){
-		if (exclusionString[j]==c){
+		u_int8_t character = exclusionString[j];
+		if (character==c){
 			isInString = true;
 		}
 	}
@@ -31,7 +30,7 @@ void TableCalculator::getEnds(u_int16_t a, u_int64_t bottom, u_int64_t top, u_in
 	//total va a ser el total de las frecuancias menos el tamanio del string
 	int totalFrequences = table.getTotal();
 	bool found = false;
-	std::map<char, std::size_t>::iterator it = table.tableBegin();
+	map<u_int16_t, size_t>::iterator it = table.tableBegin();
 	while (it != table.tableEnd() && !found) {
 		characterTop += it->second;
 		pi = characterTop / totalFrequences;
@@ -55,7 +54,7 @@ void TableCalculator::getEnds(u_int16_t a, u_int64_t bottom, u_int64_t top, u_in
 	}
 }
 
-bool TableCalculator::getEndsLastModel (u_int16_t a, u_int64_t bottom, u_int64_t top, u_int64_t * newBottom, u_int64_t* newTop, std::string ex){
+bool TableCalculator::getEndsLastModel (u_int16_t a, u_int64_t bottom, u_int64_t top, u_int64_t * newBottom, u_int64_t* newTop, string ex){
 	bool result = false;
 	u_int64_t range = top - bottom + 1;
 	double characterTop = 0;
@@ -66,7 +65,7 @@ bool TableCalculator::getEndsLastModel (u_int16_t a, u_int64_t bottom, u_int64_t
 	int i;
 	int totalFrequences = 257 - ex.size();
 	for (i=0; i<=a; i++){
-		if (isInString((char)i, ex)){
+		if (isInString(i, ex)){
 			continue;
 		}
 		characterTop+= 1;
@@ -84,10 +83,9 @@ bool TableCalculator::getEndsLastModel (u_int16_t a, u_int64_t bottom, u_int64_t
 	return result;
 }
 
-int TableCalculator::foundedCharLastModel(u_int64_t number, int size, u_int64_t bottom, u_int64_t top, u_int64_t *temporalBottom, u_int64_t *temporalTop, std::string ex){
+int TableCalculator::foundedCharLastModel(u_int64_t number, int size, u_int64_t bottom, u_int64_t top, u_int64_t *temporalBottom, u_int64_t *temporalTop, string ex){
 	int result = -1;
 	int i = 0;
-	std::cout << "Exclusion char (last model function)" << ex << std::endl;
 	u_int64_t partialBottom = bottom;
 	u_int64_t range = top - bottom + 1;
 	double frequences = 0;
@@ -96,12 +94,12 @@ int TableCalculator::foundedCharLastModel(u_int64_t number, int size, u_int64_t 
 	bool founded = false;
 	int totalFrequences = 257 - ex.size();
 	if (size==32){
+		// todo verrr
 		while ((i<NUMBER_OF_CHARACTERS)&&(!founded)){
 			if (isInString(i, ex)){
 				i++;
 				continue;
 			}
-
 			frequences += 1;
 			pi = frequences/totalFrequences;
 			partialTop = floor(range*pi + bottom - 1);
@@ -113,6 +111,12 @@ int TableCalculator::foundedCharLastModel(u_int64_t number, int size, u_int64_t 
 			*temporalTop = partialTop;
 			partialBottom = ceil (range*pi + bottom);
 			i++;
+		}
+
+		// todo Esto esta agregado solo para probar
+
+		if (!founded){
+			result = END_OF_FILE;
 		}
 	}
 	return result;
@@ -128,7 +132,7 @@ int TableCalculator::foundedCharModel(u_int64_t number, int size, u_int64_t bott
 	double pi;
 	bool founded = false;
 	int totalFrequences = table.getTotal();
-	std::map<char, std::size_t>::iterator it = table.tableBegin();
+	map<u_int16_t, size_t>::iterator it = table.tableBegin();
 
 	if (size==32){
 		while (it != table.tableEnd() && !founded){
@@ -137,6 +141,7 @@ int TableCalculator::foundedCharModel(u_int64_t number, int size, u_int64_t bott
 			partialTop = floor(range*pi + bottom - 1);
 			if ((partialBottom<=number)&&(partialTop>=number)){
 				result = it->first;
+				result &= 0x00FF;
 				founded = true;
 			}
 			*temporalBottom = partialBottom;
@@ -162,5 +167,5 @@ int TableCalculator::foundedCharModel(u_int64_t number, int size, u_int64_t bott
 }
 
 TableCalculator::~TableCalculator() {
-	// TODO Auto-generated destructor stub
+
 }

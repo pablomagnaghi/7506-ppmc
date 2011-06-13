@@ -6,7 +6,7 @@
 using namespace ppmc;
 using namespace std;
 
-PPMCUncompressor::PPMCUncompressor(util::FileReader* r, util::FileWriter* w):ArithmeticDescompressor(r,w) {
+PPMCUncompressor::PPMCUncompressor(FileReader* r, FileWriter* w):ArithmeticDescompressor(r,w) {
 	for (size_t i=0; i<(ORDEN + 1);i++) {
 		models.push_back(new Model());
 	}
@@ -16,15 +16,15 @@ PPMCUncompressor::PPMCUncompressor(util::FileReader* r, util::FileWriter* w):Ari
 void PPMCUncompressor::show(){
 	for (int i = ORDEN; i > -1; i--) {
 		if (models[i]->getSize()) {
-			std::cout << "Modelo " << i << ": " << std::endl;
-			models[i]->show();
+			cout << "Modelo " << i << ": " << endl;
+			cout << models[i]->show();
 		}
 	}
 }
 
 // Este solve last model es el que puede devolver true ya que va a definir si el caracter es el EOF o no
 
-bool PPMCUncompressor::solveLastModel(std::string ex, std::string firstCtx, int * moreIterations){
+bool PPMCUncompressor::solveLastModel(string ex, string firstCtx, int * moreIterations){
 	bool end = false;
 	int result;
 
@@ -55,17 +55,28 @@ bool PPMCUncompressor::solveLastModel(std::string ex, std::string firstCtx, int 
 			this->state = STATE_OK;
 			setBottom(temporalBottom);
 			setTop(temporalTop);
-			// todo VERRRR
-			u_int8_t characterTable = (unsigned char)result;
+			u_int16_t characterTable = result;
 			addToQueue(characterTable);
+#ifdef VERBOSE_ARITHMETIC
+			printf ("top antes de operar: %x\n", temporalTop);
+			printf ("bottom antes de operar: %x\n", temporalBottom);
+#endif
 			solveOverflow();
+#ifdef VERBOSE_ARITHMETIC
+			printf ("top dsp de over: %x\n", getTop());
+			printf ("bottom dsp de over: %x\n", getBottom());
+#endif
 			solveUnderflow();
-			if ((unsigned)result == END_OF_FILE-ex.size()){
+#ifdef VERBOSE_ARITHMETIC
+			printf ("top dsp de under: %x\n", getTop());
+			printf ("bottom dsp de under: %x\n", getBottom());
+#endif
+			if (result == END_OF_FILE){
 				return true;
 			}
 			int i;
 			//updateo todos los contextos que haya pasado
-			for (i=(int)firstCtx.size(); i>=0; i--){
+			for (i=firstCtx.size(); i>=0; i--){
 				if (i<0){
 					break;
 				}
@@ -105,18 +116,18 @@ bool PPMCUncompressor::process(char a){
 			}
 		}
 		bool found = false;
-		std::string context = contextSelector.getContext();
+		string context = contextSelector.getContext();
 
-		std::string firstContext = context;
-		std::string exclusionCharacters;
+		string firstContext = context;
+		string exclusionCharacters;
 
 		if (state == STATE_NON_LAST_MODEL){
 			context = this->currentContext;
 			firstContext = this->firstContext;
 			exclusionCharacters = this->exclusionChars;
 		}
-		std::size_t pos = context.size();
-		std::size_t firstPos = firstContext.size();
+		size_t pos = context.size();
+		size_t firstPos = firstContext.size();
 
 		TableCalculator calculator;
 		u_int64_t temporalBottom;
@@ -124,7 +135,6 @@ bool PPMCUncompressor::process(char a){
 		while (!found) {
 			// cargo la tabla con el modelo actual
 			frequencyTable.update (models[pos]->find(context));
-
 			// Aplico mecanismo de exclusion
 			frequencyTable.exc(exclusionCharacters);
 			int result = -1;
@@ -152,13 +162,28 @@ bool PPMCUncompressor::process(char a){
 			}
 			setBottom(temporalBottom);
 			setTop(temporalTop);
+#ifdef VERBOSE_ARITHMETIC
+			printf ("number antes de operar: %x\n", getNumber());
+			printf ("top antes de operar: %x\n", temporalTop);
+			printf ("bottom antes de operar: %x\n", temporalBottom);
+#endif
 			solveOverflow();
+#ifdef VERBOSE_ARITHMETIC
+			printf ("number dsp de over: %x\n", getNumber());
+			printf ("top dsp de over: %x\n", getTop());
+			printf ("bottom dsp de over: %x\n", getBottom());
+#endif
 			solveUnderflow();
+#ifdef VERBOSE_ARITHMETIC
+			printf ("number dsp de under: %x\n", getNumber());
+			printf ("top dsp de under: %x\n", getTop());
+			printf ("bottom dsp de under: %x\n", getBottom());
+#endif
+
 			if (result != ESC){
 				found = true;
 				frequencyTable.find(result);
-				// todo VERRRRR
-				u_int8_t characterTable = (char) result;
+				u_int16_t characterTable = result;
 				addToQueue(characterTable);
 				this->state = STATE_OK;
 				int i;
@@ -166,7 +191,6 @@ bool PPMCUncompressor::process(char a){
 					if (i<0){
 						break;
 					}
-					// todo VERRRR
 					models[i]->update(firstContext, characterTable);
 					if (firstContext.size()>0){
 						firstContext = firstContext.substr(1);
@@ -208,7 +232,7 @@ bool PPMCUncompressor::process(char a){
 			frequencyTable.clear();
 		}
 #ifdef VERBOSE_MODELS
-			show();
+		show();
 #endif
 	}
 	return false;
