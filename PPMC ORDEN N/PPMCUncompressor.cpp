@@ -103,6 +103,7 @@ bool PPMCUncompressor::solveLastModel(string ex, string firstCtx, int * moreIter
 bool PPMCUncompressor::process(char a){
 	setBuffer(a);
 	int hasMoreIterations = 1;
+	size_t size = reader->getSizeFromHeader();
 	while (hasMoreIterations){
 		if (this->state == STATE_LAST_MODEL){
 			// Retorna true si es el end of file, si no consiguio deducir el caracter, hasMoreIt se pone en 1

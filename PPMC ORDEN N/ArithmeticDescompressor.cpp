@@ -80,7 +80,7 @@ void ArithmeticDescompressor::uncompress(){
 		u_int16_t value = this->extract();
 		s++;
 		// todo prueba
-		std::cout << s << std::endl;
+		//std::cout << s << std::endl;
 		if (s == 22595){
 			std::cout << "sdas" << std::endl;
 		}
