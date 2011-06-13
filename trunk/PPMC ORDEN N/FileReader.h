@@ -14,11 +14,14 @@ namespace util {
 			~FileReader();
 			virtual char read();
 			virtual bool eof();
+			size_t getSize();
+			size_t getSizeFromHeader();
 		private:
 			char* buffer;
 			size_t cursor;
 			size_t maxCursor;
 			size_t bufferSize;
+			size_t size;
 			ifstream file;
 	};
 }
