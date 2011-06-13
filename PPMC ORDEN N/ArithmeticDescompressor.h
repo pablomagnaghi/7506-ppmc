@@ -23,11 +23,11 @@ namespace ppmc {
 			int bitsInNumber;
 			char buffer;
 			int bitsInBuffer;
-			std::queue<u_int16_t> cola;
-			util::FileReader *reader;
-			util::FileWriter *writer;
+			queue<u_int16_t> cola;
+			FileReader *reader;
+			FileWriter *writer;
 		public:
-			ArithmeticDescompressor(util::FileReader* r, util::FileWriter* w);
+			ArithmeticDescompressor(FileReader* r, FileWriter* w);
 			void solveOverflow();
 			void solveUnderflow();
 			virtual bool process (char a) = 0;
