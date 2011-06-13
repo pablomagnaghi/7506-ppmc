@@ -1,11 +1,8 @@
 #include "ArithmeticCompressor.h"
-#include "Constants.h"
-#include <math.h>
 
 using namespace ppmc;
-using namespace std;
 
-ArithmeticCompressor::ArithmeticCompressor(util::FileReader* r, util::FileWriter* w) {
+ArithmeticCompressor::ArithmeticCompressor(FileReader* r, FileWriter* w) {
 	this->reader = r;
 	this->writer = w;
 	this->top = BYTE_TOP;
@@ -84,8 +81,6 @@ void ArithmeticCompressor::solveUnderflow(){
 	}
 }
 
-
-
 void ArithmeticCompressor::putBitInBuffer(char bit){
 	bit &= 0x01;
 	this->buffer <<= 1;
@@ -96,7 +91,6 @@ void ArithmeticCompressor::putBitInBuffer(char bit){
 	}
 }
 
-
 void ArithmeticCompressor::putBufferInOutput(){
 	this->writer->write(buffer);
 #ifdef VERBOSE_ARITHMETIC
@@ -104,7 +98,6 @@ void ArithmeticCompressor::putBufferInOutput(){
 #endif
 	this->bitsInBuffer=0;
 }
-
 
 void ArithmeticCompressor::cleanBuffer(){
 

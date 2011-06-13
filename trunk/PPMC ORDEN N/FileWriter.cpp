@@ -1,8 +1,6 @@
 #include "FileWriter.h"
-#include <netinet/in.h>
 
 using namespace util;
-using namespace std;
 
 FileWriter::FileWriter(const char* name, size_t bs){
 	file.open (name);

@@ -1,13 +1,5 @@
-/*
- * Constants.h
- *
- *  Created on: 22/05/2011
- *      Author: luis
- */
-
 #ifndef CONSTANTS_H_
 #define CONSTANTS_H_
-
 
 #define BYTE_TOP 0xFFFFFFFF
 #define BYTE_BOTTOM 0x00000000

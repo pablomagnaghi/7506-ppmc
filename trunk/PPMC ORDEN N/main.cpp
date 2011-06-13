@@ -19,7 +19,7 @@ int main(int argc, char* argv[]) {
 			throw bad_arguments();
 		}
 		
-		std::string mode(argv[1]);
+		string mode(argv[1]);
 		FileReader in(argv[2], 2048);
 		FileWriter out(argv[3], 2048);
 		

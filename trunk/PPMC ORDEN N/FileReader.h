@@ -2,8 +2,10 @@
 #define _util_file_reader_h_
 
 #include <fstream>
+
 #include "util.h"
 
+using namespace std;
 
 namespace util {
 	class FileReader {
@@ -17,7 +19,7 @@ namespace util {
 			size_t cursor;
 			size_t maxCursor;
 			size_t bufferSize;
-			std::ifstream file;
+			ifstream file;
 	};
 }
 #endif //_util_file_reader_h_

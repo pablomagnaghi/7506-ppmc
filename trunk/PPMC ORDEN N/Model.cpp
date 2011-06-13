@@ -1,9 +1,6 @@
-#include <sstream>
 #include "Model.h"
 
-
 using namespace ppmc;
-using namespace std;
 
 Model::Model(){
 	size = 0;
@@ -17,7 +14,7 @@ Model::~Model(){
 	}
 }
 
-FrequencyTable* Model::find(const std::string& context){
+FrequencyTable* Model::find(const string& context){
 	map<string, FrequencyTable*>::iterator it;
 	// Busco el contexto en el modelo
 	it = model.find(context);
@@ -27,14 +24,13 @@ FrequencyTable* Model::find(const std::string& context){
 		return it->second;
 	}
 
-	//std::cout << "creando tabla para contexto " << context << endl;
 	size++;
 	FrequencyTable* ct = new FrequencyTable();
 	model.insert(make_pair(context, ct));
 	return ct;
 }
 
-std::string Model::show(){
+string Model::show(){
 	stringstream result;
 	map<string, FrequencyTable*>::iterator it = model.begin();
 
@@ -48,7 +44,7 @@ std::string Model::show(){
 
 // El contexto se creo en el metodo find(), ahora hay que
 // actualizar su tabla de frecuencias
-void Model::update(const std::string& context, char c) {
+void Model::update(const string& context, u_int8_t c) {
 	map<string, FrequencyTable*>::iterator it;
 
 	// Busco el contexto en el modelo
@@ -70,5 +66,3 @@ void Model::update(const std::string& context, char c) {
 size_t Model::getSize() {
 	return size;
 }
-
-

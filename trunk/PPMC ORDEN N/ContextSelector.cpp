@@ -13,10 +13,10 @@ void ContextSelector::add(char c) {
 	}
 }
 
-const std::string& ContextSelector::getContext() {
+const string& ContextSelector::getContext() {
 	return context;
 }
 
 void ContextSelector::show() {
-	std::cout << context << std::endl;
+	cout << context << endl;
 }

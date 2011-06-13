@@ -1,9 +1,6 @@
-#include <sstream>
 #include "FrequencyTable.h"
-#include "Constants.h"
 
 using namespace ppmc;
-using namespace std;
 
 FrequencyTable::FrequencyTable() {
 	esc = 1;
@@ -16,19 +13,23 @@ FrequencyTable::FrequencyTable() {
 
 FrequencyTable::~FrequencyTable() {}
 
-std::map<char, std::size_t>::iterator FrequencyTable::tableBegin() {
+map<u_int16_t, size_t> FrequencyTable::getTable(){
+	return table;
+}
+
+map<u_int16_t, size_t>::iterator FrequencyTable::tableBegin() {
   return table.begin();
 }
 
-std::map<char, std::size_t>::iterator FrequencyTable::tableEnd() {
+map<u_int16_t, size_t>::iterator FrequencyTable::tableEnd() {
   return table.end();
 }
 
-std::size_t FrequencyTable::getFrequencyChar() {
+size_t FrequencyTable::getFrequencyChar() {
 	return frequency;
 }
 
-std::size_t FrequencyTable::getFrequencyEsc() {
+size_t FrequencyTable::getFrequencyEsc() {
 	return esc;
 }
 
@@ -47,8 +48,8 @@ bool isInString(u_int8_t c, std::string exclusionString){
 	return isInString;
 }
 
-bool FrequencyTable::find(char c) {
-	std::map<char, std::size_t>::iterator it;
+bool FrequencyTable::find(u_int8_t c) {
+	map<u_int16_t, size_t>::iterator it;
 
 	// Busco el caracter en la tabla
 	it = table.find(c);
@@ -63,15 +64,17 @@ bool FrequencyTable::find(char c) {
 
 // Incrementa la frecuencia del caracter o del ESC
 // y actualiza el total.
-void FrequencyTable::addCharacter(char c) {
-	std::map<char, std::size_t>::iterator it;
+void FrequencyTable::addCharacter(u_int8_t c) {
+	map<u_int16_t, size_t>::iterator it;
 	// Busco el caracter en la tabla
 	it = table.find(c);
 
 	if (it != table.end()) {
 		it->second++;
 	} else {
-		table.insert(make_pair(c, 1));
+		u_int16_t data = c;
+		data &= 0x00FF;
+		table.insert(make_pair(data, 1));
 		if (firstPass)
 			firstPass = false;
 		else {
@@ -87,12 +90,12 @@ void FrequencyTable::addCharacter(char c) {
 
 // Agrega a la cadena los caracteres de la tabla que no
 // estaban en el string
-void FrequencyTable::getStringExc(std::string& characters) {
+void FrequencyTable::getStringExc(string& characters) {
 
-	std::map<char, std::size_t>::iterator it = table.begin();
+	map<u_int16_t, size_t>::iterator it = table.begin();
 
 	while (it != table.end()) {
-		if (characters.find(it->first) == std::string::npos) {
+		if (characters.find(it->first) == string::npos) {
 			characters += it->first;
 		}
 		it++;
@@ -102,7 +105,7 @@ void FrequencyTable::getStringExc(std::string& characters) {
 // Aplico el mecanismo de exclusión a la tabla
 void FrequencyTable::exc(const std::string& characters) {
 
-	std::map<char, std::size_t>::iterator it;
+	map<u_int16_t, size_t>::iterator it;
 
 	for (std::size_t i = 0; i < characters.size(); i++) {
 		it = table.find(characters[i]);
@@ -116,29 +119,29 @@ void FrequencyTable::exc(const std::string& characters) {
 }
 
 // Devuelvo la cantidad de caracteres que hay en el mapa
-std::size_t FrequencyTable::getNumberOfChars() {
+size_t FrequencyTable::getNumberOfChars() {
 	return table.size();
 }
 
-std::string FrequencyTable::show() {
+string FrequencyTable::show() {
 	stringstream result;
-	std::map<char, std::size_t>::iterator it = table.begin();
+	map<u_int16_t, size_t>::iterator it = table.begin();
 
-	result << "TABLA: " << this->total << std::endl;
+	result << "TABLA: " << this->total << endl;
 
 	while (it != table.end()) {
-		result << "caracter "<< it->first << " |  frecuencia " << it->second;
-		result << std::endl;
+		result << "caracter "<< (int)it->first << " |  frecuencia " << it->second;
+		result << endl;
 		it++;
 	}
 
-	result << "caracter esc " << " |  frecuencia " << esc << std::endl;
+	result << "caracter esc " << " |  frecuencia " << esc << endl;
 	return result.str();
 }
 
 // Crea una tabla de frecuencias a partir de otra
 void FrequencyTable::update(FrequencyTable *tableAux) {
-	std::map<char, std::size_t>::iterator it = tableAux->tableBegin();
+	map<u_int16_t, size_t>::iterator it = tableAux->tableBegin();
 	esc = tableAux->getFrequencyEsc();
 	total = tableAux->getTotal();
 	while (it != tableAux->tableEnd()) {
@@ -146,7 +149,6 @@ void FrequencyTable::update(FrequencyTable *tableAux) {
 		it++;
 	}
 }
-
 
 u_int32_t FrequencyTable::getNewBottom(){
 	return this->bottom;
