@@ -1,5 +1,8 @@
 #include <netinet/in.h>
+#include <iostream> //for debugging
+
 #include "FileWriter.h"
+
 
 using namespace util;
 
@@ -35,6 +38,7 @@ void FileWriter::writeSizeInHeader(size_t size) {
 		char buffer[4];
 	} adapter;
 	adapter.byteOrdered = htonl (size);
-	file.write(buffer,4);
+	file.write(adapter.buffer,4);
+	cout << adapter.buffer[0] << ":"<< adapter.buffer[1] << ":"<< adapter.buffer[2] << ":"<< adapter.buffer[3] << ":" << endl;
 }
 
