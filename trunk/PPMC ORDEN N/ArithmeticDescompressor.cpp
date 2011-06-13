@@ -77,7 +77,7 @@ void ArithmeticDescompressor::uncompress(){
 	size_t currentPos = 0;
 	//bool end = false;
 	size_t size = reader->getSizeFromHeader();
-	while (currentPos < size){
+	while (currentPos < size - 1){
 		u_int16_t value = this->extract();
 		++currentPos;
 		// todo prueba
