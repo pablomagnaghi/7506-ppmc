@@ -77,17 +77,14 @@ void ArithmeticDescompressor::uncompress(){
 	size_t currentPos = 0;
 	//bool end = false;
 	size_t size = reader->getSizeFromHeader();
-	while (currentPos < size - 1){
+	while (currentPos < size){
 		u_int16_t value = this->extract();
 		++currentPos;
 		// todo prueba
 		//std::cout << s << std::endl;
-// 		if (value == END_OF_FILE){
-// 			end = true;
-// 		}
-// 		else {
+ 		if (value != END_OF_FILE){
  			this->writer->write(value);
-// 		}
+ 		}
 	}
 }
 

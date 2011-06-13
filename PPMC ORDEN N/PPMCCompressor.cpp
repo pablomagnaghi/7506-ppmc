@@ -19,8 +19,8 @@ void PPMCCompressor::compress() {
 		char c = reader->read();
 		process(c);
 	}
-
-	//process(END_OF_FILE);
+	cout << "Leidos: " << i << endl;
+	process(END_OF_FILE);
 }
 
 void PPMCCompressor::show(){
