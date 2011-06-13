@@ -23,7 +23,7 @@ namespace ppmc {
 			u_int32_t getNewBottom();
 			u_int32_t getNewTop();
 			u_int32_t getTotal();
-			bool find(u_int8_t);
+			bool find(u_int16_t);
 			void addCharacter(u_int8_t);
 			void getStringExc(string&);
 			void exc(const string&);

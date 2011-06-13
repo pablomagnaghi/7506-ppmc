@@ -48,7 +48,7 @@ bool isInString(u_int8_t c, std::string exclusionString){
 	return isInString;
 }
 
-bool FrequencyTable::find(u_int8_t c) {
+bool FrequencyTable::find(u_int16_t c) {
 	map<u_int16_t, size_t>::iterator it;
 
 	// Busco el caracter en la tabla
