@@ -11,6 +11,7 @@ PPMCCompressor::PPMCCompressor(FileReader* r, FileWriter* w):ArithmeticCompresso
 void PPMCCompressor::compress() {
 	static int i = 0;
 	writer->writeSizeInHeader(reader->getSize());
+	cout << "Archivo de " << reader->getSize() << endl;
 	while (!reader->eof() ) {
 		i++;
 		// todo para ver velocidad de bytes

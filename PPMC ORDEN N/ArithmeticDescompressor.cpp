@@ -74,22 +74,20 @@ void ArithmeticDescompressor::solveUnderflow(){
 }
 
 void ArithmeticDescompressor::uncompress(){
-	int s = 0;
-	bool end = false;
-	while (!end){
+	size_t currentPos = 0;
+	//bool end = false;
+	size_t size = reader->getSizeFromHeader();
+	while (currentPos < size){
 		u_int16_t value = this->extract();
-		s++;
+		++currentPos;
 		// todo prueba
 		//std::cout << s << std::endl;
-		if (s == 22595){
-			std::cout << "sdas" << std::endl;
-		}
-		if (value == END_OF_FILE){
-			end = true;
-		}
-		else {
-			this->writer->write(value);
-		}
+// 		if (value == END_OF_FILE){
+// 			end = true;
+// 		}
+// 		else {
+ 			this->writer->write(value);
+// 		}
 	}
 }
 

@@ -25,7 +25,6 @@ namespace ppmc {
 			int bitsInBuffer;
 			queue<u_int16_t> cola;
 			FileWriter *writer;
-		protected:
 			FileReader *reader;
 		public:
 			ArithmeticDescompressor(FileReader* r, FileWriter* w);
