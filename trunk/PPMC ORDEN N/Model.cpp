@@ -50,14 +50,6 @@ void Model::update(const string& context, u_int8_t c) {
 	// Busco el contexto en el modelo
 	it = model.find(context);
 
-	//codigo insertado de prueba
-	// todo VERRRRRRRRRRR
-	if (it == model.end()){
-		size++;
-		FrequencyTable* ct = new FrequencyTable();
-		model.insert(make_pair(context, ct));
-	}
-
 	// Es seguro que existe porque sino se encontro
 	// en el find(), se creo la tabla para ese contexto
 	it->second->addCharacter(c);
