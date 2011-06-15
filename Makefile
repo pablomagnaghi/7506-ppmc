@@ -14,7 +14,7 @@
 #################
 
 # Nombre del ejecutable.
-target = run
+target = ppmc 
 
 # modo = c89, c99, c++98, c++0x
 modo = c++98
@@ -27,7 +27,8 @@ debug = si
 
 # Agregar object files
 #o_files  = 
-#o_files += 
+#o_files += ../tp/FileReader.o
+#o_files += ../tp/FileWriter.o
 
 # Descomentar para compilar estaticamente
 #static = si
@@ -95,7 +96,7 @@ ifdef debug
   CFLAGS += -ggdb -DDEBUG -fno-inline
 else
   # Para que explote lo mas posible
-  CFLAGS += -O3 -DNDEBUG
+  CFLAGS += -O3 -DNDEBUG -march=native
 endif
 
 # shared memory
