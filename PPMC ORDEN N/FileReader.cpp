@@ -53,3 +53,20 @@ size_t FileReader::getSizeFromHeader(){
 	file.read(adapter.buffer,4);
 	return ntohl(adapter.byteOrdered);
 }
+
+// size_t FileReader::getSizeFromHeader(){
+// 	size_t size=0;
+// 	u_int16_t buffer;
+// 	size_t mult=0;
+// 	while (1) {
+// 		file.read(buffer,1);
+// 		if ( buffer > 127) {
+// 			
+// 		} else {
+// 			size+= buffer[0] * mult;
+// 			mult*=128;
+// 		}
+// 	}
+// 	return  ;
+// }
+

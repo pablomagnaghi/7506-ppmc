@@ -1,5 +1,6 @@
 #include <netinet/in.h>
 #include <iostream> //for debugging
+#include <vector>
 
 #include "FileWriter.h"
 
@@ -40,4 +41,26 @@ void FileWriter::writeSizeInHeader(size_t size) {
 	adapter.byteOrdered = htonl (size);
 	file.write(adapter.buffer,4);
 }
+
+/**
+ * CODIGO NO PROBADO
+ */
+// void FileWriter::writeSizeInHeader(size_t size) {
+// 	vector<unsigned char> buffer;
+// 	
+// 	while (size > 127) {
+// 		size_t chunk = size % 128;
+// 		buffer.push_back( (unsigned char) chunk);
+// 	}
+// 	
+// 	size += 128;
+// 	buffer.push_back( (unsigned char) size);
+// 	
+// 	char * last = new char[buffer.size()];
+// 	
+// 	copy(buffer.begin(), buffer.end(), last);
+// 	
+// 	file.write(last,1);
+// 	delete[] last;
+// }
 
