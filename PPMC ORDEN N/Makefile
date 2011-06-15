@@ -23,7 +23,7 @@ modo = c++98
 verbose = si
 
 # Descomentar para generar codigo compatible con gdb
-debug = si
+# debug = si
 
 # Agregar object files
 #o_files  = 
@@ -34,7 +34,8 @@ debug = si
 #static = si
 
 # Opciones para el linker
-# LDFLAGS =
+
+LDFLAGS = -L/usr/lib64/boost -lboost_program_options
 
 # Descomentar si usa funciones de math.h
 #math = si
@@ -263,6 +264,6 @@ clean:
 	$(RM) $(o_files) $(o_files:.o=.deps) $(target)
 
 test: all
-	@./test/setup.sh 
+	@./test/setup.sh && echo "Test preparados OK"
 	@./test/run.sh && echo "Testing OK"
-	@./test/cleanup.sh
+	@./test/cleanup.sh && echo "Limpieza OK"

@@ -8,7 +8,11 @@ using namespace std;
 
 PPMCUncompressor::PPMCUncompressor(FileReader* r, FileWriter* w):ArithmeticDescompressor(r,w) {
 	for (size_t i=0; i<(ORDEN + 1);i++) {
-		models.push_back(new Model());
+		Model * model = new Model();
+		if (!model) {
+			throw bad_alloc();
+		}
+		models.push_back(model);
 	}
 	this->state = STATE_OK;
 }

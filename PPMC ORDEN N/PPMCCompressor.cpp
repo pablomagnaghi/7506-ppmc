@@ -4,22 +4,22 @@ using namespace ppmc;
 
 PPMCCompressor::PPMCCompressor(FileReader* r, FileWriter* w):ArithmeticCompressor(r,w) {
 	for (size_t i=0; i<(ORDEN + 1);i++) {
-		models.push_back(new Model());
+		Model * model = new Model();
+		if (!model) {
+			throw bad_alloc();
+		}
+		models.push_back(model);
 	}
 }
 
 void PPMCCompressor::compress() {
 	static int i = 0;
 	writer->writeSizeInHeader(reader->getSize());
-	cout << "Archivo de " << reader->getSize() << endl;
 	while (!reader->eof() ) {
 		i++;
-		// todo para ver velocidad de bytes
-//		cout << i << endl;
 		char c = reader->read();
 		process(c);
 	}
-	cout << "Leidos: " << i << endl;
 	process(END_OF_FILE);
 }
 

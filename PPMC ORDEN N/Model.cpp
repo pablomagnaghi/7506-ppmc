@@ -1,5 +1,6 @@
 #include "Model.h"
 
+using namespace std;
 using namespace ppmc;
 
 Model::Model(){
@@ -26,6 +27,9 @@ FrequencyTable* Model::find(const string& context){
 
 	size++;
 	FrequencyTable* ct = new FrequencyTable();
+	if (!ct) {
+		throw bad_alloc();
+	}
 	model.insert(make_pair(context, ct));
 	return ct;
 }

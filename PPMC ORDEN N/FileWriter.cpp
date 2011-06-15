@@ -8,7 +8,7 @@ using namespace util;
 
 FileWriter::FileWriter(const char* name, size_t bs){
 	file.open (name);
-	if (! file.good()) throw 1;
+	if (! file.good()) throw ios_base::failure("no se pudo abrir archivo de salida");
 	bufferSize = bs;
 	buffer = new char[bufferSize];
 	cursor = 0;
@@ -39,6 +39,5 @@ void FileWriter::writeSizeInHeader(size_t size) {
 	} adapter;
 	adapter.byteOrdered = htonl (size);
 	file.write(adapter.buffer,4);
-	cout << adapter.buffer[0] << ":"<< adapter.buffer[1] << ":"<< adapter.buffer[2] << ":"<< adapter.buffer[3] << ":" << endl;
 }
 
