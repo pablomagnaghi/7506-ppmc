@@ -20,6 +20,7 @@ namespace ppmc {
 			probabilityType calculateEscWidth(Query& q);
 			probabilityType calculateSkipEof(Query& q);
 			probabilityType calculateTotal(Query& q);
+			void calculateAll(Query& q);
 		private:
 			std::map<char,size_t> freq;
 			void insert(char c);

@@ -32,7 +32,7 @@ void Compressor::compressWithM_1(ContextSelector& cs, char c) {
 	ft.compress(q);
 	Probability p = q.getProbability();
 	calculate(p);
-	setNewLimits();
+	//setNewLimits();
 	cs.add(c);
 }
 
@@ -43,7 +43,7 @@ void Compressor::compressWithModels(ContextSelector& cs){
 	while (!reader->eof()) {
 		char c = reader->read();
 		q.clear();
-#ifdef VERBOSE
+#ifdef EXTRAVERBOSE
 		cerr << "LEO " << c << " CONTEXTO \"" << cs.get(order) << "\" EMITO:" << endl;
 #endif
 		for(int i=increasingOrder; i>=0; i--) {
@@ -54,7 +54,7 @@ void Compressor::compressWithModels(ContextSelector& cs){
 			if ( q.isFound()) {
 				calculate(p);
 				cs.add(c);
-				setNewLimits();
+				//setNewLimits();
 #ifdef VERBOSE
 				cerr << c << " = " << p.width << "/" << p.total << endl;
 #endif
@@ -69,7 +69,7 @@ void Compressor::compressWithModels(ContextSelector& cs){
 			compressWithM_1(cs, c);
 		}
 		
-#ifdef VERBOSE
+#ifdef EXTRAVERBOSE
 		cerr << show(increasingOrder);
 #endif
 		if (increasingOrder < order) {
@@ -80,8 +80,8 @@ void Compressor::compressWithModels(ContextSelector& cs){
 }
 
 void Compressor::compressEof(ContextSelector& cs){
-#ifdef VERBOSE
-	cerr << "LEO EOF CONTEXTO \"" << cs.get(order) << "\" EMITO:" << endl;
+#ifdef EXTRAVERBOSE
+	cerr << "LEO   CONTEXTO \"" << cs.get(order) << "\" EMITO:" << endl;
 #endif
 	q.clear();
 	for(int i=order; i>=0; i--) {
@@ -92,13 +92,13 @@ void Compressor::compressEof(ContextSelector& cs){
 #ifdef VERBOSE
 		cerr << "ESC  = " << p.width << "/" << p.total << endl;
 #endif
-		setNewLimits();
+		//setNewLimits();
 	}
 	M_1FrequencyTable ft;
 	ft.compressEof(q);
 	Probability p = q.getProbability();
 	calculate(p);
-	setNewLimits();
+	//setNewLimits();
 
 }
 

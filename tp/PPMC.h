@@ -6,7 +6,7 @@
 
 
 #include <sstream> // for debugging
-#define noVERBOSE   // for debugging
+#define VERBOSE   // for debugging
 
 namespace ppmc {
 	const size_t max_models = 15;
