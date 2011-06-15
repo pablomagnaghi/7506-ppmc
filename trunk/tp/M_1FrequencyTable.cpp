@@ -9,13 +9,13 @@ M_1FrequencyTable::M_1FrequencyTable():FrequencyTable(){
 
 void M_1FrequencyTable::compressEof(Query &q){
 	Probability p;
-	p.skip = 256 - q.getExclusionSize();
-	p.total = p.skip + 1;
+	p.total = 256 - q.getExclusionSize();
+	p.skip = p.total -1;
 	p.width = 1;
 	q.setFound(true);
 	q.setProbability(p);
 #ifdef VERBOSE
-	cerr << "EOF = " << p.width << "/" << p.total << endl;
+	cerr << "256 = " << p.width << "/" << p.total << endl;
 	//cerr << "EOF = " << p.width << "/" << p.total << " en modelo -1" << endl;
 #endif
 }
@@ -24,10 +24,16 @@ void M_1FrequencyTable::compress(Query & q){
 	Probability p;
 	int total = 257;
 	int skip  =   0;
-	for(char i=0; i<q.getTerm(); ++i) {
-		if (q.isExcluded(i) ) {
+	bool skipping = true;
+	for(int i=0; i<256; ++i) {
+		if (q.isExcluded((char)i) ) {
 			total--;
-			++skip;
+			if ((char)i == q.getTerm()) {
+				skipping = false;
+			}
+			if (skipping) {
+				++skip;
+			}
 		}
 	}
 	p.total = total;

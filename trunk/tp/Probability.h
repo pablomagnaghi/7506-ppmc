@@ -10,6 +10,7 @@ namespace ppmc {
 			probabilityType skip;
 			probabilityType width;
 			probabilityType total;
+			probabilityType escWidth;
 		friend class ProbabilityTest;
 	};
 }

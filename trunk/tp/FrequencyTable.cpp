@@ -12,14 +12,30 @@ void FrequencyTable::compressEof(Query &q){
 	probabilityType escWidth;
 	escWidth = calculateEscWidth(q);
 	p.skip   = calculateSkipEof(q);
-	p.total  = calculateTotal(q);
 
+if (1) {
+	p.total  = calculateTotal(q);
+} else {
+	probabilityType total = 0;
+	map<char,size_t>::iterator iter;
+	for( iter = freq.begin(); iter != freq.end(); ++iter ) {
+		if (!q.isExcluded(iter->first)) {
+			cerr << "including " << iter->first << " with value: " << iter->second << endl;
+			p.total+= iter->second;
+		} else {
+			cerr << "excluding " << iter->first << endl;
+		}
+	}
+}
+
+	cout << "escWidth: " << escWidth << " width: " << p.width << " total: " << p.total << endl;
 	if (escWidth == 0) {
 		p.width = 1;
 		p.total = 1;
 	} else {
 		p.width = escWidth;
-		p.total += escWidth;
+		p.total+= escWidth;
+		
 	}
 
 	updateExclusion(q);
@@ -27,34 +43,68 @@ void FrequencyTable::compressEof(Query &q){
 }
 
 void FrequencyTable::compress(Query & q){
-	Probability p;
-	probabilityType escWidth;
-	escWidth = calculateEscWidth(q);
-	p.skip   = calculateSkip(q);
-	p.total  = calculateTotal(q);
-	p.width  = calculateAndUpdateWidth(q.getTerm());
+	calculateAll(q);
+
+	Probability p = q.getProbability();
 	q.setFound(p.width != 0);
 	
 	if( !q.isFound() ) {
-		if (escWidth == 0) {
+		if (p.escWidth == 0) {
 			p.width = 1;
 			p.total = 1;
 		} else {
-			p.width = escWidth ;
-			p.total += escWidth;
+			p.width = p.escWidth ;
+			p.total += p.escWidth;
 		}
 		insert(q.getTerm());
 	} else {
-		if (escWidth == 0) {
+		if (p.escWidth == 0) {
 			p.total += 2;
 		} else {
-			p.total += escWidth;
+			p.total += p.escWidth;
 		}
 	}
 	
 	q.setProbability(p);
-
 	updateExclusion(q);
+
+}
+
+/**
+ * Calculate all the values and update frequency in a single loop
+ * 
+ *   calculateAll(q);
+ *   Probability p = q.getProbability();
+ *
+ * is the same as
+ *
+ *   escWidth = calculateEscWidth(q);
+ *   p.skip   = calculateSkip(q);
+ *   p.total  = calculateTotal(q);
+ *   p.width  = calculateAndUpdateWidth(q.getTerm());
+ *
+ */
+void FrequencyTable::calculateAll(Query& q) {
+	map<char,size_t>::iterator iter;
+	Probability p;
+	p.skip=0;
+	p.total=0;
+	bool skipping = true;
+	for( iter = freq.begin(); iter != freq.end(); ++iter ) {
+		if (!q.isExcluded(iter->first)) {
+			p.total+= iter->second;
+		}
+		if ( iter->first == q.getTerm() ) {
+			p.width = iter->second;
+			iter->second++;
+			skipping = false;
+		}
+		if (skipping && !q.isExcluded(iter->first) ) {
+			p.skip+=iter->second;
+		} 
+	}
+	p.escWidth = freq.size();
+	q.setProbability(p);
 }
 
 /**
@@ -81,14 +131,6 @@ probabilityType FrequencyTable::calculateSkip(Query& q) {
  */
 probabilityType FrequencyTable::calculateEscWidth(Query& q) {
 	return freq.size();
-// 	map<char,size_t>::iterator iter;
-// 	probabilityType skipped=0;
-// 	for( iter = freq.begin(); iter != freq.end(); ++iter ) {
-// 		if (q.isExcluded(iter->first) ) {
-// 			++skipped;
-// 		}
-// 	}
-// 	return freq.size() - skipped;
 }
 
 /**
@@ -129,6 +171,7 @@ void FrequencyTable::insert(char c) {
 	}
 	freq.insert(make_pair(c,1));
 }
+
 /**
  * Calculates the width of the searched term
  */

@@ -33,14 +33,14 @@ int main(int argc, char* argv[]) {
 		
 		if (mode=="c") {
 			Compressor c(order);
-			cerr << "Inicio compresión..." << endl;
+//			cerr << "Inicio compresión..." << endl;
 			c.compress(&in,&out);
-			cerr << "...fin compresión!" << endl;
+//			cerr << "...fin compresión!" << endl;
 		} else if(mode=="d") {
 			Decompressor d(order);
-			cerr << "Inicio descompresión..." << endl;
+//			cerr << "Inicio descompresión..." << endl;
 			d.decompress(&in,&out);
-			cerr << "...fin descompresión!" << endl;
+//			cerr << "...fin descompresión!" << endl;
 		} else {
 			throw invalid_argument(mode);
 		}
