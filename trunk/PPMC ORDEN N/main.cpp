@@ -25,14 +25,10 @@ int main(int argc, char* argv[]) {
 		
 		if (mode=="c") {
 			PPMCCompressor c(&in,&out);
-			cerr << "Inicio compresión..." << endl;
 			c.compress();
-			cerr << "...fin compresión!" << endl;
 		} else if(mode=="x") {
 			PPMCUncompressor d(&in,&out);
-			cerr << "Inicio descompresión..." << endl;
 			d.uncompress();
-			cerr << "...fin descompresión!" << endl;
 		} else {
 			throw invalid_argument(mode);
 		}
@@ -44,9 +40,15 @@ int main(int argc, char* argv[]) {
 		cerr << "Cantidad de argumentos incorrecta" << endl;
 		cerr << "Modo de uso: " << argv[0] << "  [c|x] entrada salida" << endl;
 		return 2;
+	} catch (bad_alloc& e) {
+		cerr << "Nos hemos quedado sin memoria, pruebe con un orden menor" << endl;
+		return 3;
+	} catch (ios_base::failure& e) {
+		cerr << "Error de archivos: " << e.what() << endl;
+		return 4;
 	} catch (exception& e) {
 		cerr << "Error interno: " << e.what() << endl;
-		return 3;
+		return 5;
 	}
 
 	return 0;
