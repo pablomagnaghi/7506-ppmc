@@ -1,5 +1,6 @@
 #include <iostream>
 #include <stdexcept>
+#include <boost/program_options.hpp>
 #include "PPMC.h"
 #include "FileWriter.h"
 #include "FileReader.h"
@@ -10,45 +11,77 @@ using namespace ppmc;
 using namespace util;
 using namespace std;
 
+namespace po = boost::program_options;
+
 class bad_arguments:public exception {};
 
-int main(int argc, char* argv[]) {
+void conflicting_options(const po::variables_map& vm,
+                         const char* opt1, const char* opt2) {
+    if (vm.count(opt1) && !vm[opt1].defaulted()
+        && vm.count(opt2) && !vm[opt2].defaulted())
+        throw invalid_argument(string("Opciones en conflicto '")
+                          + opt1 + "' y '" + opt2 + "'.");
+}
 
+int main(int argc, char* argv[]) {
 	try {
-		if (argc!=4) {
-			throw bad_arguments();
+		string input;
+		string output;
+		size_t buffer;
+		
+		po::options_description options("Modo");
+
+		options.add_options()
+			("-c", po::value< string >(&input), "Archivo de entrada")
+			("-x", po::value< string >(&input), "Archivo de entrada")
+			("-s", po::value< string >(&output), "Archivo de salida")
+//			("-o", po::value<size_t>(&order)->default_value(3), "Orden")
+			("-b", po::value<size_t>(&buffer)->default_value(2048), "Buffer entrada/salida")
+		;
+
+		po::variables_map vm;
+		po::store(po::parse_command_line(argc, argv, options), vm);
+		po::notify(vm);    
+
+		conflicting_options(vm, "-c", "-x");
+
+		if (output =="" ) {
+			if (vm.count("-c")) {
+				output = input + ".XX";
+			} else {
+				output = input.substr(0, input.size() - 3);
+			}
 		}
 		
-		string mode(argv[1]);
-		FileReader in(argv[2], 2048);
-		FileWriter out(argv[3], 2048);
+// 		cout << "vamos a ";
+// 		if (vm.count("-c")) {
+// 			cout << "comprimir ";
+// 		} else {
+// 			cout << "descomprimir ";
+// 		}
+// 		cout << input << " en " << output << " y buffer " << buffer << endl;
+
+		FileReader in(input.c_str(), buffer);
+		FileWriter out(output.c_str(), buffer);
 		
-		if (mode=="c") {
+		if (vm.count("-c")) {
 			PPMCCompressor c(&in,&out);
 			c.compress();
-		} else if(mode=="x") {
+		} else if(vm.count("-x")) {
 			PPMCUncompressor d(&in,&out);
 			d.uncompress();
 		} else {
-			throw invalid_argument(mode);
+			throw invalid_argument(string("Debe pedir \"-c\" para comprimir o \"-x\" para descomprimir y una ruta válida '"));
 		}
-	} catch (invalid_argument& e) {
-		cerr << "Modo " << e.what() << " no reconocido" << endl;
-		cerr << "Debe elegir \"c\" para comprimir o \"x\" para descomprimir" << endl;
+	} catch (std::logic_error& e) {
+		cerr << e.what() << endl;
 		return 1;
-	} catch (bad_arguments& e) {
-		cerr << "Cantidad de argumentos incorrecta" << endl;
-		cerr << "Modo de uso: " << argv[0] << "  [c|x] entrada salida" << endl;
-		return 2;
-	} catch (bad_alloc& e) {
-		cerr << "Nos hemos quedado sin memoria, pruebe con un orden menor" << endl;
-		return 3;
 	} catch (ios_base::failure& e) {
-		cerr << "Error de archivos: " << e.what() << endl;
-		return 4;
+		cerr <<  e.what() << endl;
+		return 2;
 	} catch (exception& e) {
 		cerr << "Error interno: " << e.what() << endl;
-		return 5;
+		return 3;
 	}
 
 	return 0;
