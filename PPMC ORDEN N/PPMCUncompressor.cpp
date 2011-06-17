@@ -75,9 +75,6 @@ bool PPMCUncompressor::solveLastModel(string ex, string firstCtx, int * moreIter
 			printf ("top dsp de under: %x\n", getTop());
 			printf ("bottom dsp de under: %x\n", getBottom());
 #endif
-			if (result == END_OF_FILE){
-				return true;
-			}
 			int i;
 			//updateo todos los contextos que haya pasado
 			for (i=firstCtx.size(); i>=0; i--){

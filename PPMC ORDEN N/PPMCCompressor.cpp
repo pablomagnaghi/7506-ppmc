@@ -19,7 +19,7 @@
     long   ru_nsignals;      // signals received 
     long   ru_nvcsw;         // voluntary context switches 
     long   ru_nivcsw;        // involuntary context switches 
-*/
+ */
 int measure() {
 	int who = RUSAGE_SELF; 
 	struct rusage usage; 
@@ -47,11 +47,11 @@ void PPMCCompressor::compress() {
 		i++;
 		char c = reader->read();
 		process(c);
- 		if (i % 10000 == 0) {
- 			cout << measure() << endl;
- 		}
+		if (i % 100000 == 0) {
+			cout << i << endl;
+		}
 	}
-	process(END_OF_FILE);
+	cleanBuffer();
 }
 
 void PPMCCompressor::show(){
@@ -69,8 +69,7 @@ void PPMCCompressor::process(u_int16_t a){
 	size_t pos = context.size();
 	string exclusionCharacters;
 
-	if (a!=END_OF_FILE)
-			a &= 0x00FF;
+	a &= 0x00FF;
 
 #ifdef VERBOSE_MODELS
 	cout << "LEO " << a << " CONTEXTO \"" << context << "\" EMITO:" << endl;
@@ -141,7 +140,7 @@ void PPMCCompressor::process(u_int16_t a){
 
 				// Esta funcion get_ends deberia ser la que puede devolver true si aparece el end of file
 
-				bool isEof = table.getEndsLastModel(a, actualBottom, actualTop, &temporalLastBottom, &temporalLastTop, exclusionCharacters);
+				table.getLimitsLastModel(a, actualBottom, actualTop, &temporalLastBottom, &temporalLastTop, exclusionCharacters);
 				setBottom(temporalLastBottom);
 				setTop(temporalLastTop);
 #ifdef VERBOSE_ARITHMETIC
@@ -154,13 +153,11 @@ void PPMCCompressor::process(u_int16_t a){
 				printf ("bottom dsp de over: %x\n", getBottom());
 #endif
 
-				if (!isEof) {
-					solveUnderflow();
+				solveUnderflow();
 #ifdef VERBOSE_ARITHMETIC
-					printf ("top dsp de under: %x\n", getTop());
-					printf ("bottom dsp de under: %x\n", getBottom());
+				printf ("top dsp de under: %x\n", getTop());
+				printf ("bottom dsp de under: %x\n", getBottom());
 #endif
-				}
 			}
 		} else {
 			pos--;
@@ -171,10 +168,6 @@ void PPMCCompressor::process(u_int16_t a){
 		// caracteres de exclusion
 		frequencyTable.getStringExc(exclusionCharacters);
 		frequencyTable.clear();
-	}
-
-	if (a==END_OF_FILE){
-		cleanBuffer();
 	}
 
 #ifdef VERBOSE_MODELS
