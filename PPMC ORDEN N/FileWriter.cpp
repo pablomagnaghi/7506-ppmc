@@ -11,6 +11,7 @@ FileWriter::FileWriter(const char* name, size_t bs){
 	if (! file.good()) throw ios_base::failure("no se pudo abrir archivo de salida");
 	bufferSize = bs;
 	buffer = new char[bufferSize];
+	if (!buffer) throw bad_alloc();
 	cursor = 0;
 	
 }
