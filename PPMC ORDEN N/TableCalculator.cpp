@@ -54,7 +54,8 @@ void TableCalculator::getEnds(u_int16_t a, u_int64_t bottom, u_int64_t top, u_in
 	}
 }
 
-void TableCalculator::getLimitsLastModel (u_int16_t a, u_int64_t bottom, u_int64_t top, u_int64_t * newBottom, u_int64_t* newTop, string ex){
+bool TableCalculator::getEndsLastModel (u_int16_t a, u_int64_t bottom, u_int64_t top, u_int64_t * newBottom, u_int64_t* newTop, string ex){
+	bool result = false;
 	u_int64_t range = top - bottom + 1;
 	double characterTop = 0;
 	double temporalTop = 0;
@@ -62,7 +63,7 @@ void TableCalculator::getLimitsLastModel (u_int16_t a, u_int64_t bottom, u_int64
 	double pb=0;
 	*newBottom = bottom;
 	int i;
-	int totalFrequences = NUMBER_OF_CHARACTERS - ex.size();
+	int totalFrequences = 257 - ex.size();
 	for (i=0; i<=a; i++){
 		if (isInString(i, ex)){
 			continue;
@@ -77,6 +78,9 @@ void TableCalculator::getLimitsLastModel (u_int16_t a, u_int64_t bottom, u_int64
 		}
 	}
 
+	if (i==NUMBER_OF_CHARACTERS)
+		result = true;
+	return result;
 }
 
 int TableCalculator::foundedCharLastModel(u_int64_t number, int size, u_int64_t bottom, u_int64_t top, u_int64_t *temporalBottom, u_int64_t *temporalTop, string ex){
@@ -87,11 +91,11 @@ int TableCalculator::foundedCharLastModel(u_int64_t number, int size, u_int64_t 
 	double frequences = 0;
 	u_int64_t partialTop;
 	double pi;
-	bool found = false;
-	int totalFrequences = NUMBER_OF_CHARACTERS - ex.size();
+	bool founded = false;
+	int totalFrequences = 257 - ex.size();
 	if (size==32){
 		// todo verrr
-		while ((i<NUMBER_OF_CHARACTERS)&&(!found)){
+		while ((i<NUMBER_OF_CHARACTERS)&&(!founded)){
 			if (isInString(i, ex)){
 				i++;
 				continue;
@@ -101,7 +105,7 @@ int TableCalculator::foundedCharLastModel(u_int64_t number, int size, u_int64_t 
 			partialTop = floor(range*pi + bottom - 1);
 			if ((partialBottom<=number)&&(partialTop>=number)){
 				result = i;
-				found = true;
+				founded = true;
 			}
 			*temporalBottom = partialBottom;
 			*temporalTop = partialTop;
@@ -111,7 +115,7 @@ int TableCalculator::foundedCharLastModel(u_int64_t number, int size, u_int64_t 
 
 		// todo Esto esta agregado solo para probar
 
-		if (!found){
+		if (!founded){
 			result = END_OF_FILE;
 		}
 	}

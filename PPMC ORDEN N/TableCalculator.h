@@ -18,7 +18,7 @@ namespace ppmc{
 		public:
 			TableCalculator();
 			void getEnds (u_int16_t a, u_int64_t bottom, u_int64_t top, u_int64_t * new_bottom, u_int64_t* newTop, FrequencyTable table);
-			void getLimitsLastModel (u_int16_t a, u_int64_t bottom, u_int64_t top, u_int64_t * newBottom, u_int64_t* newTop, string ex);
+			bool getEndsLastModel (u_int16_t a, u_int64_t bottom, u_int64_t top, u_int64_t * newBottom, u_int64_t* newTop, string ex);
 
 			int foundedCharModel (u_int64_t number, int size, u_int64_t bottom, u_int64_t top, u_int64_t *temporalBottom, u_int64_t * temporalTop, FrequencyTable table);
 			int foundedCharLastModel (u_int64_t number, int size, u_int64_t bottom, u_int64_t top, u_int64_t *temporalBottom, u_int64_t * temporalTop, string ex);

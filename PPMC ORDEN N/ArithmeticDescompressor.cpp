@@ -82,18 +82,18 @@ void ArithmeticDescompressor::uncompress(){
 		++currentPos;
 		// todo prueba
 		//std::cout << s << std::endl;
-		if (currentPos % 100000 == 0){
-			std::cout << currentPos << std::endl;
-		}
-		this->writer->write(value);
+ 		if (value != END_OF_FILE){
+ 			this->writer->write(value);
+ 		}
 	}
 }
 
 u_int16_t ArithmeticDescompressor::extract(){
 	char c;
-	while (cola.empty() && !this->reader->eof()){
+	bool end = false;
+	while (cola.empty() && !end && !reader->eof()){
 		c = this->reader->read();
-		this->process(c);
+		end = this->process(c);
 	}
 
 	u_int16_t result = cola.front();
