@@ -14,7 +14,7 @@
 #################
 
 # Nombre del ejecutable.
-target = run
+target = ppmc 
 
 # modo = c89, c99, c++98, c++0x
 modo = c++98
@@ -23,17 +23,19 @@ modo = c++98
 verbose = si
 
 # Descomentar para generar codigo compatible con gdb
-debug = si
+# debug = si
 
 # Agregar object files
 #o_files  = 
-#o_files += 
+#o_files += ../tp/FileReader.o
+#o_files += ../tp/FileWriter.o
 
 # Descomentar para compilar estaticamente
 #static = si
 
 # Opciones para el linker
-# LDFLAGS =
+
+LDFLAGS = -L/usr/lib64/boost -lboost_program_options
 
 # Descomentar si usa funciones de math.h
 #math = si
@@ -95,7 +97,7 @@ ifdef debug
   CFLAGS += -ggdb -DDEBUG -fno-inline
 else
   # Para que explote lo mas posible
-  CFLAGS += -O3 -DNDEBUG
+  CFLAGS += -O3 -DNDEBUG -march=native
 endif
 
 # shared memory
@@ -262,6 +264,6 @@ clean:
 	$(RM) $(o_files) $(o_files:.o=.deps) $(target)
 
 test: all
-	@./test/setup.sh 
+	@./test/setup.sh && echo "Test preparados OK"
 	@./test/run.sh && echo "Testing OK"
-	@./test/cleanup.sh
+	@./test/cleanup.sh && echo "Limpieza OK"
