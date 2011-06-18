@@ -33,7 +33,7 @@ void FileWriter::write(char c){
 	}
 }
 
-void FileWriter::writeSizeInHeader(size_t size) {
+void FileWriter::writeSizeInHeader(size_t o, size_t size) {
 	vector<unsigned char> buffer;
 	
 	while (size > 127) {
@@ -46,10 +46,13 @@ void FileWriter::writeSizeInHeader(size_t size) {
 	buffer.push_back( (unsigned char) size);
 	
 	char * last = new char[buffer.size()];
-	
+	char order[1];
+	order[0] = o;
+	file.write(order,1);
 	copy(buffer.begin(), buffer.end(), last);
 
 	file.write(last,buffer.size());
+
 	delete[] last;
 }
 

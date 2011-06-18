@@ -6,7 +6,11 @@
 using namespace ppmc;
 using namespace std;
 
-PPMCUncompressor::PPMCUncompressor(FileReader* r, FileWriter* w, size_t o):ArithmeticDescompressor(r,w),contextSelector(o),order(o) {
+PPMCUncompressor::PPMCUncompressor(FileReader* r, FileWriter* w):ArithmeticDescompressor(r,w) {
+	pair<char,size_t>header = r->getSizeFromHeader();
+	order=header.first;
+	contextSelector.setOrder(order);
+	size=header.second;
 	for (size_t i=0; i<(order + 1);i++) {
 		Model * model = new Model();
 		if (!model) {

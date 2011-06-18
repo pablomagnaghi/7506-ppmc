@@ -2,7 +2,8 @@
 
 using namespace ppmc;
 
-PPMCCompressor::PPMCCompressor(FileReader* r, FileWriter* w, size_t o):ArithmeticCompressor(r,w),order(o),contextSelector(o) {
+PPMCCompressor::PPMCCompressor(FileReader* r, FileWriter* w, size_t o):ArithmeticCompressor(r,w),order(o) {
+	contextSelector.setOrder(order);
 	for (size_t i=0; i<(order + 1);i++) {
 		Model * model = new Model();
 		if (!model) {
@@ -14,7 +15,7 @@ PPMCCompressor::PPMCCompressor(FileReader* r, FileWriter* w, size_t o):Arithmeti
 
 void PPMCCompressor::compress() {
 	static int i = 0;
-	writer->writeSizeInHeader(reader->getSize());
+	writer->writeSizeInHeader(order,reader->getSize());
 	while (!reader->eof() ) {
 		i++;
 		char c = reader->read();
