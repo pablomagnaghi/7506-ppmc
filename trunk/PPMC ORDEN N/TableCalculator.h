@@ -3,9 +3,7 @@
 
 #include <algorithm>
 #include <math.h>
-#include <stdio.h>
 
-#include "TableCalculator.h"
 #include "Constants.h"
 #include "FrequencyTable.h"
 

@@ -61,20 +61,8 @@ bool PPMCUncompressor::solveLastModel(string ex, string firstCtx, int * moreIter
 			setTop(temporalTop);
 			u_int16_t characterTable = result;
 			addToQueue(characterTable);
-#ifdef VERBOSE_ARITHMETIC
-			printf ("top antes de operar: %x\n", temporalTop);
-			printf ("bottom antes de operar: %x\n", temporalBottom);
-#endif
 			solveOverflow();
-#ifdef VERBOSE_ARITHMETIC
-			printf ("top dsp de over: %x\n", getTop());
-			printf ("bottom dsp de over: %x\n", getBottom());
-#endif
 			solveUnderflow();
-#ifdef VERBOSE_ARITHMETIC
-			printf ("top dsp de under: %x\n", getTop());
-			printf ("bottom dsp de under: %x\n", getBottom());
-#endif
 			if (result == END_OF_FILE){
 				return true;
 			}
@@ -91,9 +79,7 @@ bool PPMCUncompressor::solveLastModel(string ex, string firstCtx, int * moreIter
 			}
 			frequencyTable.getStringExc(exclusionChars);
 			frequencyTable.clear();
-#ifdef VERBOSE_MODELS
-			show();
-#endif
+			//show();
 			contextSelector.add(characterTable);
 			*moreIterations = 1;
 			end = true;
@@ -166,23 +152,8 @@ bool PPMCUncompressor::process(char a){
 			}
 			setBottom(temporalBottom);
 			setTop(temporalTop);
-#ifdef VERBOSE_ARITHMETIC
-			printf ("number antes de operar: %x\n", getNumber());
-			printf ("top antes de operar: %x\n", temporalTop);
-			printf ("bottom antes de operar: %x\n", temporalBottom);
-#endif
 			solveOverflow();
-#ifdef VERBOSE_ARITHMETIC
-			printf ("number dsp de over: %x\n", getNumber());
-			printf ("top dsp de over: %x\n", getTop());
-			printf ("bottom dsp de over: %x\n", getBottom());
-#endif
 			solveUnderflow();
-#ifdef VERBOSE_ARITHMETIC
-			printf ("number dsp de under: %x\n", getNumber());
-			printf ("top dsp de under: %x\n", getTop());
-			printf ("bottom dsp de under: %x\n", getBottom());
-#endif
 
 			if (result != ESC){
 				found = true;
@@ -235,9 +206,7 @@ bool PPMCUncompressor::process(char a){
 			frequencyTable.getStringExc(exclusionCharacters);
 			frequencyTable.clear();
 		}
-#ifdef VERBOSE_MODELS
-		show();
-#endif
+		//show();
 	}
 	return false;
 }
