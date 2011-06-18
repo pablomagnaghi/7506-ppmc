@@ -2,13 +2,13 @@
 
 using namespace ppmc;
 
-ContextSelector::ContextSelector(){
+ContextSelector::ContextSelector(size_t o):orden(o){
 
 }
 
 void ContextSelector::add(char c) {
 	context += c;
-	if (context.size() > ORDEN) {
+	if (context.size() > orden) {
 		context = context.substr(1);
 	}
 }

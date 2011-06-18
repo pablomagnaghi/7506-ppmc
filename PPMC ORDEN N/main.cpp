@@ -28,14 +28,14 @@ int main(int argc, char* argv[]) {
 		string input;
 		string output;
 		size_t buffer;
-		
+		size_t order;
 		po::options_description options("Modo");
 
 		options.add_options()
 			("-c", po::value< string >(&input), "Archivo de entrada")
 			("-x", po::value< string >(&input), "Archivo de entrada")
 			("-s", po::value< string >(&output), "Archivo de salida")
-//			("-o", po::value<size_t>(&order)->default_value(3), "Orden")
+			("-o", po::value<size_t>(&order)->default_value(3), "Orden")
 			("-b", po::value<size_t>(&buffer)->default_value(2048), "Buffer entrada/salida")
 		;
 
@@ -59,16 +59,16 @@ int main(int argc, char* argv[]) {
 // 		} else {
 // 			cout << "descomprimir ";
 // 		}
-// 		cout << input << " en " << output << " y buffer " << buffer << endl;
+// 		cout << input << " con orden " << order << " en " << output << " y buffer " << buffer << endl;
 
 		FileReader in(input.c_str(), buffer);
 		FileWriter out(output.c_str(), buffer);
 		
 		if (vm.count("-c")) {
-			PPMCCompressor c(&in,&out);
+			PPMCCompressor c(&in,&out,order);
 			c.compress();
 		} else if(vm.count("-x")) {
-			PPMCUncompressor d(&in,&out);
+			PPMCUncompressor d(&in,&out,order);
 			d.uncompress();
 		} else {
 			throw invalid_argument(string("Debe pedir \"-c\" para comprimir o \"-x\" para descomprimir y una ruta válida '"));

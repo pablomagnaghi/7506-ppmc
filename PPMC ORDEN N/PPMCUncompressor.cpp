@@ -6,8 +6,8 @@
 using namespace ppmc;
 using namespace std;
 
-PPMCUncompressor::PPMCUncompressor(FileReader* r, FileWriter* w):ArithmeticDescompressor(r,w) {
-	for (size_t i=0; i<(ORDEN + 1);i++) {
+PPMCUncompressor::PPMCUncompressor(FileReader* r, FileWriter* w, size_t o):ArithmeticDescompressor(r,w),contextSelector(o),order(o) {
+	for (size_t i=0; i<(order + 1);i++) {
 		Model * model = new Model();
 		if (!model) {
 			throw bad_alloc();
@@ -18,7 +18,7 @@ PPMCUncompressor::PPMCUncompressor(FileReader* r, FileWriter* w):ArithmeticDesco
 }
 
 void PPMCUncompressor::show(){
-	for (int i = ORDEN; i > -1; i--) {
+	for (int i = order; i > -1; i--) {
 		if (models[i]->getSize()) {
 			cout << "Modelo " << i << ": " << endl;
 			cout << models[i]->show();
@@ -212,7 +212,7 @@ bool PPMCUncompressor::process(char a){
 }
 
 PPMCUncompressor::~PPMCUncompressor() {
-	for (size_t i=0; i<(ORDEN + 1);i++) {
+	for (size_t i=0; i<(order + 1);i++) {
 		delete models[i];
 	}
 }

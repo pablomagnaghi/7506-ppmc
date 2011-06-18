@@ -2,8 +2,8 @@
 
 using namespace ppmc;
 
-PPMCCompressor::PPMCCompressor(FileReader* r, FileWriter* w):ArithmeticCompressor(r,w) {
-	for (size_t i=0; i<(ORDEN + 1);i++) {
+PPMCCompressor::PPMCCompressor(FileReader* r, FileWriter* w, size_t o):ArithmeticCompressor(r,w),order(o),contextSelector(o) {
+	for (size_t i=0; i<(order + 1);i++) {
 		Model * model = new Model();
 		if (!model) {
 			throw bad_alloc();
@@ -24,7 +24,7 @@ void PPMCCompressor::compress() {
 }
 
 void PPMCCompressor::show(){
-	for (int i = ORDEN; i > -1; i--) {
+	for (int i = order; i > -1; i--) {
 		if (models[i]->getSize()) {
 			cout << "Modelo " << i << ": " << endl;
 			cout << models[i]->show() << endl;
@@ -114,7 +114,7 @@ void PPMCCompressor::process(u_int16_t a){
 }
 
 PPMCCompressor::~PPMCCompressor() {
-	for (size_t i=0; i<(ORDEN + 1);i++) {
+	for (size_t i=0; i<(order + 1);i++) {
 		delete models[i];
 	}
 }

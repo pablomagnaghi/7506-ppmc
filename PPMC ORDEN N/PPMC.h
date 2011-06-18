@@ -9,7 +9,7 @@
 
 namespace ppmc {
 	
-	#define ORDEN 3
+	
 	#define MAX 257
 }
 

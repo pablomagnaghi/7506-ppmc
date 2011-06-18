@@ -10,13 +10,14 @@ using namespace std;
 namespace ppmc {
 	class ContextSelector {
 		public:
-			ContextSelector();
+			ContextSelector(size_t orden);
 			~ContextSelector(){};
 			void add(char c);
 			const string& getContext();
 			void show();
 		private:
 			string context;
+			size_t orden;
 	};
 }
 
