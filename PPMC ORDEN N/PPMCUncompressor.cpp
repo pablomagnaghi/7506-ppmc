@@ -5,6 +5,7 @@
 
 using namespace ppmc;
 using namespace std;
+using namespace util;
 
 PPMCUncompressor::PPMCUncompressor(FileReader* r, FileWriter* w):ArithmeticDescompressor(r,w) {
 	pair<char,size_t>header = r->getSizeFromHeader();

@@ -4,20 +4,17 @@
 #include <map>
 #include <string>
 #include <algorithm>
-#include <sstream>
 
 #include "PPMC.h"
 #include "Constants.h"
-
-using namespace std;
 
 namespace ppmc {
 	class FrequencyTable {
 		public:
 			FrequencyTable();
 			virtual ~FrequencyTable();
-			map<u_int16_t, size_t>::iterator tableBegin();
-			map<u_int16_t, size_t>::iterator tableEnd();
+			std::map<u_int16_t, size_t>::iterator tableBegin();
+			std::map<u_int16_t, size_t>::iterator tableEnd();
 			size_t getFrequencyChar();
 			size_t getFrequencyEsc();
 			u_int32_t getNewBottom();
@@ -25,15 +22,15 @@ namespace ppmc {
 			u_int32_t getTotal();
 			bool find(u_int16_t);
 			void addCharacter(u_int8_t);
-			void getStringExc(string&);
-			void exc(const string&);
+			void getStringExc(std::string&);
+			void exc(const std::string&);
 			size_t getNumberOfChars();
-			string show();
+			std::string show();
 			void update(FrequencyTable*);
 			void clear();
-			map<u_int16_t, size_t> getTable();
+			std::map<u_int16_t, size_t> getTable();
 		private:
-			map<u_int16_t, size_t> table;
+			std::map<u_int16_t, size_t> table;
 			size_t esc;
 			size_t frequency;
 			u_int32_t bottom;

@@ -1,5 +1,8 @@
+#include <cmath>
 #include "ArithmeticCompressor.h"
 
+using namespace util;
+using namespace std;
 using namespace ppmc;
 
 ArithmeticCompressor::ArithmeticCompressor(FileReader* r, FileWriter* w) {

@@ -1,6 +1,7 @@
 #include "TableCalculator.h"
 
 using namespace ppmc;
+using namespace std;
 
 TableCalculator::TableCalculator() {
 	// TODO Auto-generated constructor stub

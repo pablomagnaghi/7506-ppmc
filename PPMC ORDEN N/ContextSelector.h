@@ -5,7 +5,6 @@
 
 #include "PPMC.h"
 
-using namespace std;
 
 namespace ppmc {
 	class ContextSelector {
@@ -14,10 +13,10 @@ namespace ppmc {
 			~ContextSelector(){};
 			void setOrder(size_t o);
 			void add(char c);
-			const string& getContext();
+			const std::string& getContext();
 			void show();
 		private:
-			string context;
+			std::string context;
 			size_t order;
 	};
 }

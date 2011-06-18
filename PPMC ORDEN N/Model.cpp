@@ -1,3 +1,4 @@
+#include <sstream>
 #include "Model.h"
 
 using namespace std;
