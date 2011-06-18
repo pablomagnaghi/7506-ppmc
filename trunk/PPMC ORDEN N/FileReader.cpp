@@ -46,17 +46,18 @@ size_t FileReader::getSize(){
 	return size;
 }
 
-size_t FileReader::getSizeFromHeader(){
+pair<char,size_t> FileReader::getSizeFromHeader(){
 	char oneCharBuffer[1] = {0};
 	vector<char> tr;
 	size_t size = 0;
-	
+	char order[1];
+	file.read(order,1);
 	while (oneCharBuffer[0] >= 0 ) {
 		file.read(oneCharBuffer,1);
 		tr.push_back(oneCharBuffer[0]);
 	}
 	
-	file.seekg(tr.size() ,ios::beg);
+	file.seekg(tr.size() + 1 ,ios::beg);
 	
 	int mult = 1;
 	unsigned int i;
@@ -67,6 +68,6 @@ size_t FileReader::getSizeFromHeader(){
 	tr[i] -= 128;
 	size += tr[i] * mult;
 	
-	return size ;
+	return make_pair(order[0],size) ;
 }
 

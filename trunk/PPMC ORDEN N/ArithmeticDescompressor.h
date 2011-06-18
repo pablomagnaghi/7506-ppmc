@@ -26,6 +26,8 @@ namespace ppmc {
 			queue<u_int16_t> cola;
 			FileWriter *writer;
 			FileReader *reader;
+		protected:
+			size_t size;
 		public:
 			ArithmeticDescompressor(FileReader* r, FileWriter* w);
 			void solveOverflow();

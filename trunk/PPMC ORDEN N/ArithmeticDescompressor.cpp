@@ -72,7 +72,6 @@ void ArithmeticDescompressor::solveUnderflow(){
 
 void ArithmeticDescompressor::uncompress(){
 	size_t currentPos = 0;
-	size_t size = reader->getSizeFromHeader();
 	while (currentPos < size){
 		u_int16_t value = this->extract();
 		++currentPos;

@@ -26,7 +26,7 @@ namespace ppmc{
 			bool solveLastModel(string, string, int *);
 			size_t order;
 		public:
-			PPMCUncompressor(FileReader* r, FileWriter* w,size_t o);
+			PPMCUncompressor(FileReader* r, FileWriter* w);
 			bool process (char a);
 			void show();
 			virtual ~PPMCUncompressor();

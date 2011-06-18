@@ -44,6 +44,7 @@ int main(int argc, char* argv[]) {
 		po::notify(vm);    
 
 		conflicting_options(vm, "-c", "-x");
+		conflicting_options(vm, "-x", "-o");
 
 		if (output =="" ) {
 			if (vm.count("-c")) {
@@ -68,7 +69,7 @@ int main(int argc, char* argv[]) {
 			PPMCCompressor c(&in,&out,order);
 			c.compress();
 		} else if(vm.count("-x")) {
-			PPMCUncompressor d(&in,&out,order);
+			PPMCUncompressor d(&in,&out);
 			d.uncompress();
 		} else {
 			throw invalid_argument(string("Debe pedir \"-c\" para comprimir o \"-x\" para descomprimir y una ruta válida '"));
