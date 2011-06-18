@@ -42,9 +42,6 @@ void ArithmeticDescompressor::solveOverflow(){
 }
 
 void ArithmeticDescompressor::solveUnderflow(){
-#ifdef VERBOSE_ARITHMETIC
-	//printInBin(this->number);
-#endif
 	int i = 29;
 	int localCounter = 0;
 	int firstBitTop = (top>>31) & 1;
@@ -75,13 +72,10 @@ void ArithmeticDescompressor::solveUnderflow(){
 
 void ArithmeticDescompressor::uncompress(){
 	size_t currentPos = 0;
-	//bool end = false;
 	size_t size = reader->getSizeFromHeader();
 	while (currentPos < size){
 		u_int16_t value = this->extract();
 		++currentPos;
-		// todo prueba
-		//std::cout << s << std::endl;
  		if (value != END_OF_FILE){
  			this->writer->write(value);
  		}

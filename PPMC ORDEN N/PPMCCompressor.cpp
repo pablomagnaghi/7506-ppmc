@@ -1,33 +1,5 @@
 #include "PPMCCompressor.h"
 
-#include <sys/time.h>
-#include <sys/resource.h>
-/*
-    struct timeval ru_utime; // user time used 
-    struct timeval ru_stime; // system time used 
-    long   ru_maxrss;        // maximum resident set size 
-    long   ru_ixrss;         // integral shared memory size 
-    long   ru_idrss;         // integral unshared data size 
-    long   ru_isrss;         // integral unshared stack size
-    long   ru_minflt;        // page reclaims
-    long   ru_majflt;        // page faults
-    long   ru_nswap;         // swaps
-    long   ru_inblock;       // block input operations
-    long   ru_oublock;       // block output operations
-    long   ru_msgsnd;        // messages sent
-    long   ru_msgrcv;        // messages received
-    long   ru_nsignals;      // signals received 
-    long   ru_nvcsw;         // voluntary context switches 
-    long   ru_nivcsw;        // involuntary context switches 
-*/
-int measure() {
-	int who = RUSAGE_SELF; 
-	struct rusage usage; 
-	int ret; 
-	ret=getrusage(who,&usage);
-	return usage.ru_maxrss;
-}
-
 using namespace ppmc;
 
 PPMCCompressor::PPMCCompressor(FileReader* r, FileWriter* w):ArithmeticCompressor(r,w) {
@@ -47,9 +19,6 @@ void PPMCCompressor::compress() {
 		i++;
 		char c = reader->read();
 		process(c);
- 		if (i % 10000 == 0) {
- 			cout << measure() << endl;
- 		}
 	}
 	process(END_OF_FILE);
 }
@@ -72,9 +41,6 @@ void PPMCCompressor::process(u_int16_t a){
 	if (a!=END_OF_FILE)
 			a &= 0x00FF;
 
-#ifdef VERBOSE_MODELS
-	cout << "LEO " << a << " CONTEXTO \"" << context << "\" EMITO:" << endl;
-#endif
 	TableCalculator table;
 	while (!found) {
 		// cargo la tabla con el modelo actual
@@ -94,32 +60,12 @@ void PPMCCompressor::process(u_int16_t a){
 
 		if (frequencyTable.find(a)) {
 			found = true;
-#ifdef VERBOSE_MODELS
-			cout << a << " = " << frequencyTable.getFrequencyChar() << "/";
-			cout << frequencyTable.getTotal() << endl;
-#endif
 		} else {
-#ifdef VERBOSE_MODELS
-			cout << "ESC  = " << frequencyTable.getFrequencyEsc() << "/";
-			cout << frequencyTable.getTotal()<< endl;
-#endif
 		}
-#ifdef VERBOSE_ARITHMETIC
-		printf ("top antes de operar: %x\n", temporalTop);
-		printf ("bottom antes de operar: %x\n", temporalBottom);
-#endif
 		setBottom(temporalBottom);
 		setTop(temporalTop);
 		solveOverflow();
-#ifdef VERBOSE_ARITHMETIC
-		printf ("top dsp de over: %x\n", getTop());
-		printf ("bottom dsp de over: %x\n", getBottom());
-#endif
 		solveUnderflow();
-#ifdef VERBOSE_ARITHMETIC
-		printf ("top dsp de under: %x\n", getTop());
-		printf ("bottom dsp de under: %x\n", getBottom());
-#endif
 
 		models[pos]->update(context, a);
 
@@ -130,9 +76,6 @@ void PPMCCompressor::process(u_int16_t a){
 				frequencyTable.getStringExc(exclusionCharacters);
 				// Aplico mecanismo de exclusion restando a MAX el size del string de
 				// exclusion
-#ifdef VERBOSE_MODELS
-				cout << a <<" = 1/" << MAX - exclusionCharacters.size()<< endl;
-#endif
 				found = true;
 				u_int64_t actualBottom = getBottom();
 				u_int64_t actualTop = getTop();
@@ -144,22 +87,10 @@ void PPMCCompressor::process(u_int16_t a){
 				bool isEof = table.getEndsLastModel(a, actualBottom, actualTop, &temporalLastBottom, &temporalLastTop, exclusionCharacters);
 				setBottom(temporalLastBottom);
 				setTop(temporalLastTop);
-#ifdef VERBOSE_ARITHMETIC
-				printf ("top antes de operar: %x\n", temporalLastTop);
-				printf ("bottom antes de operar: %x\n", temporalLastBottom);
-#endif
 				solveOverflow();
-#ifdef VERBOSE_ARITHMETIC
-				printf ("top dsp de over: %x\n", getTop());
-				printf ("bottom dsp de over: %x\n", getBottom());
-#endif
 
 				if (!isEof) {
 					solveUnderflow();
-#ifdef VERBOSE_ARITHMETIC
-					printf ("top dsp de under: %x\n", getTop());
-					printf ("bottom dsp de under: %x\n", getBottom());
-#endif
 				}
 			}
 		} else {
@@ -177,9 +108,7 @@ void PPMCCompressor::process(u_int16_t a){
 		cleanBuffer();
 	}
 
-#ifdef VERBOSE_MODELS
-	show();
-#endif
+	//show();
 	// actualizo el contexto
 	contextSelector.add(a);
 }
