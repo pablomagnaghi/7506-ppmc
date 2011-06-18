@@ -1,6 +1,9 @@
+#include <algorithm>
+#include <sstream>
 #include "FrequencyTable.h"
 
 using namespace ppmc;
+using namespace std;
 
 FrequencyTable::FrequencyTable() {
 	esc = 1;
@@ -38,7 +41,7 @@ u_int32_t FrequencyTable::getTotal() {
 }
 
 bool isInString(u_int8_t c, std::string exclusionString){
-	std::size_t j;
+	size_t j;
 	bool isInString = false;
 	for (j=0; j<exclusionString.size() && !isInString; j++){
 		if (exclusionString[j]==c){
@@ -107,7 +110,7 @@ void FrequencyTable::exc(const std::string& characters) {
 
 	map<u_int16_t, size_t>::iterator it;
 
-	for (std::size_t i = 0; i < characters.size(); i++) {
+	for (size_t i = 0; i < characters.size(); i++) {
 		it = table.find(characters[i]);
 
 		// Si el caracter se encuentra en la tabla lo borro

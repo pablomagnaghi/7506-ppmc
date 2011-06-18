@@ -2,7 +2,6 @@
 #define PPMCUNCOMPRESSOR_H_
 
 #include <vector>
-#include <algorithm>
 
 #include "ArithmeticDescompressor.h"
 #include "Model.h"
@@ -11,22 +10,20 @@
 #include "Constants.h"
 #include "TableCalculator.h"
 
-using namespace std;
-
 namespace ppmc{
 	class PPMCUncompressor: public ArithmeticDescompressor {
 		private:
-			vector<Model*> models;
+			std::vector<Model*> models;
 			ContextSelector contextSelector;
 			FrequencyTable frequencyTable;
-			string currentContext;
-			string exclusionChars;
-			string firstContext;
+			std::string currentContext;
+			std::string exclusionChars;
+			std::string firstContext;
 			int state;
-			bool solveLastModel(string, string, int *);
+			bool solveLastModel(std::string, std::string, int *);
 			size_t order;
 		public:
-			PPMCUncompressor(FileReader* r, FileWriter* w);
+			PPMCUncompressor(util::FileReader* r, util::FileWriter* w);
 			bool process (char a);
 			void show();
 			virtual ~PPMCUncompressor();

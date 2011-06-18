@@ -1,9 +1,8 @@
-#include <netinet/in.h>
 #include <vector>
 
 #include "FileWriter.h"
 
-
+using namespace std;
 using namespace util;
 
 FileWriter::FileWriter(const char* name, size_t bs){

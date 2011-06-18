@@ -1,6 +1,7 @@
 #include "ContextSelector.h"
 
 using namespace ppmc;
+using namespace std;
 
 ContextSelector::ContextSelector(){
 

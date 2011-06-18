@@ -1,6 +1,8 @@
 #include "PPMCCompressor.h"
 
 using namespace ppmc;
+using namespace std;
+using namespace util;
 
 PPMCCompressor::PPMCCompressor(FileReader* r, FileWriter* w, size_t o):ArithmeticCompressor(r,w),order(o) {
 	contextSelector.setOrder(order);

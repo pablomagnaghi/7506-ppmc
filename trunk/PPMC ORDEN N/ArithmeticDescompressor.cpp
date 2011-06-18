@@ -1,6 +1,10 @@
+#include <cmath>
+
 #include "ArithmeticDescompressor.h"
 
 using namespace ppmc;
+using namespace util;
+using namespace std;
 
 ArithmeticDescompressor::ArithmeticDescompressor(FileReader* r, FileWriter* w):cola() {
 	this->reader = r;
@@ -17,10 +21,10 @@ void printInBin(u_int32_t x){
 	int i;
 	for (i=31; i>=0; i--){
 		if (((x>>i) & 1)==1)
-			std::cout<<"1";
-		else std::cout<<"0";
+			cout<<"1";
+		else cout<<"0";
 	}
-	std::cout<<std::endl;
+	cout<<endl;
 }
 
 void ArithmeticDescompressor::solveOverflow(){
