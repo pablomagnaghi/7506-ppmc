@@ -15,7 +15,6 @@ namespace util {
 			virtual char read();
 			virtual bool eof();
 			size_t getSize();
-			char getChar();
 			size_t getSizeFromHeader();
 		private:
 			char* buffer;
