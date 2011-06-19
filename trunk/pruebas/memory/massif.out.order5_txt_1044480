@@ -1,0 +1,1779 @@
+desc: (none)
+cmd: ./ppmc -c test/fixture/text.tar main.z -o 5
+time_unit: i
+#-----------
+snapshot=0
+#-----------
+time=0
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=1
+#-----------
+time=86798897
+mem_heap_B=1704598
+mem_heap_extra_B=344914
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=2
+#-----------
+time=143852504
+mem_heap_B=2080159
+mem_heap_extra_B=421601
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=3
+#-----------
+time=241568756
+mem_heap_B=2921075
+mem_heap_extra_B=592925
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=4
+#-----------
+time=315096022
+mem_heap_B=3235796
+mem_heap_extra_B=657108
+mem_stacks_B=0
+heap_tree=detailed
+n6: 3235796 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 1210088 0x41296C: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 1210088 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 1210088 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 1210088 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 739584 0x40B267: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 739584 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 739584 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 739584 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 660048 0x4135C8: std::_Rb_tree<std::string, std::pair<std::string const, ppmc::FrequencyTable*>, std::_Select1st<std::pair<std::string const, ppmc::FrequencyTable*> >, std::less<std::string>, std::allocator<std::pair<std::string const, ppmc::FrequencyTable*> > >::_M_insert_(std::_Rb_tree_node_base const*, std::_Rb_tree_node_base const*, std::pair<std::string const, ppmc::FrequencyTable*> const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 660048 0x412AFE: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 660048 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 660048 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n0: 660048 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n2: 398636 0x5111AEF: std::string::_Rep::_S_create(unsigned long, unsigned long, std::allocator<char> const&) (in /usr/lib64/libstdc++.so.6.0.12)
+  n1: 397887 0x51129D3: ??? (in /usr/lib64/libstdc++.so.6.0.12)
+   n3: 397887 0x5112BA7: std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::string const&, unsigned long, unsigned long) (in /usr/lib64/libstdc++.so.6.0.12)
+    n1: 244857 0x413C85: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 244857 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n0: 244857 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 153030 0x409342: ppmc::ContextSelector::add(char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 153030 0x413BF8: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n1: 153030 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+       n0: 153030 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 0 in 1 place, below massif's threshold (01.00%)
+  n0: 749 in 3 places, all below massif's threshold (01.00%)
+ n1: 199344 0x40B2BE: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 199344 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 199344 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 199344 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n0: 28096 in 40 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=5
+#-----------
+time=407336634
+mem_heap_B=3609748
+mem_heap_extra_B=733548
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=6
+#-----------
+time=483244040
+mem_heap_B=4074651
+mem_heap_extra_B=828493
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=7
+#-----------
+time=566185576
+mem_heap_B=4813179
+mem_heap_extra_B=978709
+mem_stacks_B=0
+heap_tree=detailed
+n6: 4813179 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 1795024 0x41296C: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 1795024 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 1795024 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 1795024 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 1104912 0x40B267: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 1104912 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 1104912 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 1104912 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 979104 0x4135C8: std::_Rb_tree<std::string, std::pair<std::string const, ppmc::FrequencyTable*>, std::_Select1st<std::pair<std::string const, ppmc::FrequencyTable*> >, std::less<std::string>, std::allocator<std::pair<std::string const, ppmc::FrequencyTable*> > >::_M_insert_(std::_Rb_tree_node_base const*, std::_Rb_tree_node_base const*, std::pair<std::string const, ppmc::FrequencyTable*> const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 979104 0x412AFE: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 979104 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 979104 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n0: 979104 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n2: 592363 0x5111AEF: std::string::_Rep::_S_create(unsigned long, unsigned long, std::allocator<char> const&) (in /usr/lib64/libstdc++.so.6.0.12)
+  n1: 591614 0x51129D3: ??? (in /usr/lib64/libstdc++.so.6.0.12)
+   n3: 591614 0x5112BA7: std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::string const&, unsigned long, unsigned long) (in /usr/lib64/libstdc++.so.6.0.12)
+    n1: 353744 0x413C85: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 353744 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n0: 353744 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 237870 0x409342: ppmc::ContextSelector::add(char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 237870 0x413BF8: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n1: 237870 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+       n0: 237870 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 0 in 1 place, below massif's threshold (01.00%)
+  n0: 749 in 3 places, all below massif's threshold (01.00%)
+ n1: 316128 0x40B2BE: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 316128 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 316128 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 316128 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n0: 25648 in 40 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=8
+#-----------
+time=661671273
+mem_heap_B=5163397
+mem_heap_extra_B=1050403
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=9
+#-----------
+time=748166853
+mem_heap_B=5379077
+mem_heap_extra_B=1094547
+mem_stacks_B=0
+heap_tree=detailed
+n6: 5379077 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 2002704 0x41296C: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 2002704 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 2002704 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 2002704 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 1235904 0x40B267: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 1235904 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 1235904 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 1235904 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 1092384 0x4135C8: std::_Rb_tree<std::string, std::pair<std::string const, ppmc::FrequencyTable*>, std::_Select1st<std::pair<std::string const, ppmc::FrequencyTable*> >, std::less<std::string>, std::allocator<std::pair<std::string const, ppmc::FrequencyTable*> > >::_M_insert_(std::_Rb_tree_node_base const*, std::_Rb_tree_node_base const*, std::pair<std::string const, ppmc::FrequencyTable*> const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 1092384 0x412AFE: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 1092384 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 1092384 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n0: 1092384 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n2: 661381 0x5111AEF: std::string::_Rep::_S_create(unsigned long, unsigned long, std::allocator<char> const&) (in /usr/lib64/libstdc++.so.6.0.12)
+  n1: 660640 0x51129D3: ??? (in /usr/lib64/libstdc++.so.6.0.12)
+   n3: 660640 0x5112BA7: std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::string const&, unsigned long, unsigned long) (in /usr/lib64/libstdc++.so.6.0.12)
+    n1: 389920 0x413C85: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 389920 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n0: 389920 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 270720 0x409342: ppmc::ContextSelector::add(char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 270720 0x413BF8: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n1: 270720 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+       n0: 270720 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 0 in 1 place, below massif's threshold (01.00%)
+  n0: 741 in 3 places, all below massif's threshold (01.00%)
+ n1: 362112 0x40B2BE: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 362112 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 362112 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 362112 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n0: 24592 in 40 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=10
+#-----------
+time=808185354
+mem_heap_B=5641450
+mem_heap_extra_B=1147990
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=11
+#-----------
+time=906768222
+mem_heap_B=5990509
+mem_heap_extra_B=1218971
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=12
+#-----------
+time=989367620
+mem_heap_B=6348346
+mem_heap_extra_B=1292470
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=13
+#-----------
+time=1098918986
+mem_heap_B=7055046
+mem_heap_extra_B=1437018
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=14
+#-----------
+time=1178460563
+mem_heap_B=7216099
+mem_heap_extra_B=1469757
+mem_stacks_B=0
+heap_tree=detailed
+n6: 7216099 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 2673968 0x41296C: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 2673968 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 2673968 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 2673968 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 1663968 0x40B267: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 1663968 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 1663968 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 1663968 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 1458528 0x4135C8: std::_Rb_tree<std::string, std::pair<std::string const, ppmc::FrequencyTable*>, std::_Select1st<std::pair<std::string const, ppmc::FrequencyTable*> >, std::less<std::string>, std::allocator<std::pair<std::string const, ppmc::FrequencyTable*> > >::_M_insert_(std::_Rb_tree_node_base const*, std::_Rb_tree_node_base const*, std::pair<std::string const, ppmc::FrequencyTable*> const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 1458528 0x412AFE: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 1458528 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 1458528 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n0: 1458528 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n2: 884275 0x5111AEF: std::string::_Rep::_S_create(unsigned long, unsigned long, std::allocator<char> const&) (in /usr/lib64/libstdc++.so.6.0.12)
+  n1: 883540 0x51129D3: ??? (in /usr/lib64/libstdc++.so.6.0.12)
+   n3: 883540 0x5112BA7: std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::string const&, unsigned long, unsigned long) (in /usr/lib64/libstdc++.so.6.0.12)
+    n1: 508330 0x413C85: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 508330 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n0: 508330 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 375210 0x409342: ppmc::ContextSelector::add(char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 375210 0x413BF8: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n1: 375210 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+       n0: 375210 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 0 in 1 place, below massif's threshold (01.00%)
+  n0: 735 in 3 places, all below massif's threshold (01.00%)
+ n1: 508320 0x40B2BE: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 508320 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 508320 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 508320 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n0: 27040 in 40 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=15
+#-----------
+time=1244619396
+mem_heap_B=7364702
+mem_heap_extra_B=1500058
+mem_stacks_B=0
+heap_tree=detailed
+n6: 7364702 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 2728176 0x41296C: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 2728176 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 2728176 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 2728176 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 1696992 0x40B267: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 1696992 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 1696992 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 1696992 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 1488096 0x4135C8: std::_Rb_tree<std::string, std::pair<std::string const, ppmc::FrequencyTable*>, std::_Select1st<std::pair<std::string const, ppmc::FrequencyTable*> >, std::less<std::string>, std::allocator<std::pair<std::string const, ppmc::FrequencyTable*> > >::_M_insert_(std::_Rb_tree_node_base const*, std::_Rb_tree_node_base const*, std::pair<std::string const, ppmc::FrequencyTable*> const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 1488096 0x412AFE: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 1488096 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 1488096 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n0: 1488096 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n2: 902302 0x5111AEF: std::string::_Rep::_S_create(unsigned long, unsigned long, std::allocator<char> const&) (in /usr/lib64/libstdc++.so.6.0.12)
+  n1: 901537 0x51129D3: ??? (in /usr/lib64/libstdc++.so.6.0.12)
+   n3: 901537 0x5112BA7: std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::string const&, unsigned long, unsigned long) (in /usr/lib64/libstdc++.so.6.0.12)
+    n1: 518047 0x413C85: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 518047 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n0: 518047 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 383490 0x409342: ppmc::ContextSelector::add(char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 383490 0x413BF8: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n1: 383490 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+       n0: 383490 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 0 in 1 place, below massif's threshold (01.00%)
+  n0: 765 in 3 places, all below massif's threshold (01.00%)
+ n1: 520944 0x40B2BE: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 520944 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 520944 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 520944 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n0: 28192 in 40 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=16
+#-----------
+time=1328429855
+mem_heap_B=7922249
+mem_heap_extra_B=1614335
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=17
+#-----------
+time=1417438443
+mem_heap_B=8061583
+mem_heap_extra_B=1642377
+mem_stacks_B=0
+heap_tree=detailed
+n6: 8061583 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 2980560 0x41296C: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 2980560 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 2980560 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 2980560 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 1857264 0x40B267: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 1857264 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 1857264 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 1857264 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 1625760 0x4135C8: std::_Rb_tree<std::string, std::pair<std::string const, ppmc::FrequencyTable*>, std::_Select1st<std::pair<std::string const, ppmc::FrequencyTable*> >, std::less<std::string>, std::allocator<std::pair<std::string const, ppmc::FrequencyTable*> > >::_M_insert_(std::_Rb_tree_node_base const*, std::_Rb_tree_node_base const*, std::pair<std::string const, ppmc::FrequencyTable*> const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 1625760 0x412AFE: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 1625760 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 1625760 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n0: 1625760 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n2: 986223 0x5111AEF: std::string::_Rep::_S_create(unsigned long, unsigned long, std::allocator<char> const&) (in /usr/lib64/libstdc++.so.6.0.12)
+  n1: 985474 0x51129D3: ??? (in /usr/lib64/libstdc++.so.6.0.12)
+   n3: 985474 0x5112BA7: std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::string const&, unsigned long, unsigned long) (in /usr/lib64/libstdc++.so.6.0.12)
+    n1: 561124 0x413C85: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 561124 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n0: 561124 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 424350 0x409342: ppmc::ContextSelector::add(char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 424350 0x413BF8: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n1: 424350 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+       n0: 424350 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 0 in 1 place, below massif's threshold (01.00%)
+  n0: 749 in 3 places, all below massif's threshold (01.00%)
+ n1: 579936 0x40B2BE: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 579936 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 579936 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 579936 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n0: 31840 in 40 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=18
+#-----------
+time=1542017635
+mem_heap_B=8788170
+mem_heap_extra_B=1791230
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=19
+#-----------
+time=1620917744
+mem_heap_B=8817732
+mem_heap_extra_B=1797300
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=20
+#-----------
+time=1684926755
+mem_heap_B=8915086
+mem_heap_extra_B=1817018
+mem_stacks_B=0
+heap_tree=detailed
+n6: 8915086 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 3296392 0x41296C: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 3296392 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 3296392 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 3296392 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 2054832 0x40B267: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 2054832 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 2054832 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 2054832 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 1798032 0x4135C8: std::_Rb_tree<std::string, std::pair<std::string const, ppmc::FrequencyTable*>, std::_Select1st<std::pair<std::string const, ppmc::FrequencyTable*> >, std::less<std::string>, std::allocator<std::pair<std::string const, ppmc::FrequencyTable*> > >::_M_insert_(std::_Rb_tree_node_base const*, std::_Rb_tree_node_base const*, std::pair<std::string const, ppmc::FrequencyTable*> const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 1798032 0x412AFE: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 1798032 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 1798032 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n0: 1798032 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n2: 1091078 0x5111AEF: std::string::_Rep::_S_create(unsigned long, unsigned long, std::allocator<char> const&) (in /usr/lib64/libstdc++.so.6.0.12)
+  n1: 1090329 0x51129D3: ??? (in /usr/lib64/libstdc++.so.6.0.12)
+   n3: 1090329 0x5112BA7: std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::string const&, unsigned long, unsigned long) (in /usr/lib64/libstdc++.so.6.0.12)
+    n1: 617589 0x413C85: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 617589 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n0: 617589 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 472740 0x409342: ppmc::ContextSelector::add(char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 472740 0x413BF8: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n1: 472740 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+       n0: 472740 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 0 in 1 place, below massif's threshold (01.00%)
+  n0: 749 in 3 places, all below massif's threshold (01.00%)
+ n1: 647040 0x40B2BE: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 647040 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 647040 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 647040 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n0: 27712 in 40 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=21
+#-----------
+time=1809099363
+mem_heap_B=9597631
+mem_heap_extra_B=1956977
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=22
+#-----------
+time=1899159066
+mem_heap_B=10163663
+mem_heap_extra_B=2072329
+mem_stacks_B=0
+heap_tree=detailed
+n6: 10163663 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 3752056 0x41296C: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 3752056 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 3752056 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 3752056 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 2345232 0x40B267: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 2345232 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 2345232 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 2345232 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 2046576 0x4135C8: std::_Rb_tree<std::string, std::pair<std::string const, ppmc::FrequencyTable*>, std::_Select1st<std::pair<std::string const, ppmc::FrequencyTable*> >, std::less<std::string>, std::allocator<std::pair<std::string const, ppmc::FrequencyTable*> > >::_M_insert_(std::_Rb_tree_node_base const*, std::_Rb_tree_node_base const*, std::pair<std::string const, ppmc::FrequencyTable*> const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 2046576 0x412AFE: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 2046576 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 2046576 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n0: 2046576 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n2: 1242423 0x5111AEF: std::string::_Rep::_S_create(unsigned long, unsigned long, std::allocator<char> const&) (in /usr/lib64/libstdc++.so.6.0.12)
+  n1: 1241715 0x51129D3: ??? (in /usr/lib64/libstdc++.so.6.0.12)
+   n3: 1241715 0x5112BA7: std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::string const&, unsigned long, unsigned long) (in /usr/lib64/libstdc++.so.6.0.12)
+    n1: 696315 0x413C85: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 696315 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n0: 696315 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 545400 0x409342: ppmc::ContextSelector::add(char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 545400 0x413BF8: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n1: 545400 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+       n0: 545400 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 0 in 1 place, below massif's threshold (01.00%)
+  n0: 708 in 3 places, all below massif's threshold (01.00%)
+ n1: 750240 0x40B2BE: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 750240 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 750240 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 750240 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n0: 27136 in 40 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=23
+#-----------
+time=2018126141
+mem_heap_B=10684696
+mem_heap_extra_B=2179040
+mem_stacks_B=0
+heap_tree=detailed
+n6: 10684696 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 3939584 0x41296C: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 3939584 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 3939584 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 3939584 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 2463696 0x40B267: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 2463696 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 2463696 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 2463696 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 2148864 0x4135C8: std::_Rb_tree<std::string, std::pair<std::string const, ppmc::FrequencyTable*>, std::_Select1st<std::pair<std::string const, ppmc::FrequencyTable*> >, std::less<std::string>, std::allocator<std::pair<std::string const, ppmc::FrequencyTable*> > >::_M_insert_(std::_Rb_tree_node_base const*, std::_Rb_tree_node_base const*, std::pair<std::string const, ppmc::FrequencyTable*> const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 2148864 0x412AFE: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 2148864 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 2148864 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n0: 2148864 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n2: 1304968 0x5111AEF: std::string::_Rep::_S_create(unsigned long, unsigned long, std::allocator<char> const&) (in /usr/lib64/libstdc++.so.6.0.12)
+  n1: 1304219 0x51129D3: ??? (in /usr/lib64/libstdc++.so.6.0.12)
+   n3: 1304219 0x5112BA7: std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::string const&, unsigned long, unsigned long) (in /usr/lib64/libstdc++.so.6.0.12)
+    n1: 726629 0x413C85: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 726629 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n0: 726629 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 577590 0x409342: ppmc::ContextSelector::add(char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 577590 0x413BF8: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n1: 577590 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+       n0: 577590 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 0 in 1 place, below massif's threshold (01.00%)
+  n0: 749 in 3 places, all below massif's threshold (01.00%)
+ n1: 800640 0x40B2BE: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 800640 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 800640 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 800640 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n0: 26944 in 40 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=24
+#-----------
+time=2135617943
+mem_heap_B=10794506
+mem_heap_extra_B=2201430
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=25
+#-----------
+time=2219227422
+mem_heap_B=11191516
+mem_heap_extra_B=2282876
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=26
+#-----------
+time=2268188295
+mem_heap_B=11312720
+mem_heap_extra_B=2307680
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=27
+#-----------
+time=2361960605
+mem_heap_B=11346656
+mem_heap_extra_B=2314560
+mem_stacks_B=0
+heap_tree=detailed
+n6: 11346656 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 4178152 0x41296C: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 4178152 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 4178152 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 4178152 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 2619552 0x40B267: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 2619552 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 2619552 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 2619552 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 2278992 0x4135C8: std::_Rb_tree<std::string, std::pair<std::string const, ppmc::FrequencyTable*>, std::_Select1st<std::pair<std::string const, ppmc::FrequencyTable*> >, std::less<std::string>, std::allocator<std::pair<std::string const, ppmc::FrequencyTable*> > >::_M_insert_(std::_Rb_tree_node_base const*, std::_Rb_tree_node_base const*, std::pair<std::string const, ppmc::FrequencyTable*> const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 2278992 0x412AFE: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 2278992 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 2278992 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n0: 2278992 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n2: 1384488 0x5111AEF: std::string::_Rep::_S_create(unsigned long, unsigned long, std::allocator<char> const&) (in /usr/lib64/libstdc++.so.6.0.12)
+  n1: 1383780 0x51129D3: ??? (in /usr/lib64/libstdc++.so.6.0.12)
+   n3: 1383780 0x5112BA7: std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::string const&, unsigned long, unsigned long) (in /usr/lib64/libstdc++.so.6.0.12)
+    n1: 764970 0x413C85: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 764970 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n0: 764970 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 618810 0x409342: ppmc::ContextSelector::add(char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 618810 0x413BF8: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n1: 618810 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+       n0: 618810 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 0 in 1 place, below massif's threshold (01.00%)
+  n0: 708 in 3 places, all below massif's threshold (01.00%)
+ n1: 860640 0x40B2BE: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 860640 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 860640 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 860640 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n0: 24832 in 40 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=28
+#-----------
+time=2430357370
+mem_heap_B=11414646
+mem_heap_extra_B=2328554
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=29
+#-----------
+time=2546036153
+mem_heap_B=11548034
+mem_heap_extra_B=2355782
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=30
+#-----------
+time=2622226698
+mem_heap_B=11669805
+mem_heap_extra_B=2380723
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=31
+#-----------
+time=2672262281
+mem_heap_B=11834091
+mem_heap_extra_B=2414677
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=32
+#-----------
+time=2763224968
+mem_heap_B=11937645
+mem_heap_extra_B=2436027
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=33
+#-----------
+time=2854420764
+mem_heap_B=11965267
+mem_heap_extra_B=2441701
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=34
+#-----------
+time=2947380818
+mem_heap_B=12111910
+mem_heap_extra_B=2471610
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=35
+#-----------
+time=3061374850
+mem_heap_B=12139602
+mem_heap_extra_B=2477318
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=36
+#-----------
+time=3134105695
+mem_heap_B=12168280
+mem_heap_extra_B=2483168
+mem_stacks_B=0
+heap_tree=detailed
+n6: 12168280 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 4473216 0x41296C: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 4473216 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 4473216 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 4473216 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 2811312 0x40B267: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 2811312 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 2811312 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 2811312 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 2439936 0x4135C8: std::_Rb_tree<std::string, std::pair<std::string const, ppmc::FrequencyTable*>, std::_Select1st<std::pair<std::string const, ppmc::FrequencyTable*> >, std::less<std::string>, std::allocator<std::pair<std::string const, ppmc::FrequencyTable*> > >::_M_insert_(std::_Rb_tree_node_base const*, std::_Rb_tree_node_base const*, std::pair<std::string const, ppmc::FrequencyTable*> const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 2439936 0x412AFE: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 2439936 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 2439936 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n0: 2439936 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n2: 1482888 0x5111AEF: std::string::_Rep::_S_create(unsigned long, unsigned long, std::allocator<char> const&) (in /usr/lib64/libstdc++.so.6.0.12)
+  n1: 1482153 0x51129D3: ??? (in /usr/lib64/libstdc++.so.6.0.12)
+   n3: 1482153 0x5112BA7: std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::string const&, unsigned long, unsigned long) (in /usr/lib64/libstdc++.so.6.0.12)
+    n1: 812883 0x413C85: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 812883 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n0: 812883 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 669270 0x409342: ppmc::ContextSelector::add(char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 669270 0x413BF8: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n1: 669270 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+       n0: 669270 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 0 in 1 place, below massif's threshold (01.00%)
+  n0: 735 in 3 places, all below massif's threshold (01.00%)
+ n1: 936096 0x40B2BE: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 936096 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 936096 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 936096 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n0: 24832 in 40 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=37
+#-----------
+time=3218195643
+mem_heap_B=12414624
+mem_heap_extra_B=2533640
+mem_stacks_B=0
+heap_tree=detailed
+n6: 12414624 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 4561216 0x41296C: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 4561216 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 4561216 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 4561216 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 2867712 0x40B267: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 2867712 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 2867712 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 2867712 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 2487936 0x4135C8: std::_Rb_tree<std::string, std::pair<std::string const, ppmc::FrequencyTable*>, std::_Select1st<std::pair<std::string const, ppmc::FrequencyTable*> >, std::less<std::string>, std::allocator<std::pair<std::string const, ppmc::FrequencyTable*> > >::_M_insert_(std::_Rb_tree_node_base const*, std::_Rb_tree_node_base const*, std::pair<std::string const, ppmc::FrequencyTable*> const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 2487936 0x412AFE: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 2487936 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 2487936 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n0: 2487936 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n2: 1512208 0x5111AEF: std::string::_Rep::_S_create(unsigned long, unsigned long, std::allocator<char> const&) (in /usr/lib64/libstdc++.so.6.0.12)
+  n1: 1511474 0x51129D3: ??? (in /usr/lib64/libstdc++.so.6.0.12)
+   n3: 1511474 0x5112BA7: std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::string const&, unsigned long, unsigned long) (in /usr/lib64/libstdc++.so.6.0.12)
+    n1: 827264 0x413C85: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 827264 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n0: 827264 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 684210 0x409342: ppmc::ContextSelector::add(char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 684210 0x413BF8: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n1: 684210 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+       n0: 684210 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 0 in 1 place, below massif's threshold (01.00%)
+  n0: 734 in 3 places, all below massif's threshold (01.00%)
+ n1: 957696 0x40B2BE: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 957696 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 957696 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 957696 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n0: 27856 in 40 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=38
+#-----------
+time=3315410237
+mem_heap_B=12513577
+mem_heap_extra_B=2554079
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=39
+#-----------
+time=3435425782
+mem_heap_B=12887421
+mem_heap_extra_B=2630787
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=40
+#-----------
+time=3531338783
+mem_heap_B=13282169
+mem_heap_extra_B=2711783
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=41
+#-----------
+time=3636237217
+mem_heap_B=13437429
+mem_heap_extra_B=2743443
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=42
+#-----------
+time=3729388820
+mem_heap_B=13862106
+mem_heap_extra_B=2829782
+mem_stacks_B=0
+heap_tree=detailed
+n6: 13862106 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 5081120 0x41296C: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 5081120 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 5081120 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 5081120 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 3199200 0x40B267: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 3199200 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 3199200 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 3199200 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 2771520 0x4135C8: std::_Rb_tree<std::string, std::pair<std::string const, ppmc::FrequencyTable*>, std::_Select1st<std::pair<std::string const, ppmc::FrequencyTable*> >, std::less<std::string>, std::allocator<std::pair<std::string const, ppmc::FrequencyTable*> > >::_M_insert_(std::_Rb_tree_node_base const*, std::_Rb_tree_node_base const*, std::pair<std::string const, ppmc::FrequencyTable*> const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 2771520 0x412AFE: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 2771520 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 2771520 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n0: 2771520 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n2: 1685466 0x5111AEF: std::string::_Rep::_S_create(unsigned long, unsigned long, std::allocator<char> const&) (in /usr/lib64/libstdc++.so.6.0.12)
+  n1: 1684732 0x51129D3: ??? (in /usr/lib64/libstdc++.so.6.0.12)
+   n3: 1684732 0x5112BA7: std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::string const&, unsigned long, unsigned long) (in /usr/lib64/libstdc++.so.6.0.12)
+    n1: 911122 0x413C85: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 911122 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n0: 911122 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 773610 0x409342: ppmc::ContextSelector::add(char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 773610 0x413BF8: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n1: 773610 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+       n0: 773610 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 0 in 1 place, below massif's threshold (01.00%)
+  n0: 734 in 3 places, all below massif's threshold (01.00%)
+ n1: 1095552 0x40B2BE: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 1095552 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 1095552 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 1095552 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n0: 29248 in 40 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=43
+#-----------
+time=3832197900
+mem_heap_B=14204689
+mem_heap_extra_B=2899983
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=44
+#-----------
+time=3897007589
+mem_heap_B=14274367
+mem_heap_extra_B=2914281
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=45
+#-----------
+time=3982423894
+mem_heap_B=14681653
+mem_heap_extra_B=2997547
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=46
+#-----------
+time=4047233559
+mem_heap_B=14699212
+mem_heap_extra_B=3001164
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=47
+#-----------
+time=4135257024
+mem_heap_B=14868839
+mem_heap_extra_B=3036057
+mem_stacks_B=0
+heap_tree=detailed
+n6: 14868839 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 5444560 0x41296C: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 5444560 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 5444560 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 5444560 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 3431616 0x40B267: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 3431616 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 3431616 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 3431616 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 2969760 0x4135C8: std::_Rb_tree<std::string, std::pair<std::string const, ppmc::FrequencyTable*>, std::_Select1st<std::pair<std::string const, ppmc::FrequencyTable*> >, std::less<std::string>, std::allocator<std::pair<std::string const, ppmc::FrequencyTable*> > >::_M_insert_(std::_Rb_tree_node_base const*, std::_Rb_tree_node_base const*, std::pair<std::string const, ppmc::FrequencyTable*> const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 2969760 0x412AFE: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 2969760 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 2969760 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n0: 2969760 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n2: 1806711 0x5111AEF: std::string::_Rep::_S_create(unsigned long, unsigned long, std::allocator<char> const&) (in /usr/lib64/libstdc++.so.6.0.12)
+  n1: 1805970 0x51129D3: ??? (in /usr/lib64/libstdc++.so.6.0.12)
+   n3: 1805970 0x5112BA7: std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::string const&, unsigned long, unsigned long) (in /usr/lib64/libstdc++.so.6.0.12)
+    n1: 969660 0x413C85: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 969660 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n0: 969660 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 836310 0x409342: ppmc::ContextSelector::add(char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 836310 0x413BF8: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n1: 836310 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+       n0: 836310 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 0 in 1 place, below massif's threshold (01.00%)
+  n0: 741 in 3 places, all below massif's threshold (01.00%)
+ n1: 1190928 0x40B2BE: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 1190928 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 1190928 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 1190928 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n0: 25264 in 40 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=48
+#-----------
+time=4200066526
+mem_heap_B=14889487
+mem_heap_extra_B=3040465
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=49
+#-----------
+time=4264876699
+mem_heap_B=14937229
+mem_heap_extra_B=3050259
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=50
+#-----------
+time=4313837635
+mem_heap_B=14991598
+mem_heap_extra_B=3061450
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=51
+#-----------
+time=4343976274
+mem_heap_B=15018538
+mem_heap_extra_B=3066910
+mem_stacks_B=0
+heap_tree=detailed
+n6: 15018538 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 5496568 0x41296C: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 5496568 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 5496568 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 5496568 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 3466464 0x40B267: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 3466464 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 3466464 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 3466464 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 2998128 0x4135C8: std::_Rb_tree<std::string, std::pair<std::string const, ppmc::FrequencyTable*>, std::_Select1st<std::pair<std::string const, ppmc::FrequencyTable*> >, std::less<std::string>, std::allocator<std::pair<std::string const, ppmc::FrequencyTable*> > >::_M_insert_(std::_Rb_tree_node_base const*, std::_Rb_tree_node_base const*, std::pair<std::string const, ppmc::FrequencyTable*> const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 2998128 0x412AFE: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 2998128 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 2998128 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n0: 2998128 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n2: 1824098 0x5111AEF: std::string::_Rep::_S_create(unsigned long, unsigned long, std::allocator<char> const&) (in /usr/lib64/libstdc++.so.6.0.12)
+  n1: 1823363 0x51129D3: ??? (in /usr/lib64/libstdc++.so.6.0.12)
+   n3: 1823363 0x5112BA7: std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::string const&, unsigned long, unsigned long) (in /usr/lib64/libstdc++.so.6.0.12)
+    n1: 977363 0x413C85: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 977363 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n0: 977363 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 846000 0x409342: ppmc::ContextSelector::add(char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 846000 0x413BF8: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n1: 846000 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+       n0: 846000 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 0 in 1 place, below massif's threshold (01.00%)
+  n0: 735 in 3 places, all below massif's threshold (01.00%)
+ n1: 1206720 0x40B2BE: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 1206720 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 1206720 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 1206720 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n0: 26560 in 40 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=52
+#-----------
+time=4387243222
+mem_heap_B=15168567
+mem_heap_extra_B=3098009
+mem_stacks_B=0
+heap_tree=detailed
+n6: 15168567 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 5550336 0x41296C: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 5550336 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 5550336 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 5550336 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 3500496 0x40B267: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 3500496 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 3500496 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 3500496 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 3027456 0x4135C8: std::_Rb_tree<std::string, std::pair<std::string const, ppmc::FrequencyTable*>, std::_Select1st<std::pair<std::string const, ppmc::FrequencyTable*> >, std::less<std::string>, std::allocator<std::pair<std::string const, ppmc::FrequencyTable*> > >::_M_insert_(std::_Rb_tree_node_base const*, std::_Rb_tree_node_base const*, std::pair<std::string const, ppmc::FrequencyTable*> const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 3027456 0x412AFE: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 3027456 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 3027456 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n0: 3027456 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n2: 1842023 0x5111AEF: std::string::_Rep::_S_create(unsigned long, unsigned long, std::allocator<char> const&) (in /usr/lib64/libstdc++.so.6.0.12)
+  n1: 1841315 0x51129D3: ??? (in /usr/lib64/libstdc++.so.6.0.12)
+   n3: 1841315 0x5112BA7: std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::string const&, unsigned long, unsigned long) (in /usr/lib64/libstdc++.so.6.0.12)
+    n1: 985655 0x413C85: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 985655 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n0: 985655 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 855660 0x409342: ppmc::ContextSelector::add(char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 855660 0x413BF8: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n1: 855660 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+       n0: 855660 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 0 in 1 place, below massif's threshold (01.00%)
+  n0: 708 in 3 places, all below massif's threshold (01.00%)
+ n1: 1223040 0x40B2BE: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 1223040 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 1223040 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 1223040 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n0: 25216 in 40 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=53
+#-----------
+time=4436204208
+mem_heap_B=15172380
+mem_heap_extra_B=3098772
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=54
+#-----------
+time=4481881282
+mem_heap_B=15320389
+mem_heap_extra_B=3129235
+mem_stacks_B=0
+heap_tree=detailed
+n6: 15320389 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 5604896 0x41296C: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 5604896 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 5604896 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 5604896 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 3536880 0x40B267: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 3536880 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 3536880 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 3536880 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 3057216 0x4135C8: std::_Rb_tree<std::string, std::pair<std::string const, ppmc::FrequencyTable*>, std::_Select1st<std::pair<std::string const, ppmc::FrequencyTable*> >, std::less<std::string>, std::allocator<std::pair<std::string const, ppmc::FrequencyTable*> > >::_M_insert_(std::_Rb_tree_node_base const*, std::_Rb_tree_node_base const*, std::pair<std::string const, ppmc::FrequencyTable*> const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 3057216 0x412AFE: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 3057216 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 3057216 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n0: 3057216 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n2: 1860181 0x5111AEF: std::string::_Rep::_S_create(unsigned long, unsigned long, std::allocator<char> const&) (in /usr/lib64/libstdc++.so.6.0.12)
+  n1: 1859440 0x51129D3: ??? (in /usr/lib64/libstdc++.so.6.0.12)
+   n3: 1859440 0x5112BA7: std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::string const&, unsigned long, unsigned long) (in /usr/lib64/libstdc++.so.6.0.12)
+    n1: 994750 0x413C85: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 994750 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n0: 994750 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 864690 0x409342: ppmc::ContextSelector::add(char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 864690 0x413BF8: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n1: 864690 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+       n0: 864690 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 0 in 1 place, below massif's threshold (01.00%)
+  n0: 741 in 3 places, all below massif's threshold (01.00%)
+ n1: 1236048 0x40B2BE: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 1236048 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 1236048 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 1236048 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n0: 25168 in 40 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=55
+#-----------
+time=4530842168
+mem_heap_B=15417476
+mem_heap_extra_B=3149172
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=56
+#-----------
+time=4579803084
+mem_heap_B=15455697
+mem_heap_extra_B=3157031
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=57
+#-----------
+time=4580905980
+mem_heap_B=15474583
+mem_heap_extra_B=3160721
+mem_stacks_B=0
+heap_tree=detailed
+n6: 15474583 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 5660072 0x41296C: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 5660072 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 5660072 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 5660072 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 3571776 0x40B267: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 3571776 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 3571776 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 3571776 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 3087312 0x4135C8: std::_Rb_tree<std::string, std::pair<std::string const, ppmc::FrequencyTable*>, std::_Select1st<std::pair<std::string const, ppmc::FrequencyTable*> >, std::less<std::string>, std::allocator<std::pair<std::string const, ppmc::FrequencyTable*> > >::_M_insert_(std::_Rb_tree_node_base const*, std::_Rb_tree_node_base const*, std::pair<std::string const, ppmc::FrequencyTable*> const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 3087312 0x412AFE: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 3087312 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 3087312 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n0: 3087312 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n2: 1878559 0x5111AEF: std::string::_Rep::_S_create(unsigned long, unsigned long, std::allocator<char> const&) (in /usr/lib64/libstdc++.so.6.0.12)
+  n1: 1877818 0x51129D3: ??? (in /usr/lib64/libstdc++.so.6.0.12)
+   n3: 1877818 0x5112BA7: std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::string const&, unsigned long, unsigned long) (in /usr/lib64/libstdc++.so.6.0.12)
+    n1: 1004128 0x413C85: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 1004128 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n0: 1004128 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 873690 0x409342: ppmc::ContextSelector::add(char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 873690 0x413BF8: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n1: 873690 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+       n0: 873690 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 0 in 1 place, below massif's threshold (01.00%)
+  n0: 741 in 3 places, all below massif's threshold (01.00%)
+ n1: 1248960 0x40B2BE: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 1248960 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 1248960 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 1248960 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n0: 27904 in 40 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=58
+#-----------
+time=4629866996
+mem_heap_B=15576034
+mem_heap_extra_B=3181566
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=59
+#-----------
+time=4678827944
+mem_heap_B=15625046
+mem_heap_extra_B=3191690
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=60
+#-----------
+time=4689680880
+mem_heap_B=15629593
+mem_heap_extra_B=3192519
+mem_stacks_B=0
+heap_tree=detailed
+n6: 15629593 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 5715688 0x41296C: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 5715688 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 5715688 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 5715688 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 3607632 0x40B267: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 3607632 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 3607632 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 3607632 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 3117648 0x4135C8: std::_Rb_tree<std::string, std::pair<std::string const, ppmc::FrequencyTable*>, std::_Select1st<std::pair<std::string const, ppmc::FrequencyTable*> >, std::less<std::string>, std::allocator<std::pair<std::string const, ppmc::FrequencyTable*> > >::_M_insert_(std::_Rb_tree_node_base const*, std::_Rb_tree_node_base const*, std::pair<std::string const, ppmc::FrequencyTable*> const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 3117648 0x412AFE: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 3117648 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 3117648 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n0: 3117648 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n2: 1897121 0x5111AEF: std::string::_Rep::_S_create(unsigned long, unsigned long, std::allocator<char> const&) (in /usr/lib64/libstdc++.so.6.0.12)
+  n1: 1896413 0x51129D3: ??? (in /usr/lib64/libstdc++.so.6.0.12)
+   n3: 1896413 0x5112BA7: std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::string const&, unsigned long, unsigned long) (in /usr/lib64/libstdc++.so.6.0.12)
+    n1: 1012373 0x413C85: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 1012373 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n0: 1012373 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 884040 0x409342: ppmc::ContextSelector::add(char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 884040 0x413BF8: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n1: 884040 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+       n0: 884040 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 0 in 1 place, below massif's threshold (01.00%)
+  n0: 708 in 3 places, all below massif's threshold (01.00%)
+ n1: 1266192 0x40B2BE: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 1266192 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 1266192 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 1266192 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n0: 25312 in 40 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=61
+#-----------
+time=4738641768
+mem_heap_B=15651081
+mem_heap_extra_B=3196951
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=62
+#-----------
+time=4787602662
+mem_heap_B=15718426
+mem_heap_extra_B=3210686
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=63
+#-----------
+time=4836563596
+mem_heap_B=15729045
+mem_heap_extra_B=3212819
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=64
+#-----------
+time=4885524585
+mem_heap_B=15737262
+mem_heap_extra_B=3214450
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=65
+#-----------
+time=4893036366
+mem_heap_B=15786120
+mem_heap_extra_B=3224384
+mem_stacks_B=0
+heap_tree=detailed
+n6: 15786120 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 5770072 0x41296C: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 5770072 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 5770072 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 5770072 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 3642768 0x40B267: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 3642768 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 3642768 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 3642768 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 3147312 0x4135C8: std::_Rb_tree<std::string, std::pair<std::string const, ppmc::FrequencyTable*>, std::_Select1st<std::pair<std::string const, ppmc::FrequencyTable*> >, std::less<std::string>, std::allocator<std::pair<std::string const, ppmc::FrequencyTable*> > >::_M_insert_(std::_Rb_tree_node_base const*, std::_Rb_tree_node_base const*, std::pair<std::string const, ppmc::FrequencyTable*> const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 3147312 0x412AFE: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 3147312 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 3147312 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n0: 3147312 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n2: 1915360 0x5111AEF: std::string::_Rep::_S_create(unsigned long, unsigned long, std::allocator<char> const&) (in /usr/lib64/libstdc++.so.6.0.12)
+  n1: 1914619 0x51129D3: ??? (in /usr/lib64/libstdc++.so.6.0.12)
+   n3: 1914619 0x5112BA7: std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::string const&, unsigned long, unsigned long) (in /usr/lib64/libstdc++.so.6.0.12)
+    n1: 1020109 0x413C85: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 1020109 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n0: 1020109 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 894510 0x409342: ppmc::ContextSelector::add(char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 894510 0x413BF8: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n1: 894510 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+       n0: 894510 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 0 in 1 place, below massif's threshold (01.00%)
+  n0: 741 in 3 places, all below massif's threshold (01.00%)
+ n1: 1284432 0x40B2BE: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 1284432 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 1284432 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 1284432 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n0: 26176 in 40 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=66
+#-----------
+time=4941997269
+mem_heap_B=15824627
+mem_heap_extra_B=3232357
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=67
+#-----------
+time=4990958254
+mem_heap_B=15832559
+mem_heap_extra_B=3233945
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=68
+#-----------
+time=5039919165
+mem_heap_B=15888871
+mem_heap_extra_B=3245441
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=69
+#-----------
+time=5088880223
+mem_heap_B=15900319
+mem_heap_extra_B=3247849
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=70
+#-----------
+time=5100058735
+mem_heap_B=15944946
+mem_heap_extra_B=3256582
+mem_stacks_B=0
+heap_tree=detailed
+n6: 15944946 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 5823840 0x41296C: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 5823840 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 5823840 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 5823840 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 3678912 0x40B267: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 3678912 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 3678912 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 3678912 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 3176640 0x4135C8: std::_Rb_tree<std::string, std::pair<std::string const, ppmc::FrequencyTable*>, std::_Select1st<std::pair<std::string const, ppmc::FrequencyTable*> >, std::less<std::string>, std::allocator<std::pair<std::string const, ppmc::FrequencyTable*> > >::_M_insert_(std::_Rb_tree_node_base const*, std::_Rb_tree_node_base const*, std::pair<std::string const, ppmc::FrequencyTable*> const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 3176640 0x412AFE: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 3176640 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 3176640 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n0: 3176640 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n2: 1933346 0x5111AEF: std::string::_Rep::_S_create(unsigned long, unsigned long, std::allocator<char> const&) (in /usr/lib64/libstdc++.so.6.0.12)
+  n1: 1932597 0x51129D3: ??? (in /usr/lib64/libstdc++.so.6.0.12)
+   n3: 1932597 0x5112BA7: std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::string const&, unsigned long, unsigned long) (in /usr/lib64/libstdc++.so.6.0.12)
+    n1: 1028157 0x413C85: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 1028157 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n0: 1028157 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 904440 0x409342: ppmc::ContextSelector::add(char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 904440 0x413BF8: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n1: 904440 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+       n0: 904440 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 0 in 1 place, below massif's threshold (01.00%)
+  n0: 749 in 3 places, all below massif's threshold (01.00%)
+ n1: 1299504 0x40B2BE: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 1299504 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 1299504 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 1299504 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n0: 32704 in 40 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=71
+#-----------
+time=5110342887
+mem_heap_B=16106763
+mem_heap_extra_B=3289757
+mem_stacks_B=0
+heap_tree=detailed
+n6: 16106763 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 5882800 0x41296C: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 5882800 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 5882800 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 5882800 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 3717312 0x40B267: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 3717312 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 3717312 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 3717312 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 3208800 0x4135C8: std::_Rb_tree<std::string, std::pair<std::string const, ppmc::FrequencyTable*>, std::_Select1st<std::pair<std::string const, ppmc::FrequencyTable*> >, std::less<std::string>, std::allocator<std::pair<std::string const, ppmc::FrequencyTable*> > >::_M_insert_(std::_Rb_tree_node_base const*, std::_Rb_tree_node_base const*, std::pair<std::string const, ppmc::FrequencyTable*> const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 3208800 0x412AFE: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 3208800 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 3208800 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n0: 3208800 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n2: 1952971 0x5111AEF: std::string::_Rep::_S_create(unsigned long, unsigned long, std::allocator<char> const&) (in /usr/lib64/libstdc++.so.6.0.12)
+  n1: 1952206 0x51129D3: ??? (in /usr/lib64/libstdc++.so.6.0.12)
+   n3: 1952206 0x5112BA7: std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::string const&, unsigned long, unsigned long) (in /usr/lib64/libstdc++.so.6.0.12)
+    n1: 1038016 0x413C85: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 1038016 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n0: 1038016 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 914190 0x409342: ppmc::ContextSelector::add(char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 914190 0x413BF8: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n1: 914190 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+       n0: 914190 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 0 in 1 place, below massif's threshold (01.00%)
+  n0: 765 in 3 places, all below massif's threshold (01.00%)
+ n1: 1313136 0x40B2BE: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 1313136 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 1313136 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 1313136 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n0: 31744 in 40 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=72
+#-----------
+time=5125628788
+mem_heap_B=16268612
+mem_heap_extra_B=3322676
+mem_stacks_B=0
+heap_tree=detailed
+n6: 16268612 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 5940616 0x41296C: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 5940616 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 5940616 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 5940616 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 3756336 0x40B267: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 3756336 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 3756336 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 3756336 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 3240336 0x4135C8: std::_Rb_tree<std::string, std::pair<std::string const, ppmc::FrequencyTable*>, std::_Select1st<std::pair<std::string const, ppmc::FrequencyTable*> >, std::less<std::string>, std::allocator<std::pair<std::string const, ppmc::FrequencyTable*> > >::_M_insert_(std::_Rb_tree_node_base const*, std::_Rb_tree_node_base const*, std::pair<std::string const, ppmc::FrequencyTable*> const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 3240336 0x412AFE: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 3240336 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 3240336 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n0: 3240336 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n2: 1972236 0x5111AEF: std::string::_Rep::_S_create(unsigned long, unsigned long, std::allocator<char> const&) (in /usr/lib64/libstdc++.so.6.0.12)
+  n1: 1971471 0x51129D3: ??? (in /usr/lib64/libstdc++.so.6.0.12)
+   n3: 1971471 0x5112BA7: std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::string const&, unsigned long, unsigned long) (in /usr/lib64/libstdc++.so.6.0.12)
+    n1: 1047051 0x413C85: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 1047051 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n0: 1047051 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 924420 0x409342: ppmc::ContextSelector::add(char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 924420 0x413BF8: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n1: 924420 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+       n0: 924420 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 0 in 1 place, below massif's threshold (01.00%)
+  n0: 765 in 3 places, all below massif's threshold (01.00%)
+ n1: 1328208 0x40B2BE: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 1328208 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 1328208 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 1328208 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n0: 30880 in 40 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=73
+#-----------
+time=5140067369
+mem_heap_B=16432095
+mem_heap_extra_B=3356049
+mem_stacks_B=0
+heap_tree=detailed
+n6: 16432095 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 5999928 0x41296C: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 5999928 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 5999928 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 5999928 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 3794880 0x40B267: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 3794880 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 3794880 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 3794880 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 3272688 0x4135C8: std::_Rb_tree<std::string, std::pair<std::string const, ppmc::FrequencyTable*>, std::_Select1st<std::pair<std::string const, ppmc::FrequencyTable*> >, std::less<std::string>, std::allocator<std::pair<std::string const, ppmc::FrequencyTable*> > >::_M_insert_(std::_Rb_tree_node_base const*, std::_Rb_tree_node_base const*, std::pair<std::string const, ppmc::FrequencyTable*> const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 3272688 0x412AFE: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 3272688 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 3272688 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n0: 3272688 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n2: 1991975 0x5111AEF: std::string::_Rep::_S_create(unsigned long, unsigned long, std::allocator<char> const&) (in /usr/lib64/libstdc++.so.6.0.12)
+  n1: 1991238 0x51129D3: ??? (in /usr/lib64/libstdc++.so.6.0.12)
+   n3: 1991238 0x5112BA7: std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::string const&, unsigned long, unsigned long) (in /usr/lib64/libstdc++.so.6.0.12)
+    n1: 1056318 0x413C85: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 1056318 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n0: 1056318 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 934920 0x409342: ppmc::ContextSelector::add(char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 934920 0x413BF8: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n1: 934920 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+       n0: 934920 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 0 in 1 place, below massif's threshold (01.00%)
+  n0: 737 in 3 places, all below massif's threshold (01.00%)
+ n1: 1345200 0x40B2BE: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 1345200 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 1345200 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 1345200 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n0: 27424 in 40 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=74
+#-----------
+time=5183376632
+mem_heap_B=16596207
+mem_heap_extra_B=3389905
+mem_stacks_B=0
+heap_tree=detailed
+n6: 16596207 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 6058184 0x41296C: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 6058184 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 6058184 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 6058184 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 3832944 0x40B267: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 3832944 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 3832944 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 3832944 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 3304464 0x4135C8: std::_Rb_tree<std::string, std::pair<std::string const, ppmc::FrequencyTable*>, std::_Select1st<std::pair<std::string const, ppmc::FrequencyTable*> >, std::less<std::string>, std::allocator<std::pair<std::string const, ppmc::FrequencyTable*> > >::_M_insert_(std::_Rb_tree_node_base const*, std::_Rb_tree_node_base const*, std::pair<std::string const, ppmc::FrequencyTable*> const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 3304464 0x412AFE: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 3304464 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 3304464 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n0: 3304464 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n2: 2011383 0x5111AEF: std::string::_Rep::_S_create(unsigned long, unsigned long, std::allocator<char> const&) (in /usr/lib64/libstdc++.so.6.0.12)
+  n1: 2010675 0x51129D3: ??? (in /usr/lib64/libstdc++.so.6.0.12)
+   n3: 2010675 0x5112BA7: std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::string const&, unsigned long, unsigned long) (in /usr/lib64/libstdc++.so.6.0.12)
+    n1: 1065045 0x413C85: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 1065045 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n0: 1065045 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 945630 0x409342: ppmc::ContextSelector::add(char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 945630 0x413BF8: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n1: 945630 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+       n0: 945630 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 0 in 1 place, below massif's threshold (01.00%)
+  n0: 708 in 3 places, all below massif's threshold (01.00%)
+ n1: 1363440 0x40B2BE: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 1363440 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 1363440 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 1363440 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n0: 25792 in 40 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=75
+#-----------
+time=5232337530
+mem_heap_B=16725985
+mem_heap_extra_B=3416359
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=76
+#-----------
+time=5281298706
+mem_heap_B=16733286
+mem_heap_extra_B=3417842
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=77
+#-----------
+time=5322285823
+mem_heap_B=16762657
+mem_heap_extra_B=3423679
+mem_stacks_B=0
+heap_tree=detailed
+n6: 16762657 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 6115648 0x41296C: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 6115648 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 6115648 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 6115648 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 3872400 0x40B267: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 3872400 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 3872400 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 3872400 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 3335808 0x4135C8: std::_Rb_tree<std::string, std::pair<std::string const, ppmc::FrequencyTable*>, std::_Select1st<std::pair<std::string const, ppmc::FrequencyTable*> >, std::less<std::string>, std::allocator<std::pair<std::string const, ppmc::FrequencyTable*> > >::_M_insert_(std::_Rb_tree_node_base const*, std::_Rb_tree_node_base const*, std::pair<std::string const, ppmc::FrequencyTable*> const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 3335808 0x412AFE: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 3335808 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 3335808 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n0: 3335808 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n2: 2030657 0x5111AEF: std::string::_Rep::_S_create(unsigned long, unsigned long, std::allocator<char> const&) (in /usr/lib64/libstdc++.so.6.0.12)
+  n1: 2029860 0x51129D3: ??? (in /usr/lib64/libstdc++.so.6.0.12)
+   n3: 2029860 0x5112BA7: std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::string const&, unsigned long, unsigned long) (in /usr/lib64/libstdc++.so.6.0.12)
+    n1: 1073640 0x413C85: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 1073640 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n0: 1073640 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 956220 0x409342: ppmc::ContextSelector::add(char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 956220 0x413BF8: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n1: 956220 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+       n0: 956220 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 0 in 1 place, below massif's threshold (01.00%)
+  n0: 797 in 3 places, all below massif's threshold (01.00%)
+ n1: 1379376 0x40B2BE: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 1379376 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 1379376 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 1379376 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n0: 28768 in 40 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=78
+#-----------
+time=5349122564
+mem_heap_B=16930324
+mem_heap_extra_B=3458260
+mem_stacks_B=0
+heap_tree=detailed
+n6: 16930324 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 6176720 0x41296C: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 6176720 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 6176720 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 6176720 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 3911712 0x40B267: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 3911712 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 3911712 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 3911712 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 3369120 0x4135C8: std::_Rb_tree<std::string, std::pair<std::string const, ppmc::FrequencyTable*>, std::_Select1st<std::pair<std::string const, ppmc::FrequencyTable*> >, std::less<std::string>, std::allocator<std::pair<std::string const, ppmc::FrequencyTable*> > >::_M_insert_(std::_Rb_tree_node_base const*, std::_Rb_tree_node_base const*, std::pair<std::string const, ppmc::FrequencyTable*> const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 3369120 0x412AFE: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 3369120 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 3369120 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n0: 3369120 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n2: 2050996 0x5111AEF: std::string::_Rep::_S_create(unsigned long, unsigned long, std::allocator<char> const&) (in /usr/lib64/libstdc++.so.6.0.12)
+  n1: 2050255 0x51129D3: ??? (in /usr/lib64/libstdc++.so.6.0.12)
+   n3: 2050255 0x5112BA7: std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::string const&, unsigned long, unsigned long) (in /usr/lib64/libstdc++.so.6.0.12)
+    n1: 1083025 0x413C85: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 1083025 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n0: 1083025 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 967230 0x409342: ppmc::ContextSelector::add(char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 967230 0x413BF8: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n1: 967230 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+       n0: 967230 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 0 in 1 place, below massif's threshold (01.00%)
+  n0: 741 in 3 places, all below massif's threshold (01.00%)
+ n1: 1395360 0x40B2BE: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 1395360 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 1395360 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 1395360 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n0: 26416 in 40 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=79
+#-----------
+time=5398083443
+mem_heap_B=17083441
+mem_heap_extra_B=3489687
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=80
+#-----------
+time=5447044332
+mem_heap_B=17092454
+mem_heap_extra_B=3491506
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=81
+#-----------
+time=5465143916
+mem_heap_B=17101924
+mem_heap_extra_B=3493268
+mem_stacks_B=0
+heap_tree=detailed
+n6: 17101924 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 6238584 0x41296C: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 6238584 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 6238584 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 6238584 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 3950976 0x40B267: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 3950976 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 3950976 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 3950976 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 3402864 0x4135C8: std::_Rb_tree<std::string, std::pair<std::string const, ppmc::FrequencyTable*>, std::_Select1st<std::pair<std::string const, ppmc::FrequencyTable*> >, std::less<std::string>, std::allocator<std::pair<std::string const, ppmc::FrequencyTable*> > >::_M_insert_(std::_Rb_tree_node_base const*, std::_Rb_tree_node_base const*, std::pair<std::string const, ppmc::FrequencyTable*> const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 3402864 0x412AFE: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 3402864 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 3402864 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n0: 3402864 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n2: 2071644 0x5111AEF: std::string::_Rep::_S_create(unsigned long, unsigned long, std::allocator<char> const&) (in /usr/lib64/libstdc++.so.6.0.12)
+  n1: 2070879 0x51129D3: ??? (in /usr/lib64/libstdc++.so.6.0.12)
+   n3: 2070879 0x5112BA7: std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::string const&, unsigned long, unsigned long) (in /usr/lib64/libstdc++.so.6.0.12)
+    n1: 1093539 0x413C85: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 1093539 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n0: 1093539 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 977340 0x409342: ppmc::ContextSelector::add(char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 977340 0x413BF8: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n1: 977340 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+       n0: 977340 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 0 in 1 place, below massif's threshold (01.00%)
+  n0: 765 in 3 places, all below massif's threshold (01.00%)
+ n1: 1409328 0x40B2BE: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 1409328 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 1409328 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 1409328 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n0: 28528 in 40 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=82
+#-----------
+time=5514104827
+mem_heap_B=17174461
+mem_heap_extra_B=3508427
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=83
+#-----------
+time=5544874116
+mem_heap_B=17273396
+mem_heap_extra_B=3528572
+mem_stacks_B=0
+heap_tree=detailed
+n6: 17273396 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 6298688 0x41296C: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 6298688 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 6298688 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 6298688 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 3992256 0x40B267: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 3992256 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 3992256 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 3992256 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 3435648 0x4135C8: std::_Rb_tree<std::string, std::pair<std::string const, ppmc::FrequencyTable*>, std::_Select1st<std::pair<std::string const, ppmc::FrequencyTable*> >, std::less<std::string>, std::allocator<std::pair<std::string const, ppmc::FrequencyTable*> > >::_M_insert_(std::_Rb_tree_node_base const*, std::_Rb_tree_node_base const*, std::pair<std::string const, ppmc::FrequencyTable*> const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 3435648 0x412AFE: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 3435648 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 3435648 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n0: 3435648 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n2: 2091716 0x5111AEF: std::string::_Rep::_S_create(unsigned long, unsigned long, std::allocator<char> const&) (in /usr/lib64/libstdc++.so.6.0.12)
+  n1: 2091008 0x51129D3: ??? (in /usr/lib64/libstdc++.so.6.0.12)
+   n3: 2091008 0x5112BA7: std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::string const&, unsigned long, unsigned long) (in /usr/lib64/libstdc++.so.6.0.12)
+    n1: 1101758 0x413C85: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 1101758 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n0: 1101758 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 989250 0x409342: ppmc::ContextSelector::add(char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 989250 0x413BF8: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n1: 989250 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+       n0: 989250 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 0 in 1 place, below massif's threshold (01.00%)
+  n0: 708 in 3 places, all below massif's threshold (01.00%)
+ n1: 1429296 0x40B2BE: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 1429296 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 1429296 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 1429296 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n0: 25792 in 40 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=84
+#-----------
+time=5593835020
+mem_heap_B=17412572
+mem_heap_extra_B=3557356
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=85
+#-----------
+time=5642795924
+mem_heap_B=17429862
+mem_heap_extra_B=3560914
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=86
+#-----------
+time=5647937168
+mem_heap_B=17446765
+mem_heap_extra_B=3564339
+mem_stacks_B=0
+heap_tree=detailed
+n6: 17446765 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 6358088 0x41296C: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 6358088 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 6358088 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 6358088 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 4033680 0x40B267: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 4033680 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 4033680 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 4033680 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 3468048 0x4135C8: std::_Rb_tree<std::string, std::pair<std::string const, ppmc::FrequencyTable*>, std::_Select1st<std::pair<std::string const, ppmc::FrequencyTable*> >, std::less<std::string>, std::allocator<std::pair<std::string const, ppmc::FrequencyTable*> > >::_M_insert_(std::_Rb_tree_node_base const*, std::_Rb_tree_node_base const*, std::pair<std::string const, ppmc::FrequencyTable*> const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 3468048 0x412AFE: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 3468048 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 3468048 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n0: 3468048 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n2: 2111653 0x5111AEF: std::string::_Rep::_S_create(unsigned long, unsigned long, std::allocator<char> const&) (in /usr/lib64/libstdc++.so.6.0.12)
+  n1: 2110904 0x51129D3: ??? (in /usr/lib64/libstdc++.so.6.0.12)
+   n3: 2110904 0x5112BA7: std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::string const&, unsigned long, unsigned long) (in /usr/lib64/libstdc++.so.6.0.12)
+    n1: 1109894 0x413C85: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 1109894 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n0: 1109894 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 1001010 0x409342: ppmc::ContextSelector::add(char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 1001010 0x413BF8: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n1: 1001010 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+       n0: 1001010 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 0 in 1 place, below massif's threshold (01.00%)
+  n0: 749 in 3 places, all below massif's threshold (01.00%)
+ n1: 1447872 0x40B2BE: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 1447872 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 1447872 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 1447872 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n0: 27424 in 40 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=87
+#-----------
+time=5696898541
+mem_heap_B=17587008
+mem_heap_extra_B=3593376
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=88
+#-----------
+time=5745860174
+mem_heap_B=17588859
+mem_heap_extra_B=3593829
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=89
+#-----------
+time=5773505237
+mem_heap_B=17621078
+mem_heap_extra_B=3600306
+mem_stacks_B=0
+heap_tree=detailed
+n6: 17621078 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 6422240 0x41296C: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 6422240 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 6422240 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 6422240 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 4074048 0x40B267: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 4074048 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 4074048 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 4074048 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 3503040 0x4135C8: std::_Rb_tree<std::string, std::pair<std::string const, ppmc::FrequencyTable*>, std::_Select1st<std::pair<std::string const, ppmc::FrequencyTable*> >, std::less<std::string>, std::allocator<std::pair<std::string const, ppmc::FrequencyTable*> > >::_M_insert_(std::_Rb_tree_node_base const*, std::_Rb_tree_node_base const*, std::pair<std::string const, ppmc::FrequencyTable*> const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 3503040 0x412AFE: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 3503040 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 3503040 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n0: 3503040 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n2: 2133014 0x5111AEF: std::string::_Rep::_S_create(unsigned long, unsigned long, std::allocator<char> const&) (in /usr/lib64/libstdc++.so.6.0.12)
+  n1: 2132306 0x51129D3: ??? (in /usr/lib64/libstdc++.so.6.0.12)
+   n3: 2132306 0x5112BA7: std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::string const&, unsigned long, unsigned long) (in /usr/lib64/libstdc++.so.6.0.12)
+    n1: 1120586 0x413C85: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 1120586 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n0: 1120586 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 1011720 0x409342: ppmc::ContextSelector::add(char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 1011720 0x413BF8: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n1: 1011720 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+       n0: 1011720 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 0 in 1 place, below massif's threshold (01.00%)
+  n0: 708 in 3 places, all below massif's threshold (01.00%)
+ n1: 1462656 0x40B2BE: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 1462656 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 1462656 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 1462656 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n0: 26080 in 40 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=90
+#-----------
+time=5822466269
+mem_heap_B=17706413
+mem_heap_extra_B=3617659
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=91
+#-----------
+time=5871427221
+mem_heap_B=17710257
+mem_heap_extra_B=3618495
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=92
+#-----------
+time=5920388243
+mem_heap_B=17780034
+mem_heap_extra_B=3632710
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=93
+#-----------
+time=5951023391
+mem_heap_B=17797434
+mem_heap_extra_B=3636230
+mem_stacks_B=0
+heap_tree=peak
+n6: 17797434 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 6484808 0x41296C: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 6484808 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 6484808 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 6484808 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 4113792 0x40B267: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 4113792 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 4113792 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 4113792 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n1: 3537168 0x4135C8: std::_Rb_tree<std::string, std::pair<std::string const, ppmc::FrequencyTable*>, std::_Select1st<std::pair<std::string const, ppmc::FrequencyTable*> >, std::less<std::string>, std::allocator<std::pair<std::string const, ppmc::FrequencyTable*> > >::_M_insert_(std::_Rb_tree_node_base const*, std::_Rb_tree_node_base const*, std::pair<std::string const, ppmc::FrequencyTable*> const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 3537168 0x412AFE: ppmc::Model::find(std::string const&) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 3537168 0x413A00: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 3537168 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n0: 3537168 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n2: 2153922 0x5111AEF: std::string::_Rep::_S_create(unsigned long, unsigned long, std::allocator<char> const&) (in /usr/lib64/libstdc++.so.6.0.12)
+  n1: 2153214 0x51129D3: ??? (in /usr/lib64/libstdc++.so.6.0.12)
+   n3: 2153214 0x5112BA7: std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::string const&, unsigned long, unsigned long) (in /usr/lib64/libstdc++.so.6.0.12)
+    n1: 1130034 0x413C85: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 1130034 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n0: 1130034 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n1: 1023180 0x409342: ppmc::ContextSelector::add(char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+     n1: 1023180 0x413BF8: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+      n1: 1023180 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+       n0: 1023180 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 0 in 1 place, below massif's threshold (01.00%)
+  n0: 708 in 3 places, all below massif's threshold (01.00%)
+ n1: 1482528 0x40B2BE: ppmc::FrequencyTable::addCharacter(unsigned char) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+  n1: 1482528 0x413BAC: ppmc::PPMCCompressor::process(unsigned short) (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+   n1: 1482528 0x41371C: ppmc::PPMCCompressor::compress() (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+    n0: 1482528 0x40CDC1: main (in /home/carlos/svn.googlecode.com/datos2011/trunk/PPMC ORDEN N/ppmc)
+ n0: 25216 in 40 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=94
+#-----------
+time=5999984347
+mem_heap_B=17872702
+mem_heap_extra_B=3651874
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=95
+#-----------
+time=6048945957
+mem_heap_B=17919649
+mem_heap_extra_B=3661503
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=96
+#-----------
+time=6097907015
+mem_heap_B=17922108
+mem_heap_extra_B=3662028
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=97
+#-----------
+time=6146867905
+mem_heap_B=12970528
+mem_heap_extra_B=2685776
+mem_stacks_B=0
+heap_tree=empty
