@@ -1,6 +1,8 @@
 TMPDIR=/tmp/ppmc
 PPMC=../../ppmc/ppmc
-FIXTURE="../fixture/*"
+#FIXTURE=$(find ../../fixtures/text/0_light/* )
+#FIXTURE=../../fixtures/text/1_medium/linux-1.3.100.tar
+FIXTURE=../../fixtures/text/2_heavy/linux-2.4.37.tar ../../fixtures/text/2_heavy/linux-2.6.34.4.tar
 mkdir $TMPDIR
 for FILE in $FIXTURE; do
 	echo "############################" >> report.txt
@@ -10,7 +12,8 @@ for FILE in $FIXTURE; do
 	echo "file: $TARGET" >> report.txt
 	TARGET=$TMPDIR/$TARGET.z
 	echo >> report.txt
-	for ORDER in 1 2 3 4 5; do
+	cat $FILE > /dev/null
+	for ORDER in 4 5; do
 		echo "$FILE -> $ORDER"
 		echo "order: $ORDER" >> report.txt
 		/usr/bin/time -p -a -o report.txt $PPMC -c $FILE -s $TARGET -o $ORDER -b 2097152
