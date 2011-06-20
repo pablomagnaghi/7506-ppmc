@@ -75,13 +75,17 @@ void ArithmeticDescompressor::solveUnderflow(){
 }
 
 void ArithmeticDescompressor::uncompress(){
-	size_t currentPos = 0;
-	while (currentPos < size){
-		u_int16_t value = this->extract();
-		++currentPos;
- 		if (value != END_OF_FILE){
- 			this->writer->write(value);
- 		}
+	if (order == (size_t) -1) {
+		reader->copy(writer);
+	} else {
+		size_t currentPos = 0;
+		while (currentPos < size){
+			u_int16_t value = this->extract();
+			++currentPos;
+			if (value != END_OF_FILE){
+				this->writer->write(value);
+			}
+		}
 	}
 }
 

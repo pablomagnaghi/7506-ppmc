@@ -1,9 +1,9 @@
 #!/bin/sh
 
 QUICKSTART="../fixtures/text/0_light/FileReader.cpp ../fixtures/binary/0_light/short_binary"
-FIXTURE=$(find ../fixtures/text/0_light/* ../fixtures/text/1_medium/* ../fixtures/binary/0_light/*)
+FIXTURE=$(find ../fixtures/text/0_light/* ../fixtures/text/1_medium/linux-1.3.100.tar ../fixtures/binary/0_light/*)
 VALGRIND="../fixtures/binary/0_light/short_binary"
-
+AI="../fixtures/binary/1_medium/*"
 
 for ORDER in 1 ; do
   for FILE in $QUICKSTART; do
@@ -12,6 +12,13 @@ for ORDER in 1 ; do
     ./ppmc -x test/tmp/$TARGET.z -s test/tmp/$TARGET.original
     cmp $FILE test/tmp/$TARGET.original && echo -n "." ||  ( echo "Failed $FILE" && exit 1 )
   done
+done
+
+for FILE in $AI; do
+  TARGET=$(basename $FILE)
+  ./ppmc -c $FILE -s test/tmp/$TARGET.z
+  ./ppmc -x test/tmp/$TARGET.z -s test/tmp/$TARGET.original
+  cmp $FILE test/tmp/$TARGET.original && echo -n "." ||  ( echo "Failed $FILE" && exit 1 )
 done
 
 

@@ -23,6 +23,12 @@ FileReader::FileReader(const char* name, size_t bs){
 	file.seekg(0,ios::beg);
 }
 
+void FileReader::copy(FileWriter* writer) {
+	while (! eof()) {
+		writer->write(read());
+	}
+}
+	
 FileReader::~FileReader() {
 	delete[] buffer;
 }
@@ -59,7 +65,7 @@ size_t FileReader::getSize(){
 	return size;
 }
 
-pair<char,size_t> FileReader::getSizeFromHeader(){
+pair<char,size_t> FileReader::readHeader(){
 	char oneCharBuffer[1] = {0};
 	vector<char> tr;
 	size_t size = 0;

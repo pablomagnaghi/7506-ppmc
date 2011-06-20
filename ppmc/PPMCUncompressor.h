@@ -21,7 +21,6 @@ namespace ppmc{
 			std::string firstContext;
 			int state;
 			bool solveLastModel(std::string, std::string, int *);
-			size_t order;
 		public:
 			PPMCUncompressor(util::FileReader* r, util::FileWriter* w);
 			bool process (char a);

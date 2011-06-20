@@ -14,7 +14,6 @@ namespace util {
 			FileReader& file;
 			std::string name;
 			std::map<std::string,int> ext;
-			static size_t binaryMinSize;
 	};
 }
 

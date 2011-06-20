@@ -16,14 +16,19 @@ PPMCCompressor::PPMCCompressor(FileReader* r, FileWriter* w, size_t o):Arithmeti
 }
 
 void PPMCCompressor::compress() {
-	static int i = 0;
-	writer->writeSizeInHeader(order,reader->getSize());
-	while (!reader->eof() ) {
-		i++;
-		char c = reader->read();
-		process(c);
+	if (order == (size_t) -1) {
+		writer->writeHeader(order,reader->getSize());
+		reader->copy(writer);
+	} else {
+		static int i = 0;
+		writer->writeHeader(order,reader->getSize());
+		while (!reader->eof() ) {
+			i++;
+			char c = reader->read();
+			process(c);
+		}
+		process(END_OF_FILE);
 	}
-	process(END_OF_FILE);
 }
 
 void PPMCCompressor::show(){

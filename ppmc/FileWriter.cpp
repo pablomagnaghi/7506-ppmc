@@ -32,7 +32,7 @@ void FileWriter::write(char c){
 	}
 }
 
-void FileWriter::writeSizeInHeader(size_t o, size_t size) {
+void FileWriter::writeHeader(size_t o, size_t size) {
 	vector<unsigned char> buffer;
 	
 	while (size > 127) {

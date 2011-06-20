@@ -4,8 +4,6 @@ using namespace util;
 using namespace std;
 using namespace util;
 
-size_t AI::binaryMinSize=1048576;
-
 AI::AI(FileReader& in, const std::string n):file(in),name(n){
 	
 	/*
@@ -26,24 +24,26 @@ AI::AI(FileReader& in, const std::string n):file(in),name(n){
 	//ext.insert(make_pair("",5));
 	
 	
-	ext.insert(make_pair("exe",+1));
-	ext.insert(make_pair("pdf",+1));
-	ext.insert(make_pair("z",+1));
-	ext.insert(make_pair("XX",+1));
-	ext.insert(make_pair("gz",+1));
-	ext.insert(make_pair("mp3",+1));
-	ext.insert(make_pair("wav",+1));
-	ext.insert(make_pair("rpm",+1));
-	ext.insert(make_pair("deb",+1));
-	ext.insert(make_pair("tar",+1));
-	ext.insert(make_pair("odt",+1));
-	ext.insert(make_pair("ods",+1));
-	ext.insert(make_pair("png",+1));
-	ext.insert(make_pair("doc",+1));
-	ext.insert(make_pair("docx",+1));
-	ext.insert(make_pair("xls",+1));
-	ext.insert(make_pair("xlsx",+1));
-	//ext.insert(make_pair("",+1));
+	ext.insert(make_pair("exe",-1));
+	ext.insert(make_pair("pdf",-1));
+	ext.insert(make_pair("z",-1));
+	ext.insert(make_pair("zip",-1));
+	ext.insert(make_pair("rar",-1));
+	ext.insert(make_pair("XX",-1));
+	ext.insert(make_pair("gz",-1));
+	ext.insert(make_pair("mp3",-1));
+	ext.insert(make_pair("wav",-1));
+	ext.insert(make_pair("rpm",-1));
+	ext.insert(make_pair("deb",-1));
+	ext.insert(make_pair("tar",-1));
+	ext.insert(make_pair("odt",-1));
+	ext.insert(make_pair("ods",-1));
+	ext.insert(make_pair("png",-1));
+	ext.insert(make_pair("doc",-1));
+	ext.insert(make_pair("docx",-1));
+	ext.insert(make_pair("xls",-1));
+	ext.insert(make_pair("xlsx",-1));
+	//ext.insert(make_pair("",-1));
 	
 	
 
@@ -52,26 +52,35 @@ AI::AI(FileReader& in, const std::string n):file(in),name(n){
 }
 
 size_t AI::evaluate(){
-	
+	// is known
 	if(name.find_last_of(".") != string::npos) {
 		map<string, int>::iterator it;
-// 		string extension = "";
-// 		extension = name.substr(name.find_last_of(".")+1);
-		
 		it = ext.find(name.substr(name.find_last_of(".")+1));
 		if (it != ext.end()) {
 			return it->second;
 		}
 	}
-	
-	
+
+	// is binary
+	if (file.getChars() > 60 ) {
+		return -1;
+	}
+
 	size_t fileSize = file.getSize();
-	if (fileSize < binaryMinSize) {
+	if (fileSize < 5 * 1048576) {
+		return 7;
+	}
+	if (fileSize < 10 * 1048576) {
+		return 6;
+	}
+	if (fileSize < 100 * 1048576) {
 		return 5;
 	}
-	size_t chars = file.getChars();
-	if (chars > 60 ) {
+	if (fileSize < 500 * 1048576) {
+		return 4;
+	}
+	if (fileSize < 1000 * 1048576) {
 		return 3;
 	}
-	return 5;
+	return 2;
 }
