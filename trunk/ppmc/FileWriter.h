@@ -9,7 +9,7 @@ namespace util {
 			FileWriter(const char* name, size_t bs);
 			~FileWriter();
 			void write(char c);
-			void writeSizeInHeader(size_t o, size_t size);
+			void writeHeader(size_t o, size_t size);
 		private:
 			char* buffer;
 			size_t cursor;

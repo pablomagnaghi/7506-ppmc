@@ -23,6 +23,7 @@ namespace ppmc {
 			util::FileReader *reader;
 		protected:
 			size_t size;
+			size_t order;
 		public:
 			ArithmeticDescompressor(util::FileReader* r, util::FileWriter* w);
 			void solveOverflow();

@@ -4,15 +4,18 @@
 #include <fstream>
 #include <utility>
 
+#include "FileWriter.h"
+
 namespace util {
 	class FileReader {
 		public:
 			FileReader(const char* name,size_t bs);
 			~FileReader();
+			void copy(FileWriter* writer);
 			virtual char read();
 			virtual bool eof();
 			size_t getSize();
-			std::pair<char,size_t> getSizeFromHeader();
+			std::pair<char,size_t> readHeader();
 			size_t getChars();
 		private:
 			char* buffer;
