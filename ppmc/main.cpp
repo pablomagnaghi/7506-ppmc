@@ -35,7 +35,7 @@ int main(int argc, char* argv[]) {
 		options.add_options()
 			("-c", po::value< string >(&input), "Archivo de entrada")
 			("-x", po::value< string >(&input), "Archivo de entrada")
-			("-s", po::value< string >(&output), "Archivo de salida")
+			("-s", po::value< string >(&output)->default_value(""), "Archivo de salida")
 			("-o", po::value<size_t>(&order)->default_value(3), "Orden")
 			("-b", po::value<size_t>(&buffer)->default_value(1048576), "Buffer entrada/salida")
 		;
@@ -47,10 +47,14 @@ int main(int argc, char* argv[]) {
 		conflicting_options(vm, "-c", "-x");
 		conflicting_options(vm, "-x", "-o");
 
-		if (output =="" ) {
+		if (vm["-s"].defaulted() ) {
 			if (vm.count("-c")) {
 				output = input + ".XX";
 			} else {
+				if( (input.find_last_of(".") == string::npos ) || 
+				    ( input.substr(input.find_last_of(".")+1) != "XX" ) ) {
+					throw invalid_argument(string("Para descomprimir sin archivo de salida, debe proveer un archivo con extensión XX"));
+				}
 				output = input.substr(0, input.size() - 3);
 			}
 		}
