@@ -1,5 +1,7 @@
 #include <sys/stat.h>
+#include <algorithm>
 #include <vector>
+#include <set>
 
 #include "FileReader.h"
 
@@ -39,6 +41,18 @@ bool FileReader::eof(){
 		cursor = 0;
 	}
 	return (maxCursor == 0);
+}
+
+size_t FileReader::getChars(){
+	char buffer[1048576];
+	set<u_int8_t> chars;
+	file.read(buffer,1048576);
+	size_t read = file.gcount();
+	for (size_t cursor=0; cursor< read; ++cursor) {
+		chars.insert(buffer[cursor]);
+	}
+	file.seekg(0,ios::beg);
+	return chars.size();
 }
 
 size_t FileReader::getSize(){

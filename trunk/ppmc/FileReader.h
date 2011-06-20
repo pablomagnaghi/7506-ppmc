@@ -13,6 +13,7 @@ namespace util {
 			virtual bool eof();
 			size_t getSize();
 			std::pair<char,size_t> getSizeFromHeader();
+			size_t getChars();
 		private:
 			char* buffer;
 			size_t cursor;

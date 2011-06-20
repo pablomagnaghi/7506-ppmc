@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stdexcept>
 #include <boost/program_options.hpp>
+#include "AI.h"
 #include "PPMC.h"
 #include "FileWriter.h"
 #include "FileReader.h"
@@ -36,7 +37,7 @@ int main(int argc, char* argv[]) {
 			("-x", po::value< string >(&input), "Archivo de entrada")
 			("-s", po::value< string >(&output), "Archivo de salida")
 			("-o", po::value<size_t>(&order)->default_value(3), "Orden")
-			("-b", po::value<size_t>(&buffer)->default_value(2048), "Buffer entrada/salida")
+			("-b", po::value<size_t>(&buffer)->default_value(1048576), "Buffer entrada/salida")
 		;
 
 		po::variables_map vm;
@@ -53,17 +54,23 @@ int main(int argc, char* argv[]) {
 				output = input.substr(0, input.size() - 3);
 			}
 		}
-		
-// 		cout << "vamos a ";
+
+// 		cerr << "vamos a ";
 // 		if (vm.count("-c")) {
-// 			cout << "comprimir ";
+// 			cerr << "comprimir ";
 // 		} else {
-// 			cout << "descomprimir ";
+// 			cerr << "descomprimir ";
 // 		}
-// 		cout << input << " con orden " << order << " en " << output << " y buffer " << buffer << endl;
+// 		cerr << input << " con orden " << order << " en " << output << " y buffer " << buffer << endl;
 
 		FileReader in(input.c_str(), buffer);
 		FileWriter out(output.c_str(), buffer);
+
+		if (vm["-o"].defaulted()) {
+			AI ai(in,input);
+			order=ai.evaluate();
+			//cerr << "defaulting order to " << order << endl;
+		}
 		
 		if (vm.count("-c")) {
 			PPMCCompressor c(&in,&out,order);
