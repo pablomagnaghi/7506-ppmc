@@ -20,7 +20,7 @@ bool TableCalculator::isInString(u_int8_t c, string exclusionString){
 	return isInString;
 }
 
-void TableCalculator::getEnds(u_int16_t a, u_int64_t bottom, u_int64_t top, u_int64_t *newBottom, u_int64_t *newTop, FrequencyTable table){
+void TableCalculator::getLimits(u_int16_t a, u_int64_t bottom, u_int64_t top, u_int64_t *newBottom, u_int64_t *newTop, FrequencyTable table){
 	u_int64_t range = top - bottom + 1;
 	double characterTop = 0;
 	double temporalTop = 0;
@@ -55,7 +55,7 @@ void TableCalculator::getEnds(u_int16_t a, u_int64_t bottom, u_int64_t top, u_in
 	}
 }
 
-bool TableCalculator::getEndsLastModel (u_int16_t a, u_int64_t bottom, u_int64_t top, u_int64_t * newBottom, u_int64_t* newTop, string ex){
+bool TableCalculator::getLimitsLastModel (u_int16_t a, u_int64_t bottom, u_int64_t top, u_int64_t * newBottom, u_int64_t* newTop, string ex){
 	bool result = false;
 	u_int64_t range = top - bottom + 1;
 	double characterTop = 0;
@@ -84,7 +84,7 @@ bool TableCalculator::getEndsLastModel (u_int16_t a, u_int64_t bottom, u_int64_t
 	return result;
 }
 
-int TableCalculator::foundedCharLastModel(u_int64_t number, int size, u_int64_t bottom, u_int64_t top, u_int64_t *temporalBottom, u_int64_t *temporalTop, string ex){
+int TableCalculator::findCharLastModel(u_int64_t number, int size, u_int64_t bottom, u_int64_t top, u_int64_t *temporalBottom, u_int64_t *temporalTop, string ex){
 	int result = -1;
 	int i = 0;
 	u_int64_t partialBottom = bottom;
@@ -92,11 +92,11 @@ int TableCalculator::foundedCharLastModel(u_int64_t number, int size, u_int64_t 
 	double frequences = 0;
 	u_int64_t partialTop;
 	double pi;
-	bool founded = false;
+	bool found = false;
 	int totalFrequences = 257 - ex.size();
 	if (size==32){
 		// todo verrr
-		while ((i<NUMBER_OF_CHARACTERS)&&(!founded)){
+		while ((i<NUMBER_OF_CHARACTERS)&&(!found)){
 			if (isInString(i, ex)){
 				i++;
 				continue;
@@ -106,7 +106,7 @@ int TableCalculator::foundedCharLastModel(u_int64_t number, int size, u_int64_t 
 			partialTop = floor(range*pi + bottom - 1);
 			if ((partialBottom<=number)&&(partialTop>=number)){
 				result = i;
-				founded = true;
+				found = true;
 			}
 			*temporalBottom = partialBottom;
 			*temporalTop = partialTop;
@@ -116,14 +116,14 @@ int TableCalculator::foundedCharLastModel(u_int64_t number, int size, u_int64_t 
 
 		// todo Esto esta agregado solo para probar
 
-		if (!founded){
+		if (!found){
 			result = END_OF_FILE;
 		}
 	}
 	return result;
 }
 
-int TableCalculator::foundedCharModel(u_int64_t number, int size, u_int64_t bottom, u_int64_t top, u_int64_t *temporalBottom, u_int64_t *temporalTop, FrequencyTable table){
+int TableCalculator::findCharModel(u_int64_t number, int size, u_int64_t bottom, u_int64_t top, u_int64_t *temporalBottom, u_int64_t *temporalTop, FrequencyTable table){
 	int result = -1;
 	int i = 0;
 	u_int64_t partialBottom = bottom;
@@ -131,19 +131,19 @@ int TableCalculator::foundedCharModel(u_int64_t number, int size, u_int64_t bott
 	double frequences = 0;
 	u_int64_t partialTop;
 	double pi;
-	bool founded = false;
+	bool found = false;
 	int totalFrequences = table.getTotal();
 	map<u_int16_t, size_t>::iterator it = table.tableBegin();
 
 	if (size==32){
-		while (it != table.tableEnd() && !founded){
+		while (it != table.tableEnd() && !found){
 			frequences += it->second;
 			pi = frequences/totalFrequences;
 			partialTop = floor(range*pi + bottom - 1);
 			if ((partialBottom<=number)&&(partialTop>=number)){
 				result = it->first;
 				result &= 0x00FF;
-				founded = true;
+				found = true;
 			}
 			*temporalBottom = partialBottom;
 			*temporalTop = partialTop;
@@ -157,7 +157,7 @@ int TableCalculator::foundedCharModel(u_int64_t number, int size, u_int64_t bott
 //			*temporal_top = floor(bottom + range*1 - 1);
 //			*temporal_bottom = ceil(bottom + range*pb);
 //		}
-		if (!founded){
+		if (!found){
 			result = ESC;
 			double pb = frequences/totalFrequences;
 			*temporalTop = floor(bottom + range*1 - 1);

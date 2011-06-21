@@ -7,7 +7,7 @@ using namespace ppmc;
 using namespace std;
 using namespace util;
 
-PPMCUncompressor::PPMCUncompressor(FileReader* r, FileWriter* w):ArithmeticDescompressor(r,w) {
+PPMCUncompressor::PPMCUncompressor(FileReader* r, FileWriter* w):ArithmeticUncompressor(r,w) {
 	pair<char,size_t>header = r->readHeader();
 	order=header.first;
 	contextSelector.setOrder(order);
@@ -44,7 +44,7 @@ bool PPMCUncompressor::solveLastModel(string ex, string firstCtx, int * moreIter
 	while (!end){
 		//busco el char con el numero actual y los techos y pisos
 		//esta funcion si es >= a 0 tiene un resultado valudo, sino tiene que mandar mas biuts
-		result = calculator.foundedCharLastModel(getNumber(), getBitsInNumber(), getBottom(), getTop(), &temporalBottom, &temporalTop, ex);
+		result = calculator.findCharLastModel(getNumber(), getBitsInNumber(), getBottom(), getTop(), &temporalBottom, &temporalTop, ex);
 		//int result = this->getCharInLastModel(exclusionChars);
 		if (result < 0){
 			//Si entra aqui es po que no llego a definir con los bits que estan y tiene q seguir metiendo bits
@@ -136,7 +136,7 @@ bool PPMCUncompressor::process(char a){
 			bool end = false;
 			//Mientras no pueda resolver la consulta, pide numeros
 			while (!end){
-				result = calculator.foundedCharModel(getNumber(), getBitsInNumber(), getBottom(), getTop(), &temporalBottom, &temporalTop, frequencyTable);
+				result = calculator.findCharModel(getNumber(), getBitsInNumber(), getBottom(), getTop(), &temporalBottom, &temporalTop, frequencyTable);
 				if (result < 0){
 					//Si entra aqui es po que no llego a definir con los bits que estan y tiene q seguir metiendo bits
 

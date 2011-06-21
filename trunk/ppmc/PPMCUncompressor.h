@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include "ArithmeticDescompressor.h"
+#include "ArithmeticUncompressor.h"
 #include "Model.h"
 #include "ContextSelector.h"
 #include "PPMCCompressor.h"
@@ -11,7 +11,7 @@
 #include "TableCalculator.h"
 
 namespace ppmc{
-	class PPMCUncompressor: public ArithmeticDescompressor {
+	class PPMCUncompressor: public ArithmeticUncompressor {
 		private:
 			std::vector<Model*> models;
 			ContextSelector contextSelector;
