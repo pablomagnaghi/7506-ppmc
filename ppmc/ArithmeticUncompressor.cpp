@@ -1,12 +1,12 @@
 #include <cmath>
 
-#include "ArithmeticDescompressor.h"
+#include "ArithmeticUncompressor.h"
 
 using namespace ppmc;
 using namespace util;
 using namespace std;
 
-ArithmeticDescompressor::ArithmeticDescompressor(FileReader* r, FileWriter* w):cola() {
+ArithmeticUncompressor::ArithmeticUncompressor(FileReader* r, FileWriter* w):charQueue() {
 	this->reader = r;
 	this->writer = w;
 	this->bottom = BYTE_BOTTOM;
@@ -27,7 +27,7 @@ void printInBin(u_int32_t x){
 	cout<<endl;
 }
 
-void ArithmeticDescompressor::solveOverflow(){
+void ArithmeticUncompressor::solveOverflow(){
 	int i=31;
 	int bitsOfOverflow=0;
 	while (((bottom>>i) & 1)==((top>>i) & 1)){
@@ -45,7 +45,7 @@ void ArithmeticDescompressor::solveOverflow(){
 	}
 }
 
-void ArithmeticDescompressor::solveUnderflow(){
+void ArithmeticUncompressor::solveUnderflow(){
 	int i = 29;
 	int localCounter = 0;
 	int firstBitTop = (top>>31) & 1;
@@ -74,7 +74,7 @@ void ArithmeticDescompressor::solveUnderflow(){
 	}
 }
 
-void ArithmeticDescompressor::uncompress(){
+void ArithmeticUncompressor::uncompress(){
 	if (order == (size_t) -1) {
 		reader->copy(writer);
 	} else {
@@ -89,57 +89,57 @@ void ArithmeticDescompressor::uncompress(){
 	}
 }
 
-u_int16_t ArithmeticDescompressor::extract(){
+u_int16_t ArithmeticUncompressor::extract(){
 	char c;
 	bool end = false;
-	while (cola.empty() && !end && !reader->eof()){
+	while (charQueue.empty() && !end && !reader->eof()){
 		c = this->reader->read();
 		end = this->process(c);
 	}
 
-	u_int16_t result = cola.front();
-	cola.pop();
+	u_int16_t result = charQueue.front();
+	charQueue.pop();
 	return result;
 }
 
-void ArithmeticDescompressor::addToQueue(u_int16_t c){
-	cola.push(c);
+void ArithmeticUncompressor::addToQueue(u_int16_t c){
+	charQueue.push(c);
 }
 
-u_int64_t ArithmeticDescompressor::getBottom(){
+u_int64_t ArithmeticUncompressor::getBottom(){
 	return this->bottom;
 }
 
-u_int64_t ArithmeticDescompressor::getTop(){
+u_int64_t ArithmeticUncompressor::getTop(){
 	return this->top;
 }
 
-void ArithmeticDescompressor::setBottom(u_int64_t bottom){
+void ArithmeticUncompressor::setBottom(u_int64_t bottom){
 	this->bottom = bottom;
 }
 
-void ArithmeticDescompressor::setTop(u_int64_t top){
+void ArithmeticUncompressor::setTop(u_int64_t top){
 	this->top = top;
 }
 
-void ArithmeticDescompressor::setBuffer(char a){
+void ArithmeticUncompressor::setBuffer(char a){
 	this->buffer = a;
 	this->bitsInBuffer = 8;
 }
 
-u_int32_t ArithmeticDescompressor::getNumber(){
+u_int32_t ArithmeticUncompressor::getNumber(){
 	return this->number;
 }
 
-int ArithmeticDescompressor::getBitsInNumber(){
+int ArithmeticUncompressor::getBitsInNumber(){
 	return this->bitsInNumber;
 }
 
-int ArithmeticDescompressor::getBitsInBuffer(){
+int ArithmeticUncompressor::getBitsInBuffer(){
 	return this->bitsInBuffer;
 }
 
-void ArithmeticDescompressor::dropBufferInNumber(){
+void ArithmeticUncompressor::dropBufferInNumber(){
 	u_int32_t aux = 0x00000000;
 	char bit;
 	int i = 7;
@@ -165,10 +165,10 @@ void ArithmeticDescompressor::dropBufferInNumber(){
 	this->bitsInNumber += caracteres;
 }
 
-void ArithmeticDescompressor::removeBits(int cant){
+void ArithmeticUncompressor::removeBits(int cant){
 	this->number<<=cant;
 	this->bitsInNumber -= cant;
 }
 
-ArithmeticDescompressor::~ArithmeticDescompressor() {
+ArithmeticUncompressor::~ArithmeticUncompressor() {
 }

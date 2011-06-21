@@ -1,5 +1,5 @@
-#ifndef ARITHMETICDESCOMPRESSOR_H_
-#define ARITHMETICDESCOMPRESSOR_H_
+#ifndef ARITHMETICUNCOMPRESSOR_H_
+#define ARITHMETICUNCOMPRESSOR_H_
 
 #include <queue>
 #include <algorithm>
@@ -10,7 +10,7 @@
 #include "FileReader.h"
 
 namespace ppmc {
-	class ArithmeticDescompressor {
+	class ArithmeticUncompressor {
 		private:
 			u_int64_t bottom;
 			u_int64_t top;
@@ -18,14 +18,14 @@ namespace ppmc {
 			int bitsInNumber;
 			char buffer;
 			int bitsInBuffer;
-			std::queue<u_int16_t> cola;
+			std::queue<u_int16_t> charQueue;
 			util::FileWriter *writer;
 			util::FileReader *reader;
 		protected:
 			size_t size;
 			size_t order;
 		public:
-			ArithmeticDescompressor(util::FileReader* r, util::FileWriter* w);
+			ArithmeticUncompressor(util::FileReader* r, util::FileWriter* w);
 			void solveOverflow();
 			void solveUnderflow();
 			virtual bool process (char a) = 0;
@@ -42,7 +42,7 @@ namespace ppmc {
 			int getBitsInBuffer();
 			void dropBufferInNumber();
 			void removeBits (int cant);
-			virtual ~ArithmeticDescompressor();
+			virtual ~ArithmeticUncompressor();
 		};
 }
-#endif /* ARITHMETICDESCOMPRESSOR_H_ */
+#endif /* ARITHMETICUNCOMPRESSOR_H_ */

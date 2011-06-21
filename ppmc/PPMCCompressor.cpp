@@ -64,7 +64,7 @@ void PPMCCompressor::process(u_int16_t a){
 		// table no deberia devolver true nunca, no importa eso por que es modelo != del -1 donde
 		// puede haber un eof
 
-		table.getEnds(a, actualBottom, actualTop, &temporalBottom, &temporalTop, this->frequencyTable);
+		table.getLimits(a, actualBottom, actualTop, &temporalBottom, &temporalTop, this->frequencyTable);
 
 		if (frequencyTable.find(a)) {
 			found = true;
@@ -92,7 +92,7 @@ void PPMCCompressor::process(u_int16_t a){
 
 				// Esta funcion get_ends deberia ser la que puede devolver true si aparece el end of file
 
-				bool isEof = table.getEndsLastModel(a, actualBottom, actualTop, &temporalLastBottom, &temporalLastTop, exclusionCharacters);
+				bool isEof = table.getLimitsLastModel(a, actualBottom, actualTop, &temporalLastBottom, &temporalLastTop, exclusionCharacters);
 				setBottom(temporalLastBottom);
 				setTop(temporalLastTop);
 				solveOverflow();
