@@ -62,7 +62,7 @@ size_t AI::evaluate(){
 	}
 
 	// is binary
-	if (file.getChars() > 60 ) {
+	if (file.getChars() > 128 ) {
 		return -1;
 	}
 
