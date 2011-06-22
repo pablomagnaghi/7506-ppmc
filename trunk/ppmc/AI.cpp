@@ -66,14 +66,15 @@ size_t AI::evaluate(){
 		return -1;
 	}
 
+	// is text
 	size_t fileSize = file.getSize();
-	if (fileSize < 5 * 1048576) {
+	if (fileSize < 50 * 1048576) {
 		return 7;
 	}
-	if (fileSize < 10 * 1048576) {
+	if (fileSize < 100 * 1048576) {
 		return 6;
 	}
-	if (fileSize < 100 * 1048576) {
+	if (fileSize < 250 * 1048576) {
 		return 5;
 	}
 	if (fileSize < 500 * 1048576) {
